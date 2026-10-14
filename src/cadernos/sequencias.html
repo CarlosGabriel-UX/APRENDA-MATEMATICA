@@ -1,0 +1,73 @@
+<h2>Sequências lógicas</h2>
+<p>Antes de qualquer fórmula, a banca adora pedir o próximo termo de uma sequência. Verifique nesta ordem:</p>
+<ol>
+  <li><strong>Diferenças</strong> entre termos vizinhos (constantes? crescem de forma regular?).</li>
+  <li><strong>Razões</strong> (cada termo é o anterior vezes algo?).</li>
+  <li><strong>Duas sequências intercaladas</strong> (termos de posição ímpar seguem uma regra e os de posição par, outra).</li>
+  <li>Quadrados, cubos, primos, Fibonacci (cada termo é a soma dos dois anteriores).</li>
+</ol>
+<details class="exemplo"><summary>Qual o próximo termo: 3, 5, 9, 15, 23, …?</summary>
+<div class="resolucao">
+<p class="passo">Diferenças: 2, 4, 6, 8. A próxima é 10.</p>
+<p class="resposta-final">Resposta: 33.</p></div></details>
+<details class="exemplo"><summary>Qual o próximo termo: 2, 10, 4, 20, 8, 40, …?</summary>
+<div class="resolucao">
+<p class="passo">Intercaladas: posições ímpares 2, 4, 8 (× 2) e pares 10, 20, 40 (× 2).</p>
+<p class="resposta-final">Resposta: 16.</p></div></details>
+<div class="caixa atalho"><span class="rotulo">Atalho: sequências cíclicas</span>
+<p>Se um padrão se repete a cada k termos, o termo de posição n é o mesmo que o da posição dada pelo <strong>resto</strong> de n ÷ k (resto 0 = último do ciclo).</p>
+<p>Ex.: dias da semana. Se hoje é segunda, daqui a 100 dias: 100 ÷ 7 deixa resto 2 → quarta-feira.</p></div>
+
+<h2>Progressão aritmética (PA)</h2>
+<p>Cada termo é o anterior <strong>mais</strong> uma constante r (a razão). Ex.: 5, 8, 11, 14 (r = 3).</p>
+<span class="formula">aₙ = a₁ + (n − 1) × r</span>
+<span class="formula">Sₙ = (a₁ + aₙ) × n / 2</span>
+<div class="caixa atalho"><span class="rotulo">Atalho: termo médio</span>
+<p>Numa PA, qualquer termo é a média dos seus vizinhos equidistantes. Se três números estão em PA, escreva-os como <span class="m">x − r, x, x + r</span>: a soma é 3x e já dá o termo do meio.</p></div>
+<div class="caixa atalho"><span class="rotulo">Atalho: soma de 1 a n</span>
+<p><span class="m">1 + 2 + … + n = n(n + 1)/2</span>. De 1 a 100: 5.050. A soma dos n primeiros ímpares é n²: 1 + 3 + 5 + 7 = 16.</p></div>
+<details class="exemplo"><summary>Quantos múltiplos de 7 há entre 100 e 500?</summary>
+<div class="resolucao">
+<p class="passo">Primeiro múltiplo: 105. Último: 497. PA de razão 7.</p>
+<p class="passo">497 = 105 + (n − 1) × 7 → 392 = 7(n − 1) → n − 1 = 56 → n = 57.</p>
+<p class="resposta-final">Resposta: 57.</p></div></details>
+<div class="caixa dica"><span class="rotulo">Atalho para contar múltiplos</span>
+<p>Quantidade de múltiplos de k entre 1 e N = parte inteira de N/k. Entre 100 e 500: ⌊500/7⌋ − ⌊99/7⌋ = 71 − 14 = 57.</p></div>
+
+<h2>Progressão geométrica (PG)</h2>
+<p>Cada termo é o anterior <strong>vezes</strong> uma constante q (a razão). Ex.: 3, 6, 12, 24 (q = 2).</p>
+<span class="formula">aₙ = a₁ × qⁿ⁻¹</span>
+<span class="formula">Sₙ = a₁ × (qⁿ − 1) / (q − 1)</span>
+<span class="formula">Soma infinita (para −1 &lt; q &lt; 1): S = a₁ / (1 − q)</span>
+<details class="exemplo"><summary>Uma bactéria se divide em duas a cada hora. Começando com 5 bactérias, quantas haverá após 6 horas?</summary>
+<div class="resolucao">
+<p class="passo">Após t horas: 5 × 2ᵗ. Com t = 6: 5 × 64 = 320.</p>
+<p class="resposta-final">Resposta: 320 bactérias.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: contagem de termos</span>
+<p>"Após 6 horas" dá o expoente 6 (5 × 2⁶). Mas "o 6º termo" de uma PG que começa em 5 é 5 × 2⁵. Leia com atenção se o primeiro valor é o momento zero ou o termo 1.</p></div>
+<details class="exemplo"><summary>Qual a soma 10 + 5 + 2,5 + 1,25 + … (infinita)?</summary>
+<div class="resolucao">
+<p class="passo">PG com a₁ = 10 e q = 1/2. S = 10 / (1 − 1/2) = 20.</p>
+<p class="resposta-final">Resposta: 20.</p></div></details>
+
+<h2>Questões</h2>
+<div class="questao" data-correta="c">
+<p class="enunciado">Qual o próximo termo da sequência 1, 4, 9, 16, 25, …?</p>
+<ol class="alternativas"><li>30</li><li>34</li><li>36</li><li>49</li><li>35</li></ol>
+<div class="explicacao"><p>São os quadrados: 1², 2², 3², 4², 5². O próximo é 6² = 36.</p></div>
+</div>
+<div class="questao" data-correta="b">
+<p class="enunciado">Numa PA, o 3º termo é 11 e o 8º termo é 31. O 20º termo é:</p>
+<ol class="alternativas"><li>75</li><li>79</li><li>81</li><li>83</li><li>87</li></ol>
+<div class="explicacao"><p>Do 3º ao 8º são 5 razões: 5r = 20 → r = 4. Do 8º ao 20º, 12 razões: 31 + 48 = 79.</p></div>
+</div>
+<div class="questao" data-correta="d">
+<p class="enunciado">Uma pessoa guarda R$ 10 no primeiro dia, R$ 15 no segundo, R$ 20 no terceiro e assim por diante. Quanto terá guardado em 30 dias?</p>
+<ol class="alternativas"><li>R$ 2.175</li><li>R$ 2.250</li><li>R$ 2.325</li><li>R$ 2.475</li><li>R$ 2.550</li></ol>
+<div class="explicacao"><p>a₃₀ = 10 + 29 × 5 = 155. S = (10 + 155) × 30 / 2 = 165 × 15 = 2.475.</p></div>
+</div>
+<div class="questao" data-correta="e">
+<p class="enunciado">Se hoje é sábado, que dia da semana será daqui a 45 dias?</p>
+<ol class="alternativas"><li>quinta-feira</li><li>sexta-feira</li><li>domingo</li><li>segunda-feira</li><li>terça-feira</li></ol>
+<div class="explicacao"><p>45 ÷ 7 deixa resto 3, então basta avançar 3 dias a partir de sábado: domingo (1), segunda (2), terça (3).</p></div>
+</div>

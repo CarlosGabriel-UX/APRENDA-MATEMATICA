@@ -1,0 +1,79 @@
+<h2>A definição que resolve 80% das questões</h2>
+<span class="formula">P = casos favoráveis / casos possíveis</span>
+<p>Vale quando todos os resultados são <strong>igualmente prováveis</strong> (dado honesto, sorteio justo, moeda não viciada). A probabilidade fica sempre entre 0 e 1 (ou entre 0% e 100%).</p>
+<details class="exemplo"><summary>Ao lançar dois dados, qual a probabilidade de a soma ser 7?</summary>
+<div class="resolucao">
+<p class="passo">Possíveis: 6 × 6 = 36.</p>
+<p class="passo">Favoráveis: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) = 6.</p>
+<p class="resposta-final">Resposta: 6/36 = 1/6.</p></div></details>
+<div class="caixa dica"><span class="rotulo">Soma de dois dados</span>
+<p>A soma 7 é a mais provável (6 casos). Para as outras: soma s tem <span class="m">6 − |s − 7|</span> casos. Soma 4 → 3 casos; soma 10 → 3 casos; soma 12 → 1 caso.</p></div>
+
+<h2>Evento complementar</h2>
+<span class="formula">P(não A) = 1 − P(A)</span>
+<div class="caixa atalho"><span class="rotulo">Atalho: "pelo menos um"</span>
+<p>Sempre que aparecer "pelo menos um", calcule a chance de <strong>nenhum</strong> e subtraia de 1.</p>
+<p>Três moedas, pelo menos uma cara: P(nenhuma cara) = (1/2)³ = 1/8 → 1 − 1/8 = 7/8.</p></div>
+
+<h2>"E" multiplica (eventos independentes)</h2>
+<p>Se um evento não interfere no outro, a probabilidade de os dois acontecerem é o produto:</p>
+<span class="formula">P(A e B) = P(A) × P(B)</span>
+<details class="exemplo"><summary>Uma urna tem 4 bolas brancas e 6 pretas. Tiram-se duas, sem reposição. Qual a probabilidade de ambas serem brancas?</summary>
+<div class="resolucao">
+<p class="passo">1ª branca: 4/10. Sem reposição, sobram 3 brancas em 9: 3/9.</p>
+<p class="passo">4/10 × 3/9 = 12/90 = 2/15.</p>
+<p class="resposta-final">Resposta: 2/15.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Com ou sem reposição?</span>
+<p>Sem reposição, o total e os favoráveis diminuem a cada retirada. Com reposição, tudo se mantém. Essa é a diferença entre as alternativas armadilha.</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Ordem dos resultados</span>
+<p>"Uma bola branca e uma preta" (em qualquer ordem) pode ser BP ou PB. Calcule um caminho e multiplique pelo número de ordens: 2 × (4/10 × 6/9) = 48/90 = 8/15.</p></div>
+
+<h2>"Ou" soma (tirando a interseção)</h2>
+<span class="formula">P(A ou B) = P(A) + P(B) − P(A e B)</span>
+<p>Se A e B não podem acontecer juntos (mutuamente exclusivos), a interseção é zero e é só somar.</p>
+<details class="exemplo"><summary>Sorteando uma carta de um baralho de 52, qual a chance de sair um rei ou uma carta de copas?</summary>
+<div class="resolucao">
+<p class="passo">Reis: 4/52. Copas: 13/52. Rei de copas (contado duas vezes): 1/52.</p>
+<p class="passo">4/52 + 13/52 − 1/52 = 16/52 = 4/13.</p>
+<p class="resposta-final">Resposta: 4/13.</p></div></details>
+
+<h2>Probabilidade condicional</h2>
+<p>"Sabendo que B aconteceu" muda o universo: os casos possíveis passam a ser só os de B.</p>
+<span class="formula">P(A | B) = P(A e B) / P(B)</span>
+<div class="caixa atalho"><span class="rotulo">Atalho: use a tabela</span>
+<p>Monte uma tabela de dupla entrada com as quantidades. A condição diz em qual linha ou coluna olhar. Depois é só favoráveis sobre o total daquela linha.</p></div>
+<details class="exemplo"><summary>Numa empresa de 100 funcionários: 40 homens (10 fumantes) e 60 mulheres (15 fumantes). Sorteando um fumante, qual a chance de ser mulher?</summary>
+<div class="resolucao">
+<p class="passo">O universo agora são os fumantes: 10 + 15 = 25.</p>
+<p class="passo">Mulheres entre eles: 15.</p>
+<p class="resposta-final">Resposta: 15/25 = 3/5 = 60%.</p></div></details>
+
+<h2>Repetições: distribuição binomial</h2>
+<p>Probabilidade de exatamente k sucessos em n tentativas independentes, cada uma com chance p:</p>
+<span class="formula">P = C(n, k) × pᵏ × (1 − p)ⁿ⁻ᵏ</span>
+<details class="exemplo"><summary>Lançando uma moeda 4 vezes, qual a chance de sair exatamente 2 caras?</summary>
+<div class="resolucao">
+<p class="passo">C(4, 2) = 6 ordens possíveis. Cada uma com chance (1/2)⁴ = 1/16.</p>
+<p class="resposta-final">Resposta: 6/16 = 3/8.</p></div></details>
+
+<h2>Questões</h2>
+<div class="questao" data-correta="c">
+<p class="enunciado">Sorteando um número de 1 a 30, qual a probabilidade de ele ser múltiplo de 4?</p>
+<ol class="alternativas"><li>1/4</li><li>1/5</li><li>7/30</li><li>8/30</li><li>1/6</li></ol>
+<div class="explicacao"><p>Múltiplos de 4 até 30: 4, 8, …, 28 = 7 números. P = 7/30.</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado">Um atirador acerta o alvo com probabilidade 0,8. Atirando 2 vezes, a probabilidade de acertar pelo menos uma vez é:</p>
+<ol class="alternativas"><li>0,96</li><li>0,64</li><li>0,80</li><li>0,16</li><li>1,60</li></ol>
+<div class="explicacao"><p>Errar as duas: 0,2 × 0,2 = 0,04. Pelo menos um acerto: 1 − 0,04 = 0,96. (1,60 é impossível: maior que 1.)</p></div>
+</div>
+<div class="questao" data-correta="d">
+<p class="enunciado">Uma caixa tem 3 lâmpadas boas e 2 queimadas. Retirando duas, sem reposição, qual a probabilidade de as duas serem queimadas?</p>
+<ol class="alternativas"><li>4/25</li><li>2/5</li><li>1/5</li><li>1/10</li><li>3/10</li></ol>
+<div class="explicacao"><p>2/5 × 1/4 = 2/20 = 1/10. (4/25 seria com reposição.)</p></div>
+</div>
+<div class="questao" data-correta="b">
+<p class="enunciado">Lançando-se um dado, sabendo que saiu número par, qual a probabilidade de ter saído um número maior que 3?</p>
+<ol class="alternativas"><li>1/2</li><li>2/3</li><li>1/3</li><li>1/6</li><li>5/6</li></ol>
+<div class="explicacao"><p>Universo: {2, 4, 6}. Maiores que 3: {4, 6}. P = 2/3.</p></div>
+</div>

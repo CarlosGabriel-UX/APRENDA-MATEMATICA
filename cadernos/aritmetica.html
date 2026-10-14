@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aritmética e divisibilidade · Aprenda Matemática</title>
+<meta name="description" content="Operações, potências, raízes, critérios de divisibilidade, MMC e MDC.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>➗</text></svg>">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/app.js"></script>
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="../index.html">Aprenda <span>Matemática</span></a>
+  <nav>
+    <a href="../cadernos/estrategias.html">Estratégias</a>
+    <a href="../cadernos/formulario.html">Formulário</a>
+    <button type="button" class="botao-tema">🌙 Escuro</button>
+  </nav>
+</header>
+<div class="container layout">
+<aside class="lateral">
+  <button type="button" class="botao secundario botao-menu">☰ Todos os cadernos</button>
+  <div class="lista-cadernos">
+    <h3>Comece aqui</h3>
+    <ul>
+<li data-slug="estrategias"><a href="estrategias.html"><span>⏱️</span> Estratégias de prova<span class="feito"></span></a></li>
+<li data-slug="formulario"><a href="formulario.html"><span>📋</span> Formulário de bolso<span class="feito"></span></a></li>
+    </ul>
+    <h3>Cadernos</h3>
+    <ul>
+<li data-slug="aritmetica"><a href="aritmetica.html" class="ativo"><span>🔢</span> Aritmética e divisibilidade<span class="feito"></span></a></li>
+<li data-slug="fracoes"><a href="fracoes.html"><span>🍕</span> Frações e números decimais<span class="feito"></span></a></li>
+<li data-slug="porcentagem"><a href="porcentagem.html"><span>💯</span> Porcentagem<span class="feito"></span></a></li>
+<li data-slug="razao-proporcao"><a href="razao-proporcao.html"><span>⚖️</span> Razão e proporção<span class="feito"></span></a></li>
+<li data-slug="regra-de-tres"><a href="regra-de-tres.html"><span>📐</span> Regra de três<span class="feito"></span></a></li>
+<li data-slug="juros"><a href="juros.html"><span>💰</span> Juros simples e compostos<span class="feito"></span></a></li>
+<li data-slug="equacoes"><a href="equacoes.html"><span>✖️</span> Equações e sistemas<span class="feito"></span></a></li>
+<li data-slug="funcoes"><a href="funcoes.html"><span>📈</span> Funções<span class="feito"></span></a></li>
+<li data-slug="sequencias"><a href="sequencias.html"><span>🔁</span> Sequências, PA e PG<span class="feito"></span></a></li>
+<li data-slug="geometria"><a href="geometria.html"><span>📏</span> Geometria plana e espacial<span class="feito"></span></a></li>
+<li data-slug="estatistica"><a href="estatistica.html"><span>📊</span> Estatística básica<span class="feito"></span></a></li>
+<li data-slug="combinatoria"><a href="combinatoria.html"><span>🎲</span> Análise combinatória<span class="feito"></span></a></li>
+<li data-slug="probabilidade"><a href="probabilidade.html"><span>🎯</span> Probabilidade<span class="feito"></span></a></li>
+<li data-slug="logica"><a href="logica.html"><span>🧠</span> Raciocínio lógico<span class="feito"></span></a></li>
+    </ul>
+  </div>
+</aside>
+<article class="caderno">
+  <h1>🔢 Aritmética e divisibilidade</h1>
+  <p class="subtitulo">Operações, potências, raízes, critérios de divisibilidade, MMC e MDC.</p>
+  <div class="selos"><span class="selo alta">Cai muito</span></div>
+  <nav class="sumario" data-sumario><strong>Neste caderno</strong></nav>
+<h2>Ordem das operações</h2>
+<p>Numa expressão numérica, a ordem é sempre a mesma:</p>
+<ol>
+  <li>Parênteses ( ), depois colchetes [ ], depois chaves { }</li>
+  <li>Potências e raízes</li>
+  <li>Multiplicações e divisões, da esquerda para a direita</li>
+  <li>Somas e subtrações, da esquerda para a direita</li>
+</ol>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p><span class="m">24 ÷ 4 × 2</span> é <strong>12</strong>, não 3. Multiplicação e divisão têm a mesma prioridade, então se resolve da esquerda para a direita: 24 ÷ 4 = 6, e 6 × 2 = 12.</p>
+<p>E <span class="m">−3² = −9</span>, enquanto <span class="m">(−3)² = 9</span>. Sem parênteses, o expoente vale só para o 3.</p></div>
+
+<h2>Potências</h2>
+<table>
+<tr><th>Propriedade</th><th>Exemplo</th></tr>
+<tr><td>aᵐ × aⁿ = aᵐ⁺ⁿ</td><td>2³ × 2⁴ = 2⁷ = 128</td></tr>
+<tr><td>aᵐ ÷ aⁿ = aᵐ⁻ⁿ</td><td>5⁶ ÷ 5⁴ = 5² = 25</td></tr>
+<tr><td>(aᵐ)ⁿ = aᵐˣⁿ</td><td>(3²)³ = 3⁶ = 729</td></tr>
+<tr><td>a⁰ = 1 (a ≠ 0)</td><td>1.000.000⁰ = 1</td></tr>
+<tr><td>a⁻ⁿ = 1 / aⁿ</td><td>2⁻³ = 1/8</td></tr>
+<tr><td>(a × b)ⁿ = aⁿ × bⁿ</td><td>(2 × 5)³ = 8 × 125 = 1000</td></tr>
+</table>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>Base negativa: expoente par dá positivo, expoente ímpar dá negativo. <span class="m">(−2)⁴ = 16</span> e <span class="m">(−2)³ = −8</span>.</p>
+<p>E (aᵐ)ⁿ é diferente de a^(mⁿ): <span class="m">(2³)² = 2⁶ = 64</span>, mas <span class="m">2^(3²) = 2⁹ = 512</span>.</p></div>
+
+<h2>Raízes</h2>
+<p>Raiz é potência com expoente fracionário: <span class="m">ⁿ√aᵐ = a^(m/n)</span>. Daí saem as regras:</p>
+<ul>
+  <li><span class="m">√(a × b) = √a × √b</span>, então <span class="m">√72 = √(36 × 2) = 6√2</span></li>
+  <li><span class="m">√a + √b ≠ √(a + b)</span>. Não existe regra para soma.</li>
+  <li><strong>Racionalizar:</strong> <span class="m">6 / √3 = 6√3 / 3 = 2√3</span></li>
+</ul>
+<div class="caixa atalho"><span class="rotulo">Atalho: raiz quadrada exata</span>
+<p>Olhe o último algarismo: um quadrado perfeito só termina em 0, 1, 4, 5, 6 ou 9. Depois enquadre: √1849 está entre 40 (1600) e 50 (2500); termina em 9, então a raiz termina em 3 ou 7. 43² = 1849. Pronto.</p></div>
+
+<h2>Critérios de divisibilidade</h2>
+<table>
+<tr><th>Divisível por</th><th>Quando</th><th>Exemplo</th></tr>
+<tr><td>2</td><td>termina em algarismo par</td><td>3.478</td></tr>
+<tr><td>3</td><td>soma dos algarismos é múltiplo de 3</td><td>4.521 (soma 12)</td></tr>
+<tr><td>4</td><td>os dois últimos algarismos formam múltiplo de 4</td><td>7.316 (16)</td></tr>
+<tr><td>5</td><td>termina em 0 ou 5</td><td>1.235</td></tr>
+<tr><td>6</td><td>divisível por 2 e por 3</td><td>4.524</td></tr>
+<tr><td>8</td><td>os três últimos formam múltiplo de 8</td><td>5.120 (120)</td></tr>
+<tr><td>9</td><td>soma dos algarismos é múltiplo de 9</td><td>8.172 (soma 18)</td></tr>
+<tr><td>10</td><td>termina em 0</td><td>930</td></tr>
+<tr><td>11</td><td>soma dos algarismos de posição ímpar menos a dos de posição par é múltiplo de 11 (pode ser 0)</td><td>2.728 (2+2 − (7+8) = −11)</td></tr>
+</table>
+<div class="caixa atalho"><span class="rotulo">Atalho: resto da divisão por 3 ou por 9</span>
+<p>O resto da divisão de um número por 9 é o mesmo resto da soma dos seus algarismos por 9. Exemplo: 5.437 → 5+4+3+7 = 19 → resto 1 na divisão por 9. Vale igual para 3.</p></div>
+
+<h2>Números primos e fatoração</h2>
+<p>Primo tem exatamente dois divisores: 1 e ele mesmo. Os primeiros: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47. O <strong>1 não é primo</strong>, e o <strong>2 é o único primo par</strong>.</p>
+<p>Para saber se um número é primo, teste a divisão só pelos primos até a raiz quadrada dele. Para 113: √113 ≈ 10,6, então teste 2, 3, 5 e 7. Nenhum divide, logo 113 é primo.</p>
+
+<h3>Quantidade de divisores</h3>
+<p>Fatore o número, some 1 a cada expoente e multiplique.</p>
+<span class="formula">360 = 2³ × 3² × 5¹ → (3+1)(2+1)(1+1) = 24 divisores</span>
+
+<h2>MMC e MDC</h2>
+<p><strong>MMC</strong> (mínimo múltiplo comum): o menor número que é múltiplo de todos. Usa-se quando as coisas <strong>voltam a coincidir</strong>: ônibus que saem juntos de novo, remédios tomados ao mesmo tempo, luzes que piscam juntas.</p>
+<p><strong>MDC</strong> (máximo divisor comum): o maior número que divide todos. Usa-se quando se quer <strong>dividir em partes iguais, do maior tamanho possível</strong>: cortar tábuas em pedaços iguais, montar kits iguais, dividir terrenos.</p>
+<p>Pela fatoração: o MDC pega os fatores comuns com o <em>menor</em> expoente; o MMC pega todos os fatores com o <em>maior</em> expoente.</p>
+<span class="formula">12 = 2² × 3 &nbsp; e &nbsp; 18 = 2 × 3² → MDC = 2 × 3 = 6 &nbsp;·&nbsp; MMC = 2² × 3² = 36</span>
+<div class="caixa atalho"><span class="rotulo">Atalho para dois números</span>
+<p><span class="m">MMC(a, b) × MDC(a, b) = a × b</span>. Achou um, o outro sai por divisão: MMC(12, 18) = 216 / 6 = 36.</p>
+<p>Se um número é múltiplo do outro, o MMC é o maior e o MDC é o menor: MMC(8, 24) = 24.</p></div>
+
+<details class="exemplo"><summary>Três ônibus saem juntos às 7h. Um passa a cada 12 min, outro a cada 15 min e o terceiro a cada 20 min. A que horas saem juntos de novo?</summary>
+<div class="resolucao">
+<p class="passo">"Juntos de novo" é MMC. 12 = 2² × 3, 15 = 3 × 5, 20 = 2² × 5.</p>
+<p class="passo">MMC = 2² × 3 × 5 = 60 minutos.</p>
+<p class="resposta-final">Resposta: 8h.</p></div></details>
+
+<details class="exemplo"><summary>Uma loja tem 84 canetas azuis e 120 pretas e quer montar o maior número possível de kits iguais, sem misturar sobra. Quantos kits e quantas canetas de cada cor em cada kit?</summary>
+<div class="resolucao">
+<p class="passo">Dividir em partes iguais, do maior jeito possível: MDC. 84 = 2² × 3 × 7 e 120 = 2³ × 3 × 5.</p>
+<p class="passo">MDC = 2² × 3 = 12 kits.</p>
+<p class="passo">Cada kit: 84 / 12 = 7 azuis e 120 / 12 = 10 pretas.</p>
+<p class="resposta-final">Resposta: 12 kits com 7 azuis e 10 pretas.</p></div></details>
+
+<h2>Questões</h2>
+<div class="questao" data-correta="b">
+<p class="enunciado">O valor de 18 − 12 ÷ 3 × 2 + 2³ é:</p>
+<ol class="alternativas"><li>12</li><li>18</li><li>20</li><li>22</li><li>30</li></ol>
+<div class="explicacao"><p>Potência: 2³ = 8. Divisão e multiplicação da esquerda para a direita: 12 ÷ 3 = 4, 4 × 2 = 8. Então 18 − 8 + 8 = 18.</p></div>
+</div>
+<div class="questao" data-correta="d">
+<p class="enunciado">Duas luzes piscam juntas às 20h. Uma pisca a cada 18 segundos e a outra a cada 24 segundos. Quantas vezes elas piscarão juntas entre 20h e 20h10, contando a das 20h?</p>
+<ol class="alternativas"><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li></ol>
+<div class="explicacao"><p>MMC(18, 24) = 72 s. Em 10 min há 600 s. Múltiplos de 72 até 600: 0, 72, 144, …, 576. São 600/72 = 8,33, ou seja, 8 depois do início, mais o das 20h: 9 vezes.</p></div>
+</div>
+<div class="questao" data-correta="c">
+<p class="enunciado">Quantos divisores positivos tem o número 72?</p>
+<ol class="alternativas"><li>6</li><li>9</li><li>12</li><li>18</li><li>24</li></ol>
+<div class="explicacao"><p>72 = 2³ × 3². Divisores: (3+1)(2+1) = 12.</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado">Simplificando √50 + √18 − √8, obtém-se:</p>
+<ol class="alternativas"><li>6√2</li><li>√60</li><li>8√2</li><li>4√2</li><li>10√2</li></ol>
+<div class="explicacao"><p>√50 = 5√2, √18 = 3√2, √8 = 2√2. Então 5√2 + 3√2 − 2√2 = 6√2. (Somar dentro da raiz, como em √60, é o erro clássico.)</p></div>
+</div>
+<div class="questao" data-correta="d">
+<p class="enunciado">Duas tábuas de 2,40 m e 3,60 m serão cortadas em pedaços iguais, do maior tamanho possível, sem sobra. Quantos pedaços serão obtidos ao todo?</p>
+<ol class="alternativas"><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ol>
+<div class="explicacao"><p>Em centímetros: MDC(240, 360) = 120 cm. Pedaços: 240/120 + 360/120 = 2 + 3 = 5.</p></div>
+</div>
+  <div class="rodape-caderno">
+    <a class="botao secundario" href="formulario.html">← Formulário de bolso</a>
+    <button type="button" class="botao marcar-estudado" data-alvo="aritmetica">Marcar como estudado</button>
+    <a class="botao secundario" href="fracoes.html">Frações e números decimais →</a>
+  </div>
+</article>
+</div>
+<footer class="site">
+  Aprenda Matemática: conteúdo livre e original para quem estuda para concursos.
+  Encontrou um erro? <a href="https://github.com/CarlosGabriel-UX/APRENDA-MATEMATICA/issues">Avise no GitHub</a>.
+</footer>
+</body>
+</html>
