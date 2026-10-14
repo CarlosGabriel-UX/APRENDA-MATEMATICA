@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raciocínio lógico · Aprenda Matemática</title>
+<meta name="description" content="Proposições, conectivos, negações, equivalências, tabela-verdade e argumentos.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>➗</text></svg>">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/app.js"></script>
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="../index.html">Aprenda <span>Matemática</span></a>
+  <nav>
+    <a href="../cadernos/estrategias.html">Estratégias</a>
+    <a href="../cadernos/formulario.html">Formulário</a>
+    <button type="button" class="botao-tema">🌙 Escuro</button>
+  </nav>
+</header>
+<div class="container layout">
+<aside class="lateral">
+  <button type="button" class="botao secundario botao-menu">☰ Todos os cadernos</button>
+  <div class="lista-cadernos">
+    <h3>Comece aqui</h3>
+    <ul>
+<li data-slug="estrategias"><a href="estrategias.html"><span>⏱️</span> Estratégias de prova<span class="feito"></span></a></li>
+<li data-slug="formulario"><a href="formulario.html"><span>📋</span> Formulário de bolso<span class="feito"></span></a></li>
+    </ul>
+    <h3>Cadernos</h3>
+    <ul>
+<li data-slug="aritmetica"><a href="aritmetica.html"><span>🔢</span> Aritmética e divisibilidade<span class="feito"></span></a></li>
+<li data-slug="fracoes"><a href="fracoes.html"><span>🍕</span> Frações e números decimais<span class="feito"></span></a></li>
+<li data-slug="porcentagem"><a href="porcentagem.html"><span>💯</span> Porcentagem<span class="feito"></span></a></li>
+<li data-slug="razao-proporcao"><a href="razao-proporcao.html"><span>⚖️</span> Razão e proporção<span class="feito"></span></a></li>
+<li data-slug="regra-de-tres"><a href="regra-de-tres.html"><span>📐</span> Regra de três<span class="feito"></span></a></li>
+<li data-slug="juros"><a href="juros.html"><span>💰</span> Juros simples e compostos<span class="feito"></span></a></li>
+<li data-slug="equacoes"><a href="equacoes.html"><span>✖️</span> Equações e sistemas<span class="feito"></span></a></li>
+<li data-slug="funcoes"><a href="funcoes.html"><span>📈</span> Funções<span class="feito"></span></a></li>
+<li data-slug="sequencias"><a href="sequencias.html"><span>🔁</span> Sequências, PA e PG<span class="feito"></span></a></li>
+<li data-slug="geometria"><a href="geometria.html"><span>📏</span> Geometria plana e espacial<span class="feito"></span></a></li>
+<li data-slug="estatistica"><a href="estatistica.html"><span>📊</span> Estatística básica<span class="feito"></span></a></li>
+<li data-slug="combinatoria"><a href="combinatoria.html"><span>🎲</span> Análise combinatória<span class="feito"></span></a></li>
+<li data-slug="probabilidade"><a href="probabilidade.html"><span>🎯</span> Probabilidade<span class="feito"></span></a></li>
+<li data-slug="logica"><a href="logica.html" class="ativo"><span>🧠</span> Raciocínio lógico<span class="feito"></span></a></li>
+    </ul>
+  </div>
+</aside>
+<article class="caderno">
+  <h1>🧠 Raciocínio lógico</h1>
+  <p class="subtitulo">Proposições, conectivos, negações, equivalências, tabela-verdade e argumentos.</p>
+  <div class="selos"><span class="selo alta">Cai muito</span></div>
+  <nav class="sumario" data-sumario><strong>Neste caderno</strong></nav>
+<h2>Proposições</h2>
+<p>Proposição é uma frase declarativa que pode ser julgada como <strong>verdadeira (V)</strong> ou <strong>falsa (F)</strong>, nunca as duas.</p>
+<p><strong>Não são proposições:</strong> perguntas ("Que horas são?"), ordens ("Feche a porta."), exclamações ("Que lindo!"), frases sem sentido completo e sentenças abertas com variável ("x + 2 = 5", "Ele é médico").</p>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>"Esta frase é falsa" é um paradoxo e não é proposição. Já "2 + 2 = 5" é proposição: é falsa, mas pode ser julgada.</p></div>
+
+<h2>Conectivos e quando cada um é verdadeiro</h2>
+<table>
+<tr><th>Conectivo</th><th>Símbolo</th><th>É verdadeiro quando…</th></tr>
+<tr><td>Negação: não p</td><td>~p</td><td>p é falsa</td></tr>
+<tr><td>Conjunção: p e q</td><td>p ∧ q</td><td>as duas são V</td></tr>
+<tr><td>Disjunção: p ou q</td><td>p ∨ q</td><td>pelo menos uma é V</td></tr>
+<tr><td>Disjunção exclusiva: ou p ou q</td><td>p ⊻ q</td><td>exatamente uma é V</td></tr>
+<tr><td>Condicional: se p, então q</td><td>p → q</td><td>sempre, <strong>exceto</strong> V → F</td></tr>
+<tr><td>Bicondicional: p se e somente se q</td><td>p ↔ q</td><td>as duas têm o mesmo valor</td></tr>
+</table>
+<div class="caixa atalho"><span class="rotulo">Atalho: decore só quando é FALSO</span>
+<ul>
+<li><strong>E</strong> é falso se alguma for F.</li>
+<li><strong>OU</strong> é falso só se as duas forem F.</li>
+<li><strong>SE…ENTÃO</strong> é falso só em "Vera Fischer" (V → F).</li>
+<li><strong>SE E SOMENTE SE</strong> é falso quando os valores são diferentes.</li>
+</ul></div>
+<div class="caixa dica"><span class="rotulo">Outras formas do condicional</span>
+<p>"Se p, então q" também aparece como: "q, se p", "p implica q", "p é condição suficiente para q", "q é condição necessária para p", "quando p, q", "todo p é q".</p></div>
+
+<h2>Tabela-verdade</h2>
+<p>Com n proposições simples, a tabela tem <strong>2ⁿ linhas</strong>. Com 3 proposições, 8 linhas.</p>
+<ul>
+  <li><strong>Tautologia:</strong> verdadeira em todas as linhas (ex.: p ∨ ~p).</li>
+  <li><strong>Contradição:</strong> falsa em todas (ex.: p ∧ ~p).</li>
+  <li><strong>Contingência:</strong> nem uma nem outra.</li>
+</ul>
+<div class="caixa atalho"><span class="rotulo">Atalho: procure a linha que derruba</span>
+<p>Para saber se algo é tautologia, não monte a tabela inteira. Tente fazer a proposição dar F. Se conseguir, não é tautologia. Para um condicional, isso é tentar V no antecedente e F no consequente.</p></div>
+
+<h2>Negações (as mais cobradas)</h2>
+<table>
+<tr><th>Proposição</th><th>Negação</th></tr>
+<tr><td>p e q</td><td>~p ou ~q</td></tr>
+<tr><td>p ou q</td><td>~p e ~q</td></tr>
+<tr><td>se p, então q</td><td>p e ~q</td></tr>
+<tr><td>p se e somente se q</td><td>ou p ou q (exclusivo)</td></tr>
+<tr><td>Todo A é B</td><td>Algum A não é B</td></tr>
+<tr><td>Algum A é B</td><td>Nenhum A é B</td></tr>
+<tr><td>Nenhum A é B</td><td>Algum A é B</td></tr>
+</table>
+<div class="caixa atalho"><span class="rotulo">Atalho: negação do condicional = "Mané"</span>
+<p><strong>MA</strong>ntém a primeira, <strong>N</strong>ega a segunda, troca por <strong>E</strong>.</p>
+<p>"Se chove, então levo guarda-chuva" → "Chove <strong>e</strong> não levo guarda-chuva".</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>A negação de "Todo político é honesto" não é "Nenhum político é honesto". É "<strong>Algum</strong> político <strong>não</strong> é honesto". Basta um contraexemplo para derrubar o "todo".</p>
+<p>E a negação de uma condicional <em>nunca</em> é outra condicional.</p></div>
+
+<h2>Equivalências</h2>
+<p>Duas proposições são equivalentes quando têm a mesma tabela-verdade. As duas que mais caem:</p>
+<span class="formula">p → q ≡ ~q → ~p &nbsp;&nbsp;(contrapositiva)</span>
+<span class="formula">p → q ≡ ~p ∨ q</span>
+<div class="caixa atalho"><span class="rotulo">Atalho: "volta negando" e "Neymar"</span>
+<p><strong>Contrapositiva:</strong> inverte a ordem e nega as duas. "Se estudo, passo" ≡ "Se não passo, não estudei".</p>
+<p><strong>Ne-Y-Mar:</strong> <strong>Ne</strong>ga a primeira, <strong>Ma</strong>ntém a segunda, troca por <strong>ou</strong>. "Se estudo, passo" ≡ "Não estudo ou passo".</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Não são equivalentes</span>
+<p>"Se p, então q" <strong>não</strong> equivale a "Se q, então p" (recíproca) nem a "Se não p, então não q" (inversa). As bancas colocam essas duas como armadilha.</p></div>
+
+<h2>Argumentos e diagramas</h2>
+<p>Um argumento é <strong>válido</strong> quando, sendo as premissas verdadeiras, a conclusão é obrigatoriamente verdadeira. A validade depende da forma, não do conteúdo.</p>
+<div class="caixa atalho"><span class="rotulo">Atalho: comece pela premissa simples</span>
+<p>Nas questões de "considere verdadeiras as premissas", procure a premissa que é uma proposição simples (ou uma conjunção). Ela já é V, e os valores se propagam para as outras.</p></div>
+<details class="exemplo"><summary>Premissas: "Se Ana viaja, Bruno fica." "Se Bruno fica, Carla trabalha." "Carla não trabalha." O que se conclui?</summary>
+<div class="resolucao">
+<p class="passo">"Carla não trabalha" é V, então "Carla trabalha" é F.</p>
+<p class="passo">"Se Bruno fica, Carla trabalha" é V com consequente F, logo o antecedente é F: Bruno não fica.</p>
+<p class="passo">"Se Ana viaja, Bruno fica" é V com consequente F, logo Ana não viaja.</p>
+<p class="resposta-final">Conclusão: Ana não viaja, Bruno não fica, Carla não trabalha.</p></div></details>
+<h3>Quantificadores com diagramas</h3>
+<p>Para "todo", "algum" e "nenhum", desenhe conjuntos:</p>
+<ul>
+  <li><strong>Todo A é B:</strong> o círculo A dentro do círculo B.</li>
+  <li><strong>Algum A é B:</strong> os círculos se cruzam (com certeza há elemento na interseção).</li>
+  <li><strong>Nenhum A é B:</strong> círculos separados.</li>
+</ul>
+<p>Uma conclusão só é válida se valer em <strong>todos</strong> os desenhos possíveis das premissas.</p>
+
+<h2>Questões</h2>
+<div class="questao" data-correta="c">
+<p class="enunciado">A negação de "Se o réu é culpado, então ele será preso" é:</p>
+<ol class="alternativas"><li>Se o réu não é culpado, então não será preso.</li><li>O réu não é culpado e será preso.</li><li>O réu é culpado e não será preso.</li><li>Se o réu será preso, então ele é culpado.</li><li>O réu não é culpado ou não será preso.</li></ol>
+<div class="explicacao"><p>Mané: mantém a primeira, nega a segunda, troca por "e".</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado">Uma proposição equivalente a "Se faço exercícios, então durmo bem" é:</p>
+<ol class="alternativas"><li>Se não durmo bem, então não faço exercícios.</li><li>Se durmo bem, então faço exercícios.</li><li>Se não faço exercícios, então não durmo bem.</li><li>Faço exercícios e não durmo bem.</li><li>Faço exercícios ou durmo bem.</li></ol>
+<div class="explicacao"><p>Contrapositiva: inverte e nega as duas. B é a recíproca, C é a inversa, D é a negação e E não equivale (o certo seria "Não faço exercícios ou durmo bem").</p></div>
+</div>
+<div class="questao" data-correta="d">
+<p class="enunciado">A negação de "Todos os candidatos estudaram" é:</p>
+<ol class="alternativas"><li>Nenhum candidato estudou.</li><li>Todos os candidatos não estudaram.</li><li>Algum candidato estudou.</li><li>Algum candidato não estudou.</li><li>Pelo menos um candidato estudou.</li></ol>
+<div class="explicacao"><p>Todo A é B → Algum A não é B.</p></div>
+</div>
+<div class="questao" data-correta="b">
+<p class="enunciado">Sabe-se que "p ou q" é verdadeira e que p é falsa. Então, necessariamente:</p>
+<ol class="alternativas"><li>q é falsa</li><li>q é verdadeira</li><li>"p e q" é verdadeira</li><li>"se q, então p" é verdadeira</li><li>nada se pode concluir sobre q</li></ol>
+<div class="explicacao"><p>Para o "ou" ser V com p F, q tem que ser V. Aí "p e q" é F e "se q, então p" é V → F, ou seja, F.</p></div>
+</div>
+<div class="questao" data-correta="e">
+<p class="enunciado">Quantas linhas tem a tabela-verdade de uma proposição composta por 4 proposições simples?</p>
+<ol class="alternativas"><li>4</li><li>8</li><li>12</li><li>32</li><li>16</li></ol>
+<div class="explicacao"><p>2⁴ = 16 linhas.</p></div>
+</div>
+  <div class="rodape-caderno">
+    <a class="botao secundario" href="probabilidade.html">← Probabilidade</a>
+    <button type="button" class="botao marcar-estudado" data-alvo="logica">Marcar como estudado</button>
+    <span></span>
+  </div>
+</article>
+</div>
+<footer class="site">
+  Aprenda Matemática: conteúdo livre e original para quem estuda para concursos.
+  Encontrou um erro? <a href="https://github.com/CarlosGabriel-UX/APRENDA-MATEMATICA/issues">Avise no GitHub</a>.
+</footer>
+</body>
+</html>

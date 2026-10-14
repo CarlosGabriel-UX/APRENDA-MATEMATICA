@@ -1,0 +1,86 @@
+<h2>Média aritmética</h2>
+<span class="formula">média = soma dos valores / quantidade de valores</span>
+<div class="caixa atalho"><span class="rotulo">Atalho: a média guarda a soma</span>
+<p>Se a média de 8 números é 15, a soma deles é 120. Quase toda questão de "entrou / saiu um valor" se resolve trabalhando com a <strong>soma</strong>, não com a média.</p></div>
+<details class="exemplo"><summary>A média de idade de 5 amigos é 30 anos. Um sexto amigo entra e a média passa a ser 32. Qual a idade dele?</summary>
+<div class="resolucao">
+<p class="passo">Soma antes: 5 × 30 = 150. Soma depois: 6 × 32 = 192.</p>
+<p class="resposta-final">Resposta: 192 − 150 = 42 anos.</p></div></details>
+<div class="caixa atalho"><span class="rotulo">Atalho: média por desvios</span>
+<p>Escolha um valor de referência e some só as diferenças. Média de 47, 52, 49, 55 e 47 com referência 50: desvios −3, +2, −1, +5, −3 = 0. A média é 50.</p></div>
+<div class="caixa dica"><span class="rotulo">Propriedades</span>
+<ul>
+<li>Somar k a todos os valores soma k à média.</li>
+<li>Multiplicar todos por k multiplica a média por k.</li>
+</ul></div>
+
+<h2>Média ponderada</h2>
+<p>Cada valor tem um peso:</p>
+<span class="formula">média = (v₁·p₁ + v₂·p₂ + …) / (p₁ + p₂ + …)</span>
+<details class="exemplo"><summary>Notas 6 (peso 2), 8 (peso 3) e 5 (peso 1). Qual a média?</summary>
+<div class="resolucao">
+<p class="passo">(12 + 24 + 5) / 6 = 41/6 ≈ 6,83.</p>
+<p class="resposta-final">Resposta: aproximadamente 6,83.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: média de médias</span>
+<p>Turma A (20 alunos) com média 7 e turma B (30 alunos) com média 8 não têm média geral 7,5. É ponderada pelo tamanho: (140 + 240)/50 = 7,6.</p></div>
+
+<h2>Mediana</h2>
+<p>O valor do meio quando os dados estão <strong>em ordem</strong>.</p>
+<ul>
+  <li>Quantidade ímpar: o termo central. Em 3, 7, 8, 12, 20 a mediana é 8.</li>
+  <li>Quantidade par: a média dos dois centrais. Em 2, 4, 9, 11 a mediana é (4 + 9)/2 = 6,5.</li>
+</ul>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>Ordenar antes! A banca entrega os dados embaralhados de propósito.</p></div>
+<div class="caixa dica"><span class="rotulo">Média × mediana</span>
+<p>A mediana não é afetada por valores extremos; a média é. Num grupo de salários com um muito alto, a média fica acima da mediana.</p></div>
+
+<h2>Moda</h2>
+<p>O valor que mais se repete. Pode haver mais de uma (bimodal) ou nenhuma (amodal).</p>
+
+<h2>Dispersão: amplitude, variância e desvio padrão</h2>
+<ul>
+  <li><strong>Amplitude:</strong> maior valor − menor valor.</li>
+  <li><strong>Variância (populacional):</strong> média dos quadrados dos desvios em relação à média.</li>
+  <li><strong>Desvio padrão:</strong> raiz quadrada da variância. Está na mesma unidade dos dados.</li>
+</ul>
+<details class="exemplo"><summary>Calcule a variância e o desvio padrão de 2, 4, 6, 8.</summary>
+<div class="resolucao">
+<p class="passo">Média: 5. Desvios: −3, −1, 1, 3. Quadrados: 9, 1, 1, 9. Soma: 20.</p>
+<p class="passo">Variância: 20/4 = 5. Desvio padrão: √5 ≈ 2,24.</p>
+<p class="resposta-final">Resposta: variância 5; desvio padrão ≈ 2,24.</p></div></details>
+<div class="caixa atalho"><span class="rotulo">Atalho: o que muda a dispersão</span>
+<ul>
+<li>Somar uma constante a todos os dados <strong>não altera</strong> variância nem desvio padrão.</li>
+<li>Multiplicar todos por k multiplica o desvio padrão por k e a variância por k².</li>
+</ul>
+<p>Variância amostral divide por n − 1 em vez de n. Use quando o enunciado falar em <em>amostra</em>.</p></div>
+
+<h2>Leitura de tabelas e gráficos</h2>
+<ul>
+  <li><strong>Gráfico de setores (pizza):</strong> 360° = 100%, logo 1% = 3,6°. Um setor de 90° é 25%.</li>
+  <li><strong>Frequência relativa:</strong> frequência da classe / total.</li>
+  <li>Cuidado com eixos que não começam em zero: exageram diferenças.</li>
+</ul>
+
+<h2>Questões</h2>
+<div class="questao" data-correta="c">
+<p class="enunciado">A média de 10 números é 18. Retirando-se o número 36, qual a nova média?</p>
+<ol class="alternativas"><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li></ol>
+<div class="explicacao"><p>Soma: 180. Sem o 36: 144, com 9 números. 144/9 = 16.</p></div>
+</div>
+<div class="questao" data-correta="b">
+<p class="enunciado">A mediana do conjunto {12, 5, 9, 20, 7, 15} é:</p>
+<ol class="alternativas"><li>9</li><li>10,5</li><li>11,3</li><li>12</li><li>14,5</li></ol>
+<div class="explicacao"><p>Ordenado: 5, 7, 9, 12, 15, 20. Centrais: 9 e 12. Mediana 10,5.</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado">Todos os salários de uma empresa aumentaram R$ 200. O desvio padrão dos salários:</p>
+<ol class="alternativas"><li>não se altera</li><li>aumenta R$ 200</li><li>aumenta 200%</li><li>diminui</li><li>dobra</li></ol>
+<div class="explicacao"><p>Somar uma constante desloca todos os valores, mas não muda a distância entre eles.</p></div>
+</div>
+<div class="questao" data-correta="d">
+<p class="enunciado">Num gráfico de setores, uma categoria ocupa 54°. Que porcentagem do total ela representa?</p>
+<ol class="alternativas"><li>5,4%</li><li>10%</li><li>12%</li><li>15%</li><li>54%</li></ol>
+<div class="explicacao"><p>54 / 3,6 = 15%.</p></div>
+</div>

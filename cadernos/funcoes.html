@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Funções · Aprenda Matemática</title>
+<meta name="description" content="Função afim e quadrática, gráfico, vértice, raízes e sinais.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>➗</text></svg>">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/app.js"></script>
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="../index.html">Aprenda <span>Matemática</span></a>
+  <nav>
+    <a href="../cadernos/estrategias.html">Estratégias</a>
+    <a href="../cadernos/formulario.html">Formulário</a>
+    <button type="button" class="botao-tema">🌙 Escuro</button>
+  </nav>
+</header>
+<div class="container layout">
+<aside class="lateral">
+  <button type="button" class="botao secundario botao-menu">☰ Todos os cadernos</button>
+  <div class="lista-cadernos">
+    <h3>Comece aqui</h3>
+    <ul>
+<li data-slug="estrategias"><a href="estrategias.html"><span>⏱️</span> Estratégias de prova<span class="feito"></span></a></li>
+<li data-slug="formulario"><a href="formulario.html"><span>📋</span> Formulário de bolso<span class="feito"></span></a></li>
+    </ul>
+    <h3>Cadernos</h3>
+    <ul>
+<li data-slug="aritmetica"><a href="aritmetica.html"><span>🔢</span> Aritmética e divisibilidade<span class="feito"></span></a></li>
+<li data-slug="fracoes"><a href="fracoes.html"><span>🍕</span> Frações e números decimais<span class="feito"></span></a></li>
+<li data-slug="porcentagem"><a href="porcentagem.html"><span>💯</span> Porcentagem<span class="feito"></span></a></li>
+<li data-slug="razao-proporcao"><a href="razao-proporcao.html"><span>⚖️</span> Razão e proporção<span class="feito"></span></a></li>
+<li data-slug="regra-de-tres"><a href="regra-de-tres.html"><span>📐</span> Regra de três<span class="feito"></span></a></li>
+<li data-slug="juros"><a href="juros.html"><span>💰</span> Juros simples e compostos<span class="feito"></span></a></li>
+<li data-slug="equacoes"><a href="equacoes.html"><span>✖️</span> Equações e sistemas<span class="feito"></span></a></li>
+<li data-slug="funcoes"><a href="funcoes.html" class="ativo"><span>📈</span> Funções<span class="feito"></span></a></li>
+<li data-slug="sequencias"><a href="sequencias.html"><span>🔁</span> Sequências, PA e PG<span class="feito"></span></a></li>
+<li data-slug="geometria"><a href="geometria.html"><span>📏</span> Geometria plana e espacial<span class="feito"></span></a></li>
+<li data-slug="estatistica"><a href="estatistica.html"><span>📊</span> Estatística básica<span class="feito"></span></a></li>
+<li data-slug="combinatoria"><a href="combinatoria.html"><span>🎲</span> Análise combinatória<span class="feito"></span></a></li>
+<li data-slug="probabilidade"><a href="probabilidade.html"><span>🎯</span> Probabilidade<span class="feito"></span></a></li>
+<li data-slug="logica"><a href="logica.html"><span>🧠</span> Raciocínio lógico<span class="feito"></span></a></li>
+    </ul>
+  </div>
+</aside>
+<article class="caderno">
+  <h1>📈 Funções</h1>
+  <p class="subtitulo">Função afim e quadrática, gráfico, vértice, raízes e sinais.</p>
+  <div class="selos"><span class="selo media">Cai com frequência</span></div>
+  <nav class="sumario" data-sumario><strong>Neste caderno</strong></nav>
+<h2>O que é função</h2>
+<p>Função é uma regra que associa a <strong>cada</strong> valor de entrada (x) <strong>um único</strong> valor de saída (y = f(x)).</p>
+<ul>
+  <li><strong>Domínio:</strong> os valores de x permitidos.</li>
+  <li><strong>Imagem:</strong> os valores de y que realmente aparecem.</li>
+  <li>Calcular f(3) é só trocar x por 3 na regra.</li>
+</ul>
+<div class="caixa dica"><span class="rotulo">Teste da reta vertical</span>
+<p>Um gráfico representa função se qualquer reta vertical o corta em no máximo um ponto.</p></div>
+
+<h2>Função afim (1º grau)</h2>
+<span class="formula">f(x) = ax + b</span>
+<ul>
+  <li><strong>a</strong> (coeficiente angular) é a taxa de variação: quanto y muda quando x aumenta 1. Se a &gt; 0, a função é crescente; se a &lt; 0, decrescente.</li>
+  <li><strong>b</strong> (coeficiente linear) é onde a reta corta o eixo y (valor de f(0)).</li>
+  <li>A raiz (onde corta o eixo x) é <span class="m">x = −b/a</span>.</li>
+</ul>
+<div class="caixa atalho"><span class="rotulo">Atalho: achar a reta por dois pontos</span>
+<p><span class="m">a = (y₂ − y₁) / (x₂ − x₁)</span>. Depois, b = y₁ − a·x₁.</p>
+<p>Pontos (1, 5) e (3, 11): a = 6/2 = 3, b = 5 − 3 = 2. f(x) = 3x + 2.</p></div>
+<details class="exemplo"><summary>Um táxi cobra R$ 5,00 de bandeirada mais R$ 2,50 por km. Quanto custa uma corrida de 12 km? E quantos km rodou quem pagou R$ 40?</summary>
+<div class="resolucao">
+<p class="passo">Custo: f(x) = 2,5x + 5.</p>
+<p class="passo">f(12) = 30 + 5 = 35.</p>
+<p class="passo">2,5x + 5 = 40 → 2,5x = 35 → x = 14.</p>
+<p class="resposta-final">Resposta: R$ 35 e 14 km.</p></div></details>
+<div class="caixa dica"><span class="rotulo">Reconheça no texto</span>
+<p>"Valor fixo + valor por unidade" é sempre função afim: plano de celular, conta de luz, salário com comissão, frete.</p></div>
+
+<h2>Função quadrática (2º grau)</h2>
+<span class="formula">f(x) = ax² + bx + c</span>
+<ul>
+  <li>O gráfico é uma <strong>parábola</strong>. Se a &gt; 0, a boca é para cima (tem ponto de mínimo). Se a &lt; 0, para baixo (tem máximo).</li>
+  <li>c é onde a parábola corta o eixo y.</li>
+  <li>As raízes são as soluções de ax² + bx + c = 0 (veja o caderno de <a href="equacoes.html">equações</a>).</li>
+</ul>
+<h3>Vértice: máximo ou mínimo</h3>
+<span class="formula">x_v = −b / 2a &nbsp;&nbsp;&nbsp; y_v = −Δ / 4a</span>
+<div class="caixa atalho"><span class="rotulo">Atalho: y do vértice sem Δ</span>
+<p>Calcule x_v e substitua na função: y_v = f(x_v). Muitas vezes é mais rápido do que calcular Δ.</p>
+<p>E se você já sabe as raízes, o x do vértice é a média delas: <span class="m">x_v = (x₁ + x₂)/2</span>.</p></div>
+<details class="exemplo"><summary>O lucro de uma empresa é L(x) = −x² + 40x − 300, onde x é o número de peças. Qual quantidade dá lucro máximo e qual é esse lucro?</summary>
+<div class="resolucao">
+<p class="passo">a = −1 &lt; 0, então há máximo. x_v = −40 / (2 × −1) = 20.</p>
+<p class="passo">L(20) = −400 + 800 − 300 = 100.</p>
+<p class="resposta-final">Resposta: 20 peças, lucro de 100.</p></div></details>
+<details class="exemplo"><summary>Uma bola é lançada e sua altura é h(t) = −5t² + 20t (em metros). Qual a altura máxima e quando ela volta ao chão?</summary>
+<div class="resolucao">
+<p class="passo">Raízes: −5t(t − 4) = 0 → t = 0 ou t = 4. Volta ao chão em 4 s.</p>
+<p class="passo">Vértice na média das raízes: t = 2. h(2) = −20 + 40 = 20.</p>
+<p class="resposta-final">Resposta: altura máxima de 20 m; volta ao chão em 4 s.</p></div></details>
+
+<h2>Estudo do sinal</h2>
+<ul>
+  <li><strong>Afim:</strong> à direita da raiz a função tem o sinal de a; à esquerda, o sinal contrário.</li>
+  <li><strong>Quadrática com duas raízes:</strong> entre as raízes, sinal contrário ao de a; fora delas, mesmo sinal de a.</li>
+</ul>
+<div class="caixa atalho"><span class="rotulo">Atalho mnemônico</span>
+<p>Quadrática: "<strong>entre</strong> as raízes, <strong>contra</strong> o a". Para x² − 5x + 6 (raízes 2 e 3, a &gt; 0), a função é negativa entre 2 e 3 e positiva fora.</p></div>
+
+<h2>Leitura de gráficos</h2>
+<p>Muitas questões de função são, na verdade, de leitura de gráfico. Antes de calcular:</p>
+<ol>
+  <li>Leia os eixos e as unidades.</li>
+  <li>Identifique onde a função cresce, decresce e onde é máxima.</li>
+  <li>Procure pontos que a banca deu de presente (interseção com eixos, valores marcados).</li>
+</ol>
+
+<h2>Questões</h2>
+<div class="questao" data-correta="b">
+<p class="enunciado">Uma função afim satisfaz f(2) = 7 e f(5) = 16. Quanto vale f(10)?</p>
+<ol class="alternativas"><li>28</li><li>31</li><li>32</li><li>34</li><li>35</li></ol>
+<div class="explicacao"><p>a = (16 − 7)/(5 − 2) = 3. De x = 5 a x = 10 são mais 5 unidades: 16 + 5 × 3 = 31.</p></div>
+</div>
+<div class="questao" data-correta="d">
+<p class="enunciado">O valor mínimo da função f(x) = x² − 8x + 10 é:</p>
+<ol class="alternativas"><li>−10</li><li>−8</li><li>4</li><li>−6</li><li>10</li></ol>
+<div class="explicacao"><p>x_v = 8/2 = 4. f(4) = 16 − 32 + 10 = −6.</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado">Um plano de celular cobra R$ 30 fixos mais R$ 0,50 por minuto. Outro cobra R$ 50 fixos mais R$ 0,25 por minuto. A partir de quantos minutos o segundo plano fica mais barato?</p>
+<ol class="alternativas"><li>mais de 80</li><li>mais de 40</li><li>mais de 60</li><li>mais de 100</li><li>mais de 120</li></ol>
+<div class="explicacao"><p>Igualando: 30 + 0,5x = 50 + 0,25x → 0,25x = 20 → x = 80. Acima de 80 minutos o segundo é mais barato.</p></div>
+</div>
+<div class="questao" data-correta="c">
+<p class="enunciado">Para quais valores de x a função f(x) = −x² + 9 é positiva?</p>
+<ol class="alternativas"><li>x &gt; 3</li><li>x &lt; −3 ou x &gt; 3</li><li>−3 &lt; x &lt; 3</li><li>x &lt; 3</li><li>todo x real</li></ol>
+<div class="explicacao"><p>Raízes −3 e 3, a &lt; 0. Entre as raízes, sinal contrário ao de a, ou seja, positivo.</p></div>
+</div>
+  <div class="rodape-caderno">
+    <a class="botao secundario" href="equacoes.html">← Equações e sistemas</a>
+    <button type="button" class="botao marcar-estudado" data-alvo="funcoes">Marcar como estudado</button>
+    <a class="botao secundario" href="sequencias.html">Sequências, PA e PG →</a>
+  </div>
+</article>
+</div>
+<footer class="site">
+  Aprenda Matemática: conteúdo livre e original para quem estuda para concursos.
+  Encontrou um erro? <a href="https://github.com/CarlosGabriel-UX/APRENDA-MATEMATICA/issues">Avise no GitHub</a>.
+</footer>
+</body>
+</html>

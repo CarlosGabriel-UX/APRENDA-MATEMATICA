@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Análise combinatória · Aprenda Matemática</title>
+<meta name="description" content="Princípio multiplicativo, permutação, arranjo e combinação sem decoreba.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>➗</text></svg>">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/app.js"></script>
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="../index.html">Aprenda <span>Matemática</span></a>
+  <nav>
+    <a href="../cadernos/estrategias.html">Estratégias</a>
+    <a href="../cadernos/formulario.html">Formulário</a>
+    <button type="button" class="botao-tema">🌙 Escuro</button>
+  </nav>
+</header>
+<div class="container layout">
+<aside class="lateral">
+  <button type="button" class="botao secundario botao-menu">☰ Todos os cadernos</button>
+  <div class="lista-cadernos">
+    <h3>Comece aqui</h3>
+    <ul>
+<li data-slug="estrategias"><a href="estrategias.html"><span>⏱️</span> Estratégias de prova<span class="feito"></span></a></li>
+<li data-slug="formulario"><a href="formulario.html"><span>📋</span> Formulário de bolso<span class="feito"></span></a></li>
+    </ul>
+    <h3>Cadernos</h3>
+    <ul>
+<li data-slug="aritmetica"><a href="aritmetica.html"><span>🔢</span> Aritmética e divisibilidade<span class="feito"></span></a></li>
+<li data-slug="fracoes"><a href="fracoes.html"><span>🍕</span> Frações e números decimais<span class="feito"></span></a></li>
+<li data-slug="porcentagem"><a href="porcentagem.html"><span>💯</span> Porcentagem<span class="feito"></span></a></li>
+<li data-slug="razao-proporcao"><a href="razao-proporcao.html"><span>⚖️</span> Razão e proporção<span class="feito"></span></a></li>
+<li data-slug="regra-de-tres"><a href="regra-de-tres.html"><span>📐</span> Regra de três<span class="feito"></span></a></li>
+<li data-slug="juros"><a href="juros.html"><span>💰</span> Juros simples e compostos<span class="feito"></span></a></li>
+<li data-slug="equacoes"><a href="equacoes.html"><span>✖️</span> Equações e sistemas<span class="feito"></span></a></li>
+<li data-slug="funcoes"><a href="funcoes.html"><span>📈</span> Funções<span class="feito"></span></a></li>
+<li data-slug="sequencias"><a href="sequencias.html"><span>🔁</span> Sequências, PA e PG<span class="feito"></span></a></li>
+<li data-slug="geometria"><a href="geometria.html"><span>📏</span> Geometria plana e espacial<span class="feito"></span></a></li>
+<li data-slug="estatistica"><a href="estatistica.html"><span>📊</span> Estatística básica<span class="feito"></span></a></li>
+<li data-slug="combinatoria"><a href="combinatoria.html" class="ativo"><span>🎲</span> Análise combinatória<span class="feito"></span></a></li>
+<li data-slug="probabilidade"><a href="probabilidade.html"><span>🎯</span> Probabilidade<span class="feito"></span></a></li>
+<li data-slug="logica"><a href="logica.html"><span>🧠</span> Raciocínio lógico<span class="feito"></span></a></li>
+    </ul>
+  </div>
+</aside>
+<article class="caderno">
+  <h1>🎲 Análise combinatória</h1>
+  <p class="subtitulo">Princípio multiplicativo, permutação, arranjo e combinação sem decoreba.</p>
+  <div class="selos"><span class="selo alta">Cai muito</span></div>
+  <nav class="sumario" data-sumario><strong>Neste caderno</strong></nav>
+<h2>Princípio fundamental da contagem</h2>
+<p>Se uma escolha tem m opções e, para cada uma, outra escolha tem n opções, as duas juntas têm <strong>m × n</strong> possibilidades. Com ele você resolve a maioria das questões, sem decorar fórmula.</p>
+<div class="caixa atalho"><span class="rotulo">O método dos tracinhos</span>
+<ol>
+<li>Desenhe um tracinho para cada posição a preencher.</li>
+<li>Comece pelas posições <strong>com restrição</strong> (não pode começar com zero, tem que ser par, a pessoa X fica na ponta…).</li>
+<li>Escreva quantas opções cabem em cada tracinho e multiplique.</li>
+</ol></div>
+<details class="exemplo"><summary>Quantos números de 3 algarismos distintos podem ser formados com 0, 1, 2, 3, 4 e 5?</summary>
+<div class="resolucao">
+<p class="passo">Restrição: o primeiro algarismo não pode ser 0. Centena: 5 opções.</p>
+<p class="passo">Dezena: 5 opções (sobraram 5, incluindo o 0). Unidade: 4.</p>
+<p class="resposta-final">Resposta: 5 × 5 × 4 = 100.</p></div></details>
+<details class="exemplo"><summary>Quantas senhas de 4 dígitos (0 a 9) existem, podendo repetir?</summary>
+<div class="resolucao">
+<p class="passo">10 × 10 × 10 × 10.</p>
+<p class="resposta-final">Resposta: 10.000.</p></div></details>
+<div class="caixa dica"><span class="rotulo">"E" multiplica, "ou" soma</span>
+<p>Escolher uma camisa <strong>e</strong> uma calça: multiplique. Ir de ônibus <strong>ou</strong> de metrô: some as opções.</p></div>
+
+<h2>Fatorial</h2>
+<p><span class="m">n! = n × (n − 1) × … × 2 × 1</span>, com 0! = 1. Valores: 3! = 6, 4! = 24, 5! = 120, 6! = 720, 7! = 5.040.</p>
+<div class="caixa atalho"><span class="rotulo">Atalho: simplifique fatoriais</span>
+<p>Nunca calcule fatoriais grandes por inteiro. <span class="m">10!/8! = 10 × 9 = 90</span>, porque 10! = 10 × 9 × 8!.</p></div>
+
+<h2>A pergunta que decide tudo: a ordem importa?</h2>
+<p>Troque dois elementos de lugar. Se virou <strong>outra coisa</strong>, a ordem importa (arranjo/permutação). Se é <strong>a mesma coisa</strong>, não importa (combinação).</p>
+<table>
+<tr><th>Situação</th><th>Ordem importa?</th><th>Tipo</th></tr>
+<tr><td>Senha, placa, número, fila, pódio, cargos diferentes (presidente e vice)</td><td>Sim</td><td>Arranjo / permutação</td></tr>
+<tr><td>Comissão, grupo, time, salada de frutas, aperto de mãos, escolher 3 livros</td><td>Não</td><td>Combinação</td></tr>
+</table>
+
+<h2>Permutação: todos em fila</h2>
+<span class="formula">Pₙ = n!</span>
+<p>Anagramas de AMOR: 4! = 24.</p>
+<h3>Com repetição</h3>
+<p>Divida pelo fatorial de cada letra repetida.</p>
+<span class="formula">ARARA: 5! / (3! × 2!) = 120 / 12 = 10</span>
+<div class="caixa atalho"><span class="rotulo">Atalho: "juntos" vira um bloco</span>
+<p>Se algumas pessoas devem ficar juntas, trate-as como um bloco único. Permute os blocos e depois permute quem está dentro do bloco.</p>
+<p>5 pessoas em fila, com Ana e Bia juntas: blocos = 4 → 4! = 24; dentro do bloco, 2! = 2. Total: 48.</p></div>
+<div class="caixa atalho"><span class="rotulo">Atalho: "separados" = total − juntos</span>
+<p>Ana e Bia <em>não</em> juntas: 5! − 48 = 120 − 48 = 72.</p></div>
+<h3>Permutação circular</h3>
+<p>n pessoas ao redor de uma mesa redonda: <span class="m">(n − 1)!</span>. Fixe uma pessoa e permute as outras.</p>
+
+<h2>Arranjo: escolher alguns, com ordem</h2>
+<span class="formula">A(n, p) = n! / (n − p)!</span>
+<p>Na prática, é o produto dos tracinhos: pódio (1º, 2º e 3º) de 8 corredores = 8 × 7 × 6 = 336.</p>
+
+<h2>Combinação: escolher alguns, sem ordem</h2>
+<span class="formula">C(n, p) = n! / [p! (n − p)!]</span>
+<div class="caixa atalho"><span class="rotulo">Atalho: faça o arranjo e divida por p!</span>
+<p>C(10, 3) = (10 × 9 × 8) / (3 × 2 × 1) = 720 / 6 = 120.</p>
+<p>E use a simetria: <span class="m">C(n, p) = C(n, n − p)</span>. C(20, 18) = C(20, 2) = 190.</p></div>
+<details class="exemplo"><summary>De 6 homens e 4 mulheres, quantas comissões de 3 homens e 2 mulheres podem ser formadas?</summary>
+<div class="resolucao">
+<p class="passo">Homens: C(6, 3) = 20. Mulheres: C(4, 2) = 6.</p>
+<p class="passo">Escolher homens <strong>e</strong> mulheres: multiplica.</p>
+<p class="resposta-final">Resposta: 20 × 6 = 120 comissões.</p></div></details>
+<details class="exemplo"><summary>Numa reunião, cada pessoa cumprimentou todas as outras uma única vez, totalizando 45 apertos de mão. Quantas pessoas havia?</summary>
+<div class="resolucao">
+<p class="passo">Cada aperto é um par sem ordem: C(n, 2) = n(n − 1)/2 = 45 → n(n − 1) = 90.</p>
+<p class="passo">10 × 9 = 90.</p>
+<p class="resposta-final">Resposta: 10 pessoas.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinhas</span>
+<ul>
+<li>"<strong>Pelo menos</strong> uma mulher": calcule o total e subtraia os casos com <strong>nenhuma</strong> mulher.</li>
+<li>Comissão com cargos (presidente, secretário) volta a ter ordem: é arranjo.</li>
+<li>Diagonais de polígono: C(n, 2) − n (todos os segmentos menos os lados).</li>
+</ul></div>
+
+<h2>Questões</h2>
+<div class="questao" data-correta="d">
+<p class="enunciado">Quantos anagramas tem a palavra CASA?</p>
+<ol class="alternativas"><li>6</li><li>8</li><li>10</li><li>12</li><li>24</li></ol>
+<div class="explicacao"><p>4 letras com A repetido duas vezes: 4!/2! = 24/2 = 12.</p></div>
+</div>
+<div class="questao" data-correta="b">
+<p class="enunciado">De um grupo de 8 pessoas, quantas comissões de 3 podem ser formadas?</p>
+<ol class="alternativas"><li>24</li><li>56</li><li>112</li><li>336</li><li>512</li></ol>
+<div class="explicacao"><p>Comissão: sem ordem. C(8, 3) = (8 × 7 × 6)/6 = 56. (336 seria se houvesse cargos.)</p></div>
+</div>
+<div class="questao" data-correta="c">
+<p class="enunciado">De um grupo de 8 pessoas, de quantas formas se escolhem um presidente, um vice e um tesoureiro?</p>
+<ol class="alternativas"><li>24</li><li>56</li><li>336</li><li>512</li><li>40.320</li></ol>
+<div class="explicacao"><p>Cargos diferentes: a ordem importa. 8 × 7 × 6 = 336.</p></div>
+</div>
+<div class="questao" data-correta="e">
+<p class="enunciado">Quantos números pares de 3 algarismos distintos podem ser formados com 1, 2, 3, 4 e 5?</p>
+<ol class="alternativas"><li>12</li><li>60</li><li>36</li><li>30</li><li>24</li></ol>
+<div class="explicacao"><p>Comece pela restrição: unidade par (2 ou 4), 2 opções. Centena: 4. Dezena: 3. Total 2 × 4 × 3 = 24.</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado">De 5 homens e 3 mulheres, quantas comissões de 3 pessoas têm pelo menos uma mulher?</p>
+<ol class="alternativas"><li>46</li><li>30</li><li>56</li><li>10</li><li>40</li></ol>
+<div class="explicacao"><p>Total: C(8, 3) = 56. Sem mulheres: C(5, 3) = 10. Pelo menos uma: 56 − 10 = 46.</p></div>
+</div>
+  <div class="rodape-caderno">
+    <a class="botao secundario" href="estatistica.html">← Estatística básica</a>
+    <button type="button" class="botao marcar-estudado" data-alvo="combinatoria">Marcar como estudado</button>
+    <a class="botao secundario" href="probabilidade.html">Probabilidade →</a>
+  </div>
+</article>
+</div>
+<footer class="site">
+  Aprenda Matemática: conteúdo livre e original para quem estuda para concursos.
+  Encontrou um erro? <a href="https://github.com/CarlosGabriel-UX/APRENDA-MATEMATICA/issues">Avise no GitHub</a>.
+</footer>
+</body>
+</html>

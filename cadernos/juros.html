@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Juros simples e compostos · Aprenda Matemática</title>
+<meta name="description" content="Capital, taxa, tempo e montante; taxas equivalentes e desconto.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>➗</text></svg>">
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/app.js"></script>
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="../index.html">Aprenda <span>Matemática</span></a>
+  <nav>
+    <a href="../cadernos/estrategias.html">Estratégias</a>
+    <a href="../cadernos/formulario.html">Formulário</a>
+    <button type="button" class="botao-tema">🌙 Escuro</button>
+  </nav>
+</header>
+<div class="container layout">
+<aside class="lateral">
+  <button type="button" class="botao secundario botao-menu">☰ Todos os cadernos</button>
+  <div class="lista-cadernos">
+    <h3>Comece aqui</h3>
+    <ul>
+<li data-slug="estrategias"><a href="estrategias.html"><span>⏱️</span> Estratégias de prova<span class="feito"></span></a></li>
+<li data-slug="formulario"><a href="formulario.html"><span>📋</span> Formulário de bolso<span class="feito"></span></a></li>
+    </ul>
+    <h3>Cadernos</h3>
+    <ul>
+<li data-slug="aritmetica"><a href="aritmetica.html"><span>🔢</span> Aritmética e divisibilidade<span class="feito"></span></a></li>
+<li data-slug="fracoes"><a href="fracoes.html"><span>🍕</span> Frações e números decimais<span class="feito"></span></a></li>
+<li data-slug="porcentagem"><a href="porcentagem.html"><span>💯</span> Porcentagem<span class="feito"></span></a></li>
+<li data-slug="razao-proporcao"><a href="razao-proporcao.html"><span>⚖️</span> Razão e proporção<span class="feito"></span></a></li>
+<li data-slug="regra-de-tres"><a href="regra-de-tres.html"><span>📐</span> Regra de três<span class="feito"></span></a></li>
+<li data-slug="juros"><a href="juros.html" class="ativo"><span>💰</span> Juros simples e compostos<span class="feito"></span></a></li>
+<li data-slug="equacoes"><a href="equacoes.html"><span>✖️</span> Equações e sistemas<span class="feito"></span></a></li>
+<li data-slug="funcoes"><a href="funcoes.html"><span>📈</span> Funções<span class="feito"></span></a></li>
+<li data-slug="sequencias"><a href="sequencias.html"><span>🔁</span> Sequências, PA e PG<span class="feito"></span></a></li>
+<li data-slug="geometria"><a href="geometria.html"><span>📏</span> Geometria plana e espacial<span class="feito"></span></a></li>
+<li data-slug="estatistica"><a href="estatistica.html"><span>📊</span> Estatística básica<span class="feito"></span></a></li>
+<li data-slug="combinatoria"><a href="combinatoria.html"><span>🎲</span> Análise combinatória<span class="feito"></span></a></li>
+<li data-slug="probabilidade"><a href="probabilidade.html"><span>🎯</span> Probabilidade<span class="feito"></span></a></li>
+<li data-slug="logica"><a href="logica.html"><span>🧠</span> Raciocínio lógico<span class="feito"></span></a></li>
+    </ul>
+  </div>
+</aside>
+<article class="caderno">
+  <h1>💰 Juros simples e compostos</h1>
+  <p class="subtitulo">Capital, taxa, tempo e montante; taxas equivalentes e desconto.</p>
+  <div class="selos"><span class="selo media">Cai com frequência</span></div>
+  <nav class="sumario" data-sumario><strong>Neste caderno</strong></nav>
+<h2>Vocabulário</h2>
+<ul>
+  <li><strong>C</strong> – capital (valor aplicado ou emprestado)</li>
+  <li><strong>i</strong> – taxa de juros por período (use em decimal: 3% = 0,03)</li>
+  <li><strong>t</strong> – tempo, na <em>mesma unidade</em> da taxa</li>
+  <li><strong>J</strong> – juros; <strong>M</strong> – montante = C + J</li>
+</ul>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha número 1</span>
+<p>Taxa e tempo precisam estar na mesma unidade. Taxa ao mês com tempo em anos? Converta antes. Na prova, o ano comercial tem 360 dias e o mês tem 30.</p></div>
+
+<h2>Juros simples</h2>
+<p>Os juros incidem sempre sobre o capital inicial. Todo mês rende a mesma quantia.</p>
+<span class="formula">J = C × i × t &nbsp;&nbsp;&nbsp; M = C × (1 + i × t)</span>
+<details class="exemplo"><summary>R$ 4.000 aplicados a juros simples de 2,5% ao mês, por 8 meses. Qual é o montante?</summary>
+<div class="resolucao">
+<p class="passo">J = 4.000 × 0,025 × 8 = 800.</p>
+<p class="resposta-final">Resposta: M = R$ 4.800.</p></div></details>
+<div class="caixa atalho"><span class="rotulo">Atalho: em juros simples, as taxas são proporcionais</span>
+<p>2% ao mês = 24% ao ano = 6% ao trimestre. Basta multiplicar ou dividir.</p>
+<p>E "em quanto tempo o capital dobra?" Dobrar é ganhar 100% de juros: t = 100% / i. A 4% ao mês: 25 meses.</p></div>
+
+<h2>Juros compostos</h2>
+<p>Os juros de cada período entram no capital e passam a render também ("juros sobre juros").</p>
+<span class="formula">M = C × (1 + i)ᵗ &nbsp;&nbsp;&nbsp; J = M − C</span>
+<details class="exemplo"><summary>R$ 5.000 aplicados a juros compostos de 10% ao mês, por 3 meses. Qual é o montante?</summary>
+<div class="resolucao">
+<p class="passo">1,1³ = 1,331.</p>
+<p class="passo">M = 5.000 × 1,331 = 6.655.</p>
+<p class="resposta-final">Resposta: R$ 6.655 (juros de R$ 1.655; em juros simples seriam R$ 1.500).</p></div></details>
+<div class="caixa atalho"><span class="rotulo">Atalho: potências que a banca usa</span>
+<table>
+<tr><th>Fator</th><th>²</th><th>³</th><th>⁴</th></tr>
+<tr><td>1,02</td><td>1,0404</td><td>1,0612</td><td>1,0824</td></tr>
+<tr><td>1,05</td><td>1,1025</td><td>1,1576</td><td>1,2155</td></tr>
+<tr><td>1,10</td><td>1,21</td><td>1,331</td><td>1,4641</td></tr>
+<tr><td>1,20</td><td>1,44</td><td>1,728</td><td>2,0736</td></tr>
+</table>
+<p>Quando a banca fornece uma tabela ou "use 1,05⁶ ≈ 1,34", <strong>use exatamente o valor dado</strong>, mesmo que não seja o mais preciso.</p></div>
+<div class="caixa dica"><span class="rotulo">Dica: dois períodos de cabeça</span>
+<p>Em 2 períodos, a taxa composta acumulada é <span class="m">2i + i²</span>. A 10%: 20% + 1% = 21%. A 5%: 10% + 0,25% = 10,25%.</p></div>
+
+<h2>Simples × compostos</h2>
+<ul>
+  <li>Para t = 1, os dois dão o mesmo montante.</li>
+  <li>Para t entre 0 e 1, os simples rendem mais.</li>
+  <li>Para t &gt; 1, os compostos rendem mais.</li>
+</ul>
+
+<h2>Taxas equivalentes, nominais e efetivas</h2>
+<p>Em juros compostos, a taxa não se divide simplesmente. Duas taxas são <strong>equivalentes</strong> se levam ao mesmo montante:</p>
+<span class="formula">(1 + i_ano) = (1 + i_mês)¹²</span>
+<p>Ex.: 10% ao mês não é 120% ao ano em juros compostos; é <span class="m">1,1¹² − 1 ≈ 213,8%</span>.</p>
+<p><strong>Taxa nominal</strong> é a anunciada com período diferente da capitalização: "24% ao ano, capitalizados mensalmente" significa, na verdade, 2% ao mês. A taxa <strong>efetiva</strong> anual é então 1,02¹² − 1 ≈ 26,8%.</p>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>Taxa nominal se divide proporcionalmente (24% a.a. com capitalização mensal → 2% a.m.). Só depois disso você trabalha com juros compostos.</p></div>
+
+<h2>Desconto simples</h2>
+<p>Um título de valor <strong>N</strong> (nominal, na data de vencimento) é pago <strong>t</strong> períodos antes. O valor pago é <strong>A</strong> (atual).</p>
+<ul>
+  <li><strong>Desconto comercial (por fora):</strong> d = N × i × t. É o mais cobrado.</li>
+  <li><strong>Desconto racional (por dentro):</strong> d = A × i × t, com N = A × (1 + i × t).</li>
+</ul>
+<details class="exemplo"><summary>Um título de R$ 10.000 foi descontado 3 meses antes do vencimento a 2% ao mês, desconto comercial simples. Quanto foi pago?</summary>
+<div class="resolucao">
+<p class="passo">d = 10.000 × 0,02 × 3 = 600.</p>
+<p class="resposta-final">Resposta: R$ 9.400.</p></div></details>
+
+<h2>Questões</h2>
+<div class="questao" data-correta="b">
+<p class="enunciado">Um capital de R$ 3.000 rendeu R$ 540 de juros simples em 6 meses. A taxa mensal foi de:</p>
+<ol class="alternativas"><li>2%</li><li>3%</li><li>4%</li><li>5%</li><li>18%</li></ol>
+<div class="explicacao"><p>540 = 3.000 × i × 6 → i = 540/18.000 = 0,03 = 3% ao mês.</p></div>
+</div>
+<div class="questao" data-correta="d">
+<p class="enunciado">R$ 2.000 aplicados a juros compostos de 20% ao ano, por 2 anos, geram juros de:</p>
+<ol class="alternativas"><li>R$ 400</li><li>R$ 800</li><li>R$ 840</li><li>R$ 880</li><li>R$ 2.880</li></ol>
+<div class="explicacao"><p>1,2² = 1,44 → M = 2.880, J = 880. (R$ 800 seria em juros simples; R$ 2.880 é o montante.)</p></div>
+</div>
+<div class="questao" data-correta="e">
+<p class="enunciado">A juros simples de 5% ao mês, em quanto tempo um capital triplica?</p>
+<ol class="alternativas"><li>20 meses</li><li>25 meses</li><li>30 meses</li><li>35 meses</li><li>40 meses</li></ol>
+<div class="explicacao"><p>Triplicar é ganhar 200% de juros. 200 / 5 = 40 meses.</p></div>
+</div>
+<div class="questao" data-correta="c">
+<p class="enunciado">Uma taxa de 36% ao ano com capitalização mensal corresponde a uma taxa efetiva mensal de:</p>
+<ol class="alternativas"><li>1%</li><li>2%</li><li>3%</li><li>3,6%</li><li>6%</li></ol>
+<div class="explicacao"><p>Taxa nominal se divide pelo número de períodos: 36% / 12 = 3% ao mês.</p></div>
+</div>
+  <div class="rodape-caderno">
+    <a class="botao secundario" href="regra-de-tres.html">← Regra de três</a>
+    <button type="button" class="botao marcar-estudado" data-alvo="juros">Marcar como estudado</button>
+    <a class="botao secundario" href="equacoes.html">Equações e sistemas →</a>
+  </div>
+</article>
+</div>
+<footer class="site">
+  Aprenda Matemática: conteúdo livre e original para quem estuda para concursos.
+  Encontrou um erro? <a href="https://github.com/CarlosGabriel-UX/APRENDA-MATEMATICA/issues">Avise no GitHub</a>.
+</footer>
+</body>
+</html>
