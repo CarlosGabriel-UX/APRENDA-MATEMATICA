@@ -1,0 +1,319 @@
+<p>Esta apostila cobre a base de computação da prova específica de Perito Criminal Federal Área 3 (Só PF, Perito): arquitetura, sistemas operacionais, bancos de dados e SQL, Python, algoritmos, engenharia de software, inteligência artificial e big data. A CEBRASPE gosta de itens que pedem para <strong>prever a saída</strong> de um código ou de uma consulta, então treine com os exemplos linha a linha.</p>
+
+<h2>Arquitetura de computadores e bases numéricas</h2>
+<h3>Componentes</h3>
+<ul>
+<li><strong>CPU</strong>: unidade de controle (UC, busca e decodifica instruções), unidade lógica e aritmética (ULA, faz as contas) e registradores (como o PC, contador de programa, que aponta a próxima instrução, e o IR, registrador de instrução).</li>
+<li>Ciclo de instrução: <strong>busca → decodificação → execução</strong> (e escrita do resultado).</li>
+<li><strong>Barramentos</strong>: de dados, de endereços (sua largura define quanta memória pode ser endereçada) e de controle.</li>
+<li><strong>Von Neumann</strong>: dados e instruções na mesma memória e no mesmo barramento. <strong>Harvard</strong>: memórias e barramentos separados para dados e instruções.</li>
+<li><strong>RISC</strong>: poucas instruções simples, de tamanho fixo, favorece pipeline (ARM). <strong>CISC</strong>: muitas instruções complexas, de tamanho variável (x86).</li>
+</ul>
+<h3>Hierarquia de memória</h3>
+<p><strong>Registradores → cache (L1, L2, L3) → RAM → SSD → HD → mídias de arquivo (fita)</strong>. Descendo a hierarquia, a capacidade aumenta, e a velocidade e o custo por bit diminuem. Registradores, cache e RAM são voláteis. A cache funciona graças ao <strong>princípio da localidade</strong>: temporal (o que foi usado tende a ser usado de novo) e espacial (o que está perto tende a ser usado em seguida).</p>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>ROM e memória flash são não voláteis. A cache é feita de SRAM (mais rápida e cara); a memória principal, de DRAM. Item que diga que a cache é mais lenta que a RAM, ou que a RAM guarda dados sem energia, está errado.</p></div>
+<h3>Bases numéricas (Cai muito)</h3>
+<p>Decore os dígitos hexadecimais acima de 9: <strong>A = 10 (1010), B = 11 (1011), C = 12 (1100), D = 13 (1101), E = 14 (1110), F = 15 (1111)</strong>. Potências de 2 úteis: 2<sup>8</sup> = 256, 2<sup>10</sup> = 1.024, 2<sup>16</sup> = 65.536.</p>
+<div class="caixa atalho"><span class="rotulo">Atalho: 1 dígito hexa = 4 bits</span>
+<p>Binário para hexa: agrupe de 4 em 4 bits a partir da direita e troque cada grupo pelo dígito hexadecimal correspondente. <code>1011 0110</code> = <code>B6</code>. Para octal, agrupe de 3 em 3.</p>
+<p>Hexa para decimal: multiplique pelas potências de 16. <code>0xAF</code> = 10 × 16 + 15 = 175.</p>
+<p>Decimal para binário: subtraia potências de 2 (128, 64, 32, 16, 8, 4, 2, 1). 200 = 128 + 64 + 8 = <code>11001000</code> = <code>0xC8</code>.</p></div>
+<h3>Complemento de 2</h3>
+<p>É a forma usual de representar inteiros com sinal. Para obter −x: escreva x em binário, <strong>inverta todos os bits e some 1</strong>. Com n bits, a faixa é de <strong>−2<sup>n−1</sup> a 2<sup>n−1</sup> − 1</strong>; com 8 bits, de −128 a 127.</p>
+<details class="exemplo"><summary>Como fica −5 em complemento de 2 com 8 bits? E quanto vale 11111111?</summary>
+<div class="resolucao">
+<p class="passo">5 = 00000101. Invertendo: 11111010. Somando 1: 11111011 (0xFB).</p>
+<p class="passo">11111111 começa com 1, então é negativo. Inverte (00000000) e soma 1 (00000001): o módulo é 1.</p>
+<p class="resposta-final">Resposta: −5 = 11111011, e 11111111 = −1.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: 127 + 1</span>
+<p>Em 8 bits com sinal, 127 + 1 dá 10000000, que vale −128 (estouro, ou overflow). E existe um só zero em complemento de 2, ao contrário do sinal-magnitude e do complemento de 1.</p></div>
+
+<h2>Sistemas operacionais</h2>
+<h3>Processos e threads</h3>
+<ul>
+<li><strong>Processo</strong>: programa em execução, com espaço de endereçamento próprio, descritores de arquivos e contexto.</li>
+<li><strong>Thread</strong>: fluxo de execução dentro de um processo. Threads do mesmo processo <strong>compartilham</strong> memória (código, dados, heap) e arquivos abertos, mas cada uma tem sua <strong>pilha, registradores e contador de programa</strong>.</li>
+<li>Criar e trocar threads é mais barato que criar e trocar processos; em compensação, o compartilhamento exige sincronização (semáforos, mutex) para evitar condições de corrida.</li>
+<li>Estados de um processo: novo → <strong>pronto</strong> ⇄ <strong>executando</strong> → bloqueado (esperando E/S) → pronto; e terminado.</li>
+</ul>
+<h3>Escalonamento</h3>
+<table>
+<tr><th>Algoritmo</th><th>Como funciona</th><th>Observação</th></tr>
+<tr><td>FCFS / FIFO</td><td>Ordem de chegada</td><td>Não preemptivo; processo longo atrasa todos (efeito comboio)</td></tr>
+<tr><td>SJF</td><td>Menor tarefa primeiro</td><td>Ótimo para o tempo médio de espera; pode causar inanição (starvation) dos longos</td></tr>
+<tr><td>SRTF</td><td>Menor tempo restante, versão preemptiva do SJF</td><td>Mesmo risco de inanição</td></tr>
+<tr><td>Round Robin</td><td>Cada processo recebe um quantum e volta para o fim da fila</td><td>Preemptivo, típico de tempo compartilhado; quantum muito grande vira FCFS, muito pequeno gera excesso de trocas de contexto</td></tr>
+<tr><td>Prioridade</td><td>Executa o de maior prioridade</td><td>Inanição; solução: envelhecimento (aging)</td></tr>
+</table>
+<details class="exemplo"><summary>P1 (8 ms), P2 (4 ms) e P3 (2 ms) chegam juntos, nessa ordem. Compare o tempo médio de espera em FCFS e SJF.</summary>
+<div class="resolucao">
+<p class="passo">FCFS: P1 espera 0, P2 espera 8, P3 espera 12. Média = 20/3 ≈ 6,67 ms.</p>
+<p class="passo">SJF: ordem P3, P2, P1. Esperas 0, 2 e 6. Média = 8/3 ≈ 2,67 ms.</p>
+<p class="resposta-final">Resposta: SJF reduz a espera média de cerca de 6,67 ms para 2,67 ms.</p></div></details>
+<h3>Deadlock (Cai muito)</h3>
+<p>Impasse em que processos esperam, indefinidamente, recursos presos uns pelos outros. As <strong>quatro condições</strong> (de Coffman) precisam ocorrer <strong>simultaneamente</strong>:</p>
+<ol>
+<li><strong>Exclusão mútua</strong>: o recurso só pode ser usado por um processo de cada vez.</li>
+<li><strong>Posse e espera</strong>: o processo segura recursos enquanto espera outros.</li>
+<li><strong>Não preempção</strong>: o recurso não pode ser tomado à força.</li>
+<li><strong>Espera circular</strong>: P1 espera P2, que espera P3, …, que espera P1.</li>
+</ol>
+<p>Tratamento: <strong>prevenção</strong> (negar uma das quatro condições, por exemplo impondo ordem fixa na requisição de recursos, o que quebra a espera circular), <strong>evitação</strong> (algoritmo do banqueiro, que só concede recursos se o sistema continuar em estado seguro), <strong>detecção e recuperação</strong> (matar processos ou retomar recursos) ou ignorar (algoritmo do avestruz).</p>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>As quatro condições são <strong>necessárias</strong>: basta eliminar uma para que o deadlock seja impossível. O algoritmo do banqueiro é de <strong>evitação</strong>, não de detecção.</p></div>
+<h3>Memória virtual e paginação</h3>
+<ul>
+<li>A memória virtual dá a cada processo um espaço de endereçamento próprio, que pode ser maior que a RAM, usando o disco como extensão.</li>
+<li><strong>Paginação</strong>: o espaço lógico é dividido em <strong>páginas</strong> e a RAM em <strong>quadros (frames)</strong> do mesmo tamanho. A <strong>tabela de páginas</strong> mapeia página → quadro; a <strong>MMU</strong> faz a tradução em hardware, com a <strong>TLB</strong> como cache das traduções.</li>
+<li><strong>Falta de página (page fault)</strong>: a página não está na RAM e precisa ser trazida do disco.</li>
+<li>Paginação elimina a fragmentação externa, mas pode causar <strong>fragmentação interna</strong> (sobra na última página). A segmentação tem fragmentação externa.</li>
+<li>Substituição de páginas: FIFO (sujeito à anomalia de Belady), LRU (menos recentemente usada), ótimo (teórico, usado como referência). <strong>Thrashing</strong>: o sistema passa mais tempo trocando páginas do que executando.</li>
+</ul>
+<details class="exemplo"><summary>Endereços lógicos de 32 bits e páginas de 4 KiB. Quantos bits de deslocamento e quantas páginas?</summary>
+<div class="resolucao">
+<p class="passo">4 KiB = 2<sup>12</sup> bytes, logo o deslocamento usa 12 bits.</p>
+<p class="passo">Sobram 32 − 12 = 20 bits para o número da página.</p>
+<p class="resposta-final">Resposta: 12 bits de deslocamento e 2<sup>20</sup> = 1.048.576 páginas.</p></div></details>
+
+<h2>Bancos de dados relacionais e normalização</h2>
+<p>Vocabulário: <strong>relação</strong> = tabela; <strong>tupla</strong> = linha; <strong>atributo</strong> = coluna; <strong>domínio</strong> = conjunto de valores permitidos para o atributo; <strong>grau</strong> = número de colunas; <strong>cardinalidade</strong> = número de linhas.</p>
+<h3>Chaves</h3>
+<ul>
+<li><strong>Superchave</strong>: qualquer conjunto de atributos que identifica a linha de forma única.</li>
+<li><strong>Chave candidata</strong>: superchave mínima. A escolhida vira <strong>chave primária</strong> (única e não nula); as demais são chaves alternativas.</li>
+<li><strong>Chave estrangeira</strong>: atributo que referencia a chave primária de outra tabela, garantindo a <strong>integridade referencial</strong>. Pode se repetir e, se o modelo permitir, ser nula.</li>
+<li>Propriedades das transações: <strong>ACID</strong>, atomicidade, consistência, isolamento e durabilidade.</li>
+</ul>
+<h3>Normalização</h3>
+<table>
+<tr><th>Forma normal</th><th>Exige</th></tr>
+<tr><td>1FN</td><td>Valores <strong>atômicos</strong>: nada de atributos multivalorados ou grupos repetidos</td></tr>
+<tr><td>2FN</td><td>1FN + nenhum atributo não chave depende de <strong>parte</strong> da chave primária composta (sem dependência parcial)</td></tr>
+<tr><td>3FN</td><td>2FN + nenhum atributo não chave depende de outro atributo não chave (sem dependência <strong>transitiva</strong>)</td></tr>
+<tr><td>FNBC</td><td>Todo determinante é chave candidata (versão mais rígida da 3FN)</td></tr>
+</table>
+<details class="exemplo"><summary>Tabela ItemPedido(num_pedido, cod_produto, nome_produto, qtd, cpf_cliente, nome_cliente), com chave (num_pedido, cod_produto). Quais formas normais são violadas?</summary>
+<div class="resolucao">
+<p class="passo">nome_produto depende só de cod_produto, e cpf_cliente depende só de num_pedido: dependências parciais, violam a 2FN.</p>
+<p class="passo">nome_cliente depende de cpf_cliente, que não é chave: dependência transitiva, viola a 3FN.</p>
+<p class="resposta-final">Resposta: separe em Pedido(num_pedido, cpf_cliente), Cliente(cpf_cliente, nome_cliente), Produto(cod_produto, nome_produto) e ItemPedido(num_pedido, cod_produto, qtd).</p></div></details>
+<div class="caixa atalho"><span class="rotulo">Atalho: "a chave, a chave inteira e nada além da chave"</span>
+<p>1FN: depende <strong>da chave</strong> (valores atômicos). 2FN: da <strong>chave inteira</strong>. 3FN: de <strong>nada além da chave</strong>. Tabela com chave primária simples (uma coluna) que está na 1FN já está automaticamente na 2FN.</p></div>
+
+<h2>SQL e NoSQL</h2>
+<p>Grupos de comandos: <strong>DDL</strong> (CREATE, ALTER, DROP, TRUNCATE), <strong>DML</strong> (SELECT, INSERT, UPDATE, DELETE), <strong>DCL</strong> (GRANT, REVOKE) e <strong>TCL</strong> (COMMIT, ROLLBACK, SAVEPOINT).</p>
+<p>Tabelas de exemplo:</p>
+<table>
+<tr><th colspan="4">funcionarios</th><th colspan="2">departamentos</th></tr>
+<tr><th>id</th><th>nome</th><th>depto_id</th><th>salario</th><th>id</th><th>nome</th></tr>
+<tr><td>1</td><td>Ana</td><td>10</td><td>5000</td><td>10</td><td>Perícia</td></tr>
+<tr><td>2</td><td>Bruno</td><td>10</td><td>7000</td><td>20</td><td>TI</td></tr>
+<tr><td>3</td><td>Carla</td><td>20</td><td>5000</td><td>30</td><td>Jurídico</td></tr>
+<tr><td>4</td><td>Davi</td><td>NULL</td><td>4000</td><td></td><td></td></tr>
+</table>
+<pre><code>SELECT f.nome, d.nome
+FROM funcionarios f
+INNER JOIN departamentos d ON f.depto_id = d.id;
+-- INNER: 3 linhas (Ana/Perícia, Bruno/Perícia, Carla/TI)
+SELECT f.nome, d.nome
+FROM funcionarios f
+LEFT JOIN departamentos d ON f.depto_id = d.id;
+-- LEFT: 4 linhas (as 3 acima + Davi/NULL, todos da esquerda ficam)
+SELECT depto_id, COUNT(*) AS qtd, AVG(salario) AS media
+FROM funcionarios
+WHERE salario &gt;= 4500
+GROUP BY depto_id
+HAVING COUNT(*) &gt;= 2;
+-- 1 linha: 10 | 2 | 6000</code></pre>
+<p>No último exemplo, o WHERE elimina Davi; sobram os grupos 10 (Ana e Bruno) e 20 (Carla); o HAVING descarta o grupo 20, que tem só uma linha.</p>
+<div class="caixa atalho"><span class="rotulo">Atalho: ordem lógica de execução</span>
+<p><strong>FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY</strong>. Por isso o WHERE não pode usar funções de agregação (os grupos ainda não existem) e o HAVING pode.</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinhas de SQL</span>
+<ul>
+<li><code>COUNT(*)</code> conta todas as linhas; <code>COUNT(depto_id)</code> ignora NULL. Na tabela acima: 4 e 3.</li>
+<li>Comparação com NULL usa <code>IS NULL</code>; <code>depto_id = NULL</code> não retorna nada.</li>
+<li><code>DELETE</code> sem WHERE apaga todas as linhas, mas mantém a tabela (e é DML); <code>TRUNCATE</code> esvazia a tabela (DDL); <code>DROP</code> remove a tabela inteira.</li>
+<li><code>CROSS JOIN</code> faz o produto cartesiano: 4 × 3 = 12 linhas aqui.</li>
+</ul></div>
+<h3>NoSQL (noções)</h3>
+<p>Modelos: <strong>chave-valor</strong> (Redis; cache e sessões), <strong>documentos</strong> JSON/BSON (MongoDB; esquema flexível), <strong>colunar ou família de colunas</strong> (Cassandra, HBase; grandes volumes distribuídos) e <strong>grafos</strong> (Neo4j; redes de vínculos, rastreio de transações).</p>
+<p>Bancos NoSQL favorecem <strong>escalabilidade horizontal</strong> e esquema flexível, muitas vezes com consistência eventual (modelo BASE, em vez de ACID estrito). O <strong>teorema CAP</strong> diz que um sistema distribuído, diante de uma partição de rede, precisa escolher entre consistência e disponibilidade.</p>
+
+<h2>Python</h2>
+<ul>
+<li>Tipagem <strong>dinâmica</strong> (a variável não tem tipo declarado) e <strong>forte</strong> (não converte sozinho: <code>"3" + 3</code> gera TypeError).</li>
+<li>Tipos: <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>None</code>, <code>list</code> (mutável), <code>tuple</code> (imutável), <code>dict</code> (chave → valor, mutável), <code>set</code> (sem repetição, sem ordem).</li>
+<li>Blocos definidos pela <strong>indentação</strong>. Valores falsos: <code>0</code>, <code>0.0</code>, <code>""</code>, <code>[]</code>, <code>{}</code>, <code>None</code>, <code>False</code>.</li>
+<li>Operadores: <code>/</code> sempre dá float, <code>//</code> é divisão inteira (arredonda para baixo), <code>%</code> é resto, <code>**</code> é potência.</li>
+</ul>
+<h3>Fatiamento: <code>seq[início:fim:passo]</code>, o fim não entra</h3>
+<pre><code>s = "PERITO"          # índices: P0 E1 R2 I3 T4 O5
+print(s[1:4])         # ERI
+print(s[-2:])         # TO
+print(s[::2])         # PRT
+print(s[::-1])        # OTIREP
+print(len(s), s[0])   # 6 P
+print(7 / 2, 7 // 2, 7 % 2, 2 ** 3)   # 3.5 3 1 8
+print(-7 // 2)                        # -4  (arredonda para baixo)
+print("ab" * 3, [1, 2] * 2)           # ababab [1, 2, 1, 2]
+print(list(range(2, 10, 3)))          # [2, 5, 8]</code></pre>
+<h3>Listas, referências e dicionários</h3>
+<pre><code>a = [1, 2, 3]
+b = a            # b aponta para a MESMA lista
+b.append(4)
+print(a)         # [1, 2, 3, 4]
+c = a[:]         # cópia rasa: lista nova
+c.append(5)
+print(a, c)      # [1, 2, 3, 4] [1, 2, 3, 4, 5]
+d = {"a": 1, "b": 2}
+d["c"] = 3
+print(len(d), d.get("z", 0))     # 3 0
+for k, v in d.items():
+    print(k, v * 10)             # a 10 / b 20 / c 30 (uma por linha)</code></pre>
+<h3>Compreensões e funções</h3>
+<pre><code>pares_ao_quadrado = [x ** 2 for x in range(6) if x % 2 == 0]
+print(pares_ao_quadrado)         # [0, 4, 16]
+print({x: len(x) for x in ["pf", "pcf"]})   # {'pf': 2, 'pcf': 3}
+def soma(lista, inicio=0):
+    total = inicio
+    for x in lista:
+        total += x
+    return total
+
+print(soma([1, 2, 3]), soma([1, 2, 3], 10))  # 6 16</code></pre>
+<p>Função sem <code>return</code> devolve <code>None</code>.</p>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: argumento padrão mutável</span>
+<pre><code>def adiciona(x, lst=[]):
+    lst.append(x)
+    return lst
+print(adiciona(1))   # [1]
+print(adiciona(2))   # [1, 2]  (a mesma lista é reaproveitada)</code></pre>
+<p>O valor padrão é criado uma única vez, quando a função é definida. Outra clássica: <code>t = (1, 2); t[0] = 9</code> gera erro, porque tupla é imutável.</p></div>
+<div class="caixa dica"><span class="rotulo">Dica de prova</span>
+<p>Para prever saídas, escreva os índices embaixo de cada caractere e acompanhe as variáveis em uma tabelinha, linha por linha. Desconfie de toda atribuição de lista (<code>b = a</code>): ela não copia.</p></div>
+
+<h2>Estruturas de dados e complexidade</h2>
+<ul>
+<li><strong>Pilha</strong>: LIFO (último a entrar, primeiro a sair), operações push e pop. Usada em chamadas de função e no "desfazer".</li>
+<li><strong>Fila</strong>: FIFO (primeiro a entrar, primeiro a sair). Usada em escalonamento e buffers.</li>
+<li><strong>Lista encadeada</strong>: inserção no início em O(1), mas acesso por posição em O(n). <strong>Vetor (array)</strong>: acesso por índice em O(1).</li>
+<li><strong>Árvore binária de busca</strong>: à esquerda, menores; à direita, maiores. Busca O(log n) se balanceada, O(n) se degenerada (vira uma "lista"). Árvores AVL e rubro-negras se mantêm balanceadas.</li>
+<li><strong>Tabela hash</strong>: busca, inserção e remoção em O(1) no caso médio; colisões pioram o desempenho.</li>
+<li><strong>Grafo</strong>: vértices e arestas. Busca em largura (BFS) usa fila; busca em profundidade (DFS) usa pilha ou recursão.</li>
+</ul>
+<table>
+<tr><th>Algoritmo</th><th>Melhor caso</th><th>Caso médio</th><th>Pior caso</th><th>Observação</th></tr>
+<tr><td>Busca sequencial</td><td>O(1)</td><td>O(n)</td><td>O(n)</td><td>Não exige ordenação</td></tr>
+<tr><td>Busca binária</td><td>O(1)</td><td>O(log n)</td><td>O(log n)</td><td><strong>Exige vetor ordenado</strong></td></tr>
+<tr><td>Bubble sort</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>Melhor caso com verificação de "nenhuma troca"</td></tr>
+<tr><td>Insertion sort</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>Bom para vetores quase ordenados</td></tr>
+<tr><td>Selection sort</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td><td>Sempre quadrático</td></tr>
+<tr><td>Merge sort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>Estável; usa memória extra O(n)</td></tr>
+<tr><td>Quicksort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n²)</td><td>Pior caso com pivô ruim (ex.: vetor já ordenado e pivô na ponta)</td></tr>
+<tr><td>Heapsort</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>Não estável; memória extra O(1)</td></tr>
+</table>
+<div class="caixa atalho"><span class="rotulo">Atalho: busca binária</span>
+<p>Cada comparação corta o vetor pela metade. Com 1.000 elementos, no máximo cerca de 10 comparações (2<sup>10</sup> = 1.024); com 1 milhão, cerca de 20. Ordenação por comparação não consegue ser melhor que O(n log n) no pior caso.</p></div>
+
+<h2>Engenharia de software</h2>
+<ul>
+<li><strong>Cascata</strong>: fases sequenciais (requisitos, projeto, implementação, testes, implantação); mudanças tardias custam caro. <strong>Espiral</strong>: iterativo e orientado a <strong>riscos</strong>.</li>
+<li>Requisitos <strong>funcionais</strong> (o que o sistema faz) x <strong>não funcionais</strong> (desempenho, segurança, usabilidade, disponibilidade).</li>
+<li>Testes: unidade, integração, sistema e aceitação. <strong>Caixa-preta</strong> testa pela especificação, sem ver o código; <strong>caixa-branca</strong> testa a estrutura interna do código.</li>
+</ul>
+<h3>Manifesto ágil</h3>
+<p>Valoriza: <strong>indivíduos e interações</strong> mais que processos e ferramentas; <strong>software em funcionamento</strong> mais que documentação abrangente; <strong>colaboração com o cliente</strong> mais que negociação de contratos; <strong>responder a mudanças</strong> mais que seguir um plano. Os itens da direita continuam tendo valor; os da esquerda valem mais.</p>
+<h3>Scrum</h3>
+<table>
+<tr><th>Elemento</th><th>Itens</th></tr>
+<tr><td>Responsabilidades</td><td><strong>Product Owner</strong> (maximiza o valor, gerencia o Product Backlog), <strong>Scrum Master</strong> (garante a aplicação do Scrum, remove impedimentos), <strong>Developers</strong> (constroem o incremento)</td></tr>
+<tr><td>Eventos</td><td><strong>Sprint</strong> (até um mês), Sprint Planning, <strong>Daily Scrum</strong> (15 minutos), Sprint Review, Sprint Retrospective</td></tr>
+<tr><td>Artefatos</td><td>Product Backlog (meta do produto), Sprint Backlog (meta da Sprint), Incremento (Definição de Pronto)</td></tr>
+</table>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>O Scrum Master não é chefe da equipe nem distribui tarefas: os Developers se auto-organizam. A Review inspeciona o <strong>produto</strong> (incremento) com os interessados; a Retrospectiva inspeciona o <strong>processo</strong> e a forma de trabalho do time. Kanban não tem sprints fixas e limita o trabalho em andamento (WIP).</p></div>
+
+<h2>Inteligência artificial, aprendizado de máquina e big data</h2>
+<table>
+<tr><th>Tipo</th><th>Dados</th><th>Tarefas e exemplos</th></tr>
+<tr><td><strong>Supervisionado</strong></td><td>Rotulados (entrada e resposta certa)</td><td>Classificação (spam ou não, fraude ou não) e regressão (prever valor). Árvores de decisão, regressão logística, SVM, redes neurais</td></tr>
+<tr><td><strong>Não supervisionado</strong></td><td>Sem rótulo</td><td>Agrupamento (k-means), redução de dimensionalidade (PCA), regras de associação, detecção de anomalias</td></tr>
+<tr><td>Por reforço</td><td>Recompensas e punições em interação com o ambiente</td><td>Jogos, robótica</td></tr>
+</table>
+<h3>Overfitting e underfitting</h3>
+<ul>
+<li><strong>Overfitting (sobreajuste)</strong>: o modelo decora o treino, inclusive o ruído. Sinal: erro baixo no treino e alto nos dados de teste. Remédios: mais dados, modelo mais simples, regularização, validação cruzada, parada antecipada, dropout.</li>
+<li><strong>Underfitting</strong>: modelo simples demais, erra no treino e no teste.</li>
+<li>Separe os dados em treino, validação e teste; o desempenho real é medido em dados que o modelo nunca viu.</li>
+</ul>
+<h3>Métricas (matriz de confusão)</h3>
+<table>
+<tr><th>Métrica</th><th>Fórmula</th><th>Pergunta que responde</th></tr>
+<tr><td>Acurácia</td><td>(VP + VN) / total</td><td>Quanto acertou no geral?</td></tr>
+<tr><td><strong>Precisão</strong></td><td>VP / (VP + FP)</td><td>Dos que o modelo apontou como positivos, quantos eram?</td></tr>
+<tr><td><strong>Recall</strong> (revocação, sensibilidade)</td><td>VP / (VP + FN)</td><td>Dos positivos reais, quantos o modelo encontrou?</td></tr>
+<tr><td>F1</td><td>2 × P × R / (P + R)</td><td>Média harmônica de precisão e recall</td></tr>
+</table>
+<details class="exemplo"><summary>Um modelo marcou 40 arquivos como suspeitos; 30 realmente eram. Havia 50 arquivos suspeitos ao todo. Calcule precisão e recall.</summary>
+<div class="resolucao">
+<p class="passo">VP = 30, FP = 40 − 30 = 10, FN = 50 − 30 = 20.</p>
+<p class="passo">Precisão = 30 / 40 = 75%. Recall = 30 / 50 = 60%.</p>
+<p class="resposta-final">Resposta: precisão de 75% e recall de 60% (F1 ≈ 66,7%).</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: acurácia com classes desbalanceadas</span>
+<p>Se 1% das transações são fraude, um modelo que diz "nunca é fraude" tem 99% de acurácia e recall zero. Em triagem pericial, em que deixar passar um positivo é grave, o recall importa mais.</p></div>
+<h3>Big data: os 5 Vs</h3>
+<p><strong>Volume</strong> (quantidade enorme), <strong>Velocidade</strong> (geração e processamento rápidos, muitas vezes em tempo real), <strong>Variedade</strong> (dados estruturados, semiestruturados como JSON e XML, e não estruturados como texto, imagem e vídeo), <strong>Veracidade</strong> (confiabilidade e qualidade) e <strong>Valor</strong> (utilidade que se extrai deles).</p>
+<p>Tecnologias: Hadoop (armazenamento distribuído HDFS e processamento MapReduce) e Spark (processamento em memória, mais rápido em tarefas iterativas). <strong>Data warehouse</strong> guarda dados estruturados e tratados para análise; <strong>data lake</strong> guarda dados brutos em qualquer formato.</p>
+
+<h2>Questões</h2>
+<div class="questao" data-correta="a">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> Em complemento de 2 com 8 bits, o número −5 é representado por 11111011.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>5 = 00000101; invertendo, 11111010; somando 1, 11111011.</p></div>
+</div>
+<div class="questao" data-correta="b">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> Para que ocorra deadlock, basta que estejam presentes as condições de exclusão mútua e de espera circular; as condições de posse e espera e de não preempção são dispensáveis.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>As quatro condições de Coffman são necessárias e devem ocorrer simultaneamente. Eliminar qualquer uma impede o deadlock.</p></div>
+</div>
+<div class="questao" data-correta="c">
+<p class="enunciado">Considere o código Python:<br><code>v = [3, 8, 1, 9, 4]</code><br><code>print(v[1:4], v[-1], v[::2])</code><br>A saída é:</p>
+<ol class="alternativas"><li>[3, 8, 1] 4 [3, 1, 4]</li><li>[8, 1, 9, 4] 4 [8, 9]</li><li>[8, 1, 9] 4 [3, 1, 4]</li><li>[8, 1, 9] 3 [3, 1, 4]</li><li>[8, 1, 9] 4 [8, 9]</li></ol>
+<div class="explicacao"><p>v[1:4] pega os índices 1, 2 e 3 (o 4 não entra): [8, 1, 9]. v[-1] é o último: 4. v[::2] pega os índices 0, 2 e 4: [3, 1, 4].</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> Em SQL, a cláusula HAVING permite filtrar grupos com base em funções de agregação, como COUNT e AVG, o que não é possível na cláusula WHERE.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>O WHERE é avaliado antes do GROUP BY, quando os grupos ainda não existem; o HAVING é avaliado depois.</p></div>
+</div>
+<div class="questao" data-correta="e">
+<p class="enunciado">Uma tabela tem chave primária composta (matricula, cod_disciplina) e o atributo nome_aluno, que depende apenas de matricula. Essa tabela viola a:</p>
+<ol class="alternativas"><li>1FN, por ter chave composta.</li><li>3FN, mas não a 2FN.</li><li>FNBC apenas.</li><li>1FN, por conter atributo multivalorado.</li><li>2FN, por haver dependência parcial da chave.</li></ol>
+<div class="explicacao"><p>nome_aluno depende de parte da chave composta: dependência parcial, que viola a 2FN (e, por consequência, as formas superiores). Chave composta não viola a 1FN.</p></div>
+</div>
+<div class="questao" data-correta="b">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> A busca binária tem complexidade O(log n) e pode ser aplicada diretamente a qualquer vetor, esteja ele ordenado ou não.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>A complexidade está certa, mas a busca binária exige vetor ordenado. Em vetor desordenado, use busca sequencial, O(n).</p></div>
+</div>
+<div class="questao" data-correta="d">
+<p class="enunciado">Um classificador de imagens ilícitas obteve 90 verdadeiros positivos, 10 falsos positivos e 30 falsos negativos. Sua precisão e seu recall são, respectivamente:</p>
+<ol class="alternativas"><li>75% e 90%.</li><li>90% e 90%.</li><li>75% e 75%.</li><li>90% e 75%.</li><li>80% e 75%.</li></ol>
+<div class="explicacao"><p>Precisão = 90 / (90 + 10) = 90%. Recall = 90 / (90 + 30) = 75%. A letra A inverte as duas métricas.</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> Um modelo que apresenta erro muito baixo nos dados de treinamento e erro elevado nos dados de teste provavelmente sofre de overfitting.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>É o sinal clássico do sobreajuste: o modelo memorizou o treino e não generaliza.</p></div>
+</div>
+<div class="questao" data-correta="c">
+<p class="enunciado">Threads de um mesmo processo compartilham:</p>
+<ol class="alternativas"><li>a pilha de execução e os registradores.</li><li>o contador de programa.</li><li>o espaço de endereçamento (código, dados e heap) e os arquivos abertos.</li><li>nada; cada thread tem memória totalmente isolada.</li><li>apenas a pilha.</li></ol>
+<div class="explicacao"><p>Cada thread tem pilha, registradores e contador de programa próprios, mas todas compartilham a memória e os recursos do processo. Isolamento total de memória é característica de processos diferentes.</p></div>
+</div>
+<div class="questao" data-correta="b">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> No Scrum, o Scrum Master é responsável por atribuir as tarefas da Sprint a cada desenvolvedor e por priorizar o Product Backlog.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Os Developers se auto-organizam para executar o trabalho, e quem gerencia e ordena o Product Backlog é o Product Owner. O Scrum Master atua como facilitador.</p></div>
+</div>

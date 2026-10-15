@@ -1,0 +1,305 @@
+<p>Redes TCP/IP e segurança da informação somam boa parte dos itens específicos de Perito Criminal Federal Área 3, e a parte de redes e segurança também aparece em Informática da PF (Agente, Escrivão e Papiloscopista). A apostila segue a ordem das camadas: modelos de referência, endereçamento IP, transporte, aplicação, defesa, ataques e, por fim, criptografia, hash e certificação digital.</p>
+
+<h2>Modelo OSI x TCP/IP</h2>
+<p>O <strong>modelo OSI</strong> (ISO) é uma referência teórica de 7 camadas. O <strong>modelo TCP/IP</strong> é o que a internet usa de fato e costuma ser apresentado com 4 camadas (algumas bancas usam uma versão híbrida de 5, separando física e enlace).</p>
+<table>
+<tr><th>OSI</th><th>TCP/IP</th><th>Unidade de dados</th><th>Protocolos e equipamentos típicos</th></tr>
+<tr><td>7 Aplicação</td><td rowspan="3">Aplicação</td><td rowspan="3">Mensagem / dados</td><td rowspan="3">HTTP, HTTPS, DNS, SMTP, POP3, IMAP, FTP, SSH, Telnet, DHCP, SNMP. TLS costuma ser associado à camada de apresentação/sessão no OSI.</td></tr>
+<tr><td>6 Apresentação</td></tr>
+<tr><td>5 Sessão</td></tr>
+<tr><td>4 Transporte</td><td>Transporte</td><td>Segmento (TCP) / datagrama (UDP)</td><td>TCP, UDP</td></tr>
+<tr><td>3 Rede</td><td>Internet</td><td>Pacote</td><td>IP (v4 e v6), ICMP, IPsec, protocolos de roteamento; <strong>roteador</strong></td></tr>
+<tr><td>2 Enlace</td><td rowspan="2">Acesso à rede</td><td>Quadro (frame)</td><td>Ethernet, Wi-Fi (802.11), PPP, endereço MAC; <strong>switch</strong>, ponte</td></tr>
+<tr><td>1 Física</td><td>Bit</td><td>Cabos, fibra, sinais de rádio; <strong>hub</strong>, repetidor</td></tr>
+</table>
+<div class="caixa atalho"><span class="rotulo">Atalho: "FERTSAA" de baixo para cima</span>
+<p><strong>F</strong>ísica, <strong>E</strong>nlace, <strong>R</strong>ede, <strong>T</strong>ransporte, <strong>S</strong>essão, <strong>A</strong>presentação, <strong>A</strong>plicação. Equipamentos: hub = 1, switch = 2 (olha MAC), roteador = 3 (olha IP).</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>O <strong>ARP</strong> traduz endereço IP em endereço MAC dentro da rede local. Ele fica na fronteira entre rede e enlace; a banca pode aceitar qualquer das duas classificações, mas nunca camada de transporte. O ICMP (usado pelo <code>ping</code>) é da camada de rede, não de aplicação.</p></div>
+
+<h2>Endereçamento IPv4, sub-redes, NAT e IPv6</h2>
+<p>Um endereço IPv4 tem <strong>32 bits</strong>, escritos em 4 octetos decimais (0 a 255). A máscara separa a parte de rede da parte de host. Na notação <strong>CIDR</strong>, <code>/24</code> significa 24 bits de rede.</p>
+<h3>Classes (histórico, ainda cobrado)</h3>
+<table>
+<tr><th>Classe</th><th>1º octeto</th><th>Máscara padrão</th><th>Uso</th></tr>
+<tr><td>A</td><td>1 a 126</td><td>/8 (255.0.0.0)</td><td>Grandes redes (127 é reservado para loopback)</td></tr>
+<tr><td>B</td><td>128 a 191</td><td>/16 (255.255.0.0)</td><td>Redes médias</td></tr>
+<tr><td>C</td><td>192 a 223</td><td>/24 (255.255.255.0)</td><td>Redes pequenas</td></tr>
+<tr><td>D</td><td>224 a 239</td><td>não se aplica</td><td>Multicast</td></tr>
+<tr><td>E</td><td>240 a 255</td><td>não se aplica</td><td>Reservado / experimental</td></tr>
+</table>
+<h3>Endereços especiais</h3>
+<ul>
+<li><strong>Privados (RFC 1918):</strong> <code>10.0.0.0/8</code>, <code>172.16.0.0/12</code> (172.16.0.0 a 172.31.255.255) e <code>192.168.0.0/16</code>. Não são roteados na internet.</li>
+<li><strong>Loopback:</strong> <code>127.0.0.0/8</code>, em geral <code>127.0.0.1</code>.</li>
+<li><strong>APIPA / link-local:</strong> <code>169.254.0.0/16</code>, atribuído automaticamente quando o DHCP falha.</li>
+</ul>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: 172.32.x.x</span>
+<p>A faixa privada classe B vai só de 172.16 a 172.31. O endereço <code>172.32.5.1</code> é público. Do mesmo modo, <code>192.169.1.1</code> não é privado.</p></div>
+<h3>Cálculo de sub-rede (Cai muito para Perito)</h3>
+<ul>
+<li>Quantidade de endereços no bloco: <strong>2<sup>(32 − n)</sup></strong>. Hosts utilizáveis: <strong>2<sup>(32 − n)</sup> − 2</strong> (tira o endereço de rede e o de broadcast).</li>
+<li>Cada bit emprestado dobra o número de sub-redes: emprestar k bits gera 2<sup>k</sup> sub-redes.</li>
+</ul>
+<div class="caixa atalho"><span class="rotulo">Atalho: número mágico</span>
+<p>Pegue o octeto "interessante" da máscara (o último que não é 255) e calcule <strong>256 − esse valor</strong>. O resultado é o tamanho de cada bloco. As redes começam nos múltiplos desse número; o broadcast é o próximo múltiplo menos 1.</p>
+<p>Valores do octeto: /25 = 128, /26 = 192, /27 = 224, /28 = 240, /29 = 248, /30 = 252. Números mágicos: 128, 64, 32, 16, 8, 4.</p></div>
+<details class="exemplo"><summary>Qual a rede, o broadcast e a faixa de hosts de 192.168.10.77/27?</summary>
+<div class="resolucao">
+<p class="passo">/27 → máscara 255.255.255.224. Número mágico: 256 − 224 = 32.</p>
+<p class="passo">Blocos no 4º octeto: 0, 32, 64, 96, 128… O 77 está no bloco que começa em 64.</p>
+<p class="passo">Rede: 192.168.10.64. Broadcast: 96 − 1 = 192.168.10.95.</p>
+<p class="passo">Hosts: 2<sup>5</sup> − 2 = 30, de .65 a .94.</p>
+<p class="resposta-final">Resposta: rede .64, broadcast .95, hosts .65 a .94 (30 hosts).</p></div></details>
+<details class="exemplo"><summary>Uma rede 10.0.0.0/8 precisa ser dividida em sub-redes de pelo menos 1.000 hosts cada. Qual o maior prefixo possível?</summary>
+<div class="resolucao">
+<p class="passo">Precisamos de h bits de host com 2<sup>h</sup> − 2 ≥ 1.000. 2<sup>9</sup> − 2 = 510 (não serve); 2<sup>10</sup> − 2 = 1.022 (serve).</p>
+<p class="passo">Prefixo = 32 − 10 = 22.</p>
+<p class="resposta-final">Resposta: /22 (máscara 255.255.252.0), com 1.022 hosts por sub-rede.</p></div></details>
+<h3>NAT</h3>
+<p>O <strong>NAT</strong> (Network Address Translation) troca o endereço privado de origem por um endereço público no roteador de borda. Na forma mais comum, o <strong>PAT/NAPT</strong> (NAT com sobrecarga), vários hosts compartilham um único IP público, diferenciados pela porta de origem. O NAT ajudou a adiar o esgotamento do IPv4. Na perícia, isso explica por que um IP público em um registro de acesso pode corresponder a vários usuários: é preciso o IP <strong>e a porta lógica de origem</strong>, com data, hora e fuso, para individualizar a conexão (situação típica de CGNAT em provedores).</p>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>NAT não é mecanismo de segurança por si só, embora esconda a topologia interna. Quem filtra tráfego é o firewall.</p></div>
+
+<h3>Noções de IPv6</h3>
+<ul>
+<li>Endereço de <strong>128 bits</strong>, escrito em 8 grupos de 4 dígitos hexadecimais separados por dois-pontos.</li>
+<li>Abreviação: zeros à esquerda de cada grupo podem ser omitidos, e <strong>uma única</strong> sequência de grupos zerados pode virar <code>::</code>. Ex.: <code>2001:0db8:0000:0000:0000:0000:0000:0001</code> = <code>2001:db8::1</code>.</li>
+<li><strong>Não existe broadcast</strong> no IPv6. Há unicast, multicast e anycast.</li>
+<li>Loopback: <code>::1</code>. Link-local: <code>fe80::/10</code>.</li>
+<li>O protocolo NDP (sobre ICMPv6) substitui o ARP. A fragmentação é feita só na origem, não nos roteadores. O cabeçalho base é fixo (40 bytes) e mais simples que o do IPv4.</li>
+<li>Suporta autoconfiguração sem estado (SLAAC), além de DHCPv6.</li>
+</ul>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p><code>2001:db8::1::5</code> é inválido: o <code>::</code> só pode aparecer uma vez, senão não dá para saber quantos grupos cada um representa.</p></div>
+
+<h2>Transporte: TCP x UDP</h2>
+<table>
+<tr><th>TCP</th><th>UDP</th></tr>
+<tr><td>Orientado a conexão</td><td>Sem conexão</td></tr>
+<tr><td>Confiável: confirmação (ACK), retransmissão, entrega em ordem</td><td>Sem garantia de entrega nem de ordem ("melhor esforço")</td></tr>
+<tr><td>Controle de fluxo (janela) e de congestionamento</td><td>Não tem</td></tr>
+<tr><td>Cabeçalho mínimo de 20 bytes</td><td>Cabeçalho de 8 bytes</td></tr>
+<tr><td>Web, e-mail, SSH, transferência de arquivos</td><td>DNS (consultas), DHCP, VoIP, streaming, jogos, SNMP</td></tr>
+</table>
+<h3>Three-way handshake</h3>
+<ol>
+<li>Cliente envia <strong>SYN</strong> (com seu número de sequência inicial).</li>
+<li>Servidor responde <strong>SYN-ACK</strong>.</li>
+<li>Cliente responde <strong>ACK</strong>. A conexão está estabelecida.</li>
+</ol>
+<p>O encerramento normal usa <strong>FIN</strong> e ACK nos dois sentidos (quatro segmentos). O <strong>RST</strong> aborta a conexão.</p>
+<h3>Portas conhecidas (0 a 1023 são as "bem conhecidas")</h3>
+<table>
+<tr><th>Porta</th><th>Protocolo</th><th>Porta</th><th>Protocolo</th></tr>
+<tr><td>20/21 TCP</td><td>FTP (dados/controle)</td><td>110 TCP</td><td>POP3</td></tr>
+<tr><td>22 TCP</td><td>SSH (e SFTP/SCP)</td><td>143 TCP</td><td>IMAP</td></tr>
+<tr><td>23 TCP</td><td>Telnet (texto claro)</td><td>161 UDP</td><td>SNMP</td></tr>
+<tr><td>25 TCP</td><td>SMTP (587 para submissão)</td><td>443 TCP</td><td>HTTPS</td></tr>
+<tr><td>53 UDP/TCP</td><td>DNS</td><td>445 TCP</td><td>SMB (compartilhamento Windows)</td></tr>
+<tr><td>67/68 UDP</td><td>DHCP (servidor/cliente)</td><td>993 / 995 TCP</td><td>IMAPS / POP3S</td></tr>
+<tr><td>80 TCP</td><td>HTTP</td><td>3389 TCP</td><td>RDP (área de trabalho remota)</td></tr>
+</table>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: DNS só usa UDP?</span>
+<p>Errado. Consultas comuns usam UDP 53, mas o DNS também usa <strong>TCP 53</strong>, por exemplo em transferências de zona e respostas grandes.</p></div>
+<div class="caixa dica"><span class="rotulo">Dica: SYN flood</span>
+<p>O ataque SYN flood explora o handshake: o atacante envia muitos SYN e não completa com ACK, esgotando a tabela de conexões semiabertas do servidor. Uma defesa clássica são os SYN cookies.</p></div>
+
+<h2>Aplicação: DNS, HTTP, HTTPS, TLS e VPN</h2>
+<h3>DNS</h3>
+<p>Traduz nomes em endereços IP, de forma hierárquica e distribuída (raiz → TLD como <code>.br</code> → domínio autoritativo). Registros que mais caem:</p>
+<table>
+<tr><th>Registro</th><th>Função</th></tr>
+<tr><td>A / AAAA</td><td>Nome → IPv4 / IPv6</td></tr>
+<tr><td>CNAME</td><td>Apelido para outro nome</td></tr>
+<tr><td>MX</td><td>Servidor de e-mail do domínio</td></tr>
+<tr><td>NS</td><td>Servidor de nomes autoritativo</td></tr>
+<tr><td>PTR</td><td>Resolução reversa (IP → nome)</td></tr>
+<tr><td>TXT</td><td>Texto livre (usado por SPF, DKIM, DMARC)</td></tr>
+</table>
+<p>Ataques: <strong>envenenamento de cache DNS</strong> e <strong>pharming</strong> (o usuário digita o endereço certo e cai no site falso). O DNSSEC adiciona assinatura digital às respostas, garantindo autenticidade e integridade, mas não confidencialidade.</p>
+<h3>HTTP e HTTPS</h3>
+<ul>
+<li>HTTP é <strong>sem estado</strong> (stateless); cookies e sessões contornam isso.</li>
+<li>Métodos: GET (obtém), POST (envia), PUT (substitui), DELETE (remove), HEAD (só cabeçalhos).</li>
+<li>Códigos: 2xx sucesso (200 OK), 3xx redirecionamento (301 permanente, 302 temporário), 4xx erro do cliente (401 não autenticado, 403 proibido, 404 não encontrado), 5xx erro do servidor (500).</li>
+<li><strong>HTTPS</strong> = HTTP sobre <strong>TLS</strong>, porta 443.</li>
+</ul>
+<h3>TLS</h3>
+<p>O TLS sucedeu o SSL (todas as versões do SSL estão obsoletas). No handshake, o servidor apresenta seu <strong>certificado digital</strong>, e as partes usam criptografia assimétrica ou troca de chaves (como Diffie-Hellman efêmero) para combinar uma <strong>chave de sessão simétrica</strong>. Os dados da sessão trafegam cifrados com criptografia simétrica, que é muito mais rápida. O TLS entrega confidencialidade, integridade e autenticação do servidor.</p>
+<div class="caixa atalho"><span class="rotulo">Atalho: modelo híbrido</span>
+<p>Assimétrica para <strong>autenticar e combinar a chave</strong>; simétrica para <strong>cifrar o volume de dados</strong>. Vale para TLS, PGP e a maioria dos sistemas reais.</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>O cadeado no navegador indica que a conexão é cifrada e que o certificado é válido para aquele domínio. Não garante que o site seja honesto: sites de phishing também usam HTTPS.</p></div>
+<h3>VPN</h3>
+<p>Cria um <strong>túnel cifrado</strong> sobre uma rede pública. Principais tecnologias: <strong>IPsec</strong> (camada de rede), VPN SSL/TLS (como OpenVPN) e WireGuard.</p>
+<ul>
+<li>IPsec <strong>AH</strong>: autenticação e integridade, <strong>sem</strong> confidencialidade.</li>
+<li>IPsec <strong>ESP</strong>: confidencialidade (cifra), além de integridade e autenticação.</li>
+<li>Modo <strong>transporte</strong> protege a carga útil; modo <strong>túnel</strong> encapsula o pacote IP inteiro (típico de VPN entre sites).</li>
+</ul>
+
+<h2>Firewall, IDS e IPS</h2>
+<table>
+<tr><th>Mecanismo</th><th>O que faz</th></tr>
+<tr><td>Filtro de pacotes (stateless)</td><td>Decide pacote a pacote por IP, porta e protocolo, sem lembrar conexões.</td></tr>
+<tr><td>Firewall stateful</td><td>Mantém tabela de estado; aceita respostas de conexões iniciadas de dentro.</td></tr>
+<tr><td>Firewall de aplicação / proxy / WAF</td><td>Inspeciona o conteúdo da camada de aplicação (o WAF protege aplicações web contra SQLi e XSS, por exemplo).</td></tr>
+<tr><td>IDS</td><td>Sistema de <strong>detecção</strong>: monitora e alerta. Passivo, trabalha com cópia do tráfego.</td></tr>
+<tr><td>IPS</td><td>Sistema de <strong>prevenção</strong>: fica em linha (inline) e bloqueia o tráfego malicioso.</td></tr>
+<tr><td>DMZ</td><td>Rede intermediária onde ficam servidores expostos à internet, isolada da rede interna.</td></tr>
+<tr><td>Honeypot</td><td>Sistema-isca para atrair e estudar atacantes.</td></tr>
+</table>
+<ul>
+<li><strong>Detecção por assinatura</strong>: compara com padrões conhecidos; poucos falsos positivos, mas não detecta ataques novos (dia zero).</li>
+<li><strong>Detecção por anomalia</strong>: aprende o comportamento normal e alerta desvios; detecta ataques novos, mas gera mais falsos positivos.</li>
+<li><strong>NIDS</strong> monitora a rede; <strong>HIDS</strong> monitora um host (arquivos, logs, processos).</li>
+</ul>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>IDS não bloqueia; quem bloqueia é o IPS. E firewall não substitui antivírus: um anexo malicioso que chega por uma porta permitida (como e-mail) passa pelo filtro de pacotes.</p></div>
+
+<h2>Ataques e códigos maliciosos</h2>
+<table>
+<tr><th>Ataque</th><th>Ideia central</th><th>Defesa típica</th></tr>
+<tr><td>DoS / DDoS</td><td>Esgotar recursos para tirar o serviço do ar (afeta a <strong>disponibilidade</strong>). O DDoS usa muitas origens, em geral uma botnet.</td><td>Filtragem, CDN, mitigação no provedor, limitação de taxa</td></tr>
+<tr><td>MITM (homem no meio)</td><td>Interceptar e possivelmente alterar a comunicação. Ex.: ARP spoofing na rede local, Wi-Fi falso.</td><td>TLS com validação de certificado, VPN</td></tr>
+<tr><td>SQL injection</td><td>Inserir comandos SQL em campos de entrada, alterando a consulta.</td><td>Consultas parametrizadas (prepared statements), validação de entrada, menor privilégio</td></tr>
+<tr><td>XSS</td><td>Injetar script que roda no navegador de <strong>outra vítima</strong> (refletido, armazenado ou baseado em DOM).</td><td>Codificar a saída (output encoding), sanitizar, Content Security Policy</td></tr>
+<tr><td>Ransomware</td><td>Cifrar os dados da vítima e exigir resgate; hoje também ameaça vazar os dados.</td><td>Backup offline e testado, atualização, segmentação</td></tr>
+<tr><td>Phishing</td><td>Engenharia social por mensagem falsa para obter dados ou instalar malware. Variantes: spear phishing (alvo específico), whaling (alto escalão), smishing (SMS), vishing (voz).</td><td>Conscientização, filtros, autenticação multifator</td></tr>
+</table>
+<details class="exemplo"><summary>Por que a entrada <code>' OR '1'='1</code> burla um login vulnerável?</summary>
+<div class="resolucao">
+<p class="passo">Código vulnerável monta a consulta concatenando texto:</p>
+<pre><code>sql = "SELECT * FROM usuarios WHERE login = '" + login + "' AND senha = '" + senha + "'"</code></pre>
+<p class="passo">Com senha <code>' OR '1'='1</code>, a cláusula vira <code>senha = '' OR '1'='1'</code>. Como AND tem precedência sobre OR, a condição fica <code>(login = 'x' AND senha = '') OR '1'='1'</code>, verdadeira para toda linha.</p>
+<p class="resposta-final">Resposta: a consulta retorna registros sem senha válida. A correção é usar parâmetros (<code>WHERE login = ? AND senha = ?</code>), que tratam a entrada como dado, nunca como código.</p></div></details>
+<h3>Malware: diferenças que caem</h3>
+<ul>
+<li><strong>Vírus</strong>: anexa-se a um arquivo ou programa hospedeiro e depende da execução dele.</li>
+<li><strong>Worm</strong>: autorreplicante e independente; propaga-se pela rede explorando vulnerabilidades, sem precisar de hospedeiro.</li>
+<li><strong>Cavalo de troia</strong>: parece legítimo e executa funções maliciosas escondidas.</li>
+<li><strong>Rootkit</strong>: esconde a presença do invasor no sistema. <strong>Backdoor</strong>: porta de retorno. <strong>Spyware/keylogger</strong>: espiona. <strong>Bot</strong>: máquina controlada remotamente.</li>
+</ul>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: XSS x SQLi</span>
+<p>SQL injection ataca o <strong>banco de dados</strong> no servidor. XSS executa script no <strong>navegador do usuário</strong>. Se o item disser que o XSS "executa comandos diretamente no SGBD", está errado.</p></div>
+
+<h2>Criptografia simétrica e assimétrica</h2>
+<table>
+<tr><th></th><th>Simétrica</th><th>Assimétrica</th></tr>
+<tr><td>Chaves</td><td>Uma só chave secreta, compartilhada</td><td>Par: chave pública e chave privada</td></tr>
+<tr><td>Velocidade</td><td>Rápida, boa para grandes volumes</td><td>Lenta, usada para pouco dado (chaves, assinaturas)</td></tr>
+<tr><td>Problema</td><td>Distribuir a chave com segurança</td><td>Custo computacional; precisa confiar na chave pública (certificado)</td></tr>
+<tr><td>Exemplos</td><td><strong>AES</strong> (bloco de 128 bits, chaves de 128, 192 ou 256 bits), 3DES, ChaCha20. DES (chave de 56 bits) é inseguro.</td><td><strong>RSA</strong> (dificuldade de fatorar números grandes), <strong>ECC</strong> (curvas elípticas), Diffie-Hellman (troca de chaves)</td></tr>
+<tr><td>Chaves para n pessoas</td><td>n(n − 1)/2</td><td>2n (um par por pessoa)</td></tr>
+</table>
+<div class="caixa atalho"><span class="rotulo">Atalho: de quem é a chave?</span>
+<p><strong>Sigilo</strong>: cifro com a chave <strong>pública do destinatário</strong>; só a privada dele abre.</p>
+<p><strong>Assinatura</strong>: assino com a minha chave <strong>privada</strong>; qualquer um confere com a minha pública.</p></div>
+<div class="caixa dica"><span class="rotulo">Dica: ECC</span>
+<p>A ECC oferece segurança equivalente à do RSA com chaves bem menores (uma chave ECC de 256 bits é comparável a RSA de cerca de 3.072 bits). Por isso é preferida em celulares e dispositivos com pouco processamento.</p></div>
+<details class="exemplo"><summary>Uma equipe de 10 peritos quer comunicação sigilosa entre cada par. Quantas chaves são necessárias em cada modelo?</summary>
+<div class="resolucao">
+<p class="passo">Simétrica: uma chave por par = 10 × 9 / 2 = 45 chaves.</p>
+<p class="passo">Assimétrica: um par por pessoa = 10 pares = 20 chaves.</p>
+<p class="resposta-final">Resposta: 45 chaves simétricas ou 20 chaves assimétricas (10 públicas e 10 privadas).</p></div></details>
+
+<h2>Hash, assinatura digital e certificação</h2>
+<h3>Funções de hash</h3>
+<p>Uma função de hash gera um resumo de <strong>tamanho fixo</strong> a partir de uma entrada de qualquer tamanho. Propriedades: é <strong>unidirecional</strong> (não dá para recuperar a entrada), qualquer alteração mínima muda completamente o resultado (efeito avalanche) e deve ser resistente a colisões (duas entradas com o mesmo hash).</p>
+<table>
+<tr><th>Algoritmo</th><th>Tamanho do resumo</th><th>Situação</th></tr>
+<tr><td>MD5</td><td>128 bits (32 dígitos hex)</td><td>Quebrado para colisão; não usar para segurança</td></tr>
+<tr><td>SHA-1</td><td>160 bits (40 hex)</td><td>Colisão prática demonstrada em 2017; obsoleto</td></tr>
+<tr><td>SHA-256 (família SHA-2)</td><td>256 bits (64 hex)</td><td>Seguro e recomendado</td></tr>
+<tr><td>SHA-3</td><td>224 a 512 bits</td><td>Seguro, construção diferente da SHA-2</td></tr>
+</table>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: hash não é criptografia</span>
+<p>Hash não tem chave e não pode ser "decifrado". Ele garante <strong>integridade</strong>, não sigilo. Já o <strong>HMAC</strong> combina hash com uma chave secreta e garante integridade e autenticidade da origem.</p></div>
+<h3>Assinatura digital</h3>
+<ol>
+<li>O remetente calcula o hash do documento.</li>
+<li>Assina esse hash com sua <strong>chave privada</strong>.</li>
+<li>O destinatário recalcula o hash e verifica a assinatura com a <strong>chave pública</strong> do remetente. Se bater, o documento está íntegro e veio de quem tem a chave privada.</li>
+</ol>
+<p>A assinatura digital garante <strong>autenticidade, integridade e não repúdio</strong>. Ela <strong>não</strong> garante confidencialidade: o documento assinado pode estar em claro.</p>
+<h3>Certificado digital e ICP-Brasil</h3>
+<p>O certificado digital (padrão X.509) é um documento eletrônico que <strong>vincula uma chave pública a uma identidade</strong>, assinado por uma Autoridade Certificadora (AC). Contém, entre outros, a chave pública do titular, o nome, o período de validade, o número de série e a assinatura da AC. A revogação é consultada por LCR (lista de certificados revogados) ou OCSP.</p>
+<ul>
+<li>A <strong>ICP-Brasil</strong> foi instituída pela MP 2.200-2/2001. A <strong>AC Raiz</strong> é o ITI (Instituto Nacional de Tecnologia da Informação). Abaixo ficam as ACs e as Autoridades de Registro (AR), que identificam presencialmente ou por videoconferência o solicitante.</li>
+<li>A Lei 14.063/2020 classifica as assinaturas eletrônicas em <strong>simples, avançada e qualificada</strong>; a qualificada é a que usa certificado ICP-Brasil.</li>
+</ul>
+<div class="caixa nota"><span class="rotulo">Letra da lei</span>
+<p>"As declarações constantes dos documentos em forma eletrônica produzidos com a utilização de processo de certificação disponibilizado pela ICP-Brasil presumem-se verdadeiros em relação aos signatários" (art. 10, § 1º, da MP 2.200-2/2001).</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>O certificado contém a chave <strong>pública</strong>, nunca a privada. A chave privada fica com o titular (em arquivo no tipo A1 ou em token/cartão no tipo A3).</p></div>
+
+<h2>Princípios de segurança</h2>
+<table>
+<tr><th>Princípio</th><th>Significado</th><th>Ataque ou falha que o viola</th></tr>
+<tr><td><strong>C</strong>onfidencialidade</td><td>Só quem tem autorização acessa</td><td>Interceptação, vazamento</td></tr>
+<tr><td><strong>I</strong>ntegridade</td><td>A informação não foi alterada indevidamente</td><td>Adulteração, MITM ativo</td></tr>
+<tr><td><strong>D</strong>isponibilidade</td><td>Acessível quando necessário</td><td>DoS/DDoS, ransomware</td></tr>
+<tr><td>Autenticidade</td><td>A origem é quem diz ser</td><td>Falsificação de identidade (spoofing)</td></tr>
+<tr><td>Não repúdio (irretratabilidade)</td><td>O autor não pode negar a autoria</td><td>Ausência de assinatura digital</td></tr>
+</table>
+<div class="caixa atalho"><span class="rotulo">Atalho: qual mecanismo dá o quê</span>
+<ul>
+<li>Cifra (simétrica ou assimétrica com chave pública do destino) → confidencialidade.</li>
+<li>Hash → integridade. HMAC → integridade + autenticidade.</li>
+<li>Assinatura digital → integridade + autenticidade + não repúdio.</li>
+<li>Backup e redundância → disponibilidade.</li>
+</ul></div>
+<p>Autenticação forte combina fatores de categorias diferentes: algo que você <strong>sabe</strong> (senha), algo que você <strong>tem</strong> (token, celular) e algo que você <strong>é</strong> (biometria). Duas senhas não formam autenticação de dois fatores, pois são da mesma categoria.</p>
+
+<h2>Questões</h2>
+<div class="questao" data-correta="b">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> O endereço 172.32.10.5 pertence a uma das faixas de endereços privados definidas na RFC 1918.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>A faixa privada classe B é 172.16.0.0/12, que vai de 172.16.0.0 a 172.31.255.255. O 172.32 já está fora e é endereço público.</p></div>
+</div>
+<div class="questao" data-correta="d">
+<p class="enunciado">Para o host 10.20.30.200/26, o endereço de broadcast da sub-rede é:</p>
+<ol class="alternativas"><li>10.20.30.191</li><li>10.20.30.192</li><li>10.20.30.254</li><li>10.20.30.255</li><li>10.20.30.223</li></ol>
+<div class="explicacao"><p>/26 → máscara .192, número mágico 64. Blocos: 0, 64, 128, 192. O 200 está no bloco 192, cujo broadcast é 256 − 1 = 255. A letra B (.192) é o endereço de rede, e a letra A é o broadcast do bloco anterior.</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> Na conexão TLS, a criptografia assimétrica é usada principalmente no estabelecimento da sessão, enquanto o tráfego de dados é cifrado com chave simétrica, por razões de desempenho.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>É o modelo híbrido: assimétrica (ou troca de chaves) para autenticar e combinar a chave de sessão, simétrica para o volume de dados.</p></div>
+</div>
+<div class="questao" data-correta="b">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> Um sistema de detecção de intrusão (IDS) instalado fora do caminho do tráfego bloqueia automaticamente os pacotes maliciosos que identifica, razão pela qual dispensa o uso de firewall.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>O IDS detecta e alerta; quem fica em linha e bloqueia é o IPS. Nenhum dos dois substitui o firewall, que faz o controle de acesso entre redes.</p></div>
+</div>
+<div class="questao" data-correta="c">
+<p class="enunciado">Ana quer enviar a Bruno um arquivo que só Bruno possa ler e que, ao mesmo tempo, comprove ter sido enviado por ela. Ana deve:</p>
+<ol class="alternativas"><li>cifrar com a chave privada de Bruno e assinar com a chave pública dela.</li><li>cifrar com a chave pública dela e assinar com a chave privada de Bruno.</li><li>assinar com a chave privada dela e cifrar com a chave pública de Bruno.</li><li>assinar e cifrar com a chave pública de Bruno.</li><li>calcular o MD5 do arquivo e enviá-lo junto, em claro.</li></ol>
+<div class="explicacao"><p>Assinatura usa a privada do remetente; sigilo usa a pública do destinatário. Ana nunca tem a chave privada de Bruno (A e B). O hash em claro só ajuda na integridade, sem autoria nem sigilo (E).</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> Como o MD5 e o SHA-1 apresentam vulnerabilidades práticas de colisão, não são recomendados para assinaturas digitais e certificados, sendo preferível o SHA-256.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Colisões práticas foram demonstradas para os dois. Em assinatura, uma colisão permite trocar um documento por outro com o mesmo hash. SHA-256 (SHA-2) ou SHA-3 são os recomendados.</p></div>
+</div>
+<div class="questao" data-correta="e">
+<p class="enunciado">Um atacante insere, no campo de comentários de um site, um código JavaScript que é gravado no banco e executado no navegador de todos que visualizam a página. Trata-se de:</p>
+<ol class="alternativas"><li>SQL injection.</li><li>ataque de negação de serviço distribuído.</li><li>ARP spoofing.</li><li>XSS refletido.</li><li>XSS armazenado.</li></ol>
+<div class="explicacao"><p>O script fica gravado no servidor e atinge todos os visitantes: XSS armazenado (persistente). No refletido (D), o script vem na própria requisição da vítima, por exemplo em um link manipulado. Não é SQLi porque o alvo da execução é o navegador, não o SGBD.</p></div>
+</div>
+<div class="questao" data-correta="b">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> O protocolo DNS opera exclusivamente sobre UDP, na porta 53, uma vez que não necessita de entrega confiável.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>O DNS usa UDP 53 nas consultas comuns, mas também TCP 53, por exemplo em transferências de zona e respostas grandes. "Exclusivamente" torna o item errado.</p></div>
+</div>
+<div class="questao" data-correta="d">
+<p class="enunciado">A assinatura digital de um documento, por si só, garante:</p>
+<ol class="alternativas"><li>confidencialidade, integridade e disponibilidade.</li><li>confidencialidade e autenticidade.</li><li>apenas integridade.</li><li>integridade, autenticidade e não repúdio.</li><li>disponibilidade e não repúdio.</li></ol>
+<div class="explicacao"><p>Assinar não cifra o conteúdo: não há confidencialidade (A e B). Ela garante que o documento não foi alterado, quem o assinou e que o signatário não pode negar a autoria.</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> No IPv6, o endereço 2001:0db8:0000:0000:0000:ff00:0042:8329 pode ser escrito de forma abreviada como 2001:db8::ff00:42:8329.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Os três grupos zerados consecutivos viram um único "::" e os zeros à esquerda de cada grupo podem ser omitidos (0db8 → db8, 0042 → 42).</p></div>
+</div>
