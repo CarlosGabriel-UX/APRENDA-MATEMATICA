@@ -6,9 +6,13 @@ Site gratuito de matemática para concursos: teoria enxuta, atalhos para ganhar 
 
 | Comece aqui | Cadernos |
 |---|---|
-| Estratégias de prova · Formulário de bolso | Aritmética e divisibilidade · Frações e decimais · Porcentagem · Razão e proporção · Regra de três · Juros simples e compostos · Equações e sistemas · Funções · Sequências, PA e PG · Geometria plana e espacial · Estatística básica · Análise combinatória · Probabilidade · Raciocínio lógico |
+| Estratégias de prova · Trilhas por banca e área · Formulário de bolso · Meu caderno de erros | Aritmética e divisibilidade · Frações e decimais · Porcentagem · Razão e proporção · Regra de três · Juros simples e compostos · Equações e sistemas · Funções · Sequências, PA e PG · Geometria plana e espacial · Estatística básica · Análise combinatória · Probabilidade · Raciocínio lógico |
 
 Todo o conteúdo é original e livre para estudo.
+
+- **Caderno de erros:** toda questão errada em qualquer caderno é guardada automaticamente (no navegador) e sai da lista quando o aluno acerta.
+- **Trilhas:** ordem de estudo e prioridades por estilo de banca (Cebraspe, FGV, FCC, Vunesp, Cesgranrio) e por área do cargo.
+- **SEO:** cada página tem descrição, link canônico, Open Graph e dados estruturados (schema.org). O `build.py` também gera o `sitemap.xml`.
 
 ## Como funciona
 
@@ -48,7 +52,9 @@ Blocos disponíveis no conteúdo:
 
 ## Publicar no GitHub Pages
 
-Em **Settings → Pages**, escolha *Deploy from a branch*, branch `main`, pasta `/ (root)`. O site fica em `https://<usuário>.github.io/APRENDA-MATEMATICA/`.
+Em **Settings → Pages**, escolha *Deploy from a branch*, branch `main`, pasta `/ (root)`. O site fica em `https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/`.
+
+Para aparecer mais rápido no Google, cadastre o site no [Google Search Console](https://search.google.com/search-console) e envie o endereço do `sitemap.xml`.
 
 ## Contribuir
 
