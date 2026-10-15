@@ -1,0 +1,337 @@
+<section data-materia="informatica">
+<div class="questao" data-correta="a" data-id="c-informatica-01">
+<p class="enunciado">Em um servidor Linux, o comando ls -l exibiu a linha a seguir.</p>
+<pre><code>-rwxr-x--- 1 ana pericia 2048 mar 10 14:22 coleta.sh</code></pre>
+<p class="enunciado">Com base nessa saída, julgue o item: um usuário do grupo pericia que não seja ana pode ler e executar coleta.sh, mas não alterá-lo; os demais usuários não têm nenhum acesso, e a permissão equivale, em octal, a 750.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Depois do tipo (-), vêm três trincas: dono rwx = 4+2+1 = 7, grupo r-x = 4+1 = 5, outros --- = 0. Logo, 750: o grupo lê e executa, sem escrever, e os outros nada podem.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-informatica-02">
+<p class="enunciado">No Windows 10 e no Windows 11, um arquivo excluído com a tecla Delete de um pen drive conectado pela porta USB é enviado para a Lixeira do computador, de onde pode ser restaurado normalmente.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Em unidades removíveis como pen drives, o Windows não usa a Lixeira: pede confirmação e exclui o arquivo de forma definitiva. A Lixeira atende, em regra, às unidades internas.</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-informatica-03">
+<p class="enunciado">No modelo de computação em nuvem IaaS, cabe ao cliente administrar o sistema operacional e as aplicações das máquinas virtuais contratadas, enquanto, no modelo SaaS, o provedor gerencia toda a pilha, inclusive a própria aplicação usada pelo cliente.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>IaaS entrega infraestrutura (máquinas, rede, armazenamento) e o cliente cuida do sistema operacional para cima. No SaaS, o cliente só usa o software pronto; tudo abaixo dele é do provedor. O PaaS fica no meio.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-informatica-04">
+<p class="enunciado">O cavalo de troia caracteriza-se por se replicar automaticamente pela rede, explorando vulnerabilidades para infectar outros computadores sem nenhuma interação do usuário.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Quem se propaga sozinho pela rede é o worm. O cavalo de troia se disfarça de programa legítimo e depende de o usuário executá-lo; ele não se autorreplica.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-informatica-05">
+<p class="enunciado">Ao utilizar a janela de navegação anônima ou privativa de navegadores como Chrome, Firefox e Edge, o usuário impede que o provedor de internet e os sites visitados identifiquem o seu endereço IP.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>A navegação privativa só deixa de gravar, no próprio computador, histórico, cookies e dados de formulário ao fechar a janela. O IP continua visível para o provedor, para a rede e para os sites.</p></div>
+</div>
+</section>
+
+<section data-materia="logica">
+<div class="questao" data-correta="b" data-id="c-logica-01">
+<p class="enunciado">A negação da proposição "Se o perito encontrou o arquivo, então o laudo ficará pronto" é "Se o perito não encontrou o arquivo, então o laudo não ficará pronto".</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>A negação de P → Q é P ∧ ~Q: "O perito encontrou o arquivo e o laudo não ficará pronto". A frase do item é a inversa (~P → ~Q), que não é negação nem equivalência.</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-logica-02">
+<p class="enunciado">A proposição "Se houve fraude, então houve prejuízo ao erário" é logicamente equivalente a "Não houve fraude ou houve prejuízo ao erário".</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Equivalência clássica: P → Q ≡ ~P ∨ Q. Troca-se o "se... então" por "ou", negando apenas a primeira parte.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-logica-03">
+<p class="enunciado">Considere a tabela-verdade a seguir, em que P e Q são proposições simples e X é uma proposição composta formada apenas por P e Q.</p>
+<table><tr><th>P</th><th>Q</th><th>X</th></tr><tr><td>V</td><td>V</td><td>V</td></tr><tr><td>V</td><td>F</td><td>F</td></tr><tr><td>F</td><td>V</td><td>F</td></tr><tr><td>F</td><td>F</td><td>V</td></tr></table>
+<p class="enunciado">Nessa situação, X pode ser a proposição "P ou Q, mas não ambos" (disjunção exclusiva).</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>X é verdadeira quando P e Q têm o mesmo valor: é a bicondicional P ↔ Q. A disjunção exclusiva é o oposto, com a coluna F, V, V, F.</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-logica-04">
+<p class="enunciado">A negação da proposição "Algum agente não usa colete balístico" é "Todo agente usa colete balístico".</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Negar "algum A não é B" é afirmar "todo A é B". Para conferir: se todos usam, fica falso que existe alguém sem colete, e vice-versa.</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-logica-05">
+<p class="enunciado">Considere a proposição (P ∧ Q) → (R ∨ S ∨ T), em que P, Q, R, S e T são proposições simples. A tabela-verdade dessa proposição tem 32 linhas, e ela é falsa em exatamente uma delas.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>São 5 proposições simples: 2⁵ = 32 linhas. A condicional só é falsa com antecedente V e consequente F, ou seja, P = Q = V e R = S = T = F: uma única combinação.</p></div>
+</div>
+</section>
+
+<section data-materia="estatistica">
+<div class="questao" data-correta="a" data-id="c-estatistica-01">
+<p class="enunciado">A tabela a seguir mostra o número de celulares apreendidos em cada uma de 20 operações policiais.</p>
+<table><tr><th>Celulares apreendidos</th><th>Número de operações</th></tr><tr><td>0</td><td>2</td></tr><tr><td>1</td><td>5</td></tr><tr><td>2</td><td>8</td></tr><tr><td>3</td><td>3</td></tr><tr><td>4</td><td>2</td></tr></table>
+<p class="enunciado">Com base nessa tabela, a média de celulares apreendidos por operação é inferior à mediana, e a moda é igual à mediana.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Média = (0×2 + 1×5 + 2×8 + 3×3 + 4×2) ÷ 20 = 38 ÷ 20 = 1,9. Mediana: 10º e 11º valores; as frequências acumuladas são 2, 7, 15, então ambos valem 2. Moda: 2 (frequência 8). Assim, 1,9 &lt; 2 = 2.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-estatistica-02">
+<p class="enunciado">O gráfico a seguir mostra a quantidade de chamadas atendidas por uma central de denúncias em cada dia útil de certa semana.</p>
+<figure class="figura"><svg viewBox="0 0 320 200" width="320" role="img" aria-label="Gráfico de barras: segunda 12, terça 15, quarta 9, quinta 15, sexta 19 chamadas">
+  <line class="f-eixo" x1="40" y1="170" x2="312" y2="170"/>
+  <line class="f-eixo" x1="40" y1="170" x2="40" y2="24"/>
+  <line class="f-grade" x1="40" y1="135" x2="312" y2="135"/>
+  <line class="f-grade" x1="40" y1="100" x2="312" y2="100"/>
+  <line class="f-grade" x1="40" y1="65" x2="312" y2="65"/>
+  <line class="f-grade" x1="40" y1="30" x2="312" y2="30"/>
+  <text x="34" y="174" text-anchor="end" class="f-nota">0</text>
+  <text x="34" y="139" text-anchor="end" class="f-nota">5</text>
+  <text x="34" y="104" text-anchor="end" class="f-nota">10</text>
+  <text x="34" y="69" text-anchor="end" class="f-nota">15</text>
+  <text x="34" y="34" text-anchor="end" class="f-nota">20</text>
+  <rect class="f-area-forte" x="50" y="86" width="36" height="84"/>
+  <rect class="f-area-forte" x="105" y="65" width="36" height="105"/>
+  <rect class="f-area-forte" x="160" y="107" width="36" height="63"/>
+  <rect class="f-area-forte" x="215" y="65" width="36" height="105"/>
+  <rect class="f-area-forte" x="270" y="37" width="36" height="133"/>
+  <text x="68" y="81" text-anchor="middle" class="f-nota">12</text>
+  <text x="123" y="60" text-anchor="middle" class="f-nota">15</text>
+  <text x="178" y="102" text-anchor="middle" class="f-nota">9</text>
+  <text x="233" y="60" text-anchor="middle" class="f-nota">15</text>
+  <text x="288" y="32" text-anchor="middle" class="f-nota">19</text>
+  <text x="68" y="188" text-anchor="middle" class="f-nota">Seg</text>
+  <text x="123" y="188" text-anchor="middle" class="f-nota">Ter</text>
+  <text x="178" y="188" text-anchor="middle" class="f-nota">Qua</text>
+  <text x="233" y="188" text-anchor="middle" class="f-nota">Qui</text>
+  <text x="288" y="188" text-anchor="middle" class="f-nota">Sex</text>
+</svg><figcaption>Figura: chamadas atendidas por dia</figcaption></figure>
+<p class="enunciado">Com base nesse gráfico, a média diária de chamadas atendidas na semana é superior à mediana.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Total = 12 + 15 + 9 + 15 + 19 = 70; média = 70 ÷ 5 = 14. Em ordem: 9, 12, 15, 15, 19; a mediana é o valor do meio, 15. Logo, a média (14) é menor que a mediana (15).</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-estatistica-03">
+<p class="enunciado">Considere o conjunto de dados populacionais 2, 4, 4, 4, 5, 5, 7, 9. O desvio padrão populacional desse conjunto é igual a 2.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Média = 40 ÷ 8 = 5. Quadrados dos desvios: 9, 1, 1, 1, 0, 0, 4, 16, com soma 32. Variância = 32 ÷ 8 = 4; desvio padrão = √4 = 2.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-estatistica-04">
+<p class="enunciado">Se, em um conjunto de salários, cada valor for acrescido de R$ 300,00, tanto a média quanto o desvio padrão dos salários aumentarão R$ 300,00.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Somar uma constante desloca todos os valores: a média aumenta R$ 300,00, mas as distâncias até a média não mudam, então o desvio padrão (e a variância) fica igual. Só multiplicar por uma constante altera a dispersão.</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-estatistica-05">
+<p class="enunciado">A tabela a seguir agrupa, em classes, o tempo de resposta de 20 atendimentos de uma equipe de plantão.</p>
+<table><tr><th>Tempo (min)</th><th>Frequência</th></tr><tr><td>0 ⊢ 10</td><td>4</td></tr><tr><td>10 ⊢ 20</td><td>10</td></tr><tr><td>20 ⊢ 30</td><td>6</td></tr></table>
+<p class="enunciado">Usando os pontos médios das classes, o tempo médio de resposta estimado é de 16 minutos.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Pontos médios: 5, 15 e 25. Média = (5×4 + 15×10 + 25×6) ÷ 20 = (20 + 150 + 150) ÷ 20 = 320 ÷ 20 = 16 minutos.</p></div>
+</div>
+</section>
+
+<section data-materia="combinatoria">
+<div class="questao" data-correta="a" data-id="c-combinatoria-01">
+<p class="enunciado">Com as letras da palavra PERITO, é possível formar 144 anagramas que começam e terminam por vogal.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>PERITO tem 6 letras distintas, com 3 vogais (E, I, O). Primeira posição: 3 vogais; última: 2 vogais restantes; meio: 4! = 24. Total: 3 × 2 × 24 = 144.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-combinatoria-02">
+<p class="enunciado">A quantidade de senhas numéricas de 4 algarismos distintos, em que o primeiro algarismo não pode ser zero, é igual a 5.040.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Primeiro algarismo: 9 opções (1 a 9). Depois: 9, 8 e 7 (o zero volta a valer). Total: 9 × 9 × 8 × 7 = 4.536. O valor 5.040 = 10 × 9 × 8 × 7 ignora a restrição do zero.</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-combinatoria-03">
+<p class="enunciado">De uma equipe de 8 peritos, serão escolhidos 3 para uma força-tarefa. Nessa situação, se os 3 escolhidos ocuparem funções distintas (coordenador, relator e revisor), o número de formações possíveis será 6 vezes maior que o número de grupos de 3 peritos sem funções definidas.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Sem funções: C(8,3) = 56. Com funções: 8 × 7 × 6 = 336. Cada grupo de 3 pode ser distribuído nas funções de 3! = 6 modos, e 336 = 6 × 56.</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-combinatoria-04">
+<p class="enunciado">A figura a seguir representa um conjunto de quarteirões. Um agente sai do ponto A e deve chegar ao ponto B andando pelas ruas (linhas da figura), deslocando-se apenas para a direita ou para cima.</p>
+<figure class="figura"><svg viewBox="0 0 320 160" width="320" role="img" aria-label="Malha de ruas com 4 quarteirões na horizontal e 2 na vertical; A no canto inferior esquerdo e B no canto superior direito">
+  <line class="f-linha" x1="40" y1="30" x2="280" y2="30"/>
+  <line class="f-linha" x1="40" y1="80" x2="280" y2="80"/>
+  <line class="f-linha" x1="40" y1="130" x2="280" y2="130"/>
+  <line class="f-linha" x1="40" y1="30" x2="40" y2="130"/>
+  <line class="f-linha" x1="100" y1="30" x2="100" y2="130"/>
+  <line class="f-linha" x1="160" y1="30" x2="160" y2="130"/>
+  <line class="f-linha" x1="220" y1="30" x2="220" y2="130"/>
+  <line class="f-linha" x1="280" y1="30" x2="280" y2="130"/>
+  <circle class="f-ponto" cx="40" cy="130" r="5"/>
+  <circle class="f-ponto" cx="280" cy="30" r="5"/>
+  <text x="26" y="150" text-anchor="middle" class="f-titulo">A</text>
+  <text x="296" y="22" text-anchor="middle" class="f-titulo">B</text>
+</svg><figcaption>Figura: malha de 4 × 2 quarteirões</figcaption></figure>
+<p class="enunciado">Nessa situação, há exatamente 15 trajetos distintos de A até B.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Todo trajeto tem 4 passos para a direita (D) e 2 para cima (C), em alguma ordem. Basta escolher as posições dos 2 C entre 6 passos: C(6,2) = 15.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-combinatoria-05">
+<p class="enunciado">O número de maneiras distintas de acomodar 6 agentes ao redor de uma mesa circular, considerando iguais as disposições que diferem apenas por uma rotação, é igual a 720.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Permutação circular de n elementos: (n − 1)!. Para 6 agentes, 5! = 120. O valor 720 = 6! conta cada roda 6 vezes, uma por rotação.</p></div>
+</div>
+</section>
+
+<section data-materia="probabilidade">
+<div class="questao" data-correta="a" data-id="c-probabilidade-01">
+<p class="enunciado">A tabela a seguir classifica 200 dispositivos apreendidos em uma operação quanto ao tipo e à presença de criptografia.</p>
+<table><tr><th>Tipo</th><th>Criptografado</th><th>Não criptografado</th><th>Total</th></tr><tr><td>Celular</td><td>60</td><td>40</td><td>100</td></tr><tr><td>Notebook</td><td>30</td><td>70</td><td>100</td></tr><tr><td>Total</td><td>90</td><td>110</td><td>200</td></tr></table>
+<p class="enunciado">Escolhendo-se ao acaso um dos dispositivos criptografados, a probabilidade de que ele seja um celular é superior a 60%.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>A condição "criptografado" reduz o universo para 90 dispositivos, dos quais 60 são celulares: 60 ÷ 90 = 2/3 ≈ 66,7%, acima de 60%.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-probabilidade-02">
+<p class="enunciado">No lançamento simultâneo de dois dados comuns, não viciados, a probabilidade de a soma das faces ser igual a 8 é de 1/6.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Soma 8: (2,6), (3,5), (4,4), (5,3), (6,2), ou seja, 5 casos em 36: 5/36. A probabilidade 1/6 = 6/36 vale para a soma 7, a mais provável.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-probabilidade-03">
+<p class="enunciado">Se A e B são eventos independentes, com P(A) = 0,3 e P(B) = 0,5, então a probabilidade de ocorrer A ou B é igual a 0,8.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>P(A ∪ B) = P(A) + P(B) − P(A ∩ B). Como são independentes, P(A ∩ B) = 0,3 × 0,5 = 0,15. Logo, 0,3 + 0,5 − 0,15 = 0,65. Somar direto só vale para eventos mutuamente exclusivos.</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-probabilidade-04">
+<p class="enunciado">Uma caixa contém 5 pen drives, dos quais 2 estão infectados por malware. Retirando-se ao acaso 2 pen drives, sem reposição, a probabilidade de ambos estarem infectados é de 10%.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Primeiro infectado: 2/5; segundo, sobrando 1 infectado entre 4: 1/4. Produto: 2/5 × 1/4 = 2/20 = 1/10 = 10%. Pelo caminho das combinações: 1 ÷ C(5,2) = 1/10.</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-probabilidade-05">
+<p class="enunciado">Um programa tenta desbloquear um arquivo em 3 tentativas independentes, cada uma com 20% de chance de sucesso. Nessa situação, a probabilidade de que pelo menos uma tentativa tenha sucesso é inferior a 50%.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Use o complementar: P(nenhum sucesso) = 0,8³ = 0,512. Então P(pelo menos um) = 1 − 0,512 = 0,488 = 48,8%, abaixo de 50%.</p></div>
+</div>
+</section>
+
+<section data-materia="ti-redes-seguranca">
+<div class="questao" data-correta="a" data-id="c-ti-redes-seguranca-01">
+<p class="enunciado">A figura a seguir mostra a rede local de uma delegacia, em que quatro computadores se ligam a um switch, que se conecta a um roteador de acesso à internet.</p>
+<figure class="figura"><svg viewBox="0 0 320 200" width="320" role="img" aria-label="Topologia em estrela: Internet ligada a um roteador, roteador ligado a um switch, switch ligado a PC1, PC2, PC3 e PC4">
+  <text x="160" y="18" text-anchor="middle" class="f-nota">Internet</text>
+  <line class="f-linha" x1="160" y1="24" x2="160" y2="50"/>
+  <rect class="f-area" x="115" y="50" width="90" height="26" rx="4"/>
+  <text x="160" y="68" text-anchor="middle">Roteador</text>
+  <line class="f-linha" x1="160" y1="76" x2="160" y2="100"/>
+  <rect class="f-area-forte" x="115" y="100" width="90" height="26" rx="4"/>
+  <text x="160" y="118" text-anchor="middle" class="f-titulo">Switch</text>
+  <line class="f-linha" x1="160" y1="126" x2="40" y2="165"/>
+  <line class="f-linha" x1="160" y1="126" x2="120" y2="165"/>
+  <line class="f-linha" x1="160" y1="126" x2="200" y2="165"/>
+  <line class="f-linha" x1="160" y1="126" x2="280" y2="165"/>
+  <rect class="f-area" x="10" y="165" width="60" height="26" rx="4"/>
+  <rect class="f-area" x="90" y="165" width="60" height="26" rx="4"/>
+  <rect class="f-area" x="170" y="165" width="60" height="26" rx="4"/>
+  <rect class="f-area" x="250" y="165" width="60" height="26" rx="4"/>
+  <text x="40" y="183" text-anchor="middle">PC1</text>
+  <text x="120" y="183" text-anchor="middle">PC2</text>
+  <text x="200" y="183" text-anchor="middle">PC3</text>
+  <text x="280" y="183" text-anchor="middle">PC4</text>
+</svg><figcaption>Figura: rede local em estrela</figcaption></figure>
+<p class="enunciado">Nessa topologia, a falha do PC2 não impede a comunicação entre os demais computadores, mas uma falha no switch deixa os quatro computadores sem comunicação entre si e sem acesso à internet.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Na estrela, cada host tem enlace próprio até o nó central: a queda de um host afeta só ele. O switch, porém, é ponto único de falha; se ele cai, nada passa entre os PCs nem até o roteador.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-ti-redes-seguranca-02">
+<p class="enunciado">A tabela a seguir mostra os endereços IPv4 configurados em três hosts, todos com máscara /27.</p>
+<table><tr><th>Host</th><th>Endereço</th></tr><tr><td>A</td><td>192.168.10.37/27</td></tr><tr><td>B</td><td>192.168.10.62/27</td></tr><tr><td>C</td><td>192.168.10.65/27</td></tr></table>
+<p class="enunciado">Com base nessa tabela, os hosts A e C pertencem à mesma sub-rede, ao passo que o endereço do host B é o endereço de broadcast dessa sub-rede.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>/27 gera blocos de 32 endereços: .32 a .63, .64 a .95 etc. A (.37) e B (.62) estão no bloco .32/27, cujo broadcast é .63; B é o último host válido. C (.65) está em outra sub-rede, .64/27.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-ti-redes-seguranca-03">
+<p class="enunciado">Um analista montou a tabela a seguir, associando serviços às respectivas portas TCP padrão.</p>
+<table><tr><th>Serviço</th><th>Porta</th></tr><tr><td>SSH</td><td>22</td></tr><tr><td>SMTP</td><td>25</td></tr><tr><td>IMAP</td><td>110</td></tr><tr><td>HTTPS</td><td>443</td></tr><tr><td>RDP</td><td>3389</td></tr></table>
+<p class="enunciado">Todas as associações apresentadas na tabela estão corretas.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>A porta 110 é do POP3. O IMAP usa a porta 143 (993 com TLS). As demais estão certas: SSH 22, SMTP 25, HTTPS 443 e RDP 3389.</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-ti-redes-seguranca-04">
+<p class="enunciado">A função de hash SHA-256 gera, para qualquer entrada, seja um texto de poucas letras, seja um arquivo de vários gigabytes, um resumo de 256 bits, normalmente representado por 64 caracteres hexadecimais.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>A saída do hash tem tamanho fixo, independente da entrada. Cada caractere hexadecimal representa 4 bits: 256 ÷ 4 = 64 caracteres.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-ti-redes-seguranca-05">
+<p class="enunciado">Em uma conexão HTTPS com TLS, todos os dados da aplicação trocados durante a sessão são cifrados com a chave pública do servidor, pois o uso de criptografia simétrica exigiria que cliente e servidor tivessem combinado previamente uma senha.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>O TLS é híbrido: no handshake, usa criptografia assimétrica e certificados para autenticar e acordar uma chave de sessão; depois, os dados são cifrados com algoritmo simétrico (como AES), muito mais rápido. A chave simétrica é negociada na hora, sem combinação prévia.</p></div>
+</div>
+</section>
+
+<section data-materia="ti-forense">
+<div class="questao" data-correta="a" data-id="c-ti-forense-01">
+<p class="enunciado">Ao examinar o arquivo foto_praia.jpg, o perito executou o comando a seguir e obteve a saída mostrada.</p>
+<pre><code>$ xxd foto_praia.jpg | head -1
+00000000: 504b 0304 1400 0600 0800 0000 2100 a1b2  PK..........!...</code></pre>
+<p class="enunciado">Com base nessa saída, é correto concluir que o conteúdo do arquivo não corresponde a uma imagem JPEG, cuja assinatura começa com FF D8 FF, mas a um contêiner no formato ZIP, como os usados por arquivos DOCX e XLSX, o que indica possível alteração da extensão.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Os bytes 50 4B 03 04 ("PK") são a assinatura de arquivo ZIP, base dos formatos DOCX, XLSX, ODT e APK. Ferramentas forenses comparam essa assinatura com a extensão para apontar arquivos renomeados.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-ti-forense-02">
+<p class="enunciado">Ao chegar a um local de crime com um computador ligado, o perito, seguindo a ordem de volatilidade, deve primeiro gerar a imagem do disco rígido e só depois coletar o conteúdo da memória RAM, já que o disco armazena volume muito maior de dados.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>A ordem de volatilidade manda coletar primeiro o que se perde mais rápido: registradores e cache, memória RAM, conexões de rede e processos, e só depois o disco. A RAM se perde ao desligar; o disco, não. Volume de dados não é o critério.</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-ti-forense-03">
+<p class="enunciado">Se um único bit de uma imagem forense for alterado após a aquisição, o hash SHA-256 recalculado será completamente diferente do original, razão pela qual a coincidência entre os hashes da aquisição e da verificação é usada para demonstrar a integridade da evidência.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>É o efeito avalanche: qualquer mudança mínima na entrada altera, em média, metade dos bits do resumo. Por isso hashes iguais na aquisição e na verificação sustentam a cadeia de custódia.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-ti-forense-04">
+<p class="enunciado">No sistema de arquivos NTFS, os registros de data e hora de um arquivo são armazenados apenas no atributo $STANDARD_INFORMATION da MFT, não existindo outra cópia desses carimbos de tempo no registro do arquivo.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>O registro da MFT guarda carimbos de tempo em dois atributos: $STANDARD_INFORMATION e $FILE_NAME. Ferramentas de timestomping costumam alterar só o primeiro, e a divergência entre os dois ajuda o perito a detectar a manipulação.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-ti-forense-05">
+<p class="enunciado">O uso de bloqueador de escrita durante a aquisição de um disco apreendido torna desnecessário o cálculo do hash da mídia, pois o equipamento já garante que nenhum dado foi alterado.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>São controles complementares. O bloqueador impede gravações na mídia original durante o exame; o hash documenta a integridade e permite provar, a qualquer tempo, que a cópia é idêntica à original.</p></div>
+</div>
+</section>
+
+<section data-materia="ti-programacao-dados">
+<div class="questao" data-correta="a" data-id="c-ti-programacao-dados-01">
+<p class="enunciado">Considere o código Python a seguir.</p>
+<pre><code>dados = [5, 3, 8, 3, 9]
+total = 0
+for i, x in enumerate(dados):
+    if i % 2 == 0:
+        total += x
+    else:
+        total -= x
+print(total)</code></pre>
+<p class="enunciado">Ao ser executado, esse código imprime o valor 16.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>enumerate fornece o índice i: nos índices pares (0, 2, 4) soma, nos ímpares (1, 3) subtrai. Assim, 5 − 3 + 8 − 3 + 9 = 16.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-ti-programacao-dados-02">
+<p class="enunciado">Considere o código Python a seguir.</p>
+<pre><code>s = "pericia federal"
+cont = {}
+for c in s.replace(" ", ""):
+    cont[c] = cont.get(c, 0) + 1
+print(max(cont, key=cont.get), len(cont))</code></pre>
+<p class="enunciado">Ao ser executado, esse código imprime i 14.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>O dicionário conta cada letra (sem o espaço): e aparece 3 vezes; i, r e a, 2 vezes cada. max com key=cont.get devolve a chave de maior contagem, e. len(cont) conta as letras distintas (p, e, r, i, c, a, f, d, l): 9. Saída: e 9. O 14 seria o total de letras, não de chaves.</p></div>
+</div>
+<div class="questao" data-correta="a" data-id="c-ti-programacao-dados-03">
+<p class="enunciado">Considere o código Python a seguir.</p>
+<pre><code>a = [1, 2, 3]
+b = a
+b.append(4)
+c = a[:]
+c.append(5)
+print(len(a), len(c))</code></pre>
+<p class="enunciado">Ao ser executado, esse código imprime 4 5.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>b = a não copia a lista: as duas variáveis apontam para o mesmo objeto, então o append em b altera a (4 elementos). Já a[:] cria uma cópia; o append em c não afeta a. Resultado: 4 5.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-ti-programacao-dados-04">
+<p class="enunciado">Considere a tabela APREENSAO, de um banco de dados relacional, e a consulta SQL a seguir.</p>
+<table><tr><th>id</th><th>cidade</th><th>tipo</th><th>valor</th></tr><tr><td>1</td><td>Recife</td><td>celular</td><td>1500</td></tr><tr><td>2</td><td>Natal</td><td>notebook</td><td>3200</td></tr><tr><td>3</td><td>Recife</td><td>notebook</td><td>900</td></tr><tr><td>4</td><td>Recife</td><td>celular</td><td>2100</td></tr><tr><td>5</td><td>Natal</td><td>celular</td><td>800</td></tr><tr><td>6</td><td>Manaus</td><td>notebook</td><td>4000</td></tr></table>
+<pre><code>SELECT cidade, COUNT(*) AS qtd
+FROM apreensao
+WHERE valor &gt; 1000
+GROUP BY cidade
+HAVING COUNT(*) &gt;= 2;</code></pre>
+<p class="enunciado">O resultado dessa consulta tem duas linhas, uma para Recife e outra para Natal.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>O WHERE filtra antes de agrupar: sobram as linhas 1, 2, 4 e 6. Contagem: Recife 2, Natal 1, Manaus 1. O HAVING mantém só Recife, com qtd = 2. Duas linhas seria o resultado esquecendo o WHERE.</p></div>
+</div>
+<div class="questao" data-correta="b" data-id="c-ti-programacao-dados-05">
+<p class="enunciado">Considere o código Python a seguir.</p>
+<pre><code>print(17 // 5, 17 % 5, -7 // 2)</code></pre>
+<p class="enunciado">Ao ser executado, esse código imprime 3 2 -3.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Em Python, // é a divisão inteira que arredonda para baixo (piso), e não em direção ao zero. 17 // 5 = 3 e 17 % 5 = 2, mas −7 ÷ 2 = −3,5, cujo piso é −4. Saída: 3 2 -4.</p></div>
+</div>
+</section>

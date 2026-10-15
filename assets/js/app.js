@@ -77,6 +77,7 @@
     montarListaErros();
     montarSumario();
     montarQuestoes();
+    montarFiltro();
     atualizarContagemErros();
     montarInicio();
     montarLeitura();
@@ -262,7 +263,8 @@
     placar.className = "placar";
     placar.innerHTML = '<span class="texto"></span><button type="button" class="botao secundario refazer">Refazer questões</button>';
     var ultima = questoes[questoes.length - 1];
-    ultima.parentNode.insertBefore(placar, ultima.nextSibling);
+    var ancora = ultima.closest("[data-banco]") || ultima;
+    ancora.parentNode.insertBefore(placar, ancora.nextSibling);
 
     var primeira = questoes[0];
     var dica = document.createElement("p");
@@ -276,7 +278,12 @@
     flutuante.setAttribute("aria-label", "Ir para as questões");
     document.body.appendChild(flutuante);
 
+    /* No banco de questões, o placar conta só as questões da matéria filtrada. */
     function atualizarPlacar() {
+      var visiveis = Array.prototype.filter.call(questoes, function (q) { return !q.closest("[hidden]"); });
+      total = visiveis.length;
+      respondidas = visiveis.filter(function (q) { return q.classList.contains("respondida"); }).length;
+      acertos = visiveis.filter(function (q) { return q.classList.contains("acertou"); }).length;
       placar.querySelector(".texto").textContent =
         "Questões: " + respondidas + "/" + total + " respondidas · " + acertos + " acerto(s)";
       flutuante.innerHTML = "Questões <strong>" + acertos + "✓</strong> · " + respondidas + "/" + total;
@@ -285,7 +292,7 @@
     function questaoAtiva() {
       var meio = window.innerHeight / 2, melhor = null, menor = Infinity;
       questoes.forEach(function (q) {
-        if (q.classList.contains("respondida")) return;
+        if (q.classList.contains("respondida") || q.closest("[hidden]")) return;
         var r = q.getBoundingClientRect();
         if (r.bottom < 0 || r.top > window.innerHeight) return;
         var d = Math.abs((r.top + r.bottom) / 2 - meio);
@@ -316,7 +323,9 @@
       var correta = (q.getAttribute("data-correta") || "").toLowerCase();
       var num = document.createElement("div");
       num.className = "num";
-      num.textContent = "Questão " + (idx + 1);
+      var secao = q.closest("section[data-materia]");
+      num.textContent = "Questão " + (secao
+        ? Array.prototype.indexOf.call(secao.querySelectorAll(".questao"), q) + 1 : idx + 1);
       q.insertBefore(num, q.firstChild);
 
       var veredito = document.createElement("p");
@@ -370,8 +379,8 @@
     });
 
     placar.querySelector(".refazer").addEventListener("click", function () {
-      acertos = 0; respondidas = 0;
       questoes.forEach(function (q) {
+        if (q.closest("[hidden]")) return;
         q.classList.remove("respondida", "acertou", "errou");
         q.querySelectorAll("ol.alternativas button").forEach(function (b) {
           b.disabled = false;
@@ -379,12 +388,48 @@
         });
       });
       atualizarPlacar();
-      questoes[0].scrollIntoView({ behavior: "smooth", block: "center" });
+      var primeiraVisivel = Array.prototype.filter.call(questoes, function (q) { return !q.closest("[hidden]"); })[0];
+      if (primeiraVisivel) primeiraVisivel.scrollIntoView({ behavior: "smooth", block: "center" });
       window.setTimeout(marcarAtiva, 400);
     });
 
+    document.addEventListener("am-filtro", function () { atualizarPlacar(); marcarAtiva(); });
     atualizarPlacar();
     marcarAtiva();
+  }
+
+  /* ---------- banco de questões: filtro por matéria ---------- */
+  function montarFiltro() {
+    var filtro = document.querySelector("[data-filtro]");
+    if (!filtro) return;
+    var botoes = filtro.querySelectorAll("button[data-materia]");
+    var secoes = document.querySelectorAll("[data-banco] section[data-materia]");
+    function aplicar(materia, rolar) {
+      var existe = !materia || Array.prototype.some.call(secoes, function (s) { return s.getAttribute("data-materia") === materia; });
+      if (!existe) materia = "";
+      secoes.forEach(function (s) { s.hidden = !!materia && s.getAttribute("data-materia") !== materia; });
+      botoes.forEach(function (b) {
+        var ativo = b.getAttribute("data-materia") === materia;
+        b.classList.toggle("ativo", ativo);
+        b.setAttribute("aria-pressed", ativo ? "true" : "false");
+      });
+      document.dispatchEvent(new CustomEvent("am-filtro"));
+      if (rolar) filtro.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    botoes.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var materia = b.getAttribute("data-materia");
+        if (window.history && history.replaceState) {
+          history.replaceState(null, "", materia ? "#" + materia : window.location.pathname);
+        }
+        aplicar(materia, true);
+      });
+    });
+    var inicial = decodeURIComponent((window.location.hash || "").slice(1));
+    if (inicial) {
+      aplicar(inicial, false);
+      window.setTimeout(function () { filtro.scrollIntoView({ block: "start" }); }, 0);
+    }
   }
 
   /* ---------- progresso (cadernos marcados como estudados) ---------- */

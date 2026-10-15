@@ -18,6 +18,12 @@ Cada guia traz a ficha do concurso, o que cai, um **mapa de matérias** na ordem
 
 Todo o conteúdo é original e livre para estudo. Os guias seguem os editais de 2025; confira sempre o edital do seu concurso.
 
+## Banco de questões
+
+Questões originais separadas por banca e por matéria, muitas com figura (SVG), gráfico, tabela ou código: uma página para o estilo **VUNESP** (PM-SP e GCM, 5 alternativas) e outra para o estilo **CEBRASPE** (PF e Perito, Certo ou Errado), com filtro por matéria e placar da matéria filtrada. A página **Provas oficiais** mostra onde achar as provas e os gabaritos oficiais de cada banca e como usá-los num simulado. Nenhuma prova ou apostila de terceiros é copiada para o site.
+
+As questões ficam em `src/questoes/<banca>-*.html`, cada matéria dentro de `<section data-materia="slug">`, e cada questão tem um `data-id` fixo (ex.: `v-geometria-03`) para o caderno de erros não se perder quando novas questões entrarem. A ordem das matérias de cada banco fica em `ORDEM_BANCO`, no `build.py`.
+
 - **Caderno de erros:** toda questão errada em qualquer caderno é guardada automaticamente (no navegador) e sai da lista quando o aluno acerta.
 - **Trilhas:** ordem de estudo e prioridades por estilo de banca (Cebraspe, FGV, FCC, Vunesp, Cesgranrio) e por área do cargo.
 - **SEO:** cada página tem descrição, link canônico, Open Graph e dados estruturados (schema.org). O `build.py` também gera o `sitemap.xml`.
@@ -28,6 +34,7 @@ O site é estático (HTML, CSS e JavaScript puro) e roda direto no GitHub Pages.
 
 ```
 src/cadernos/*.html   conteúdo de cada caderno (só o miolo, em HTML simples)
+src/questoes/*.html   questões do banco, separadas por banca e por matéria
 build.py              monta as páginas finais com menu, cabeçalho e rodapé
 cadernos/*.html       páginas geradas (não edite à mão)
 index.html            página inicial gerada
