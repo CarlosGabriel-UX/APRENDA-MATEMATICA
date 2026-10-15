@@ -229,11 +229,13 @@ NIVEIS = [
 ]
 
 LOGO = ('<svg class="logo" viewBox="0 0 32 32" aria-hidden="true">'
-        '<rect width="32" height="32" rx="8" fill="#2357d9"/>'
+        '<defs><linearGradient id="gradiente-logo" x1="0" y1="0" x2="1" y2="1">'
+        '<stop offset="0" stop-color="#3156f5"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>'
+        '<rect width="32" height="32" rx="9" fill="url(#gradiente-logo)"/>'
         '<rect x="8" y="14.5" width="16" height="3" rx="1.5" fill="#fff"/>'
         '<circle cx="16" cy="9" r="2.6" fill="#fff"/><circle cx="16" cy="23" r="2.6" fill="#fff"/></svg>')
 FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
-           "%3Crect width='32' height='32' rx='8' fill='%232357d9'/%3E"
+           "%3Crect width='32' height='32' rx='9' fill='%233156f5'/%3E"
            "%3Crect x='8' y='14.5' width='16' height='3' rx='1.5' fill='%23fff'/%3E"
            "%3Ccircle cx='16' cy='9' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='23' r='2.6' fill='%23fff'/%3E%3C/svg%3E")
 
@@ -346,7 +348,7 @@ def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
 <meta property="og:description" content="{escape(descricao)}">
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#2357d9">{'<meta name="robots" content="noindex">' if slug == "erros" else ""}
+<meta name="theme-color" content="#3156f5">{'<meta name="robots" content="noindex">' if slug == "erros" else ""}
 <link rel="icon" href="{FAVICON}">
 <link rel="stylesheet" href="{raiz}assets/css/style.css">
 <script src="{raiz}assets/js/app.js"></script>
@@ -367,7 +369,8 @@ def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
 <div class="progresso-leitura" aria-hidden="true"><span></span></div>
 {corpo}
 <footer class="site">
-  {SITE}: conteúdo livre e original para quem estuda para concursos.
+  <span class="rodape-marca">{SITE}</span>
+  Conteúdo livre e original para quem estuda para concursos.<br>
   <a href="{raiz}cadernos/sobre.html">Sobre o projeto</a> ·
   <a href="https://github.com/CarlosGabriel-UX/APRENDA-MATEMATICA/issues">Avise sobre um erro</a>
 </footer>
