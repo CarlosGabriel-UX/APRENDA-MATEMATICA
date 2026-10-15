@@ -10,7 +10,7 @@
 
 <h2>Juros simples</h2>
 <p>Os juros incidem sempre sobre o capital inicial. Todo mês rende a mesma quantia.</p>
-<span class="formula">J = C × i × t &nbsp;&nbsp;&nbsp; M = C × (1 + i × t)</span>
+<span class="formula" data-tex="J = C \cdot i \cdot t \qquad M = C\,(1 + i\,t)">J = C × i × t &nbsp;&nbsp;&nbsp; M = C × (1 + i × t)</span>
 <details class="exemplo"><summary>R$ 4.000 aplicados a juros simples de 2,5% ao mês, por 8 meses. Qual é o montante?</summary>
 <div class="resolucao">
 <p class="passo">J = 4.000 × 0,025 × 8 = 800.</p>
@@ -21,7 +21,7 @@
 
 <h2>Juros compostos</h2>
 <p>Os juros de cada período entram no capital e passam a render também ("juros sobre juros").</p>
-<span class="formula">M = C × (1 + i)ᵗ &nbsp;&nbsp;&nbsp; J = M − C</span>
+<span class="formula" data-tex="M = C\,(1 + i)^t \qquad J = M - C">M = C × (1 + i)ᵗ &nbsp;&nbsp;&nbsp; J = M − C</span>
 <details class="exemplo"><summary>R$ 5.000 aplicados a juros compostos de 10% ao mês, por 3 meses. Qual é o montante?</summary>
 <div class="resolucao">
 <p class="passo">1,1³ = 1,331.</p>
@@ -48,7 +48,7 @@
 
 <h2>Taxas equivalentes, nominais e efetivas</h2>
 <p>Em juros compostos, a taxa não se divide simplesmente. Duas taxas são <strong>equivalentes</strong> se levam ao mesmo montante:</p>
-<span class="formula">(1 + i_ano) = (1 + i_mês)¹²</span>
+<span class="formula" data-tex="(1 + i_{\text{ano}}) = (1 + i_{\text{mês}})^{12}">(1 + i_ano) = (1 + i_mês)¹²</span>
 <p>Ex.: 10% ao mês não é 120% ao ano em juros compostos; é <span class="m">1,1¹² − 1 ≈ 213,8%</span>.</p>
 <p><strong>Taxa nominal</strong> é a anunciada com período diferente da capitalização: "24% ao ano, capitalizados mensalmente" significa, na verdade, 2% ao mês. A taxa <strong>efetiva</strong> anual é então 1,02¹² − 1 ≈ 26,8%.</p>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>

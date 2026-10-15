@@ -5,6 +5,10 @@
   var CHAVE_TEMA = "am-tema";
   var CHAVE_FEITOS = "am-cadernos-estudados";
   var CHAVE_ERROS = "am-caderno-de-erros";
+  var CHAVE_FONTE = "am-tamanho-fonte";
+  var CHAVE_ULTIMO = "am-ultimo-caderno";
+  var CHAVE_RESPOSTAS = "am-respostas";
+  var TAMANHOS = [100, 112.5, 125, 90];
 
   function ler(chave, padrao) {
     try {
@@ -22,23 +26,44 @@
   var raiz = document.documentElement;
   function aplicarTema(t) {
     raiz.setAttribute("data-theme", t);
-    var b = document.querySelector(".botao-tema");
-    if (b) b.textContent = t === "dark" ? "☀️ Claro" : "🌙 Escuro";
+    document.querySelectorAll(".botao-tema").forEach(function (b) {
+      if (!b.closest(".nav-inferior")) b.textContent = t === "dark" ? "☀️ Claro" : "🌙 Escuro";
+      b.setAttribute("aria-pressed", t === "dark" ? "true" : "false");
+    });
   }
+
+  /* ---------- tamanho da letra ---------- */
+  function aplicarFonte(pct) {
+    raiz.style.fontSize = pct === 100 ? "" : pct + "%";
+    document.querySelectorAll(".botao-fonte").forEach(function (b) {
+      b.setAttribute("aria-label", "Mudar o tamanho da letra (agora " + pct + "%)");
+      b.title = "Tamanho da letra: " + pct + "%";
+    });
+  }
+  var fonteSalva = ler(CHAVE_FONTE, 100);
+  if (TAMANHOS.indexOf(fonteSalva) === -1) fonteSalva = 100;
+  aplicarFonte(fonteSalva);
   var temaSalvo = ler(CHAVE_TEMA, null);
   var prefereEscuro = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
   aplicarTema(temaSalvo || (prefereEscuro ? "dark" : "light"));
 
   document.addEventListener("DOMContentLoaded", function () {
     aplicarTema(raiz.getAttribute("data-theme"));
-    var botaoTema = document.querySelector(".botao-tema");
-    if (botaoTema) {
-      botaoTema.addEventListener("click", function () {
+    aplicarFonte(fonteSalva);
+    document.querySelectorAll(".botao-tema").forEach(function (b) {
+      b.addEventListener("click", function () {
         var novo = raiz.getAttribute("data-theme") === "dark" ? "light" : "dark";
         aplicarTema(novo);
         gravar(CHAVE_TEMA, novo);
       });
-    }
+    });
+    document.querySelectorAll(".botao-fonte").forEach(function (b) {
+      b.addEventListener("click", function () {
+        fonteSalva = TAMANHOS[(TAMANHOS.indexOf(fonteSalva) + 1) % TAMANHOS.length];
+        aplicarFonte(fonteSalva);
+        gravar(CHAVE_FONTE, fonteSalva);
+      });
+    });
 
     var menu = document.querySelector(".botao-menu");
     if (menu) {
@@ -47,10 +72,14 @@
       });
     }
 
+    renderizarFormulas();
+    lembrarUltimo();
     montarListaErros();
     montarSumario();
     montarQuestoes();
     atualizarContagemErros();
+    montarInicio();
+    montarLeitura();
     montarProgresso();
     montarBusca();
 
@@ -59,6 +88,80 @@
       document.querySelectorAll("details.exemplo").forEach(function (d) { d.open = true; });
     });
   });
+
+  /* ---------- fórmulas com KaTeX (o texto simples fica se o KaTeX não carregar) ---------- */
+  function renderizarFormulas() {
+    if (!window.katex) return;
+    document.querySelectorAll(".formula[data-tex]").forEach(function (el) {
+      try {
+        window.katex.render(el.getAttribute("data-tex"), el, { displayMode: true, throwOnError: false });
+        el.classList.add("renderizada");
+      } catch (e) { /* mantém o texto original */ }
+    });
+  }
+
+  /* ---------- "continue de onde parou" ---------- */
+  var PAGINAS_SEM_HISTORICO = ["inicio", "erros", "sobre"];
+  function lembrarUltimo() {
+    var pagina = document.body.getAttribute("data-pagina");
+    if (!pagina || PAGINAS_SEM_HISTORICO.indexOf(pagina) !== -1) return;
+    gravar(CHAVE_ULTIMO, { slug: pagina, titulo: document.body.getAttribute("data-titulo") || "" });
+  }
+
+  /* ---------- painel da página inicial ---------- */
+  function montarInicio() {
+    var painel = document.querySelector(".painel");
+    if (!painel) return;
+    var ultimo = ler(CHAVE_ULTIMO, null);
+    var link = painel.querySelector("[data-continuar]");
+    if (ultimo && ultimo.slug && /^[a-z0-9-]+$/.test(ultimo.slug)) {
+      link.href = "cadernos/" + ultimo.slug + ".html";
+      link.querySelector(".titulo-continuar").textContent = ultimo.titulo || ultimo.slug;
+      link.hidden = false;
+    }
+    var respostas = ler(CHAVE_RESPOSTAS, {});
+    var ids = Object.keys(respostas || {});
+    var certas = ids.filter(function (k) { return respostas[k] === 1; }).length;
+    var feitos = ler(CHAVE_FEITOS, []);
+    var estat = function (nome, valor) {
+      var el = painel.querySelector('[data-estat="' + nome + '"]');
+      if (el) el.textContent = valor;
+    };
+    estat("estudados", Array.isArray(feitos) ? feitos.length : 0);
+    estat("resolvidas", ids.length);
+    estat("acerto", ids.length ? Math.round(100 * certas / ids.length) + "%" : "–");
+    estat("erros", lerErros().length);
+  }
+
+  /* ---------- barra de leitura e botão de voltar ao topo ---------- */
+  function montarLeitura() {
+    var barra = document.querySelector(".progresso-leitura > span");
+    var topo = document.querySelector(".voltar-topo");
+    var artigo = document.querySelector("article.caderno");
+    if (!artigo && barra) barra.parentNode.remove();
+    var agendado = false;
+    function atualizar() {
+      agendado = false;
+      var y = window.scrollY || document.documentElement.scrollTop;
+      if (artigo && barra) {
+        var fim = artigo.offsetTop + artigo.offsetHeight - window.innerHeight;
+        var pct = fim > 0 ? Math.min(100, Math.max(0, 100 * y / fim)) : 100;
+        barra.style.width = pct + "%";
+      }
+      if (topo) topo.hidden = y < 700;
+    }
+    window.addEventListener("scroll", function () {
+      if (!agendado) { agendado = true; window.requestAnimationFrame(atualizar); }
+    }, { passive: true });
+    if (topo) {
+      topo.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        var alvo = document.getElementById("conteudo");
+        if (alvo) { alvo.setAttribute("tabindex", "-1"); alvo.focus({ preventScroll: true }); }
+      });
+    }
+    atualizar();
+  }
 
   /* ---------- sumário automático a partir dos h2 ---------- */
   function montarSumario() {
@@ -161,10 +264,51 @@
     var ultima = questoes[questoes.length - 1];
     ultima.parentNode.insertBefore(placar, ultima.nextSibling);
 
+    var primeira = questoes[0];
+    var dica = document.createElement("p");
+    dica.className = "dica-teclado";
+    dica.innerHTML = "Dica: responda com as teclas <kbd>A</kbd> a <kbd>E</kbd>. Vale a questão destacada, a mais próxima do centro da tela.";
+    primeira.parentNode.insertBefore(dica, primeira);
+
+    var flutuante = document.createElement("a");
+    flutuante.className = "placar-flutuante";
+    flutuante.href = "#" + (primeira.id || (primeira.id = "primeira-questao"));
+    flutuante.setAttribute("aria-label", "Ir para as questões");
+    document.body.appendChild(flutuante);
+
     function atualizarPlacar() {
       placar.querySelector(".texto").textContent =
         "Questões: " + respondidas + "/" + total + " respondidas · " + acertos + " acerto(s)";
+      flutuante.innerHTML = "Questões <strong>" + acertos + "✓</strong> · " + respondidas + "/" + total;
     }
+
+    function questaoAtiva() {
+      var meio = window.innerHeight / 2, melhor = null, menor = Infinity;
+      questoes.forEach(function (q) {
+        if (q.classList.contains("respondida")) return;
+        var r = q.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) return;
+        var d = Math.abs((r.top + r.bottom) / 2 - meio);
+        if (d < menor) { menor = d; melhor = q; }
+      });
+      return melhor;
+    }
+    function marcarAtiva() {
+      var a = questaoAtiva();
+      questoes.forEach(function (q) { q.classList.toggle("ativa", q === a); });
+    }
+    window.addEventListener("scroll", function () { window.requestAnimationFrame(marcarAtiva); }, { passive: true });
+    document.addEventListener("keydown", function (ev) {
+      if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
+      var alvo = ev.target;
+      if (alvo && (alvo.tagName === "INPUT" || alvo.tagName === "TEXTAREA" || alvo.isContentEditable)) return;
+      var letra = (ev.key || "").toLowerCase();
+      if (letras.indexOf(letra) === -1 || letra.length !== 1) return;
+      var q = questaoAtiva();
+      if (!q) return;
+      var b = q.querySelector('ol.alternativas button[data-letra="' + letra + '"]');
+      if (b) { ev.preventDefault(); b.click(); b.focus({ preventScroll: true }); }
+    });
 
     questoes.forEach(function (q, idx) {
       var id = q.getAttribute("data-id") || (pagina + "#" + (idx + 1));
@@ -177,6 +321,7 @@
 
       var veredito = document.createElement("p");
       veredito.className = "veredito";
+      veredito.setAttribute("role", "status");
       var exp = q.querySelector(".explicacao");
       if (exp) exp.insertBefore(veredito, exp.firstChild);
 
@@ -199,6 +344,11 @@
             if (b.dataset.letra === correta) b.classList.add("certa");
           });
           if (!acertou) botao.classList.add("errada");
+          q.classList.add(acertou ? "acertou" : "errou");
+          var respostas = ler(CHAVE_RESPOSTAS, {}) || {};
+          respostas[id] = acertou ? 1 : 0;
+          gravar(CHAVE_RESPOSTAS, respostas);
+          window.setTimeout(marcarAtiva, 50);
           veredito.className = "veredito " + (acertou ? "ok" : "nao");
           var texto = acertou
             ? "Correto! Alternativa " + correta.toUpperCase() + "."
@@ -218,7 +368,7 @@
     placar.querySelector(".refazer").addEventListener("click", function () {
       acertos = 0; respondidas = 0;
       questoes.forEach(function (q) {
-        q.classList.remove("respondida");
+        q.classList.remove("respondida", "acertou", "errou");
         q.querySelectorAll("ol.alternativas button").forEach(function (b) {
           b.disabled = false;
           b.classList.remove("certa", "errada");
@@ -226,9 +376,11 @@
       });
       atualizarPlacar();
       questoes[0].scrollIntoView({ behavior: "smooth", block: "center" });
+      window.setTimeout(marcarAtiva, 400);
     });
 
     atualizarPlacar();
+    marcarAtiva();
   }
 
   /* ---------- progresso (cadernos marcados como estudados) ---------- */
@@ -287,6 +439,14 @@
         var texto = normalizar(c.textContent + " " + (c.getAttribute("data-termos") || ""));
         c.style.display = !termo || texto.indexOf(termo) !== -1 ? "" : "none";
       });
+      var algum = false;
+      document.querySelectorAll(".grupo-cadernos").forEach(function (g) {
+        var visiveis = Array.prototype.some.call(g.querySelectorAll(".cartao"), function (c) { return c.style.display !== "none"; });
+        g.hidden = !visiveis;
+        if (visiveis) algum = true;
+      });
+      var vazio = document.querySelector(".sem-resultado");
+      if (vazio) vazio.hidden = algum;
     });
   }
 })();

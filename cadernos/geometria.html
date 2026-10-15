@@ -14,9 +14,11 @@
 <meta property="og:url" content="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/cadernos/geometria.html">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#2357d9">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>➗</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232357d9'/%3E%3Crect x='8' y='14.5' width='16' height='3' rx='1.5' fill='%23fff'/%3E%3Ccircle cx='16' cy='9' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='23' r='2.6' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/css/style.css">
 <script src="../assets/js/app.js"></script>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -39,49 +41,51 @@
 <body data-pagina="geometria" data-titulo="Geometria plana e espacial">
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="topo">
-  <a class="marca" href="../index.html">Aprenda <span>Matemática</span></a>
-  <nav>
+  <a class="marca" href="../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2357d9"/><rect x="8" y="14.5" width="16" height="3" rx="1.5" fill="#fff"/><circle cx="16" cy="9" r="2.6" fill="#fff"/><circle cx="16" cy="23" r="2.6" fill="#fff"/></svg><span class="nome">Aprenda <span>Matemática</span></span></a>
+  <nav class="nav-topo" aria-label="Atalhos">
     <a href="../cadernos/trilhas.html">Trilhas</a>
     <a href="../cadernos/formulario.html">Formulário</a>
     <a href="../cadernos/erros.html">Erros <span class="contador" data-contagem-erros hidden></span></a>
-    <button type="button" class="botao-tema">🌙 Escuro</button>
+    <button type="button" class="botao-fonte" aria-label="Mudar o tamanho da letra">Aa</button>
+    <button type="button" class="botao-tema" aria-label="Alternar tema claro ou escuro">🌙 Escuro</button>
   </nav>
 </header>
+<div class="progresso-leitura" aria-hidden="true"><span></span></div>
 <div class="container layout">
 <aside class="lateral">
   <button type="button" class="botao secundario botao-menu">☰ Todos os cadernos</button>
   <div class="lista-cadernos">
     <h3>Comece aqui</h3>
     <ul>
-<li data-slug="estrategias"><a href="estrategias.html"><span>⏱️</span> Estratégias de prova<span class="feito"></span></a></li>
-<li data-slug="trilhas"><a href="trilhas.html"><span>🧭</span> Trilhas por banca e área<span class="feito"></span></a></li>
-<li data-slug="formulario"><a href="formulario.html"><span>📋</span> Formulário de bolso<span class="feito"></span></a></li>
+<li data-slug="estrategias"><a href="estrategias.html"><span class="icone mini curto" style="--cor: #475569" aria-hidden="true">≈</span> Estratégias de prova<span class="feito"></span></a></li>
+<li data-slug="trilhas"><a href="trilhas.html"><span class="icone mini curto" style="--cor: #0f766e" aria-hidden="true">↗</span> Trilhas por banca e área<span class="feito"></span></a></li>
+<li data-slug="formulario"><a href="formulario.html"><span class="icone mini curto" style="--cor: #4338ca" aria-hidden="true">∑</span> Formulário de bolso<span class="feito"></span></a></li>
     </ul>
     <h3>Cadernos</h3>
     <ul>
-<li data-slug="aritmetica"><a href="aritmetica.html"><span>🔢</span> Aritmética e divisibilidade<span class="feito"></span></a></li>
-<li data-slug="fracoes"><a href="fracoes.html"><span>🍕</span> Frações e números decimais<span class="feito"></span></a></li>
-<li data-slug="porcentagem"><a href="porcentagem.html"><span>💯</span> Porcentagem<span class="feito"></span></a></li>
-<li data-slug="razao-proporcao"><a href="razao-proporcao.html"><span>⚖️</span> Razão e proporção<span class="feito"></span></a></li>
-<li data-slug="regra-de-tres"><a href="regra-de-tres.html"><span>📐</span> Regra de três<span class="feito"></span></a></li>
-<li data-slug="juros"><a href="juros.html"><span>💰</span> Juros simples e compostos<span class="feito"></span></a></li>
-<li data-slug="equacoes"><a href="equacoes.html"><span>✖️</span> Equações e sistemas<span class="feito"></span></a></li>
-<li data-slug="funcoes"><a href="funcoes.html"><span>📈</span> Funções<span class="feito"></span></a></li>
-<li data-slug="sequencias"><a href="sequencias.html"><span>🔁</span> Sequências, PA e PG<span class="feito"></span></a></li>
-<li data-slug="geometria"><a href="geometria.html" class="ativo"><span>📏</span> Geometria plana e espacial<span class="feito"></span></a></li>
-<li data-slug="estatistica"><a href="estatistica.html"><span>📊</span> Estatística básica<span class="feito"></span></a></li>
-<li data-slug="combinatoria"><a href="combinatoria.html"><span>🎲</span> Análise combinatória<span class="feito"></span></a></li>
-<li data-slug="probabilidade"><a href="probabilidade.html"><span>🎯</span> Probabilidade<span class="feito"></span></a></li>
-<li data-slug="logica"><a href="logica.html"><span>🧠</span> Raciocínio lógico<span class="feito"></span></a></li>
+<li data-slug="aritmetica"><a href="aritmetica.html"><span class="icone mini curto" style="--cor: #1d4ed8" aria-hidden="true">÷</span> Aritmética e divisibilidade<span class="feito"></span></a></li>
+<li data-slug="fracoes"><a href="fracoes.html"><span class="icone mini curto" style="--cor: #c2410c" aria-hidden="true">½</span> Frações e números decimais<span class="feito"></span></a></li>
+<li data-slug="porcentagem"><a href="porcentagem.html"><span class="icone mini curto" style="--cor: #15803d" aria-hidden="true">%</span> Porcentagem<span class="feito"></span></a></li>
+<li data-slug="razao-proporcao"><a href="razao-proporcao.html"><span class="icone mini longo" style="--cor: #6d28d9" aria-hidden="true">a:b</span> Razão e proporção<span class="feito"></span></a></li>
+<li data-slug="regra-de-tres"><a href="regra-de-tres.html"><span class="icone mini curto" style="--cor: #0e7490" aria-hidden="true">∝</span> Regra de três<span class="feito"></span></a></li>
+<li data-slug="juros"><a href="juros.html"><span class="icone mini medio" style="--cor: #a16207" aria-hidden="true">R$</span> Juros simples e compostos<span class="feito"></span></a></li>
+<li data-slug="equacoes"><a href="equacoes.html"><span class="icone mini medio" style="--cor: #be185d" aria-hidden="true">x=</span> Equações e sistemas<span class="feito"></span></a></li>
+<li data-slug="funcoes"><a href="funcoes.html"><span class="icone mini longo" style="--cor: #4338ca" aria-hidden="true">f(x)</span> Funções<span class="feito"></span></a></li>
+<li data-slug="sequencias"><a href="sequencias.html"><span class="icone mini medio" style="--cor: #0f766e" aria-hidden="true">aₙ</span> Sequências, PA e PG<span class="feito"></span></a></li>
+<li data-slug="geometria"><a href="geometria.html" class="ativo"><span class="icone mini curto" style="--cor: #b45309" aria-hidden="true">△</span> Geometria plana e espacial<span class="feito"></span></a></li>
+<li data-slug="estatistica"><a href="estatistica.html"><span class="icone mini medio" style="--cor: #1e40af" aria-hidden="true">x̄</span> Estatística básica<span class="feito"></span></a></li>
+<li data-slug="combinatoria"><a href="combinatoria.html"><span class="icone mini medio" style="--cor: #9333ea" aria-hidden="true">n!</span> Análise combinatória<span class="feito"></span></a></li>
+<li data-slug="probabilidade"><a href="probabilidade.html"><span class="icone mini curto" style="--cor: #a21caf" aria-hidden="true">P</span> Probabilidade<span class="feito"></span></a></li>
+<li data-slug="logica"><a href="logica.html"><span class="icone mini curto" style="--cor: #6d28d9" aria-hidden="true">∧</span> Raciocínio lógico<span class="feito"></span></a></li>
     </ul>
     <h3>Revisão</h3>
     <ul>
-<li data-slug="erros"><a href="erros.html"><span>📝</span> Meu caderno de erros<span class="feito"></span></a></li>
+<li data-slug="erros"><a href="erros.html"><span class="icone mini curto" style="--cor: #b91c1c" aria-hidden="true">✗</span> Meu caderno de erros<span class="feito"></span></a></li>
     </ul>
   </div>
 </aside>
-<article class="caderno" id="conteudo">
-  <h1>📏 Geometria plana e espacial</h1>
+<article class="caderno" id="conteudo" style="--cor: #b45309">
+  <h1><span class="icone curto" style="--cor: #b45309" aria-hidden="true">△</span> <span>Geometria plana e espacial</span></h1>
   <p class="subtitulo">Ângulos, triângulos, Pitágoras, áreas, perímetros e volumes.</p>
   <div class="selos"><span class="selo media">Cai com frequência</span></div>
   <nav class="sumario" data-sumario><strong>Nesta página</strong></nav>
@@ -102,7 +106,19 @@
 <h2>Triângulos</h2>
 <h3>Teorema de Pitágoras</h3>
 <p>Num triângulo retângulo, com hipotenusa a (lado oposto ao ângulo reto) e catetos b e c:</p>
-<span class="formula">a² = b² + c²</span>
+<span class="formula" data-tex="a^2 = b^2 + c^2">a² = b² + c²</span>
+<figure class="figura">
+<svg viewBox="0 0 280 175" width="280" role="img" aria-label="Triângulo retângulo com catetos b e c e hipotenusa a">
+  <polygon class="f-area" points="40,140 220,140 40,30"/>
+  <polygon class="f-linha" points="40,140 220,140 40,30"/>
+  <path class="f-linha" d="M40,124 H56 V140"/>
+  <line class="f-dest" x1="220" y1="140" x2="40" y2="30"/>
+  <text x="24" y="90">b</text>
+  <text x="126" y="162">c</text>
+  <text x="138" y="76">a (hipotenusa)</text>
+</svg>
+<figcaption>A hipotenusa fica sempre de frente para o ângulo reto e é o maior lado.</figcaption>
+</figure>
 <div class="caixa atalho"><span class="rotulo">Atalho: ternas pitagóricas</span>
 <p>Decore estas e seus múltiplos: <strong>3-4-5</strong>, <strong>5-12-13</strong>, <strong>8-15-17</strong>, <strong>7-24-25</strong>. Catetos 9 e 12? É 3-4-5 × 3: hipotenusa 15, sem conta.</p></div>
 <h3>Semelhança</h3>
@@ -140,6 +156,18 @@
 <p>Figuras com recortes (região sombreada) quase sempre saem por "área grande menos área do buraco". Procure essa saída antes de dividir em pedaços.</p></div>
 <details class="exemplo"><summary>Um quadrado de lado 10 cm tem um círculo inscrito (tangente aos quatro lados). Qual a área entre o quadrado e o círculo? (use π = 3,14)</summary>
 <div class="resolucao">
+<figure class="figura">
+<svg viewBox="0 0 200 200" width="200" role="img" aria-label="Quadrado de lado 10 com círculo inscrito de raio 5; a região sombreada fica entre os dois">
+  <rect class="f-area" x="30" y="30" width="140" height="140"/>
+  <rect class="f-linha" x="30" y="30" width="140" height="140"/>
+  <circle class="f-fundo f-linha" cx="100" cy="100" r="70"/>
+  <line class="f-dest f-tracejado" x1="100" y1="100" x2="170" y2="100"/>
+  <circle class="f-ponto" cx="100" cy="100" r="3.5"/>
+  <text x="124" y="93">r = 5</text>
+  <text x="84" y="22">lado 10</text>
+</svg>
+<figcaption>Área sombreada = área do quadrado − área do círculo.</figcaption>
+</figure>
 <p class="passo">Raio do círculo = metade do lado = 5. Área do círculo: 3,14 × 25 = 78,5.</p>
 <p class="passo">Área do quadrado: 100. Diferença: 21,5.</p>
 <p class="resposta-final">Resposta: 21,5 cm².</p></div></details>
@@ -196,5 +224,13 @@
   <a href="../cadernos/sobre.html">Sobre o projeto</a> ·
   <a href="https://github.com/CarlosGabriel-UX/APRENDA-MATEMATICA/issues">Avise sobre um erro</a>
 </footer>
+<button type="button" class="voltar-topo" aria-label="Voltar ao topo" hidden>↑</button>
+<nav class="nav-inferior" aria-label="Navegação principal">
+  <a href="../index.html"><span aria-hidden="true">⌂</span>Início</a>
+  <a href="../cadernos/trilhas.html"><span aria-hidden="true">↗</span>Trilhas</a>
+  <a href="../cadernos/erros.html"><span aria-hidden="true">✗</span>Erros<span class="contador" data-contagem-erros hidden></span></a>
+  <button type="button" class="botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span>Letra</button>
+  <button type="button" class="botao-tema" aria-label="Alternar tema claro ou escuro">Tema</button>
+</nav>
 </body>
 </html>

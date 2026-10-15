@@ -9,7 +9,7 @@
 <p>Um gráfico representa função se qualquer reta vertical o corta em no máximo um ponto.</p></div>
 
 <h2>Função afim (1º grau)</h2>
-<span class="formula">f(x) = ax + b</span>
+<span class="formula" data-tex="f(x) = ax + b">f(x) = ax + b</span>
 <ul>
   <li><strong>a</strong> (coeficiente angular) é a taxa de variação: quanto y muda quando x aumenta 1. Se a &gt; 0, a função é crescente; se a &lt; 0, decrescente.</li>
   <li><strong>b</strong> (coeficiente linear) é onde a reta corta o eixo y (valor de f(0)).</li>
@@ -28,14 +28,14 @@
 <p>"Valor fixo + valor por unidade" é sempre função afim: plano de celular, conta de luz, salário com comissão, frete.</p></div>
 
 <h2>Função quadrática (2º grau)</h2>
-<span class="formula">f(x) = ax² + bx + c</span>
+<span class="formula" data-tex="f(x) = ax^2 + bx + c">f(x) = ax² + bx + c</span>
 <ul>
   <li>O gráfico é uma <strong>parábola</strong>. Se a &gt; 0, a boca é para cima (tem ponto de mínimo). Se a &lt; 0, para baixo (tem máximo).</li>
   <li>c é onde a parábola corta o eixo y.</li>
   <li>As raízes são as soluções de ax² + bx + c = 0 (veja o caderno de <a href="equacoes.html">equações</a>).</li>
 </ul>
 <h3>Vértice: máximo ou mínimo</h3>
-<span class="formula">x_v = −b / 2a &nbsp;&nbsp;&nbsp; y_v = −Δ / 4a</span>
+<span class="formula" data-tex="x_v = \dfrac{-b}{2a} \qquad y_v = \dfrac{-\Delta}{4a}">x_v = −b / 2a &nbsp;&nbsp;&nbsp; y_v = −Δ / 4a</span>
 <div class="caixa atalho"><span class="rotulo">Atalho: y do vértice sem Δ</span>
 <p>Calcule x_v e substitua na função: y_v = f(x_v). Muitas vezes é mais rápido do que calcular Δ.</p>
 <p>E se você já sabe as raízes, o x do vértice é a média delas: <span class="m">x_v = (x₁ + x₂)/2</span>.</p></div>
@@ -50,6 +50,32 @@
 <p class="passo">Vértice na média das raízes: t = 2. h(2) = −20 + 40 = 20.</p>
 <p class="resposta-final">Resposta: altura máxima de 20 m; volta ao chão em 4 s.</p></div></details>
 
+<figure class="figura">
+<svg viewBox="0 0 520 220" width="520" role="img" aria-label="À esquerda, reta crescente que corta o eixo y em b e o eixo x na raiz. À direita, parábola com boca para cima, raízes x1 e x2 e vértice V abaixo do eixo x">
+  <text x="20" y="20" class="f-titulo">f(x) = ax + b, com a &gt; 0</text>
+  <line class="f-eixo" x1="15" y1="170" x2="245" y2="170"/>
+  <line class="f-eixo" x1="110" y1="30" x2="110" y2="210"/>
+  <line class="f-dest" x1="20" y1="184" x2="245" y2="49"/>
+  <circle class="f-ponto" cx="110" cy="130" r="4"/>
+  <circle class="f-ponto" cx="43" cy="170" r="4"/>
+  <text x="118" y="135">b</text>
+  <text x="20" y="200">raiz = −b/a</text>
+  <text x="280" y="20" class="f-titulo">f(x) = ax² + bx + c, com a &gt; 0</text>
+  <line class="f-eixo" x1="275" y1="150" x2="510" y2="150"/>
+  <line class="f-eixo" x1="300" y1="30" x2="300" y2="215"/>
+  <polyline class="f-dest" points="316,113.9 322,123.9 328,133.2 334,142.0 340,150.0 346,157.4 352,164.1 358,170.2 364,175.6 370,180.3 376,184.4 382,187.8 388,190.6 394,192.7 400,194.1 406,194.9 412,195.0 418,194.4 424,193.2 430,191.3 436,188.8 442,185.6 448,181.7 454,177.2 460,172.0 466,166.2 472,159.7 478,152.5 484,144.7 490,136.2 496,127.1 502,117.3"/>
+  <circle class="f-ponto" cx="340" cy="150" r="4"/>
+  <circle class="f-ponto" cx="480" cy="150" r="4"/>
+  <circle class="f-ponto" cx="410" cy="195" r="4"/>
+  <text x="330" y="140">x₁</text>
+  <text x="484" y="170">x₂</text>
+  <text x="420" y="212">V (mínimo)</text>
+  <text x="402" y="172" class="f-sinal">−</text>
+  <text x="316" y="100" class="f-sinal">+</text>
+  <text x="494" y="100" class="f-sinal">+</text>
+</svg>
+<figcaption>À direita: entre as raízes a função tem sinal contrário ao de a; fora delas, o mesmo sinal de a.</figcaption>
+</figure>
 <h2>Estudo do sinal</h2>
 <ul>
   <li><strong>Afim:</strong> à direita da raiz a função tem o sinal de a; à esquerda, o sinal contrário.</li>

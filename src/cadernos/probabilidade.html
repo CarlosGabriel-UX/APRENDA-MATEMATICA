@@ -1,5 +1,5 @@
 <h2>A definição que resolve 80% das questões</h2>
-<span class="formula">P = casos favoráveis / casos possíveis</span>
+<span class="formula" data-tex="P = \dfrac{\text{casos favoráveis}}{\text{casos possíveis}}">P = casos favoráveis / casos possíveis</span>
 <p>Vale quando todos os resultados são <strong>igualmente prováveis</strong> (dado honesto, sorteio justo, moeda não viciada). A probabilidade fica sempre entre 0 e 1 (ou entre 0% e 100%).</p>
 <details class="exemplo"><summary>Ao lançar dois dados, qual a probabilidade de a soma ser 7?</summary>
 <div class="resolucao">
@@ -10,14 +10,14 @@
 <p>A soma 7 é a mais provável (6 casos). Para as outras: soma s tem <span class="m">6 − |s − 7|</span> casos. Soma 4 → 3 casos; soma 10 → 3 casos; soma 12 → 1 caso.</p></div>
 
 <h2>Evento complementar</h2>
-<span class="formula">P(não A) = 1 − P(A)</span>
+<span class="formula" data-tex="P(\text{não } A) = 1 - P(A)">P(não A) = 1 − P(A)</span>
 <div class="caixa atalho"><span class="rotulo">Atalho: "pelo menos um"</span>
 <p>Sempre que aparecer "pelo menos um", calcule a chance de <strong>nenhum</strong> e subtraia de 1.</p>
 <p>Três moedas, pelo menos uma cara: P(nenhuma cara) = (1/2)³ = 1/8 → 1 − 1/8 = 7/8.</p></div>
 
 <h2>"E" multiplica (eventos independentes)</h2>
 <p>Se um evento não interfere no outro, a probabilidade de os dois acontecerem é o produto:</p>
-<span class="formula">P(A e B) = P(A) × P(B)</span>
+<span class="formula" data-tex="P(A \text{ e } B) = P(A) \times P(B)">P(A e B) = P(A) × P(B)</span>
 <details class="exemplo"><summary>Uma urna tem 4 bolas brancas e 6 pretas. Tiram-se duas, sem reposição. Qual a probabilidade de ambas serem brancas?</summary>
 <div class="resolucao">
 <p class="passo">1ª branca: 4/10. Sem reposição, sobram 3 brancas em 9: 3/9.</p>
@@ -29,7 +29,21 @@
 <p>"Uma bola branca e uma preta" (em qualquer ordem) pode ser BP ou PB. Calcule um caminho e multiplique pelo número de ordens: 2 × (4/10 × 6/9) = 48/90 = 8/15.</p></div>
 
 <h2>"Ou" soma (tirando a interseção)</h2>
-<span class="formula">P(A ou B) = P(A) + P(B) − P(A e B)</span>
+<span class="formula" data-tex="P(A \text{ ou } B) = P(A) + P(B) - P(A \text{ e } B)">P(A ou B) = P(A) + P(B) − P(A e B)</span>
+<figure class="figura">
+<svg viewBox="0 0 300 175" width="300" role="img" aria-label="Dois conjuntos A e B que se cruzam; a interseção A e B está destacada">
+  <defs><clipPath id="clip-a"><circle cx="120" cy="90" r="62"/></clipPath></defs>
+  <circle class="f-linha" cx="120" cy="90" r="62"/>
+  <circle class="f-linha" cx="180" cy="90" r="62"/>
+  <circle class="f-area-forte" cx="180" cy="90" r="62" clip-path="url(#clip-a)"/>
+  <circle class="f-linha" cx="120" cy="90" r="62"/>
+  <circle class="f-linha" cx="180" cy="90" r="62"/>
+  <text x="78" y="95">A</text>
+  <text x="212" y="95">B</text>
+  <text x="150" y="95" text-anchor="middle" class="f-nota">A e B</text>
+</svg>
+<figcaption>Somando P(A) e P(B), a parte do meio entra duas vezes. Por isso se subtrai P(A e B).</figcaption>
+</figure>
 <p>Se A e B não podem acontecer juntos (mutuamente exclusivos), a interseção é zero e é só somar.</p>
 <details class="exemplo"><summary>Sorteando uma carta de um baralho de 52, qual a chance de sair um rei ou uma carta de copas?</summary>
 <div class="resolucao">
@@ -39,7 +53,7 @@
 
 <h2>Probabilidade condicional</h2>
 <p>"Sabendo que B aconteceu" muda o universo: os casos possíveis passam a ser só os de B.</p>
-<span class="formula">P(A | B) = P(A e B) / P(B)</span>
+<span class="formula" data-tex="P(A \mid B) = \dfrac{P(A \text{ e } B)}{P(B)}">P(A | B) = P(A e B) / P(B)</span>
 <div class="caixa atalho"><span class="rotulo">Atalho: use a tabela</span>
 <p>Monte uma tabela de dupla entrada com as quantidades. A condição diz em qual linha ou coluna olhar. Depois é só favoráveis sobre o total daquela linha.</p></div>
 <details class="exemplo"><summary>Numa empresa de 100 funcionários: 40 homens (10 fumantes) e 60 mulheres (15 fumantes). Sorteando um fumante, qual a chance de ser mulher?</summary>
@@ -50,7 +64,7 @@
 
 <h2>Repetições: distribuição binomial</h2>
 <p>Probabilidade de exatamente k sucessos em n tentativas independentes, cada uma com chance p:</p>
-<span class="formula">P = C(n, k) × pᵏ × (1 − p)ⁿ⁻ᵏ</span>
+<span class="formula" data-tex="P = C(n, k) \cdot p^k \cdot (1-p)^{\,n-k}">P = C(n, k) × pᵏ × (1 − p)ⁿ⁻ᵏ</span>
 <details class="exemplo"><summary>Lançando uma moeda 4 vezes, qual a chance de sair exatamente 2 caras?</summary>
 <div class="resolucao">
 <p class="passo">C(4, 2) = 6 ordens possíveis. Cada uma com chance (1/2)⁴ = 1/16.</p>
