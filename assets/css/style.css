@@ -624,7 +624,7 @@ figure.figura figcaption { font-size: .88rem; color: var(--text-soft); margin-to
     bottom: 0;
     z-index: 35;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     background: var(--surface);
     border-top: 1px solid var(--border);
     padding: 4px 4px calc(4px + env(safe-area-inset-bottom));
@@ -1313,3 +1313,60 @@ footer.site .rodape-marca { display: block; font: 800 1.05rem var(--titulo); col
 }
 @media (prefers-reduced-motion: reduce) { .hero-arte span { animation: none; } }
 .grupo-cadernos h2 small { font-family: var(--font); letter-spacing: 0; }
+
+/* =========================================================
+   Banco de questões
+   ========================================================= */
+.filtro-materias {
+  position: sticky;
+  top: 64px;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 2px;
+  margin: 18px 0 8px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  scrollbar-width: thin;
+  scroll-margin-top: 64px;
+}
+.filtro-materias button {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px 6px 6px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: 600 .88rem var(--font);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.filtro-materias button:first-child { padding-left: 12px; }
+.filtro-materias button .icone.mini { width: 24px; height: 24px; font-size: .7rem; border-radius: 999px; }
+.filtro-materias button > span:last-child {
+  font-size: .75rem;
+  color: var(--text-soft);
+  background: var(--surface-2);
+  border-radius: 999px;
+  padding: 1px 7px;
+}
+.filtro-materias button:hover { border-color: var(--primary); }
+.filtro-materias button.ativo { background: var(--gradiente); color: #fff; border-color: transparent; }
+.filtro-materias button.ativo > span:last-child { background: rgba(255, 255, 255, .22); color: #fff; }
+.bloco-questoes { scroll-margin-top: 130px; }
+.bloco-questoes[hidden] { display: none; }
+.bloco-questoes h2 { display: flex; align-items: center; gap: 10px; scroll-margin-top: 130px; }
+.bloco-questoes h2 .icone.mini { width: 32px; height: 32px; font-size: .85rem; }
+.bloco-questoes .teoria { color: var(--text-soft); font-size: .92rem; margin-top: -4px; }
+.questao figure.figura { margin: 10px 0 14px; }
+.questao table { margin: 8px 0 14px; }
+.questao pre { margin: 8px 0 14px; }
+@media (max-width: 700px) { .filtro-materias { top: 56px; } }
+/* Linhas de grade dos gráficos e contorno nos rótulos para não sumirem sobre as linhas */
+.f-grade { stroke: var(--border); stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+.questao .figura text { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
