@@ -3,18 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aprenda Matemática: matemática para concursos</title>
-<meta name="description" content="Cadernos gratuitos de matemática para concursos com teoria enxuta, atalhos para ganhar tempo e exercícios comentados.">
+<title>Aprenda Matemática: matemática para concursos grátis</title>
+<meta name="description" content="Cadernos gratuitos de matemática para concursos com teoria enxuta, atalhos para ganhar tempo, trilhas por banca e exercícios comentados.">
+<link rel="canonical" href="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Aprenda Matemática">
+<meta property="og:title" content="Aprenda Matemática: matemática para concursos grátis">
+<meta property="og:description" content="Cadernos gratuitos de matemática para concursos com teoria enxuta, atalhos para ganhar tempo, trilhas por banca e exercícios comentados.">
+<meta property="og:url" content="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#2357d9">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>➗</text></svg>">
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="assets/js/app.js"></script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebSite",
+ "name": "Aprenda Matemática",
+ "url": "https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/",
+ "description": "Cadernos gratuitos de matemática para concursos com teoria enxuta, atalhos para ganhar tempo, trilhas por banca e exercícios comentados.",
+ "inLanguage": "pt-BR"
+}
+</script>
 </head>
-<body>
+<body data-pagina="inicio" data-titulo="Aprenda Matemática">
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="topo">
   <a class="marca" href="index.html">Aprenda <span>Matemática</span></a>
   <nav>
-    <a href="cadernos/estrategias.html">Estratégias</a>
+    <a href="cadernos/trilhas.html">Trilhas</a>
     <a href="cadernos/formulario.html">Formulário</a>
+    <a href="cadernos/erros.html">Erros <span class="contador" data-contagem-erros hidden></span></a>
     <button type="button" class="botao-tema">🌙 Escuro</button>
   </nav>
 </header>
@@ -25,7 +46,8 @@
     pegadinhas comuns das bancas e exercícios com resolução comentada.</p>
     <div class="acoes">
       <a class="botao" href="cadernos/estrategias.html">Comece pelas estratégias</a>
-      <a class="botao secundario" href="cadernos/formulario.html">Ver formulário de bolso</a>
+      <a class="botao secundario" href="cadernos/trilhas.html">Escolha sua trilha</a>
+      <a class="botao secundario" href="cadernos/erros.html">Meu caderno de erros <span class="contador" data-contagem-erros hidden></span></a>
     </div>
   </section>
 
@@ -38,6 +60,12 @@
     <h3>Estratégias de prova</h3>
     <p>Como ganhar tempo: ordem de resolução, eliminação de alternativas, estimativa e teste das respostas.</p>
     <span class="rodape"><span>Leia primeiro</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/trilhas.html" data-slug="trilhas" data-termos="banca cebraspe fgv vunesp fcc cesgranrio policial fiscal bancário tribunais roteiro">
+    <span class="icone">🧭</span>
+    <h3>Trilhas por banca e área</h3>
+    <p>Em que ordem estudar e onde concentrar o tempo conforme o estilo da banca e a área do cargo.</p>
+    <span class="rodape"><span>Planejamento</span><span class="ok"></span></span>
   </a>
   <a class="cartao" href="cadernos/formulario.html" data-slug="formulario" data-termos="fórmulas resumo revisão véspera">
     <span class="icone">📋</span>
@@ -143,7 +171,8 @@
 </main>
 <footer class="site">
   Aprenda Matemática: conteúdo livre e original para quem estuda para concursos.
-  Encontrou um erro? <a href="https://github.com/CarlosGabriel-UX/APRENDA-MATEMATICA/issues">Avise no GitHub</a>.
+  <a href="cadernos/sobre.html">Sobre o projeto</a> ·
+  <a href="https://github.com/CarlosGabriel-UX/APRENDA-MATEMATICA/issues">Avise sobre um erro</a>
 </footer>
 </body>
 </html>

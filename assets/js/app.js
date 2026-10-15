@@ -4,6 +4,7 @@
 
   var CHAVE_TEMA = "am-tema";
   var CHAVE_FEITOS = "am-cadernos-estudados";
+  var CHAVE_ERROS = "am-caderno-de-erros";
 
   function ler(chave, padrao) {
     try {
@@ -46,8 +47,10 @@
       });
     }
 
+    montarListaErros();
     montarSumario();
     montarQuestoes();
+    atualizarContagemErros();
     montarProgresso();
     montarBusca();
 
@@ -76,12 +79,81 @@
     alvo.appendChild(ol);
   }
 
+  /* ---------- caderno de erros ---------- */
+  function lerErros() {
+    var e = ler(CHAVE_ERROS, []);
+    return Array.isArray(e) ? e : [];
+  }
+  function guardarErro(item) {
+    var erros = lerErros().filter(function (e) { return e.id !== item.id; });
+    erros.push(item);
+    gravar(CHAVE_ERROS, erros);
+    atualizarContagemErros();
+  }
+  function removerErro(id) {
+    var erros = lerErros();
+    var restantes = erros.filter(function (e) { return e.id !== id; });
+    if (restantes.length !== erros.length) {
+      gravar(CHAVE_ERROS, restantes);
+      atualizarContagemErros();
+      return true;
+    }
+    return false;
+  }
+  function atualizarContagemErros() {
+    var n = lerErros().length;
+    document.querySelectorAll("[data-contagem-erros]").forEach(function (el) {
+      el.textContent = n ? String(n) : "";
+      el.hidden = !n;
+    });
+  }
+
+  /* Na página do caderno de erros, monta as questões salvas antes de ativá-las. */
+  function montarListaErros() {
+    var alvo = document.querySelector("[data-lista-erros]");
+    if (!alvo) return;
+    var erros = lerErros();
+    if (!erros.length) {
+      alvo.innerHTML = '<div class="caixa nota"><span class="rotulo">Nenhum erro guardado</span>' +
+        "<p>Quando você errar uma questão em qualquer caderno, ela aparece aqui automaticamente. " +
+        "Ao acertá-la (aqui ou no caderno), ela sai da lista.</p></div>";
+      return;
+    }
+    var grupos = {};
+    var ordem = [];
+    erros.forEach(function (e) {
+      if (!grupos[e.slug]) { grupos[e.slug] = { titulo: e.titulo, itens: [] }; ordem.push(e.slug); }
+      grupos[e.slug].itens.push(e);
+    });
+    var html = '<p class="resumo-erros"><span>Você tem <strong>' + erros.length + "</strong> questão(ões) para revisar.</span>" +
+      '<button type="button" class="botao secundario limpar-erros">Limpar tudo</button></p>';
+    ordem.forEach(function (slug) {
+      var g = grupos[slug];
+      html += '<h2>' + g.titulo + "</h2>";
+      html += '<p><a href="' + encodeURIComponent(slug) + '.html">Rever a teoria deste caderno →</a></p>';
+      g.itens.forEach(function (e) { html += e.html; });
+    });
+    alvo.innerHTML = html;
+    var questoes = alvo.querySelectorAll(".questao");
+    var lista = [];
+    ordem.forEach(function (slug) { lista = lista.concat(grupos[slug].itens); });
+    questoes.forEach(function (q, i) { q.setAttribute("data-id", lista[i].id); });
+    alvo.querySelector(".limpar-erros").addEventListener("click", function () {
+      if (!window.confirm("Apagar todas as questões do caderno de erros?")) return;
+      gravar(CHAVE_ERROS, []);
+      atualizarContagemErros();
+      window.location.reload();
+    });
+  }
+
   /* ---------- questões de múltipla escolha ---------- */
   function montarQuestoes() {
     var questoes = document.querySelectorAll(".questao");
     if (!questoes.length) return;
     var acertos = 0, respondidas = 0, total = questoes.length;
     var letras = "abcde";
+    var pagina = document.body.getAttribute("data-pagina") || "";
+    var tituloPagina = document.body.getAttribute("data-titulo") || document.title;
 
     var placar = document.createElement("div");
     placar.className = "placar";
@@ -95,6 +167,8 @@
     }
 
     questoes.forEach(function (q, idx) {
+      var id = q.getAttribute("data-id") || (pagina + "#" + (idx + 1));
+      var original = q.outerHTML;
       var correta = (q.getAttribute("data-correta") || "").toLowerCase();
       var num = document.createElement("div");
       num.className = "num";
@@ -126,9 +200,16 @@
           });
           if (!acertou) botao.classList.add("errada");
           veredito.className = "veredito " + (acertou ? "ok" : "nao");
-          veredito.textContent = acertou
+          var texto = acertou
             ? "Correto! Alternativa " + correta.toUpperCase() + "."
             : "Não foi dessa vez. A resposta é a alternativa " + correta.toUpperCase() + ".";
+          if (acertou) {
+            if (removerErro(id)) texto += " Ela saiu do seu caderno de erros.";
+          } else if (pagina !== "erros") {
+            guardarErro({ id: id, slug: pagina, titulo: tituloPagina, html: original });
+            texto += " Guardada no seu caderno de erros.";
+          }
+          veredito.textContent = texto;
           atualizarPlacar();
         });
       });
