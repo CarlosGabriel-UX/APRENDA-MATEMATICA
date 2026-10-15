@@ -24,7 +24,7 @@ Todo o conteúdo é original e livre para estudo. Os guias seguem os editais de 
 
 ## Como funciona
 
-O site é estático (HTML, CSS e JavaScript puro) e roda direto no GitHub Pages. A única biblioteca é o [KaTeX](https://katex.org) (licença MIT), copiado em `assets/vendor/katex/` para desenhar as fórmulas sem depender de CDN. Se ele não carregar, a fórmula aparece em texto simples.
+O site é estático (HTML, CSS e JavaScript puro) e roda direto no GitHub Pages. A única biblioteca é o [KaTeX](https://katex.org) (licença MIT), copiado em `assets/vendor/katex/` para desenhar as fórmulas sem depender de CDN. As fontes Inter e Plus Jakarta Sans (licença SIL OFL) ficam em `assets/vendor/fontes/`. Se ele não carregar, a fórmula aparece em texto simples.
 
 ```
 src/cadernos/*.html   conteúdo de cada caderno (só o miolo, em HTML simples)

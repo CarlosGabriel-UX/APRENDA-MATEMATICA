@@ -331,7 +331,7 @@
         var botao = document.createElement("button");
         botao.type = "button";
         botao.dataset.letra = letras[i];
-        botao.innerHTML = '<span class="letra">' + letras[i].toUpperCase() + ")</span><span>" + li.innerHTML + "</span>";
+        botao.innerHTML = '<span class="letra">' + letras[i].toUpperCase() + "</span><span>" + li.innerHTML + "</span>";
         li.innerHTML = "";
         li.appendChild(botao);
         botao.addEventListener("click", function () {
