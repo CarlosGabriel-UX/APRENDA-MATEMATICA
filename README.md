@@ -1,6 +1,6 @@
 # Aprenda Matemática
 
-Site gratuito de matemática para concursos: teoria enxuta, atalhos para ganhar tempo na prova, pegadinhas comuns das bancas e questões com resolução comentada.
+Site gratuito para concursos: cadernos de matemática com atalhos para ganhar tempo na prova e uma **imersão** para PM-SP (Soldado), GCM São Paulo, Polícia Federal (Agente, Escrivão e Papiloscopista) e Perito Criminal Federal (Informática), com apostilas de todas as matérias.
 
 ## Cadernos
 
@@ -8,7 +8,15 @@ Site gratuito de matemática para concursos: teoria enxuta, atalhos para ganhar 
 |---|---|
 | Estratégias de prova · Trilhas por banca e área · Formulário de bolso · Meu caderno de erros | Aritmética e divisibilidade · Frações e decimais · Porcentagem · Razão e proporção · Regra de três · Juros simples e compostos · Equações e sistemas · Funções · Sequências, PA e PG · Geometria plana e espacial · Estatística básica · Análise combinatória · Probabilidade · Raciocínio lógico |
 
-Todo o conteúdo é original e livre para estudo.
+## Imersão concursos
+
+| Guias de concurso | Apostilas |
+|---|---|
+| Imersão (visão geral) · PM-SP · GCM São Paulo · Polícia Federal · Perito Criminal Federal (Área 3) | Língua Portuguesa · Informática · Direito Constitucional · Direito Administrativo · Direito Penal · Processo Penal · Legislação Penal Especial · Direitos Humanos · História · Geografia · Atualidades e Realidade de SP · Contabilidade · Criminalística · Redes e Segurança · Computação Forense · Programação, SO e Dados |
+
+Cada guia traz a ficha do concurso, o que cai, um **mapa de matérias** na ordem de estudo (com o progresso de quem marca as páginas como estudadas), um plano semana a semana e a estratégia de prova da banca. As listas de matérias de cada concurso ficam em `MATERIAS`, no `build.py`, e o mapa entra no lugar do comentário `<!-- mapa -->` do guia. As apostilas aceitam questões de múltipla escolha (5 alternativas) e itens Certo ou Errado (2 alternativas, Certo primeiro).
+
+Todo o conteúdo é original e livre para estudo. Os guias seguem os editais de 2025; confira sempre o edital do seu concurso.
 
 - **Caderno de erros:** toda questão errada em qualquer caderno é guardada automaticamente (no navegador) e sai da lista quando o aluno acerta.
 - **Trilhas:** ordem de estudo e prioridades por estilo de banca (Cebraspe, FGV, FCC, Vunesp, Cesgranrio) e por área do cargo.

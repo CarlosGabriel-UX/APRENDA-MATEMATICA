@@ -326,6 +326,7 @@
       if (exp) exp.insertBefore(veredito, exp.firstChild);
 
       var itens = q.querySelectorAll("ol.alternativas > li");
+      if (itens.length === 2) q.classList.add("ce"); /* item Certo ou Errado */
       itens.forEach(function (li, i) {
         var botao = document.createElement("button");
         botao.type = "button";
@@ -351,8 +352,11 @@
           window.setTimeout(marcarAtiva, 50);
           veredito.className = "veredito " + (acertou ? "ok" : "nao");
           var texto = acertou
-            ? "Correto! Alternativa " + correta.toUpperCase() + "."
-            : "Não foi dessa vez. A resposta é a alternativa " + correta.toUpperCase() + ".";
+            ? (q.classList.contains("ce") ? "Correto! O item está " + (correta === "a" ? "Certo" : "Errado") + "."
+              : "Correto! Alternativa " + correta.toUpperCase() + ".")
+            : (q.classList.contains("ce")
+              ? "Não foi dessa vez. O item está " + (correta === "a" ? "Certo" : "Errado") + "."
+              : "Não foi dessa vez. A resposta é a alternativa " + correta.toUpperCase() + ".");
           if (acertou) {
             if (removerErro(id)) texto += " Ela saiu do seu caderno de erros.";
           } else if (pagina !== "erros") {
@@ -399,11 +403,33 @@
       });
       var barra = document.querySelector(".progresso-geral");
       if (barra) {
-        var total = document.querySelectorAll(".grade .cartao[data-slug]").length;
-        var n = feitos.filter(function (s) { return document.querySelector('.grade .cartao[data-slug="' + s + '"]'); }).length;
-        barra.querySelector(".valor").textContent = n + " de " + total + " cadernos estudados";
+        var naMatematica = Array.prototype.slice.call(
+          document.querySelectorAll('[data-bloco="matematica"] .cartao[data-slug]'));
+        var total = naMatematica.length;
+        var n = naMatematica.filter(function (c) { return feitos.indexOf(c.getAttribute("data-slug")) !== -1; }).length;
+        barra.querySelector(".valor").textContent = n + " de " + total + " cadernos de matemática estudados";
         barra.querySelector(".barra > span").style.width = (total ? (100 * n / total) : 0) + "%";
       }
+      /* Concursos: quantas matérias do plano já foram estudadas. */
+      document.querySelectorAll(".cartao.concurso[data-materias]").forEach(function (c) {
+        var lista = c.getAttribute("data-materias").split(",");
+        var feitas = lista.filter(function (s) { return feitos.indexOf(s) !== -1; }).length;
+        var alvo = c.querySelector(".ok-concurso");
+        if (alvo) alvo.textContent = feitas ? feitas + "/" + lista.length + " ✓" : "";
+        c.style.setProperty("--progresso", (100 * feitas / lista.length) + "%");
+      });
+      document.querySelectorAll("[data-mapa]").forEach(function (m) {
+        var itens = m.querySelectorAll("li[data-slug]");
+        var feitas = Array.prototype.filter.call(itens, function (li) {
+          var ok = feitos.indexOf(li.getAttribute("data-slug")) !== -1;
+          li.classList.toggle("estudada", ok);
+          return ok;
+        }).length;
+        var txt = m.querySelector(".mapa-progresso");
+        if (txt) txt.textContent = feitas + " de " + itens.length + " matérias estudadas" +
+          (feitas === itens.length ? ". Plano completo: agora é revisão e questões!" : "");
+        m.style.setProperty("--progresso", (100 * feitas / itens.length) + "%");
+      });
     }
 
     var botao = document.querySelector(".marcar-estudado");
@@ -445,6 +471,7 @@
         g.hidden = !visiveis;
         if (visiveis) algum = true;
       });
+      document.querySelectorAll(".titulo-bloco").forEach(function (t) { t.hidden = !!termo; });
       var vazio = document.querySelector(".sem-resultado");
       if (vazio) vazio.hidden = algum;
     });

@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aprenda Matemática: matemática para concursos grátis</title>
-<meta name="description" content="Cadernos gratuitos de matemática para concursos com teoria enxuta, atalhos para ganhar tempo, trilhas por banca e exercícios comentados.">
+<title>Aprenda Matemática: matemática e apostilas para concursos grátis</title>
+<meta name="description" content="Matemática e apostilas gratuitas para concursos: imersão para PM-SP, GCM São Paulo, Polícia Federal e Perito Criminal Federal, com atalhos de prova e questões comentadas.">
 <link rel="canonical" href="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Aprenda Matemática">
-<meta property="og:title" content="Aprenda Matemática: matemática para concursos grátis">
-<meta property="og:description" content="Cadernos gratuitos de matemática para concursos com teoria enxuta, atalhos para ganhar tempo, trilhas por banca e exercícios comentados.">
+<meta property="og:title" content="Aprenda Matemática: matemática e apostilas para concursos grátis">
+<meta property="og:description" content="Matemática e apostilas gratuitas para concursos: imersão para PM-SP, GCM São Paulo, Polícia Federal e Perito Criminal Federal, com atalhos de prova e questões comentadas.">
 <meta property="og:url" content="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#2357d9">
@@ -23,7 +23,7 @@
  "@type": "WebSite",
  "name": "Aprenda Matemática",
  "url": "https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/",
- "description": "Cadernos gratuitos de matemática para concursos com teoria enxuta, atalhos para ganhar tempo, trilhas por banca e exercícios comentados.",
+ "description": "Matemática e apostilas gratuitas para concursos: imersão para PM-SP, GCM São Paulo, Polícia Federal e Perito Criminal Federal, com atalhos de prova e questões comentadas.",
  "inLanguage": "pt-BR"
 }
 </script>
@@ -33,6 +33,7 @@
 <header class="topo">
   <a class="marca" href="index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2357d9"/><rect x="8" y="14.5" width="16" height="3" rx="1.5" fill="#fff"/><circle cx="16" cy="9" r="2.6" fill="#fff"/><circle cx="16" cy="23" r="2.6" fill="#fff"/></svg><span class="nome">Aprenda <span>Matemática</span></span></a>
   <nav class="nav-topo" aria-label="Atalhos">
+    <a href="cadernos/imersao.html" class="destaque">Imersão concursos</a>
     <a href="cadernos/trilhas.html">Trilhas</a>
     <a href="cadernos/formulario.html">Formulário</a>
     <a href="cadernos/erros.html">Erros <span class="contador" data-contagem-erros hidden></span></a>
@@ -44,18 +45,18 @@
 <main class="container" id="conteudo">
   <section class="hero">
     <div class="hero-texto">
-      <p class="sobretitulo">Gratuito · 14 cadernos · 66 questões comentadas</p>
-      <h1>Matemática para concursos,<br><span>direto ao ponto.</span></h1>
-      <p>Teoria enxuta, atalhos que economizam minutos na prova,
-      pegadinhas comuns das bancas e exercícios com resolução comentada.</p>
+      <p class="sobretitulo">Gratuito · 14 cadernos de matemática · 16 apostilas · 233 questões comentadas</p>
+      <h1>Estude para concursos<br><span>sem perder tempo.</span></h1>
+      <p>Matemática com atalhos de prova e uma imersão completa para PM-SP, GCM São Paulo,
+      Polícia Federal e Perito Criminal Federal: o que cai, em que ordem estudar e apostilas de todas as matérias.</p>
       <div class="acoes">
-        <a class="botao" href="cadernos/estrategias.html">Comece pelas estratégias</a>
-        <a class="botao secundario" href="cadernos/trilhas.html">Escolha sua trilha</a>
+        <a class="botao" href="cadernos/imersao.html">Começar a imersão</a>
+        <a class="botao secundario" href="#cadernos">Cadernos de matemática</a>
       </div>
     </div>
     <div class="hero-arte" aria-hidden="true">
-      <span style="--cor:#15803d">%</span><span style="--cor:#c2410c">½</span><span style="--cor:#6d28d9">∧</span>
-      <span style="--cor:#be185d">x=</span><span style="--cor:#a21caf">P</span><span style="--cor:#1d4ed8">÷</span>
+      <span style="--cor:#15803d">%</span><span style="--cor:#166534">CF</span><span style="--cor:#6d28d9">∧</span>
+      <span style="--cor:#be123c">Aa</span><span style="--cor:#991b1b">CP</span><span style="--cor:#1d4ed8">IP</span>
     </div>
   </section>
 
@@ -72,9 +73,44 @@
     </div>
   </section>
 
-  <input class="busca" type="search" placeholder="Buscar assunto (ex.: porcentagem, MMC, Bhaskara, negação…)" aria-label="Buscar assunto">
-  <div class="progresso-geral"><span class="valor"></span><div class="barra"><span></span></div></div>
+  <input class="busca" type="search" placeholder="Buscar concurso, matéria ou assunto (ex.: PF, crase, porcentagem, flagrante…)" aria-label="Buscar concurso, matéria ou assunto">
+  <p class="sem-resultado" hidden>Nada encontrado. Tente outra palavra.</p>
 
+  <section class="grupo-cadernos destaque-imersao">
+    <h2>Imersão: escolha seu concurso <small>Cada guia traz o mapa das matérias, a ordem de estudo e um plano semana a semana.</small></h2>
+    <div class="grade concursos">
+  <a class="cartao concurso" href="cadernos/concurso-pmsp.html" data-materias="portugues,porcentagem,razao-proporcao,regra-de-tres,fracoes,aritmetica,equacoes,geometria,estatistica,logica,direito-constitucional,direito-administrativo,informatica,historia,geografia,realidade-sp" data-termos="polícia militar soldado sp vunesp pmsp" style="--cor: #1e3a8a">
+    <span class="faixa"><span class="icone medio" style="--cor: #1e3a8a" aria-hidden="true">PM</span><span class="chip">VUNESP</span></span>
+    <h3>PM-SP: Soldado</h3>
+    <p>Soldado de 2ª Classe da Polícia Militar de São Paulo. Banca VUNESP, múltipla escolha.</p>
+    <span class="rodape"><span>16 matérias no plano</span><span class="ok-concurso"></span></span>
+  </a>
+  <a class="cartao concurso" href="cadernos/concurso-gcm-sp.html" data-materias="legislacao-especial,direito-constitucional,direito-penal,processo-penal,direito-administrativo,portugues,porcentagem,razao-proporcao,regra-de-tres,fracoes,aritmetica,equacoes,geometria,estatistica,sequencias,logica,realidade-sp,informatica" data-termos="guarda civil metropolitana municipal gcm sp vunesp" style="--cor: #0f766e">
+    <span class="faixa"><span class="icone longo" style="--cor: #0f766e" aria-hidden="true">GCM</span><span class="chip">VUNESP</span></span>
+    <h3>GCM São Paulo</h3>
+    <p>Guarda Civil Metropolitana da cidade de São Paulo. Banca VUNESP, 60 questões.</p>
+    <span class="rodape"><span>18 matérias no plano</span><span class="ok-concurso"></span></span>
+  </a>
+  <a class="cartao concurso" href="cadernos/concurso-pf.html" data-materias="portugues,direito-constitucional,direito-administrativo,direito-penal,processo-penal,legislacao-especial,informatica,ti-redes-seguranca,logica,estatistica,combinatoria,probabilidade,contabilidade" data-termos="polícia federal agente escrivão papiloscopista cebraspe cespe pf" style="--cor: #4b5563">
+    <span class="faixa"><span class="icone medio" style="--cor: #4b5563" aria-hidden="true">PF</span><span class="chip">CEBRASPE</span></span>
+    <h3>Polícia Federal: Agente, Escrivão e Papiloscopista</h3>
+    <p>Carreira policial federal de nível superior. Banca CEBRASPE, 120 itens de Certo ou Errado.</p>
+    <span class="rodape"><span>13 matérias no plano</span><span class="ok-concurso"></span></span>
+  </a>
+  <a class="cartao concurso" href="cadernos/concurso-perito-pf.html" data-materias="ti-redes-seguranca,ti-forense,ti-programacao-dados,informatica,criminalistica,portugues,direito-constitucional,direito-administrativo,direito-penal,processo-penal,direitos-humanos,logica,combinatoria,probabilidade" data-termos="perito criminal federal cibernético informática forense ti área 3 pcf" style="--cor: #7c3aed">
+    <span class="faixa"><span class="icone longo" style="--cor: #7c3aed" aria-hidden="true">PCF</span><span class="chip">CEBRASPE</span></span>
+    <h3>Perito Criminal Federal: Informática</h3>
+    <p>Perito da Polícia Federal, Área 3 (Informática Forense), o perito cibernético. Banca CEBRASPE.</p>
+    <span class="rodape"><span>14 matérias no plano</span><span class="ok-concurso"></span></span>
+  </a>
+    </div>
+  </section>
+
+  <div class="bloco" data-bloco="matematica">
+  <div class="titulo-bloco" id="cadernos">
+    <h2>Matemática e raciocínio lógico</h2>
+    <div class="progresso-geral"><span class="valor"></span><div class="barra"><span></span></div></div>
+  </div>
   <section class="grupo-cadernos">
     <h2>Comece aqui <small>Leia antes dos cadernos.</small></h2>
     <div class="grade">
@@ -197,12 +233,133 @@
   </a>
     </div>
   </section>
-  <p class="sem-resultado" hidden>Nenhum caderno encontrado. Tente outra palavra.</p>
+  </div>
+
+  <div class="titulo-bloco" id="apostilas">
+    <h2>Apostilas das outras matérias</h2>
+    <p>Teoria enxuta, atalhos, pegadinhas e questões no estilo VUNESP e CEBRASPE.</p>
+  </div>
+  <section class="grupo-cadernos">
+    <h2>Básicas</h2>
+    <div class="grade">
+  <a class="cartao" href="cadernos/portugues.html" data-slug="portugues" data-termos="português gramática interpretação crase concordância regência vírgula pontuação" style="--cor: #be123c">
+    <span class="icone medio" style="--cor: #be123c" aria-hidden="true">Aa</span>
+    <h3>Língua Portuguesa</h3>
+    <p>Interpretação, concordância, regência, crase, pontuação e reescrita, com os atalhos de cada banca.</p>
+    <span class="rodape"><span>Cai em: Todos</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/informatica.html" data-slug="informatica" data-termos="informática windows excel word internet email segurança atalhos linux" style="--cor: #0369a1">
+    <span class="icone curto" style="--cor: #0369a1" aria-hidden="true">⌨</span>
+    <h3>Noções de Informática</h3>
+    <p>Windows, Word, Excel, internet, e-mail, nuvem e segurança da informação.</p>
+    <span class="rodape"><span>Cai em: Todos</span><span class="ok"></span></span>
+  </a>
+    </div>
+  </section>
+  <section class="grupo-cadernos">
+    <h2>Direito</h2>
+    <div class="grade">
+  <a class="cartao" href="cadernos/direito-constitucional.html" data-slug="direito-constitucional" data-termos="constituição constitucional art 5 144 direitos fundamentais remédios habeas corpus" style="--cor: #166534">
+    <span class="icone medio" style="--cor: #166534" aria-hidden="true">CF</span>
+    <h3>Direito Constitucional</h3>
+    <p>Direitos fundamentais, direitos políticos, administração pública e segurança pública (art. 144).</p>
+    <span class="rodape"><span>Cai em: Todos</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/direito-administrativo.html" data-slug="direito-administrativo" data-termos="administrativo limpe atos poderes improbidade lai acesso informação 8112" style="--cor: #4d7c0f">
+    <span class="icone longo" style="--cor: #4d7c0f" aria-hidden="true">Adm</span>
+    <h3>Direito Administrativo</h3>
+    <p>Princípios, atos e poderes administrativos, agentes, improbidade e Lei de Acesso à Informação.</p>
+    <span class="rodape"><span>Cai em: Todos</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/direito-penal.html" data-slug="direito-penal" data-termos="penal crime código penal furto roubo homicídio peculato legítima defesa" style="--cor: #991b1b">
+    <span class="icone medio" style="--cor: #991b1b" aria-hidden="true">CP</span>
+    <h3>Direito Penal</h3>
+    <p>Princípios, teoria do crime, excludentes e os crimes que mais caem em provas policiais.</p>
+    <span class="rodape"><span>Cai em: GCM · PF</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/processo-penal.html" data-slug="processo-penal" data-termos="processo penal inquérito prisão flagrante preventiva provas custódia algemas" style="--cor: #9a3412">
+    <span class="icone longo" style="--cor: #9a3412" aria-hidden="true">CPP</span>
+    <h3>Processo Penal</h3>
+    <p>Inquérito, ação penal, prisões, provas, cadeia de custódia e Juizados Especiais.</p>
+    <span class="rodape"><span>Cai em: GCM · PF</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/legislacao-especial.html" data-slug="legislacao-especial" data-termos="drogas desarmamento tortura abuso autoridade maria da penha eca idoso guardas susp lgpd" style="--cor: #7e22ce">
+    <span class="icone longo" style="--cor: #7e22ce" aria-hidden="true">Lei</span>
+    <h3>Legislação Penal Especial</h3>
+    <p>Drogas, desarmamento, tortura, abuso de autoridade, Maria da Penha, ECA, guardas municipais e mais.</p>
+    <span class="rodape"><span>Cai em: GCM · PF</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/direitos-humanos.html" data-slug="direitos-humanos" data-termos="direitos humanos dudh san josé mandela uso da força" style="--cor: #0e7490">
+    <span class="icone medio" style="--cor: #0e7490" aria-hidden="true">DH</span>
+    <h3>Direitos Humanos</h3>
+    <p>Características, tratados, sistema interamericano, Regras de Mandela e uso da força.</p>
+    <span class="rodape"><span>Cai em: PF · Perito</span><span class="ok"></span></span>
+  </a>
+    </div>
+  </section>
+  <section class="grupo-cadernos">
+    <h2>Conhecimentos gerais</h2>
+    <div class="grade">
+  <a class="cartao" href="cadernos/historia.html" data-slug="historia" data-termos="história vargas ditadura guerra fria constituições" style="--cor: #92400e">
+    <span class="icone curto" style="--cor: #92400e" aria-hidden="true">⌛</span>
+    <h3>História</h3>
+    <p>Século XX no mundo e no Brasil: guerras, Guerra Fria, Era Vargas, regime militar e redemocratização.</p>
+    <span class="rodape"><span>Cai em: PM-SP</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/geografia.html" data-slug="geografia" data-termos="geografia biomas clima urbanização energia globalização" style="--cor: #15803d">
+    <span class="icone longo" style="--cor: #15803d" aria-hidden="true">Geo</span>
+    <h3>Geografia</h3>
+    <p>Brasil físico e humano, urbanização, energia, meio ambiente e geopolítica.</p>
+    <span class="rodape"><span>Cai em: PM-SP</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/realidade-sp.html" data-slug="realidade-sp" data-termos="atualidades realidades municipais cidade de são paulo subprefeituras" style="--cor: #b91c1c">
+    <span class="icone medio" style="--cor: #b91c1c" aria-hidden="true">SP</span>
+    <h3>Atualidades e Realidade de SP</h3>
+    <p>Como estudar atualidades e o que sempre cai sobre a cidade de São Paulo.</p>
+    <span class="rodape"><span>Cai em: PM-SP · GCM</span><span class="ok"></span></span>
+  </a>
+    </div>
+  </section>
+  <section class="grupo-cadernos">
+    <h2>Específicas</h2>
+    <div class="grade">
+  <a class="cartao" href="cadernos/contabilidade.html" data-slug="contabilidade" data-termos="contabilidade patrimônio balanço dre débito crédito" style="--cor: #0f766e">
+    <span class="icone longo" style="--cor: #0f766e" aria-hidden="true">D/C</span>
+    <h3>Contabilidade Geral</h3>
+    <p>Patrimônio, débito e crédito, balanço, DRE e regimes contábeis.</p>
+    <span class="rodape"><span>Cai em: PF (Agente e Escrivão)</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/criminalistica.html" data-slug="criminalistica" data-termos="criminalística perícia vestígio local de crime laudo cadeia de custódia" style="--cor: #334155">
+    <span class="icone curto" style="--cor: #334155" aria-hidden="true">⌕</span>
+    <h3>Noções de Criminalística</h3>
+    <p>Vestígios, local de crime, cadeia de custódia, laudo pericial e balística.</p>
+    <span class="rodape"><span>Cai em: Perito</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/ti-redes-seguranca.html" data-slug="ti-redes-seguranca" data-termos="redes tcp ip osi sub-rede criptografia hash segurança firewall" style="--cor: #1d4ed8">
+    <span class="icone medio" style="--cor: #1d4ed8" aria-hidden="true">IP</span>
+    <h3>Redes e Segurança</h3>
+    <p>TCP/IP, sub-redes, protocolos, ataques, criptografia e certificados digitais.</p>
+    <span class="rodape"><span>Cai em: Perito</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/ti-forense.html" data-slug="ti-forense" data-termos="forense computacional perícia digital ntfs imagem hash volatility celular" style="--cor: #4338ca">
+    <span class="icone curto" style="--cor: #4338ca" aria-hidden="true">#</span>
+    <h3>Computação Forense</h3>
+    <p>Coleta e preservação, imagem forense, sistemas de arquivos, artefatos e celulares.</p>
+    <span class="rodape"><span>Cai em: Perito</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/ti-programacao-dados.html" data-slug="ti-programacao-dados" data-termos="python sql banco de dados sistemas operacionais algoritmos machine learning" style="--cor: #a16207">
+    <span class="icone medio" style="--cor: #a16207" aria-hidden="true">{}</span>
+    <h3>Programação, SO e Dados</h3>
+    <p>Arquitetura, sistemas operacionais, SQL, Python, algoritmos e aprendizado de máquina.</p>
+    <span class="rodape"><span>Cai em: Perito</span><span class="ok"></span></span>
+  </a>
+    </div>
+  </section>
 
   <section class="secao-inicio">
-    <h2>Como estudar com os cadernos</h2>
+    <h2>Como estudar aqui</h2>
     <div class="passos">
-      <div><h3>Leia a teoria curta</h3><p>Cada caderno começa pelo essencial. Nada de páginas de definição que nunca caem.</p></div>
+      <div><h3>Escolha o concurso</h3><p>O guia mostra as matérias na ordem que dá mais pontos por hora de estudo.</p></div>
       <div><h3>Grave os atalhos</h3><p>As caixas verdes mostram o caminho mais rápido. É ali que você ganha tempo.</p></div>
       <div><h3>Evite as pegadinhas</h3><p>As caixas vermelhas mostram os erros que as bancas adoram explorar.</p></div>
       <div><h3>Treine e revise</h3><p>Resolva as questões. As que você errar vão para o caderno de erros até você acertar.</p></div>
@@ -217,7 +374,7 @@
 <button type="button" class="voltar-topo" aria-label="Voltar ao topo" hidden>↑</button>
 <nav class="nav-inferior" aria-label="Navegação principal">
   <a href="index.html"><span aria-hidden="true">⌂</span>Início</a>
-  <a href="cadernos/trilhas.html"><span aria-hidden="true">↗</span>Trilhas</a>
+  <a href="cadernos/imersao.html"><span aria-hidden="true">★</span>Imersão</a>
   <a href="cadernos/erros.html"><span aria-hidden="true">✗</span>Erros<span class="contador" data-contagem-erros hidden></span></a>
   <button type="button" class="botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span>Letra</button>
   <button type="button" class="botao-tema" aria-label="Alternar tema claro ou escuro">Tema</button>

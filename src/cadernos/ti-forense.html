@@ -1,0 +1,262 @@
+<p>Forense computacional é o núcleo da prova específica de Perito Criminal Federal Área 3 (Só PF, Perito). Cai o processo pericial, a preservação da evidência (imagem, hash, bloqueador de escrita, cadeia de custódia), sistemas de arquivos, artefatos do Windows, memória RAM e celulares. A apostila segue a ordem do trabalho do perito: do local do fato ao laudo.</p>
+
+<h2>Processo de forense computacional</h2>
+<p>As fases mais cobradas seguem o NIST (SP 800-86: coleta, exame, análise e relatório), muitas vezes com uma fase inicial de identificação:</p>
+<ol>
+<li><strong>Identificação</strong>: reconhecer os dispositivos e dados potencialmente relevantes (computadores, mídias, celulares, nuvem, roteadores).</li>
+<li><strong>Coleta e preservação</strong>: adquirir os dados sem alterá-los (imagem forense, bloqueador de escrita, hash) e documentar tudo.</li>
+<li><strong>Exame</strong>: extrair e filtrar dados relevantes da imagem (recuperação de apagados, indexação, descompressão, descriptografia, filtragem por hash).</li>
+<li><strong>Análise</strong>: interpretar os dados e correlacioná-los para responder aos quesitos (linha do tempo, autoria, vínculos).</li>
+<li><strong>Documentação / laudo</strong>: registrar métodos, ferramentas, hashes e conclusões de forma que outro perito possa reproduzir o trabalho.</li>
+</ol>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: exame x análise</span>
+<p>No exame o perito <strong>extrai e organiza</strong> dados; na análise ele <strong>interpreta</strong> e tira conclusões. Itens que trocam os dois conceitos costumam estar errados.</p></div>
+<div class="caixa dica"><span class="rotulo">Dica: princípios</span>
+<p>Trabalhe <strong>sempre sobre a cópia</strong>, nunca sobre o original. Todo procedimento deve ser repetível e documentado. Se for inevitável alterar algo (por exemplo, ao coletar memória de uma máquina ligada), registre o que foi feito e por quê.</p></div>
+
+<h2>Coleta e preservação</h2>
+<h3>Ordem de volatilidade (RFC 3227)</h3>
+<p>Colete primeiro o que se perde mais rápido:</p>
+<ol>
+<li>Registradores e cache da CPU.</li>
+<li>Tabela de roteamento, cache ARP, tabela de processos, estatísticas do kernel e <strong>memória RAM</strong>.</li>
+<li>Sistemas de arquivos temporários.</li>
+<li>Disco (armazenamento persistente).</li>
+<li>Logs remotos e dados de monitoramento.</li>
+<li>Configuração física e topologia da rede.</li>
+<li>Mídias de arquivamento (backups, fitas).</li>
+</ol>
+<div class="caixa atalho"><span class="rotulo">Atalho</span>
+<p>Do mais volátil para o menos volátil: <strong>CPU → RAM → temporários → disco → logs remotos → topologia → backup</strong>. Se a máquina está ligada, desligá-la antes de coletar a RAM perde processos, conexões e possíveis chaves de criptografia.</p></div>
+<h3>Imagem forense</h3>
+<p>Imagem forense é a cópia <strong>bit a bit</strong> de toda a mídia, incluindo espaço não alocado, slack e áreas apagadas. Uma cópia lógica (copiar e colar arquivos) só leva os arquivos ativos e altera metadados.</p>
+<pre><code>dd if=/dev/sdb of=/mnt/destino/evidencia.dd bs=4M conv=noerror,sync
+sha256sum /dev/sdb /mnt/destino/evidencia.dd</code></pre>
+<table>
+<tr><th>Formato</th><th>Características</th></tr>
+<tr><td>Raw / dd (.dd, .img, .001)</td><td>Cópia crua, sem metadados nem compressão; tamanho igual ao da mídia; lido por quase todas as ferramentas.</td></tr>
+<tr><td>E01 (EnCase / Expert Witness Format)</td><td>Formato forense: permite compressão, segmentação, guarda metadados do caso (examinador, número, notas), CRC por bloco e o hash da aquisição.</td></tr>
+<tr><td>AFF</td><td>Formato aberto com metadados; menos comum.</td></tr>
+</table>
+<p>Ferramentas: <code>dd</code>, <code>dc3dd</code>/<code>dcfldd</code> (versões forenses do dd que calculam hash durante a cópia), FTK Imager, Guymager e equipamentos duplicadores dedicados.</p>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: o E01 altera o conteúdo?</span>
+<p>Não. A compressão do E01 é sem perdas: ao montar ou exportar a imagem, os dados são exatamente os da mídia, e o hash calculado sobre o conteúdo é o mesmo da mídia original.</p></div>
+<h3>Bloqueador de escrita</h3>
+<p>Dispositivo de hardware ou software que permite <strong>só leitura</strong> da mídia questionada. Impede que o sistema operacional do perito grave qualquer coisa nela (o Windows, por exemplo, pode atualizar metadados ou criar arquivos de sistema ao montar um volume).</p>
+<h3>Hash para integridade</h3>
+<p>Calcula-se o hash (SHA-256, muitas vezes junto com MD5) da mídia original e da imagem. Valores iguais demonstram que a cópia é fiel. O hash vai para o laudo e permite que qualquer um confira, depois, que a evidência não foi alterada.</p>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>MD5 está quebrado para <strong>colisão</strong>, mas isso não significa que alguém consiga alterar uma evidência já coletada mantendo o mesmo hash (isso exigiria um ataque de segunda pré-imagem, que não é prático). Mesmo assim, a boa prática é registrar também SHA-256.</p></div>
+
+<h2>Cadeia de custódia digital</h2>
+<p>A cadeia de custódia está nos arts. 158-A a 158-F do CPP (Pacote Anticrime, Lei 13.964/2019) e vale também para vestígios digitais. Detalhes processuais em <a href="processo-penal.html">Processo Penal</a> e em <a href="criminalistica.html">Criminalística</a>.</p>
+<div class="caixa nota"><span class="rotulo">Letra da lei</span>
+<p>"Considera-se cadeia de custódia o conjunto de todos os procedimentos utilizados para manter e documentar a história cronológica do vestígio coletado em locais ou em vítimas de crimes, para rastrear sua posse e manuseio a partir de seu reconhecimento até o descarte." (art. 158-A do CPP)</p></div>
+<p>Etapas do art. 158-B: <strong>reconhecimento, isolamento, fixação, coleta, acondicionamento, transporte, recebimento, processamento, armazenamento e descarte</strong>.</p>
+<p>No mundo digital, documentar a cadeia significa registrar: quem apreendeu e manuseou, data e hora, número de série e estado dos equipamentos, lacres, hashes calculados, ferramentas e versões usadas, e cada transferência de posse.</p>
+<div class="caixa dica"><span class="rotulo">Dica</span>
+<p>O hash é a "assinatura" da evidência digital: se o hash calculado no laboratório bate com o registrado na coleta, a integridade fica demonstrada mesmo após várias transferências.</p></div>
+
+<h2>Sistemas de arquivos e timestamps</h2>
+<table>
+<tr><th></th><th>FAT32</th><th>NTFS</th><th>ext4</th></tr>
+<tr><td>Uso</td><td>Pen drives, cartões, compatibilidade</td><td>Windows</td><td>Linux, Android (partições de dados em muitos aparelhos)</td></tr>
+<tr><td>Estrutura de metadados</td><td>Tabela FAT + entradas de diretório</td><td><strong>MFT</strong> (Master File Table)</td><td><strong>inodes</strong></td></tr>
+<tr><td>Journaling</td><td>Não</td><td>Sim ($LogFile; $UsnJrnl registra alterações)</td><td>Sim</td></tr>
+<tr><td>Permissões</td><td>Não</td><td>Sim (ACLs)</td><td>Sim (dono, grupo, rwx)</td></tr>
+<tr><td>Limite de arquivo</td><td>4 GB menos 1 byte</td><td>Muito grande</td><td>Muito grande</td></tr>
+</table>
+<h3>FAT32</h3>
+<p>Ao apagar um arquivo, o primeiro caractere do nome na entrada de diretório é trocado por <code>0xE5</code> e os clusters são marcados como livres na FAT. Os dados continuam no disco até serem sobrescritos.</p>
+<h3>NTFS: MFT e ADS (Cai muito)</h3>
+<ul>
+<li>Tudo no NTFS é arquivo, inclusive a própria MFT (<code>$MFT</code>). Cada arquivo tem pelo menos um registro na MFT, em geral de 1.024 bytes.</li>
+<li>Atributos principais: <code>$STANDARD_INFORMATION</code> e <code>$FILE_NAME</code> (cada um com quatro timestamps) e <code>$DATA</code> (o conteúdo).</li>
+<li>Arquivos muito pequenos são <strong>residentes</strong>: o conteúdo fica dentro do próprio registro da MFT.</li>
+<li>Ao apagar, o registro é marcado como não usado, mas permanece até ser reaproveitado: dá para recuperar nome, timestamps e, às vezes, o conteúdo.</li>
+<li><strong>ADS (Alternate Data Streams)</strong>: um arquivo pode ter fluxos <code>$DATA</code> adicionais, com nome, invisíveis no Explorer e sem alterar o tamanho exibido. Sintaxe: <code>relatorio.txt:oculto.exe</code>. Uso legítimo: o fluxo <code>Zone.Identifier</code> marca arquivos baixados da internet. Uso malicioso: esconder dados ou malware.</li>
+</ul>
+<pre><code>echo segredo &gt; nota.txt:escondido.txt
+dir /r</code></pre>
+<p>O comando <code>dir /r</code> lista os ADS. Copiar o arquivo para FAT32 descarta os fluxos alternativos, pois esse sistema não os suporta.</p>
+<h3>ext4: inodes e journaling</h3>
+<ul>
+<li>O <strong>inode</strong> guarda metadados: tipo, permissões, dono, tamanho, timestamps e onde estão os dados (o ext4 usa <strong>extents</strong>).</li>
+<li>O inode <strong>não guarda o nome</strong> do arquivo: o nome fica na entrada de diretório, que aponta para o inode. Por isso existem hard links (vários nomes, um inode).</li>
+<li>O <strong>journal</strong> registra as operações antes de efetivá-las, o que dá consistência após quedas e, às vezes, guarda cópias antigas de metadados úteis à perícia.</li>
+</ul>
+<h3>Timestamps MAC(B)</h3>
+<table>
+<tr><th>Letra</th><th>NTFS</th><th>ext4 / Linux</th></tr>
+<tr><td>M</td><td>Modificação do conteúdo</td><td>mtime: modificação do conteúdo</td></tr>
+<tr><td>A</td><td>Último acesso (atualização pode estar desativada ou atrasada)</td><td>atime: último acesso</td></tr>
+<tr><td>C</td><td>Alteração do registro na MFT (metadados)</td><td>ctime: <strong>mudança do inode</strong> (metadados)</td></tr>
+<tr><td>B</td><td>Criação (born)</td><td>crtime: criação (existe no ext4)</td></tr>
+</table>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: ctime não é "creation"</span>
+<p>No Linux, <strong>ctime = change time</strong> (mudança de metadados, como permissões ou dono). A data de criação no ext4 é o crtime (ou "birth").</p></div>
+<div class="caixa atalho"><span class="rotulo">Atalho: criação depois da modificação</span>
+<p>No Windows, ao copiar um arquivo, a cópia ganha nova data de criação, mas mantém a data de modificação do original. Se a criação é <strong>posterior</strong> à modificação, há forte indício de que o arquivo foi copiado (ou baixado/extraído) para aquele local.</p></div>
+<div class="caixa dica"><span class="rotulo">Dica: timestomping</span>
+<p>Ferramentas antiforenses alteram timestamps. No NTFS, o <code>$STANDARD_INFORMATION</code> é fácil de alterar pelas APIs comuns, enquanto o <code>$FILE_NAME</code> é mais difícil. Divergência entre os dois é sinal de manipulação. O NTFS grava em UTC; o FAT grava em hora local, o que exige atenção ao fuso.</p></div>
+
+<h2>Arquivos apagados, carving e slack</h2>
+<p>Apagar (e esvaziar a lixeira) normalmente só libera a área; o conteúdo fica até ser sobrescrito. Formatação rápida também não zera os dados. Há dois caminhos de recuperação:</p>
+<ul>
+<li><strong>Pelos metadados</strong>: se o registro da MFT ou o inode ainda existe, recupera-se nome, datas e localização.</li>
+<li><strong>Data carving</strong>: ignora o sistema de arquivos e procura no fluxo bruto de bytes as <strong>assinaturas (magic numbers)</strong> de cabeçalho e rodapé. Recupera o conteúdo, mas não o nome nem as datas. Sofre com arquivos fragmentados. Ferramentas: PhotoRec, Foremost, Scalpel.</li>
+</ul>
+<table>
+<tr><th>Tipo</th><th>Assinatura (hex) no início</th><th>Observação</th></tr>
+<tr><td>JPEG</td><td><code>FF D8 FF</code></td><td>Termina em <code>FF D9</code></td></tr>
+<tr><td>PNG</td><td><code>89 50 4E 47</code> (seguido de 0D 0A 1A 0A)</td><td>"‰PNG"</td></tr>
+<tr><td>PDF</td><td><code>25 50 44 46</code></td><td>"%PDF"</td></tr>
+<tr><td>ZIP</td><td><code>50 4B 03 04</code></td><td>"PK". DOCX, XLSX, PPTX, JAR e APK também são ZIP</td></tr>
+<tr><td>GIF</td><td><code>47 49 46 38</code></td><td>"GIF8"</td></tr>
+<tr><td>Executável Windows</td><td><code>4D 5A</code></td><td>"MZ"</td></tr>
+<tr><td>ELF (Linux)</td><td><code>7F 45 4C 46</code></td><td>".ELF"</td></tr>
+</table>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha: extensão trocada</span>
+<p>Renomear <code>foto.jpg</code> para <code>planilha.xls</code> não muda os bytes: o arquivo continua começando com <code>FF D8 FF</code>. Ferramentas forenses detectam essa divergência por <strong>análise de assinatura</strong>.</p></div>
+<div class="caixa dica"><span class="rotulo">Dica: SSD e TRIM</span>
+<p>Em SSDs, o comando TRIM avisa o controlador que blocos foram liberados, e ele pode apagá-los internamente. Isso reduz muito a chance de recuperar arquivos apagados, ao contrário do HD magnético.</p></div>
+<h3>Slack space</h3>
+<p>O sistema de arquivos aloca espaço em <strong>clusters</strong> inteiros. O espaço entre o fim lógico do arquivo e o fim do último cluster é o <strong>file slack</strong>, que pode conter restos de arquivos anteriores. Também existe espaço não alocado (clusters livres) e volume slack (fim da partição não usado pelo sistema de arquivos).</p>
+<details class="exemplo"><summary>Clusters de 4.096 bytes e um arquivo de 10.000 bytes. Qual o tamanho do slack?</summary>
+<div class="resolucao">
+<p class="passo">Clusters necessários: 10.000 / 4.096 = 2,44, logo 3 clusters.</p>
+<p class="passo">Espaço alocado: 3 × 4.096 = 12.288 bytes.</p>
+<p class="resposta-final">Resposta: slack de 12.288 − 10.000 = 2.288 bytes.</p></div></details>
+
+<h2>Artefatos do Windows</h2>
+<h3>Registro</h3>
+<table>
+<tr><th>Hive</th><th>Local</th><th>O que interessa</th></tr>
+<tr><td>SAM</td><td>Windows\System32\config</td><td>Contas locais e hashes de senha</td></tr>
+<tr><td>SYSTEM</td><td>Windows\System32\config</td><td>Configuração, serviços, fuso horário, <strong>dispositivos USB (USBSTOR)</strong></td></tr>
+<tr><td>SOFTWARE</td><td>Windows\System32\config</td><td>Programas instalados, versão do Windows, chaves <strong>Run</strong> (persistência)</td></tr>
+<tr><td>SECURITY</td><td>Windows\System32\config</td><td>Políticas de segurança</td></tr>
+<tr><td>NTUSER.DAT</td><td>Pasta do perfil do usuário</td><td>Atividade do usuário: RecentDocs, UserAssist, TypedPaths, MRUs, Run do usuário</td></tr>
+</table>
+<p>Cada chave do registro tem um <strong>last write time</strong>, útil para a linha do tempo. O UserAssist guarda programas executados pela interface gráfica, com nomes codificados em ROT13.</p>
+<h3>Outros artefatos que caem</h3>
+<ul>
+<li><strong>Prefetch</strong> (<code>C:\Windows\Prefetch\*.pf</code>): prova de <strong>execução</strong> de programas, com nome do executável, quantidade de execuções e datas das últimas execuções.</li>
+<li><strong>Arquivos LNK</strong> (atalhos, pasta Recent): caminho do arquivo-alvo, timestamps do alvo, número de série do volume e tipo de unidade. Mostram que um arquivo foi aberto, mesmo que já não exista ou estivesse em pen drive. As <strong>Jump Lists</strong> trazem informação parecida por programa.</li>
+<li><strong>Logs de eventos</strong> (<code>.evtx</code>, em <code>System32\winevt\Logs</code>). IDs clássicos do log de Segurança: <strong>4624</strong> logon bem-sucedido, <strong>4625</strong> falha de logon, 4634 logoff, 4688 criação de processo, 4720 conta criada, <strong>1102</strong> log de auditoria apagado.</li>
+<li><strong>Lixeira</strong> (<code>$Recycle.Bin</code>): para cada item, um arquivo <code>$I</code> (nome original, caminho e data da exclusão) e um <code>$R</code> (conteúdo).</li>
+<li><code>pagefile.sys</code> e <code>hiberfil.sys</code>: contêm pedaços de memória que foram parar no disco. Cópias de sombra (Volume Shadow Copies) guardam versões antigas de arquivos.</li>
+</ul>
+<div class="caixa atalho"><span class="rotulo">Atalho: que artefato prova o quê</span>
+<p>Executou programa → Prefetch, UserAssist, 4688. Abriu arquivo → LNK, Jump Lists, RecentDocs. Conectou pen drive → USBSTOR (SYSTEM), LNK com volume removível. Entrou no sistema → 4624. Tentou apagar rastros → 1102.</p></div>
+
+<h2>Forense de memória RAM</h2>
+<p>A RAM guarda o que não está no disco: processos em execução (inclusive malware que só existe em memória), conexões de rede, comandos digitados, senhas e <strong>chaves de criptografia</strong> de volumes abertos (BitLocker, VeraCrypt). Por isso, com a máquina ligada, a coleta da memória vem antes do desligamento.</p>
+<ul>
+<li>Coleta: FTK Imager, DumpIt, WinPmem (Windows); LiME (Linux). A ferramenta de coleta altera um pouco a memória, o que deve ser documentado.</li>
+<li>Análise: <strong>Volatility</strong>, framework de código aberto em Python. No Volatility 2 era preciso indicar o perfil do sistema; o Volatility 3 usa tabelas de símbolos e identifica o sistema automaticamente.</li>
+</ul>
+<table>
+<tr><th>Plugin (Volatility 3)</th><th>Para quê</th></tr>
+<tr><td><code>windows.pslist</code> / <code>windows.pstree</code></td><td>Lista processos seguindo a lista encadeada do kernel / mostra a árvore pai-filho</td></tr>
+<tr><td><code>windows.psscan</code></td><td>Varre a memória por estruturas de processo: acha processos encerrados ou escondidos por rootkit</td></tr>
+<tr><td><code>windows.netscan</code></td><td>Conexões e portas de rede</td></tr>
+<tr><td><code>windows.cmdline</code></td><td>Linha de comando de cada processo</td></tr>
+<tr><td><code>windows.malfind</code></td><td>Regiões de memória suspeitas de código injetado</td></tr>
+</table>
+<div class="caixa dica"><span class="rotulo">Dica</span>
+<p>Um processo que aparece no <code>psscan</code> e não no <code>pslist</code> pode ter sido desvinculado da lista do kernel (técnica de ocultação) ou simplesmente já ter terminado. A comparação entre os dois é clássica.</p></div>
+
+<h2>Dispositivos móveis</h2>
+<h3>Preservação</h3>
+<ul>
+<li>Isolar o aparelho da rede: <strong>modo avião</strong> ou <strong>bolsa/gaiola de Faraday</strong>. Evita apagamento remoto, chegada de novas mensagens que sobrescrevem dados e alterações de localização.</li>
+<li>Se estiver ligado e desbloqueado, manter ligado e carregado: desligar pode devolver o aparelho ao estado BFU (antes do primeiro desbloqueio), em que a criptografia protege a maior parte dos dados.</li>
+<li>Registrar o estado da tela, fotografar e anotar IMEI, modelo e operadora. O SIM card e o cartão de memória podem ser examinados à parte.</li>
+</ul>
+<h3>Tipos de extração</h3>
+<table>
+<tr><th>Tipo</th><th>O que obtém</th><th>Observação</th></tr>
+<tr><td>Manual</td><td>Fotos ou vídeos da tela navegada pelo perito</td><td>Último recurso; só o que aparece na tela</td></tr>
+<tr><td>Lógica</td><td>Dados acessíveis pelas interfaces do sistema ou backup (contatos, SMS, fotos, parte dos apps)</td><td>Mais simples e rápida; não traz apagados</td></tr>
+<tr><td>Sistema de arquivos (full file system)</td><td>Árvore completa de arquivos, incluindo bancos SQLite dos aplicativos</td><td>Permite recuperar registros apagados dentro dos bancos (páginas livres, arquivos WAL)</td></tr>
+<tr><td>Física</td><td>Cópia bit a bit da memória flash</td><td>Mais completa; cada vez mais limitada pela criptografia dos aparelhos modernos</td></tr>
+<tr><td>Chip-off / JTAG / ISP</td><td>Leitura direta do chip ou por pontos de teste da placa</td><td>Invasiva; usada em aparelhos danificados ou bloqueados</td></tr>
+</table>
+<p>Ferramentas comerciais comuns: Cellebrite UFED, MSAB XRY e Magnet AXIOM. Mensagens de aplicativos ficam, em geral, em bancos <strong>SQLite</strong>.</p>
+<div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
+<p>Extração lógica <strong>não</strong> é cópia bit a bit e, em regra, não recupera dados apagados. Itens que atribuem à extração lógica a obtenção do espaço não alocado estão errados.</p></div>
+
+<h2>Metadados, esteganografia e ferramentas</h2>
+<h3>Metadados</h3>
+<ul>
+<li><strong>EXIF</strong> (fotos JPEG e outras): fabricante e modelo da câmera, data e hora da captura, configurações, orientação, miniatura e, se ativado, <strong>coordenadas GPS</strong>. Muitas redes sociais removem o EXIF no upload.</li>
+<li>Documentos do Office (DOCX é um ZIP): autor, último a salvar, datas e número de revisões em <code>docProps/core.xml</code>. PDFs também guardam autor, software produtor e datas.</li>
+<li>Metadados são editáveis: servem como indício, a ser corroborado com outras fontes.</li>
+</ul>
+<h3>Esteganografia (noções)</h3>
+<p>Esteganografia <strong>esconde a existência</strong> da mensagem dentro de outro arquivo (imagem, áudio, vídeo); criptografia esconde o <strong>conteúdo</strong>, mas todos veem que há uma mensagem. A técnica clássica é o <strong>LSB</strong>: alterar o bit menos significativo dos pixels, mudança imperceptível ao olho. A detecção (esteganálise) usa análise estatística e comparação com o arquivo original: se houver a imagem original, hashes diferentes com aparência idêntica são um sinal. As duas técnicas podem ser combinadas (cifrar e depois esconder).</p>
+<h3>Ferramentas</h3>
+<table>
+<tr><th>Ferramenta</th><th>Função</th></tr>
+<tr><td>The Sleuth Kit (TSK)</td><td>Conjunto de linha de comando para sistemas de arquivos: <code>mmls</code> (partições), <code>fsstat</code>, <code>fls</code> (lista arquivos, inclusive apagados), <code>istat</code> (metadados de um inode/registro), <code>icat</code> (extrai conteúdo)</td></tr>
+<tr><td>Autopsy</td><td>Interface gráfica de código aberto construída sobre o TSK: linha do tempo, palavras-chave, hash, artefatos web</td></tr>
+<tr><td>FTK Imager</td><td>Aquisição de imagens (dd, E01), cálculo de hash, visualização prévia, montagem de imagens e captura de memória</td></tr>
+<tr><td><strong>IPED</strong></td><td>Indexador e Processador de Evidências Digitais, desenvolvido por peritos da Polícia Federal, de código aberto e escrito em Java: processa imagens e extrações em grande volume, indexa, faz busca por palavra-chave, OCR, categorização e filtragem por hash</td></tr>
+<tr><td>EnCase, X-Ways, Magnet AXIOM</td><td>Suítes comerciais de análise</td></tr>
+</table>
+<div class="caixa dica"><span class="rotulo">Dica: filtragem por hash</span>
+<p>Bases de hashes de arquivos <strong>conhecidos e inofensivos</strong> (como a NSRL, do NIST, com arquivos de sistemas e programas) permitem ignorar milhares de arquivos. Bases de hashes de arquivos <strong>de interesse</strong> (como material de abuso sexual infantil já catalogado) permitem alertar automaticamente.</p></div>
+<p><strong>Convenção de Budapeste:</strong> tratado do Conselho da Europa sobre crimes cibernéticos e cooperação internacional (inclusive preservação expedita de dados), promulgado no Brasil pelo Decreto 11.491/2023; veja <a href="legislacao-especial.html">Legislação Especial</a>.</p>
+
+<h2>Questões</h2>
+<div class="questao" data-correta="b">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> Segundo a ordem de volatilidade da RFC 3227, o perito deve priorizar a coleta do conteúdo do disco rígido em relação ao conteúdo da memória RAM, pois o disco concentra maior volume de dados.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>A ordem é do mais volátil para o menos volátil. A RAM vem antes do disco, independentemente do volume, porque se perde ao desligar.</p></div>
+</div>
+<div class="questao" data-correta="c">
+<p class="enunciado">Durante o carving em uma imagem, o perito encontra um bloco que começa com os bytes 25 50 44 46. Trata-se, provavelmente, do início de um arquivo:</p>
+<ol class="alternativas"><li>JPEG.</li><li>ZIP.</li><li>PDF.</li><li>PNG.</li><li>executável do Windows.</li></ol>
+<div class="explicacao"><p>25 50 44 46 é "%PDF" em ASCII. JPEG começa com FF D8 FF, ZIP com 50 4B 03 04, PNG com 89 50 4E 47 e executável Windows com 4D 5A.</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> No sistema de arquivos NTFS, é possível associar a um arquivo um fluxo de dados alternativo (ADS) cujo conteúdo não aparece no tamanho exibido pelo Explorer, o que pode ser usado para ocultar informações.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>ADS são fluxos $DATA adicionais com nome. O Explorer mostra só o fluxo principal; o comando dir /r e as ferramentas forenses os revelam.</p></div>
+</div>
+<div class="questao" data-correta="b">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> No ext4, o campo ctime do inode registra a data de criação do arquivo, e o nome do arquivo é armazenado no próprio inode.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Dois erros: ctime é change time (mudança de metadados), e o nome fica na entrada de diretório, não no inode. A criação no ext4 é o crtime.</p></div>
+</div>
+<div class="questao" data-correta="e">
+<p class="enunciado">Em um sistema com clusters de 4.096 bytes, um arquivo de 5.000 bytes deixa, no último cluster alocado, um file slack de:</p>
+<ol class="alternativas"><li>904 bytes.</li><li>4.096 bytes.</li><li>1.000 bytes.</li><li>0 byte, pois o NTFS ajusta o cluster ao tamanho do arquivo.</li><li>3.192 bytes.</li></ol>
+<div class="explicacao"><p>São necessários 2 clusters (8.192 bytes). Slack = 8.192 − 5.000 = 3.192 bytes. A letra A (904) é o quanto o arquivo excede o primeiro cluster, não o espaço que sobra no último.</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> A extração física de um celular busca obter uma cópia bit a bit da memória do aparelho, o que pode permitir a recuperação de dados apagados que não seriam obtidos em uma extração lógica.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>A extração física é a mais completa, embora a criptografia dos aparelhos modernos a limite. A lógica traz apenas o que o sistema expõe.</p></div>
+</div>
+<div class="questao" data-correta="d">
+<p class="enunciado">Para demonstrar que um programa específico foi executado em um computador com Windows, o artefato mais diretamente indicado é:</p>
+<ol class="alternativas"><li>o hive SAM.</li><li>o arquivo $I da lixeira.</li><li>a chave USBSTOR do hive SYSTEM.</li><li>o arquivo .pf correspondente na pasta Prefetch.</li><li>o fluxo Zone.Identifier.</li></ol>
+<div class="explicacao"><p>O Prefetch registra execução, contagem e datas das últimas execuções. SAM traz contas, $I traz exclusões, USBSTOR traz dispositivos USB e Zone.Identifier indica origem de download, não execução.</p></div>
+</div>
+<div class="questao" data-correta="b">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> Se o hash SHA-256 da imagem forense for diferente do hash da mídia original, conclui-se que a imagem é fiel, pois o algoritmo usa valores aleatórios a cada cálculo.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>Hash é determinístico: a mesma entrada sempre gera o mesmo resumo. Hashes diferentes indicam que os dados diferem, e a cópia não é fiel.</p></div>
+</div>
+<div class="questao" data-correta="c">
+<p class="enunciado">Um celular apreendido ligado e desbloqueado deve, para preservar seus dados, ser preferencialmente:</p>
+<ol class="alternativas"><li>desligado imediatamente e encaminhado ao laboratório.</li><li>mantido conectado à rede para sincronizar os dados da nuvem.</li><li>isolado da rede (modo avião ou bolsa de Faraday) e mantido energizado.</li><li>reiniciado em modo de segurança antes da extração.</li><li>formatado para remover aplicativos maliciosos.</li></ol>
+<div class="explicacao"><p>Isolar evita apagamento remoto e novos dados; manter ligado preserva o estado em que a criptografia está desbloqueada. Desligar (A) ou reiniciar (D) pode levar ao estado BFU.</p></div>
+</div>
+<div class="questao" data-correta="a">
+<p class="enunciado"><span class="tag-banca">Certo ou errado</span> A esteganografia busca ocultar a própria existência da mensagem, enquanto a criptografia torna o conteúdo ininteligível sem esconder que há uma comunicação.</p>
+<ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
+<div class="explicacao"><p>É exatamente a diferença conceitual cobrada. As técnicas podem ser combinadas.</p></div>
+</div>
