@@ -16,7 +16,7 @@ Todo o conteúdo é original e livre para estudo.
 
 ## Como funciona
 
-O site é estático (HTML, CSS e JavaScript puro, sem dependências) e roda direto no GitHub Pages.
+O site é estático (HTML, CSS e JavaScript puro) e roda direto no GitHub Pages. A única biblioteca é o [KaTeX](https://katex.org) (licença MIT), copiado em `assets/vendor/katex/` para desenhar as fórmulas sem depender de CDN. Se ele não carregar, a fórmula aparece em texto simples.
 
 ```
 src/cadernos/*.html   conteúdo de cada caderno (só o miolo, em HTML simples)
@@ -38,7 +38,8 @@ Blocos disponíveis no conteúdo:
 <div class="caixa atalho"><span class="rotulo">Atalho</span><p>…</p></div>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span><p>…</p></div>
 <div class="caixa dica"><span class="rotulo">Dica</span><p>…</p></div>
-<span class="formula">M = C × (1 + i)ᵗ</span>
+<span class="formula" data-tex="M = C\,(1 + i)^t">M = C × (1 + i)ᵗ</span>   <!-- data-tex em LaTeX; o texto é o reserva -->
+<figure class="figura"><svg …>…</svg><figcaption>Legenda</figcaption></figure>
 
 <details class="exemplo"><summary>Enunciado do exemplo</summary>
 <div class="resolucao"><p class="passo">…</p><p class="resposta-final">Resposta: …</p></div></details>

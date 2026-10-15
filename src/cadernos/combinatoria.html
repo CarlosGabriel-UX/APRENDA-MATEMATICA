@@ -32,11 +32,11 @@
 </table>
 
 <h2>Permutação: todos em fila</h2>
-<span class="formula">Pₙ = n!</span>
+<span class="formula" data-tex="P_n = n!">Pₙ = n!</span>
 <p>Anagramas de AMOR: 4! = 24.</p>
 <h3>Com repetição</h3>
 <p>Divida pelo fatorial de cada letra repetida.</p>
-<span class="formula">ARARA: 5! / (3! × 2!) = 120 / 12 = 10</span>
+<span class="formula" data-tex="\text{ARARA: } \dfrac{5!}{3!\,\cdot\,2!} = \dfrac{120}{12} = 10">ARARA: 5! / (3! × 2!) = 120 / 12 = 10</span>
 <div class="caixa atalho"><span class="rotulo">Atalho: "juntos" vira um bloco</span>
 <p>Se algumas pessoas devem ficar juntas, trate-as como um bloco único. Permute os blocos e depois permute quem está dentro do bloco.</p>
 <p>5 pessoas em fila, com Ana e Bia juntas: blocos = 4 → 4! = 24; dentro do bloco, 2! = 2. Total: 48.</p></div>
@@ -46,11 +46,11 @@
 <p>n pessoas ao redor de uma mesa redonda: <span class="m">(n − 1)!</span>. Fixe uma pessoa e permute as outras.</p>
 
 <h2>Arranjo: escolher alguns, com ordem</h2>
-<span class="formula">A(n, p) = n! / (n − p)!</span>
+<span class="formula" data-tex="A(n, p) = \dfrac{n!}{(n-p)!}">A(n, p) = n! / (n − p)!</span>
 <p>Na prática, é o produto dos tracinhos: pódio (1º, 2º e 3º) de 8 corredores = 8 × 7 × 6 = 336.</p>
 
 <h2>Combinação: escolher alguns, sem ordem</h2>
-<span class="formula">C(n, p) = n! / [p! (n − p)!]</span>
+<span class="formula" data-tex="C(n, p) = \dfrac{n!}{p!\,(n-p)!}">C(n, p) = n! / [p! (n − p)!]</span>
 <div class="caixa atalho"><span class="rotulo">Atalho: faça o arranjo e divida por p!</span>
 <p>C(10, 3) = (10 × 9 × 8) / (3 × 2 × 1) = 720 / 6 = 120.</p>
 <p>E use a simetria: <span class="m">C(n, p) = C(n, n − p)</span>. C(20, 18) = C(20, 2) = 190.</p></div>

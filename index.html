@@ -14,7 +14,7 @@
 <meta property="og:url" content="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#2357d9">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>➗</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232357d9'/%3E%3Crect x='8' y='14.5' width='16' height='3' rx='1.5' fill='%23fff'/%3E%3Ccircle cx='16' cy='9' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='23' r='2.6' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="assets/js/app.js"></script>
 <script type="application/ld+json">
@@ -31,133 +31,173 @@
 <body data-pagina="inicio" data-titulo="Aprenda Matemática">
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="topo">
-  <a class="marca" href="index.html">Aprenda <span>Matemática</span></a>
-  <nav>
+  <a class="marca" href="index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2357d9"/><rect x="8" y="14.5" width="16" height="3" rx="1.5" fill="#fff"/><circle cx="16" cy="9" r="2.6" fill="#fff"/><circle cx="16" cy="23" r="2.6" fill="#fff"/></svg><span class="nome">Aprenda <span>Matemática</span></span></a>
+  <nav class="nav-topo" aria-label="Atalhos">
     <a href="cadernos/trilhas.html">Trilhas</a>
     <a href="cadernos/formulario.html">Formulário</a>
     <a href="cadernos/erros.html">Erros <span class="contador" data-contagem-erros hidden></span></a>
-    <button type="button" class="botao-tema">🌙 Escuro</button>
+    <button type="button" class="botao-fonte" aria-label="Mudar o tamanho da letra">Aa</button>
+    <button type="button" class="botao-tema" aria-label="Alternar tema claro ou escuro">🌙 Escuro</button>
   </nav>
 </header>
-<main class="container">
+<div class="progresso-leitura" aria-hidden="true"><span></span></div>
+<main class="container" id="conteudo">
   <section class="hero">
-    <h1>Matemática para concursos,<br>direto ao ponto.</h1>
-    <p>Cadernos gratuitos com teoria enxuta, atalhos que economizam minutos na prova,
-    pegadinhas comuns das bancas e exercícios com resolução comentada.</p>
-    <div class="acoes">
-      <a class="botao" href="cadernos/estrategias.html">Comece pelas estratégias</a>
-      <a class="botao secundario" href="cadernos/trilhas.html">Escolha sua trilha</a>
-      <a class="botao secundario" href="cadernos/erros.html">Meu caderno de erros <span class="contador" data-contagem-erros hidden></span></a>
+    <div class="hero-texto">
+      <p class="sobretitulo">Gratuito · 14 cadernos · 66 questões comentadas</p>
+      <h1>Matemática para concursos,<br><span>direto ao ponto.</span></h1>
+      <p>Teoria enxuta, atalhos que economizam minutos na prova,
+      pegadinhas comuns das bancas e exercícios com resolução comentada.</p>
+      <div class="acoes">
+        <a class="botao" href="cadernos/estrategias.html">Comece pelas estratégias</a>
+        <a class="botao secundario" href="cadernos/trilhas.html">Escolha sua trilha</a>
+      </div>
+    </div>
+    <div class="hero-arte" aria-hidden="true">
+      <span style="--cor:#15803d">%</span><span style="--cor:#c2410c">½</span><span style="--cor:#6d28d9">∧</span>
+      <span style="--cor:#be185d">x=</span><span style="--cor:#a21caf">P</span><span style="--cor:#1d4ed8">÷</span>
+    </div>
+  </section>
+
+  <section class="painel" aria-label="Seu progresso">
+    <a class="continuar" data-continuar hidden href="#">
+      <span class="rotulo-pequeno">Continue de onde parou</span>
+      <strong class="titulo-continuar"></strong>
+      <span class="seta" aria-hidden="true">→</span>
+    </a>
+    <div class="estatisticas">
+      <div><strong data-estat="resolvidas">0</strong><span>questões resolvidas</span></div>
+      <div><strong data-estat="acerto">–</strong><span>de acerto</span></div>
+      <a href="cadernos/erros.html"><strong data-estat="erros">0</strong><span>no caderno de erros</span></a>
     </div>
   </section>
 
   <input class="busca" type="search" placeholder="Buscar assunto (ex.: porcentagem, MMC, Bhaskara, negação…)" aria-label="Buscar assunto">
   <div class="progresso-geral"><span class="valor"></span><div class="barra"><span></span></div></div>
 
-  <div class="grade">
-  <a class="cartao" href="cadernos/estrategias.html" data-slug="estrategias" data-termos="tempo chute eliminar alternativas estimativa">
-    <span class="icone">⏱️</span>
+  <section class="grupo-cadernos">
+    <h2>Comece aqui <small>Leia antes dos cadernos.</small></h2>
+    <div class="grade">
+  <a class="cartao" href="cadernos/estrategias.html" data-slug="estrategias" data-termos="tempo chute eliminar alternativas estimativa" style="--cor: #475569">
+    <span class="icone curto" style="--cor: #475569" aria-hidden="true">≈</span>
     <h3>Estratégias de prova</h3>
     <p>Como ganhar tempo: ordem de resolução, eliminação de alternativas, estimativa e teste das respostas.</p>
     <span class="rodape"><span>Leia primeiro</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/trilhas.html" data-slug="trilhas" data-termos="banca cebraspe fgv vunesp fcc cesgranrio policial fiscal bancário tribunais roteiro">
-    <span class="icone">🧭</span>
+  <a class="cartao" href="cadernos/trilhas.html" data-slug="trilhas" data-termos="banca cebraspe fgv vunesp fcc cesgranrio policial fiscal bancário tribunais roteiro" style="--cor: #0f766e">
+    <span class="icone curto" style="--cor: #0f766e" aria-hidden="true">↗</span>
     <h3>Trilhas por banca e área</h3>
     <p>Em que ordem estudar e onde concentrar o tempo conforme o estilo da banca e a área do cargo.</p>
     <span class="rodape"><span>Planejamento</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/formulario.html" data-slug="formulario" data-termos="fórmulas resumo revisão véspera">
-    <span class="icone">📋</span>
+  <a class="cartao" href="cadernos/formulario.html" data-slug="formulario" data-termos="fórmulas resumo revisão véspera" style="--cor: #4338ca">
+    <span class="icone curto" style="--cor: #4338ca" aria-hidden="true">∑</span>
     <h3>Formulário de bolso</h3>
     <p>Todas as fórmulas e atalhos dos cadernos numa página só, para revisar na véspera.</p>
     <span class="rodape"><span>Revisão</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/aritmetica.html" data-slug="aritmetica" data-termos="mmc mdc primos potência raiz divisores expressão numérica">
-    <span class="icone">🔢</span>
+    </div>
+  </section>
+  <section class="grupo-cadernos">
+    <h2>Básico <small>A base que aparece em quase toda prova.</small></h2>
+    <div class="grade">
+  <a class="cartao" href="cadernos/aritmetica.html" data-slug="aritmetica" data-termos="mmc mdc primos potência raiz divisores expressão numérica" style="--cor: #1d4ed8">
+    <span class="icone curto" style="--cor: #1d4ed8" aria-hidden="true">÷</span>
     <h3>Aritmética e divisibilidade</h3>
     <p>Operações, potências, raízes, critérios de divisibilidade, MMC e MDC.</p>
     <span class="rodape"><span>Cai muito</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/fracoes.html" data-slug="fracoes" data-termos="fração decimal dízima geratriz">
-    <span class="icone">🍕</span>
+  <a class="cartao" href="cadernos/fracoes.html" data-slug="fracoes" data-termos="fração decimal dízima geratriz" style="--cor: #c2410c">
+    <span class="icone curto" style="--cor: #c2410c" aria-hidden="true">½</span>
     <h3>Frações e números decimais</h3>
     <p>Simplificar, comparar e operar frações; dízimas periódicas e conversões.</p>
     <span class="rodape"><span>Cai muito</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/porcentagem.html" data-slug="porcentagem" data-termos="por cento desconto acréscimo aumento lucro prejuízo">
-    <span class="icone">💯</span>
+  <a class="cartao" href="cadernos/porcentagem.html" data-slug="porcentagem" data-termos="por cento desconto acréscimo aumento lucro prejuízo" style="--cor: #15803d">
+    <span class="icone curto" style="--cor: #15803d" aria-hidden="true">%</span>
     <h3>Porcentagem</h3>
     <p>Fator multiplicativo, aumentos e descontos sucessivos, variação percentual.</p>
     <span class="rodape"><span>Cai muito</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/razao-proporcao.html" data-slug="razao-proporcao" data-termos="escala divisão proporcional diretamente inversamente">
-    <span class="icone">⚖️</span>
+  <a class="cartao" href="cadernos/razao-proporcao.html" data-slug="razao-proporcao" data-termos="escala divisão proporcional diretamente inversamente" style="--cor: #6d28d9">
+    <span class="icone longo" style="--cor: #6d28d9" aria-hidden="true">a:b</span>
     <h3>Razão e proporção</h3>
     <p>Razões, propriedades das proporções, escalas e divisão proporcional.</p>
     <span class="rodape"><span>Cai muito</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/regra-de-tres.html" data-slug="regra-de-tres" data-termos="regra de três composta simples operários dias">
-    <span class="icone">📐</span>
+  <a class="cartao" href="cadernos/regra-de-tres.html" data-slug="regra-de-tres" data-termos="regra de três composta simples operários dias" style="--cor: #0e7490">
+    <span class="icone curto" style="--cor: #0e7490" aria-hidden="true">∝</span>
     <h3>Regra de três</h3>
     <p>Simples e composta, com o método das setas e o atalho da causa e consequência.</p>
     <span class="rodape"><span>Cai muito</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/juros.html" data-slug="juros" data-termos="juros montante capital taxa desconto financeira">
-    <span class="icone">💰</span>
-    <h3>Juros simples e compostos</h3>
-    <p>Capital, taxa, tempo e montante; taxas equivalentes e desconto.</p>
-    <span class="rodape"><span>Cai com frequência</span><span class="ok"></span></span>
-  </a>
-  <a class="cartao" href="cadernos/equacoes.html" data-slug="equacoes" data-termos="equação bhaskara delta sistema incógnita">
-    <span class="icone">✖️</span>
+  <a class="cartao" href="cadernos/equacoes.html" data-slug="equacoes" data-termos="equação bhaskara delta sistema incógnita" style="--cor: #be185d">
+    <span class="icone medio" style="--cor: #be185d" aria-hidden="true">x=</span>
     <h3>Equações e sistemas</h3>
     <p>1º e 2º grau, soma e produto das raízes, sistemas lineares e problemas.</p>
     <span class="rodape"><span>Cai muito</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/funcoes.html" data-slug="funcoes" data-termos="função afim quadrática vértice gráfico parábola">
-    <span class="icone">📈</span>
+    </div>
+  </section>
+  <section class="grupo-cadernos">
+    <h2>Intermediário <small>Assuntos que exigem a base bem firme.</small></h2>
+    <div class="grade">
+  <a class="cartao" href="cadernos/funcoes.html" data-slug="funcoes" data-termos="função afim quadrática vértice gráfico parábola" style="--cor: #4338ca">
+    <span class="icone longo" style="--cor: #4338ca" aria-hidden="true">f(x)</span>
     <h3>Funções</h3>
     <p>Função afim e quadrática, gráfico, vértice, raízes e sinais.</p>
     <span class="rodape"><span>Cai com frequência</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/sequencias.html" data-slug="sequencias" data-termos="progressão aritmética geométrica sequência padrão">
-    <span class="icone">🔁</span>
+  <a class="cartao" href="cadernos/sequencias.html" data-slug="sequencias" data-termos="progressão aritmética geométrica sequência padrão" style="--cor: #0f766e">
+    <span class="icone medio" style="--cor: #0f766e" aria-hidden="true">aₙ</span>
     <h3>Sequências, PA e PG</h3>
     <p>Padrões numéricos, termo geral e soma de progressões.</p>
     <span class="rodape"><span>Cai com frequência</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/geometria.html" data-slug="geometria" data-termos="área perímetro volume pitágoras triângulo círculo">
-    <span class="icone">📏</span>
+  <a class="cartao" href="cadernos/geometria.html" data-slug="geometria" data-termos="área perímetro volume pitágoras triângulo círculo" style="--cor: #b45309">
+    <span class="icone curto" style="--cor: #b45309" aria-hidden="true">△</span>
     <h3>Geometria plana e espacial</h3>
     <p>Ângulos, triângulos, Pitágoras, áreas, perímetros e volumes.</p>
     <span class="rodape"><span>Cai com frequência</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/estatistica.html" data-slug="estatistica" data-termos="média mediana moda desvio variância gráfico">
-    <span class="icone">📊</span>
+  <a class="cartao" href="cadernos/estatistica.html" data-slug="estatistica" data-termos="média mediana moda desvio variância gráfico" style="--cor: #1e40af">
+    <span class="icone medio" style="--cor: #1e40af" aria-hidden="true">x̄</span>
     <h3>Estatística básica</h3>
     <p>Média, mediana, moda, média ponderada, variância e leitura de gráficos.</p>
     <span class="rodape"><span>Cai com frequência</span><span class="ok"></span></span>
   </a>
-  <a class="cartao" href="cadernos/combinatoria.html" data-slug="combinatoria" data-termos="permutação arranjo combinação anagrama fatorial">
-    <span class="icone">🎲</span>
-    <h3>Análise combinatória</h3>
-    <p>Princípio multiplicativo, permutação, arranjo e combinação sem decoreba.</p>
-    <span class="rodape"><span>Cai muito</span><span class="ok"></span></span>
-  </a>
-  <a class="cartao" href="cadernos/probabilidade.html" data-slug="probabilidade" data-termos="chance evento complementar condicional">
-    <span class="icone">🎯</span>
-    <h3>Probabilidade</h3>
-    <p>Casos favoráveis, eventos complementares, “e” e “ou”, probabilidade condicional.</p>
-    <span class="rodape"><span>Cai muito</span><span class="ok"></span></span>
-  </a>
-  <a class="cartao" href="cadernos/logica.html" data-slug="logica" data-termos="proposição negação equivalência tabela verdade silogismo">
-    <span class="icone">🧠</span>
+  <a class="cartao" href="cadernos/logica.html" data-slug="logica" data-termos="proposição negação equivalência tabela verdade silogismo" style="--cor: #6d28d9">
+    <span class="icone curto" style="--cor: #6d28d9" aria-hidden="true">∧</span>
     <h3>Raciocínio lógico</h3>
     <p>Proposições, conectivos, negações, equivalências, tabela-verdade e argumentos.</p>
     <span class="rodape"><span>Cai muito</span><span class="ok"></span></span>
   </a>
-  </div>
+    </div>
+  </section>
+  <section class="grupo-cadernos">
+    <h2>Avançado <small>Onde as bancas separam quem treinou de quem não treinou.</small></h2>
+    <div class="grade">
+  <a class="cartao" href="cadernos/juros.html" data-slug="juros" data-termos="juros montante capital taxa desconto financeira" style="--cor: #a16207">
+    <span class="icone medio" style="--cor: #a16207" aria-hidden="true">R$</span>
+    <h3>Juros simples e compostos</h3>
+    <p>Capital, taxa, tempo e montante; taxas equivalentes e desconto.</p>
+    <span class="rodape"><span>Cai com frequência</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/combinatoria.html" data-slug="combinatoria" data-termos="permutação arranjo combinação anagrama fatorial" style="--cor: #9333ea">
+    <span class="icone medio" style="--cor: #9333ea" aria-hidden="true">n!</span>
+    <h3>Análise combinatória</h3>
+    <p>Princípio multiplicativo, permutação, arranjo e combinação sem decoreba.</p>
+    <span class="rodape"><span>Cai muito</span><span class="ok"></span></span>
+  </a>
+  <a class="cartao" href="cadernos/probabilidade.html" data-slug="probabilidade" data-termos="chance evento complementar condicional" style="--cor: #a21caf">
+    <span class="icone curto" style="--cor: #a21caf" aria-hidden="true">P</span>
+    <h3>Probabilidade</h3>
+    <p>Casos favoráveis, eventos complementares, “e” e “ou”, probabilidade condicional.</p>
+    <span class="rodape"><span>Cai muito</span><span class="ok"></span></span>
+  </a>
+    </div>
+  </section>
+  <p class="sem-resultado" hidden>Nenhum caderno encontrado. Tente outra palavra.</p>
 
   <section class="secao-inicio">
     <h2>Como estudar com os cadernos</h2>
@@ -165,7 +205,7 @@
       <div><h3>Leia a teoria curta</h3><p>Cada caderno começa pelo essencial. Nada de páginas de definição que nunca caem.</p></div>
       <div><h3>Grave os atalhos</h3><p>As caixas verdes mostram o caminho mais rápido. É ali que você ganha tempo.</p></div>
       <div><h3>Evite as pegadinhas</h3><p>As caixas vermelhas mostram os erros que as bancas adoram explorar.</p></div>
-      <div><h3>Treine e marque</h3><p>Resolva as questões, confira a explicação e marque o caderno como estudado.</p></div>
+      <div><h3>Treine e revise</h3><p>Resolva as questões. As que você errar vão para o caderno de erros até você acertar.</p></div>
     </div>
   </section>
 </main>
@@ -174,5 +214,13 @@
   <a href="cadernos/sobre.html">Sobre o projeto</a> ·
   <a href="https://github.com/CarlosGabriel-UX/APRENDA-MATEMATICA/issues">Avise sobre um erro</a>
 </footer>
+<button type="button" class="voltar-topo" aria-label="Voltar ao topo" hidden>↑</button>
+<nav class="nav-inferior" aria-label="Navegação principal">
+  <a href="index.html"><span aria-hidden="true">⌂</span>Início</a>
+  <a href="cadernos/trilhas.html"><span aria-hidden="true">↗</span>Trilhas</a>
+  <a href="cadernos/erros.html"><span aria-hidden="true">✗</span>Erros<span class="contador" data-contagem-erros hidden></span></a>
+  <button type="button" class="botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span>Letra</button>
+  <button type="button" class="botao-tema" aria-label="Alternar tema claro ou escuro">Tema</button>
+</nav>
 </body>
 </html>

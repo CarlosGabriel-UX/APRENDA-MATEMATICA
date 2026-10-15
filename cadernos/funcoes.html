@@ -14,9 +14,11 @@
 <meta property="og:url" content="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/cadernos/funcoes.html">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#2357d9">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>➗</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232357d9'/%3E%3Crect x='8' y='14.5' width='16' height='3' rx='1.5' fill='%23fff'/%3E%3Ccircle cx='16' cy='9' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='23' r='2.6' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/css/style.css">
 <script src="../assets/js/app.js"></script>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -39,49 +41,51 @@
 <body data-pagina="funcoes" data-titulo="Funções">
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="topo">
-  <a class="marca" href="../index.html">Aprenda <span>Matemática</span></a>
-  <nav>
+  <a class="marca" href="../index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2357d9"/><rect x="8" y="14.5" width="16" height="3" rx="1.5" fill="#fff"/><circle cx="16" cy="9" r="2.6" fill="#fff"/><circle cx="16" cy="23" r="2.6" fill="#fff"/></svg><span class="nome">Aprenda <span>Matemática</span></span></a>
+  <nav class="nav-topo" aria-label="Atalhos">
     <a href="../cadernos/trilhas.html">Trilhas</a>
     <a href="../cadernos/formulario.html">Formulário</a>
     <a href="../cadernos/erros.html">Erros <span class="contador" data-contagem-erros hidden></span></a>
-    <button type="button" class="botao-tema">🌙 Escuro</button>
+    <button type="button" class="botao-fonte" aria-label="Mudar o tamanho da letra">Aa</button>
+    <button type="button" class="botao-tema" aria-label="Alternar tema claro ou escuro">🌙 Escuro</button>
   </nav>
 </header>
+<div class="progresso-leitura" aria-hidden="true"><span></span></div>
 <div class="container layout">
 <aside class="lateral">
   <button type="button" class="botao secundario botao-menu">☰ Todos os cadernos</button>
   <div class="lista-cadernos">
     <h3>Comece aqui</h3>
     <ul>
-<li data-slug="estrategias"><a href="estrategias.html"><span>⏱️</span> Estratégias de prova<span class="feito"></span></a></li>
-<li data-slug="trilhas"><a href="trilhas.html"><span>🧭</span> Trilhas por banca e área<span class="feito"></span></a></li>
-<li data-slug="formulario"><a href="formulario.html"><span>📋</span> Formulário de bolso<span class="feito"></span></a></li>
+<li data-slug="estrategias"><a href="estrategias.html"><span class="icone mini curto" style="--cor: #475569" aria-hidden="true">≈</span> Estratégias de prova<span class="feito"></span></a></li>
+<li data-slug="trilhas"><a href="trilhas.html"><span class="icone mini curto" style="--cor: #0f766e" aria-hidden="true">↗</span> Trilhas por banca e área<span class="feito"></span></a></li>
+<li data-slug="formulario"><a href="formulario.html"><span class="icone mini curto" style="--cor: #4338ca" aria-hidden="true">∑</span> Formulário de bolso<span class="feito"></span></a></li>
     </ul>
     <h3>Cadernos</h3>
     <ul>
-<li data-slug="aritmetica"><a href="aritmetica.html"><span>🔢</span> Aritmética e divisibilidade<span class="feito"></span></a></li>
-<li data-slug="fracoes"><a href="fracoes.html"><span>🍕</span> Frações e números decimais<span class="feito"></span></a></li>
-<li data-slug="porcentagem"><a href="porcentagem.html"><span>💯</span> Porcentagem<span class="feito"></span></a></li>
-<li data-slug="razao-proporcao"><a href="razao-proporcao.html"><span>⚖️</span> Razão e proporção<span class="feito"></span></a></li>
-<li data-slug="regra-de-tres"><a href="regra-de-tres.html"><span>📐</span> Regra de três<span class="feito"></span></a></li>
-<li data-slug="juros"><a href="juros.html"><span>💰</span> Juros simples e compostos<span class="feito"></span></a></li>
-<li data-slug="equacoes"><a href="equacoes.html"><span>✖️</span> Equações e sistemas<span class="feito"></span></a></li>
-<li data-slug="funcoes"><a href="funcoes.html" class="ativo"><span>📈</span> Funções<span class="feito"></span></a></li>
-<li data-slug="sequencias"><a href="sequencias.html"><span>🔁</span> Sequências, PA e PG<span class="feito"></span></a></li>
-<li data-slug="geometria"><a href="geometria.html"><span>📏</span> Geometria plana e espacial<span class="feito"></span></a></li>
-<li data-slug="estatistica"><a href="estatistica.html"><span>📊</span> Estatística básica<span class="feito"></span></a></li>
-<li data-slug="combinatoria"><a href="combinatoria.html"><span>🎲</span> Análise combinatória<span class="feito"></span></a></li>
-<li data-slug="probabilidade"><a href="probabilidade.html"><span>🎯</span> Probabilidade<span class="feito"></span></a></li>
-<li data-slug="logica"><a href="logica.html"><span>🧠</span> Raciocínio lógico<span class="feito"></span></a></li>
+<li data-slug="aritmetica"><a href="aritmetica.html"><span class="icone mini curto" style="--cor: #1d4ed8" aria-hidden="true">÷</span> Aritmética e divisibilidade<span class="feito"></span></a></li>
+<li data-slug="fracoes"><a href="fracoes.html"><span class="icone mini curto" style="--cor: #c2410c" aria-hidden="true">½</span> Frações e números decimais<span class="feito"></span></a></li>
+<li data-slug="porcentagem"><a href="porcentagem.html"><span class="icone mini curto" style="--cor: #15803d" aria-hidden="true">%</span> Porcentagem<span class="feito"></span></a></li>
+<li data-slug="razao-proporcao"><a href="razao-proporcao.html"><span class="icone mini longo" style="--cor: #6d28d9" aria-hidden="true">a:b</span> Razão e proporção<span class="feito"></span></a></li>
+<li data-slug="regra-de-tres"><a href="regra-de-tres.html"><span class="icone mini curto" style="--cor: #0e7490" aria-hidden="true">∝</span> Regra de três<span class="feito"></span></a></li>
+<li data-slug="juros"><a href="juros.html"><span class="icone mini medio" style="--cor: #a16207" aria-hidden="true">R$</span> Juros simples e compostos<span class="feito"></span></a></li>
+<li data-slug="equacoes"><a href="equacoes.html"><span class="icone mini medio" style="--cor: #be185d" aria-hidden="true">x=</span> Equações e sistemas<span class="feito"></span></a></li>
+<li data-slug="funcoes"><a href="funcoes.html" class="ativo"><span class="icone mini longo" style="--cor: #4338ca" aria-hidden="true">f(x)</span> Funções<span class="feito"></span></a></li>
+<li data-slug="sequencias"><a href="sequencias.html"><span class="icone mini medio" style="--cor: #0f766e" aria-hidden="true">aₙ</span> Sequências, PA e PG<span class="feito"></span></a></li>
+<li data-slug="geometria"><a href="geometria.html"><span class="icone mini curto" style="--cor: #b45309" aria-hidden="true">△</span> Geometria plana e espacial<span class="feito"></span></a></li>
+<li data-slug="estatistica"><a href="estatistica.html"><span class="icone mini medio" style="--cor: #1e40af" aria-hidden="true">x̄</span> Estatística básica<span class="feito"></span></a></li>
+<li data-slug="combinatoria"><a href="combinatoria.html"><span class="icone mini medio" style="--cor: #9333ea" aria-hidden="true">n!</span> Análise combinatória<span class="feito"></span></a></li>
+<li data-slug="probabilidade"><a href="probabilidade.html"><span class="icone mini curto" style="--cor: #a21caf" aria-hidden="true">P</span> Probabilidade<span class="feito"></span></a></li>
+<li data-slug="logica"><a href="logica.html"><span class="icone mini curto" style="--cor: #6d28d9" aria-hidden="true">∧</span> Raciocínio lógico<span class="feito"></span></a></li>
     </ul>
     <h3>Revisão</h3>
     <ul>
-<li data-slug="erros"><a href="erros.html"><span>📝</span> Meu caderno de erros<span class="feito"></span></a></li>
+<li data-slug="erros"><a href="erros.html"><span class="icone mini curto" style="--cor: #b91c1c" aria-hidden="true">✗</span> Meu caderno de erros<span class="feito"></span></a></li>
     </ul>
   </div>
 </aside>
-<article class="caderno" id="conteudo">
-  <h1>📈 Funções</h1>
+<article class="caderno" id="conteudo" style="--cor: #4338ca">
+  <h1><span class="icone longo" style="--cor: #4338ca" aria-hidden="true">f(x)</span> <span>Funções</span></h1>
   <p class="subtitulo">Função afim e quadrática, gráfico, vértice, raízes e sinais.</p>
   <div class="selos"><span class="selo media">Cai com frequência</span></div>
   <nav class="sumario" data-sumario><strong>Nesta página</strong></nav>
@@ -96,7 +100,7 @@
 <p>Um gráfico representa função se qualquer reta vertical o corta em no máximo um ponto.</p></div>
 
 <h2>Função afim (1º grau)</h2>
-<span class="formula">f(x) = ax + b</span>
+<span class="formula" data-tex="f(x) = ax + b">f(x) = ax + b</span>
 <ul>
   <li><strong>a</strong> (coeficiente angular) é a taxa de variação: quanto y muda quando x aumenta 1. Se a &gt; 0, a função é crescente; se a &lt; 0, decrescente.</li>
   <li><strong>b</strong> (coeficiente linear) é onde a reta corta o eixo y (valor de f(0)).</li>
@@ -115,14 +119,14 @@
 <p>"Valor fixo + valor por unidade" é sempre função afim: plano de celular, conta de luz, salário com comissão, frete.</p></div>
 
 <h2>Função quadrática (2º grau)</h2>
-<span class="formula">f(x) = ax² + bx + c</span>
+<span class="formula" data-tex="f(x) = ax^2 + bx + c">f(x) = ax² + bx + c</span>
 <ul>
   <li>O gráfico é uma <strong>parábola</strong>. Se a &gt; 0, a boca é para cima (tem ponto de mínimo). Se a &lt; 0, para baixo (tem máximo).</li>
   <li>c é onde a parábola corta o eixo y.</li>
   <li>As raízes são as soluções de ax² + bx + c = 0 (veja o caderno de <a href="equacoes.html">equações</a>).</li>
 </ul>
 <h3>Vértice: máximo ou mínimo</h3>
-<span class="formula">x_v = −b / 2a &nbsp;&nbsp;&nbsp; y_v = −Δ / 4a</span>
+<span class="formula" data-tex="x_v = \dfrac{-b}{2a} \qquad y_v = \dfrac{-\Delta}{4a}">x_v = −b / 2a &nbsp;&nbsp;&nbsp; y_v = −Δ / 4a</span>
 <div class="caixa atalho"><span class="rotulo">Atalho: y do vértice sem Δ</span>
 <p>Calcule x_v e substitua na função: y_v = f(x_v). Muitas vezes é mais rápido do que calcular Δ.</p>
 <p>E se você já sabe as raízes, o x do vértice é a média delas: <span class="m">x_v = (x₁ + x₂)/2</span>.</p></div>
@@ -137,6 +141,32 @@
 <p class="passo">Vértice na média das raízes: t = 2. h(2) = −20 + 40 = 20.</p>
 <p class="resposta-final">Resposta: altura máxima de 20 m; volta ao chão em 4 s.</p></div></details>
 
+<figure class="figura">
+<svg viewBox="0 0 520 220" width="520" role="img" aria-label="À esquerda, reta crescente que corta o eixo y em b e o eixo x na raiz. À direita, parábola com boca para cima, raízes x1 e x2 e vértice V abaixo do eixo x">
+  <text x="20" y="20" class="f-titulo">f(x) = ax + b, com a &gt; 0</text>
+  <line class="f-eixo" x1="15" y1="170" x2="245" y2="170"/>
+  <line class="f-eixo" x1="110" y1="30" x2="110" y2="210"/>
+  <line class="f-dest" x1="20" y1="184" x2="245" y2="49"/>
+  <circle class="f-ponto" cx="110" cy="130" r="4"/>
+  <circle class="f-ponto" cx="43" cy="170" r="4"/>
+  <text x="118" y="135">b</text>
+  <text x="20" y="200">raiz = −b/a</text>
+  <text x="280" y="20" class="f-titulo">f(x) = ax² + bx + c, com a &gt; 0</text>
+  <line class="f-eixo" x1="275" y1="150" x2="510" y2="150"/>
+  <line class="f-eixo" x1="300" y1="30" x2="300" y2="215"/>
+  <polyline class="f-dest" points="316,113.9 322,123.9 328,133.2 334,142.0 340,150.0 346,157.4 352,164.1 358,170.2 364,175.6 370,180.3 376,184.4 382,187.8 388,190.6 394,192.7 400,194.1 406,194.9 412,195.0 418,194.4 424,193.2 430,191.3 436,188.8 442,185.6 448,181.7 454,177.2 460,172.0 466,166.2 472,159.7 478,152.5 484,144.7 490,136.2 496,127.1 502,117.3"/>
+  <circle class="f-ponto" cx="340" cy="150" r="4"/>
+  <circle class="f-ponto" cx="480" cy="150" r="4"/>
+  <circle class="f-ponto" cx="410" cy="195" r="4"/>
+  <text x="330" y="140">x₁</text>
+  <text x="484" y="170">x₂</text>
+  <text x="420" y="212">V (mínimo)</text>
+  <text x="402" y="172" class="f-sinal">−</text>
+  <text x="316" y="100" class="f-sinal">+</text>
+  <text x="494" y="100" class="f-sinal">+</text>
+</svg>
+<figcaption>À direita: entre as raízes a função tem sinal contrário ao de a; fora delas, o mesmo sinal de a.</figcaption>
+</figure>
 <h2>Estudo do sinal</h2>
 <ul>
   <li><strong>Afim:</strong> à direita da raiz a função tem o sinal de a; à esquerda, o sinal contrário.</li>
@@ -186,5 +216,13 @@
   <a href="../cadernos/sobre.html">Sobre o projeto</a> ·
   <a href="https://github.com/CarlosGabriel-UX/APRENDA-MATEMATICA/issues">Avise sobre um erro</a>
 </footer>
+<button type="button" class="voltar-topo" aria-label="Voltar ao topo" hidden>↑</button>
+<nav class="nav-inferior" aria-label="Navegação principal">
+  <a href="../index.html"><span aria-hidden="true">⌂</span>Início</a>
+  <a href="../cadernos/trilhas.html"><span aria-hidden="true">↗</span>Trilhas</a>
+  <a href="../cadernos/erros.html"><span aria-hidden="true">✗</span>Erros<span class="contador" data-contagem-erros hidden></span></a>
+  <button type="button" class="botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span>Letra</button>
+  <button type="button" class="botao-tema" aria-label="Alternar tema claro ou escuro">Tema</button>
+</nav>
 </body>
 </html>

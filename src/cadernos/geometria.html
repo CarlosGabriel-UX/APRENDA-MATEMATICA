@@ -15,7 +15,19 @@
 <h2>Triângulos</h2>
 <h3>Teorema de Pitágoras</h3>
 <p>Num triângulo retângulo, com hipotenusa a (lado oposto ao ângulo reto) e catetos b e c:</p>
-<span class="formula">a² = b² + c²</span>
+<span class="formula" data-tex="a^2 = b^2 + c^2">a² = b² + c²</span>
+<figure class="figura">
+<svg viewBox="0 0 280 175" width="280" role="img" aria-label="Triângulo retângulo com catetos b e c e hipotenusa a">
+  <polygon class="f-area" points="40,140 220,140 40,30"/>
+  <polygon class="f-linha" points="40,140 220,140 40,30"/>
+  <path class="f-linha" d="M40,124 H56 V140"/>
+  <line class="f-dest" x1="220" y1="140" x2="40" y2="30"/>
+  <text x="24" y="90">b</text>
+  <text x="126" y="162">c</text>
+  <text x="138" y="76">a (hipotenusa)</text>
+</svg>
+<figcaption>A hipotenusa fica sempre de frente para o ângulo reto e é o maior lado.</figcaption>
+</figure>
 <div class="caixa atalho"><span class="rotulo">Atalho: ternas pitagóricas</span>
 <p>Decore estas e seus múltiplos: <strong>3-4-5</strong>, <strong>5-12-13</strong>, <strong>8-15-17</strong>, <strong>7-24-25</strong>. Catetos 9 e 12? É 3-4-5 × 3: hipotenusa 15, sem conta.</p></div>
 <h3>Semelhança</h3>
@@ -53,6 +65,18 @@
 <p>Figuras com recortes (região sombreada) quase sempre saem por "área grande menos área do buraco". Procure essa saída antes de dividir em pedaços.</p></div>
 <details class="exemplo"><summary>Um quadrado de lado 10 cm tem um círculo inscrito (tangente aos quatro lados). Qual a área entre o quadrado e o círculo? (use π = 3,14)</summary>
 <div class="resolucao">
+<figure class="figura">
+<svg viewBox="0 0 200 200" width="200" role="img" aria-label="Quadrado de lado 10 com círculo inscrito de raio 5; a região sombreada fica entre os dois">
+  <rect class="f-area" x="30" y="30" width="140" height="140"/>
+  <rect class="f-linha" x="30" y="30" width="140" height="140"/>
+  <circle class="f-fundo f-linha" cx="100" cy="100" r="70"/>
+  <line class="f-dest f-tracejado" x1="100" y1="100" x2="170" y2="100"/>
+  <circle class="f-ponto" cx="100" cy="100" r="3.5"/>
+  <text x="124" y="93">r = 5</text>
+  <text x="84" y="22">lado 10</text>
+</svg>
+<figcaption>Área sombreada = área do quadrado − área do círculo.</figcaption>
+</figure>
 <p class="passo">Raio do círculo = metade do lado = 5. Área do círculo: 3,14 × 25 = 78,5.</p>
 <p class="passo">Área do quadrado: 100. Diferença: 21,5.</p>
 <p class="resposta-final">Resposta: 21,5 cm².</p></div></details>
