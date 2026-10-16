@@ -172,27 +172,97 @@
 <div class="questao" data-correta="d">
 <p class="enunciado">Quantos anagramas tem a palavra CASA?</p>
 <ol class="alternativas"><li>6</li><li>8</li><li>10</li><li>12</li><li>24</li></ol>
-<div class="explicacao"><p>4 letras com A repetido duas vezes: 4!/2! = 24/2 = 12.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> Anagrama é permutação das letras. Quando há letra repetida, divida pelo fatorial das repetições, porque trocar dois A de lugar não cria palavra nova.</p>
+<ol class="passos-resolucao">
+<li>CASA tem 4 letras: 4! = 24 se todas fossem diferentes.</li>
+<li>O A aparece 2 vezes: divida por 2! = 2.</li>
+<li>24 ÷ 2 = 12 anagramas.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Permutou só as 3 letras distintas (C, A, S): 3! = 6, esquecendo que a palavra tem 4 posições.</li>
+<li><strong>B)</strong> Não vem de nenhuma regra de permutação; costuma ser contagem manual incompleta.</li>
+<li><strong>C)</strong> Também é contagem na mão que pulou casos. Listar anagramas é arriscado na prova.</li>
+<li><strong>E)</strong> Fez 4! = 24 e esqueceu de dividir pela repetição do A.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> permutação com repetição = n! dividido pelo fatorial de cada letra repetida.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado">De um grupo de 8 pessoas, quantas comissões de 3 podem ser formadas?</p>
 <ol class="alternativas"><li>24</li><li>56</li><li>112</li><li>336</li><li>512</li></ol>
-<div class="explicacao"><p>Comissão: sem ordem. C(8, 3) = (8 × 7 × 6)/6 = 56. (336 seria se houvesse cargos.)</p></div>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Comissão não tem cargo: trocar a ordem das pessoas dá a mesma comissão. A ordem não importa, então é combinação.</p>
+<ol class="passos-resolucao">
+<li>C(8, 3) = (8 × 7 × 6) ÷ 3!.</li>
+<li>8 × 7 × 6 = 336 e 3! = 6.</li>
+<li>336 ÷ 6 = 56 comissões.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Multiplicou 8 × 3, o que não conta nada com sentido aqui.</li>
+<li><strong>C)</strong> Dividiu 336 só por 3 (ou por 2 e não por 6). A divisão é por 3! = 6.</li>
+<li><strong>D)</strong> Fez o arranjo 8 × 7 × 6 e não dividiu por 3!: isso valeria se houvesse cargos diferentes.</li>
+<li><strong>E)</strong> Fez 8³, permitindo repetir a mesma pessoa, o que é impossível numa comissão.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> faça o arranjo (tracinhos) e divida por p!, aqui 336 ÷ 6.</p>
+</div>
 </div>
 <div class="questao" data-correta="c">
 <p class="enunciado">De um grupo de 8 pessoas, de quantas formas se escolhem um presidente, um vice e um tesoureiro?</p>
 <ol class="alternativas"><li>24</li><li>56</li><li>336</li><li>512</li><li>40.320</li></ol>
-<div class="explicacao"><p>Cargos diferentes: a ordem importa. 8 × 7 × 6 = 336.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Presidente, vice e tesoureiro são cargos diferentes: trocar duas pessoas de cargo muda o resultado. A ordem importa, então é arranjo (princípio fundamental da contagem).</p>
+<ol class="passos-resolucao">
+<li>Presidente: 8 opções.</li>
+<li>Vice: sobram 7 opções. Tesoureiro: 6 opções.</li>
+<li>8 × 7 × 6 = 336.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Multiplicou 8 × 3, sem relação com a contagem.</li>
+<li><strong>B)</strong> É C(8, 3), a combinação: valeria para comissão sem cargos.</li>
+<li><strong>D)</strong> Fez 8³ = 512, deixando a mesma pessoa ocupar dois cargos.</li>
+<li><strong>E)</strong> É 8! = 40.320, que seria pôr as 8 pessoas em fila, e não escolher só 3.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> teste trocando duas pessoas de lugar: se mudou o resultado (cargos), multiplica direto nos tracinhos e não divide.</p>
+</div>
 </div>
 <div class="questao" data-correta="e">
 <p class="enunciado">Quantos números pares de 3 algarismos distintos podem ser formados com 1, 2, 3, 4 e 5?</p>
 <ol class="alternativas"><li>12</li><li>60</li><li>36</li><li>30</li><li>24</li></ol>
-<div class="explicacao"><p>Comece pela restrição: unidade par (2 ou 4), 2 opções. Centena: 4. Dezena: 3. Total 2 × 4 × 3 = 24.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: E.</strong> Use o método dos tracinhos começando pela posição com restrição: para ser par, o número tem que terminar em algarismo par.</p>
+<ol class="passos-resolucao">
+<li>Unidade (restrição): 2 ou 4, ou seja, 2 opções.</li>
+<li>Centena: sobram 4 algarismos. Dezena: sobram 3.</li>
+<li>2 × 4 × 3 = 24 números.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Considerou só um algarismo par na unidade: 1 × 4 × 3 = 12.</li>
+<li><strong>B)</strong> Fez 5 × 4 × 3 = 60, contando todos os números de algarismos distintos, sem a exigência de ser par.</li>
+<li><strong>C)</strong> Colocou 3 opções na unidade (1, 3 e 5): 3 × 4 × 3 = 36 é a quantidade de ímpares.</li>
+<li><strong>D)</strong> Supôs que metade dos 60 seria par (30). Não é: só 2 dos 5 algarismos são pares.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> confira: pares + ímpares = 24 + 36 = 60, o total sem restrição.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado">De 5 homens e 3 mulheres, quantas comissões de 3 pessoas têm pelo menos uma mulher?</p>
 <ol class="alternativas"><li>46</li><li>30</li><li>56</li><li>10</li><li>40</li></ol>
-<div class="explicacao"><p>Total: C(8, 3) = 56. Sem mulheres: C(5, 3) = 10. Pelo menos uma: 56 − 10 = 46.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> "Pelo menos uma mulher" se resolve pelo complementar: total de comissões menos as comissões sem nenhuma mulher.</p>
+<ol class="passos-resolucao">
+<li>Total: C(8, 3) = (8 × 7 × 6) ÷ 6 = 56.</li>
+<li>Sem mulher (só homens): C(5, 3) = (5 × 4 × 3) ÷ 6 = 10.</li>
+<li>Pelo menos uma: 56 − 10 = 46. Conferindo por casos: 1 mulher 3 × 10 = 30, 2 mulheres 3 × 5 = 15, 3 mulheres 1. Soma 46.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> Contou só as comissões com exatamente uma mulher (3 × C(5, 2) = 30). Faltam os casos com 2 e 3 mulheres.</li>
+<li><strong>C)</strong> É o total de comissões, sem tirar as que não têm mulher.</li>
+<li><strong>D)</strong> É o número de comissões sem nenhuma mulher, justamente o que deveria ser subtraído.</li>
+<li><strong>E)</strong> Soma de casos incompleta ou errada; nenhum caminho correto leva a 40.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> "pelo menos um" = total − nenhum. É mais rápido do que somar caso a caso.</p>
+</div>
 </div>
   <div class="rodape-caderno">
     <a class="botao secundario" href="estatistica.html">← Estatística básica</a>

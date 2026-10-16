@@ -213,50 +213,172 @@ dir /r</code></pre>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Segundo a ordem de volatilidade da RFC 3227, o perito deve priorizar a coleta do conteúdo do disco rígido em relação ao conteúdo da memória RAM, pois o disco concentra maior volume de dados.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A ordem é do mais volátil para o menos volátil. A RAM vem antes do disco, independentemente do volume, porque se perde ao desligar.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A RFC 3227 manda coletar do <strong>mais volátil para o menos volátil</strong>. A RAM vem antes do disco, qualquer que seja o volume de dados.</p>
+<ol class="passos-resolucao">
+<li>O critério da ordem é a velocidade com que o dado se perde, não o tamanho.</li>
+<li>A RAM se perde ao desligar a máquina e muda a todo instante: processos, conexões de rede, comandos e chaves de criptografia de volumes abertos.</li>
+<li>O disco é persistente: pode ser copiado depois, com bloqueador de escrita e hash.</li>
+<li>Ordem: CPU → RAM → temporários → disco → logs remotos → topologia → backup.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item troca o critério de volatilidade pelo de volume. Certo seria: "deve priorizar a RAM em relação ao disco, por ser mais volátil".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> o que some primeiro, colhe primeiro.</p>
+</div>
 </div>
 <div class="questao" data-correta="c">
 <p class="enunciado">Durante o carving em uma imagem, o perito encontra um bloco que começa com os bytes 25 50 44 46. Trata-se, provavelmente, do início de um arquivo:</p>
 <ol class="alternativas"><li>JPEG.</li><li>ZIP.</li><li>PDF.</li><li>PNG.</li><li>executável do Windows.</li></ol>
-<div class="explicacao"><p>25 50 44 46 é "%PDF" em ASCII. JPEG começa com FF D8 FF, ZIP com 50 4B 03 04, PNG com 89 50 4E 47 e executável Windows com 4D 5A.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> 25 50 44 46 é a assinatura (magic number) do PDF: lidos em ASCII, esses bytes formam "%PDF".</p>
+<ol class="passos-resolucao">
+<li>No carving, o perito ignora o sistema de arquivos e procura assinaturas de cabeçalho no fluxo bruto de bytes.</li>
+<li>Convertendo: 0x25 = 37 = "%"; 0x50 = 80 = "P"; 0x44 = 68 = "D"; 0x46 = 70 = "F".</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> JPEG começa com FF D8 FF (e termina em FF D9).</li>
+<li><strong>B)</strong> ZIP começa com 50 4B 03 04 ("PK"); o 50 aparece nos dois, mas no ZIP ele é o primeiro byte.</li>
+<li><strong>D)</strong> PNG começa com 89 50 4E 47 ("‰PNG"); também tem 50 na segunda posição, mas o primeiro byte é 89.</li>
+<li><strong>E)</strong> Executável do Windows começa com 4D 5A ("MZ").</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> muitas assinaturas são o próprio nome em ASCII (%PDF, PK, PNG, GIF8, MZ); saber que 0x50 = "P" já resolve boa parte.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> No sistema de arquivos NTFS, é possível associar a um arquivo um fluxo de dados alternativo (ADS) cujo conteúdo não aparece no tamanho exibido pelo Explorer, o que pode ser usado para ocultar informações.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>ADS são fluxos $DATA adicionais com nome. O Explorer mostra só o fluxo principal; o comando dir /r e as ferramentas forenses os revelam.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> No NTFS, um arquivo pode ter fluxos <code>$DATA</code> adicionais com nome (ADS). Eles não aparecem no Explorer nem entram no tamanho exibido, o que permite esconder dados ou malware.</p>
+<ol class="passos-resolucao">
+<li>O conteúdo normal do arquivo é o fluxo <code>$DATA</code> sem nome; é só ele que o Explorer mostra e mede.</li>
+<li>A sintaxe <code>relatorio.txt:oculto.exe</code> cria um fluxo chamado oculto.exe "pendurado" em relatorio.txt.</li>
+<li>Para revelar: <code>dir /r</code> ou as ferramentas forenses. Uso legítimo conhecido: o fluxo Zone.Identifier, que marca arquivos baixados da internet.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma atribuir ADS ao FAT32 ou ao ext4 (errado: é recurso do NTFS, e copiar para FAT32 descarta os fluxos) ou dizer que o tamanho exibido inclui os fluxos alternativos.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> ADS é o "dois-pontos" depois do nome do arquivo.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> No ext4, o campo ctime do inode registra a data de criação do arquivo, e o nome do arquivo é armazenado no próprio inode.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Dois erros: ctime é change time (mudança de metadados), e o nome fica na entrada de diretório, não no inode. A criação no ext4 é o crtime.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> Há dois erros: no Linux, ctime é <strong>change time</strong> (mudança dos metadados do inode), não criação; e o nome do arquivo fica na <strong>entrada de diretório</strong>, não no inode.</p>
+<ol class="passos-resolucao">
+<li>Timestamps do ext4: mtime (conteúdo), atime (acesso), ctime (mudança do inode, como permissões ou dono) e crtime (criação).</li>
+<li>O inode guarda tipo, permissões, dono, tamanho, timestamps e a localização dos dados (extents), mas não o nome.</li>
+<li>A entrada de diretório liga o nome ao número do inode. Por isso um mesmo inode pode ter vários nomes (hard links).</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> ler o "c" de ctime como "creation". Certo seria: "o ctime registra a última mudança de metadados, a criação fica no crtime, e o nome fica na entrada de diretório".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> c de change, cr de criação; e a existência de hard links prova que o nome não está no inode.</p>
+</div>
 </div>
 <div class="questao" data-correta="e">
 <p class="enunciado">Em um sistema com clusters de 4.096 bytes, um arquivo de 5.000 bytes deixa, no último cluster alocado, um file slack de:</p>
 <ol class="alternativas"><li>904 bytes.</li><li>4.096 bytes.</li><li>1.000 bytes.</li><li>0 byte, pois o NTFS ajusta o cluster ao tamanho do arquivo.</li><li>3.192 bytes.</li></ol>
-<div class="explicacao"><p>São necessários 2 clusters (8.192 bytes). Slack = 8.192 − 5.000 = 3.192 bytes. A letra A (904) é o quanto o arquivo excede o primeiro cluster, não o espaço que sobra no último.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: E.</strong> O sistema aloca clusters inteiros, e o file slack é a sobra entre o fim lógico do arquivo e o fim do último cluster: 8.192 − 5.000 = 3.192 bytes.</p>
+<ol class="passos-resolucao">
+<li>Clusters necessários: 5.000 ÷ 4.096 ≈ 1,22; arredonda para cima: 2 clusters.</li>
+<li>Espaço alocado: 2 × 4.096 = 8.192 bytes.</li>
+<li>Slack: 8.192 − 5.000 = 3.192 bytes.</li>
+<li>Conferência: o 2º cluster recebe 5.000 − 4.096 = 904 bytes do arquivo e sobram 4.096 − 904 = 3.192.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> 904 bytes é a parte do arquivo que ocupa o segundo cluster, não o espaço que sobra nele.</li>
+<li><strong>B)</strong> 4.096 é um cluster inteiro; só seria slack se sobrasse um cluster vazio, o que nunca acontece com alocação correta.</li>
+<li><strong>C)</strong> 1.000 vem de tratar o cluster como se tivesse 4.000 bytes (5.000 − 4.000), em vez de 4.096.</li>
+<li><strong>D)</strong> Nenhum sistema baseado em clusters ajusta o cluster ao arquivo; só arquivos muito pequenos, residentes na MFT, escapam disso, e 5.000 bytes não é o caso.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> slack = tamanho do cluster − (tamanho do arquivo mod cluster) = 4.096 − 904 = 3.192.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> A extração física de um celular busca obter uma cópia bit a bit da memória do aparelho, o que pode permitir a recuperação de dados apagados que não seriam obtidos em uma extração lógica.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A extração física é a mais completa, embora a criptografia dos aparelhos modernos a limite. A lógica traz apenas o que o sistema expõe.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> A extração física busca a cópia bit a bit da memória flash, inclusive áreas não alocadas, e por isso pode trazer dados apagados que a extração lógica não alcança.</p>
+<ol class="passos-resolucao">
+<li>Lógica: só o que o sistema expõe por suas interfaces ou backup (contatos, SMS, fotos, parte dos apps); em regra, não traz apagados.</li>
+<li>Sistema de arquivos: árvore completa, incluindo bancos SQLite, o que já permite recuperar registros apagados dentro desses bancos.</li>
+<li>Física: cópia bit a bit da flash, a mais completa, embora cada vez mais limitada pela criptografia dos aparelhos modernos.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca atribui à extração lógica a cópia bit a bit ou a recuperação do espaço não alocado (errado), ou afirma que a física sempre funciona em qualquer aparelho moderno (a criptografia limita).</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> em completude, manual &lt; lógica &lt; sistema de arquivos &lt; física.</p>
+</div>
 </div>
 <div class="questao" data-correta="d">
 <p class="enunciado">Para demonstrar que um programa específico foi executado em um computador com Windows, o artefato mais diretamente indicado é:</p>
 <ol class="alternativas"><li>o hive SAM.</li><li>o arquivo $I da lixeira.</li><li>a chave USBSTOR do hive SYSTEM.</li><li>o arquivo .pf correspondente na pasta Prefetch.</li><li>o fluxo Zone.Identifier.</li></ol>
-<div class="explicacao"><p>O Prefetch registra execução, contagem e datas das últimas execuções. SAM traz contas, $I traz exclusões, USBSTOR traz dispositivos USB e Zone.Identifier indica origem de download, não execução.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> O Prefetch (<code>C:\Windows\Prefetch\*.pf</code>) é o artefato clássico de <strong>prova de execução</strong>: guarda o nome do executável, a quantidade de execuções e as datas das últimas execuções.</p>
+<ol class="passos-resolucao">
+<li>A pergunta é "o programa rodou?". Artefatos de execução: Prefetch, UserAssist e o evento 4688.</li>
+<li>Entre as alternativas, só o arquivo .pf registra execução; os outros provam fatos diferentes.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> O hive SAM traz contas locais e hashes de senha: prova que a conta existe, não que algo foi executado.</li>
+<li><strong>B)</strong> O $I da lixeira traz nome original, caminho e data da exclusão: prova que um arquivo foi apagado.</li>
+<li><strong>C)</strong> USBSTOR, no hive SYSTEM, registra dispositivos USB conectados: prova que um pen drive foi plugado.</li>
+<li><strong>E)</strong> Zone.Identifier é um ADS que marca arquivo baixado da internet: indica a origem, não a execução.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> executou → Prefetch; abriu arquivo → LNK; plugou USB → USBSTOR; apagou → $I.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Se o hash SHA-256 da imagem forense for diferente do hash da mídia original, conclui-se que a imagem é fiel, pois o algoritmo usa valores aleatórios a cada cálculo.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Hash é determinístico: a mesma entrada sempre gera o mesmo resumo. Hashes diferentes indicam que os dados diferem, e a cópia não é fiel.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> Hash é <strong>determinístico</strong>: a mesma entrada sempre gera o mesmo resumo. Se o SHA-256 da imagem difere do da mídia original, os dados diferem e a cópia <strong>não</strong> é fiel.</p>
+<ol class="passos-resolucao">
+<li>O perito calcula o hash da mídia original e o da imagem; valores iguais demonstram que a cópia é fiel.</li>
+<li>Pelo efeito avalanche, mudar um único bit muda completamente o hash; hash diferente significa conteúdo diferente.</li>
+<li>Nenhuma função de hash usa valor aleatório a cada cálculo. Se usasse, ninguém conseguiria conferir a integridade depois, e o hash não teria valor no laudo.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item inverte a conclusão e inventa aleatoriedade. Certo seria: "hashes iguais indicam imagem fiel; hashes diferentes indicam que houve alteração ou erro na cópia".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> hash igual = íntegro; hash diferente = alterado. Sem exceção.</p>
+</div>
 </div>
 <div class="questao" data-correta="c">
 <p class="enunciado">Um celular apreendido ligado e desbloqueado deve, para preservar seus dados, ser preferencialmente:</p>
 <ol class="alternativas"><li>desligado imediatamente e encaminhado ao laboratório.</li><li>mantido conectado à rede para sincronizar os dados da nuvem.</li><li>isolado da rede (modo avião ou bolsa de Faraday) e mantido energizado.</li><li>reiniciado em modo de segurança antes da extração.</li><li>formatado para remover aplicativos maliciosos.</li></ol>
-<div class="explicacao"><p>Isolar evita apagamento remoto e novos dados; manter ligado preserva o estado em que a criptografia está desbloqueada. Desligar (A) ou reiniciar (D) pode levar ao estado BFU.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Celular ligado e desbloqueado: isolar da rede (modo avião ou bolsa de Faraday) e manter energizado. Isso evita apagamento remoto e novos dados, e preserva o estado em que a criptografia está aberta.</p>
+<ol class="passos-resolucao">
+<li>Na rede, o aparelho corre risco de apagamento remoto, de receber mensagens que sobrescrevem dados e de mudar a localização registrada. Solução: isolar.</li>
+<li>Desligar ou reiniciar devolve o aparelho ao estado BFU (antes do primeiro desbloqueio), em que a criptografia protege a maior parte dos dados. Solução: manter ligado e carregado.</li>
+<li>Documentar: fotografar a tela e anotar IMEI, modelo e operadora.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Desligar perde o estado desbloqueado (volta ao BFU) e pode inviabilizar a extração.</li>
+<li><strong>B)</strong> Manter na rede expõe o aparelho a apagamento remoto e altera dados; sincronizar com a nuvem não é preservação.</li>
+<li><strong>D)</strong> Reiniciar, mesmo em modo de segurança, também leva ao BFU e altera o aparelho.</li>
+<li><strong>E)</strong> Formatar destrói a evidência: é o oposto de preservar.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> isola, mantém ligado, documenta.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> A esteganografia busca ocultar a própria existência da mensagem, enquanto a criptografia torna o conteúdo ininteligível sem esconder que há uma comunicação.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>É exatamente a diferença conceitual cobrada. As técnicas podem ser combinadas.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> A esteganografia esconde a <strong>existência</strong> da mensagem dentro de outro arquivo; a criptografia esconde o <strong>conteúdo</strong>, mas todos percebem que há uma mensagem.</p>
+<ol class="passos-resolucao">
+<li>Esteganografia: na técnica LSB, altera-se o bit menos significativo dos pixels de uma imagem; ela parece idêntica ao olho, e ninguém suspeita da mensagem.</li>
+<li>Criptografia: o texto cifrado é visivelmente ininteligível; quem o intercepta sabe que existe um segredo, só não consegue lê-lo.</li>
+<li>As duas podem ser combinadas: cifra-se a mensagem e depois ela é escondida. A detecção (esteganálise) usa análise estatística e comparação com o original.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma inverter as definições ou dizer que as técnicas são excludentes. Também aparece "a esteganografia torna o conteúdo ininteligível", que é papel da criptografia.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> estego = escondido; cripto = embaralhado.</p>
+</div>
 </div>
