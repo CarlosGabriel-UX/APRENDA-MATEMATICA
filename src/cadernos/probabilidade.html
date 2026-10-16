@@ -74,20 +74,76 @@
 <div class="questao" data-correta="c">
 <p class="enunciado">Sorteando um número de 1 a 30, qual a probabilidade de ele ser múltiplo de 4?</p>
 <ol class="alternativas"><li>1/4</li><li>1/5</li><li>7/30</li><li>8/30</li><li>1/6</li></ol>
-<div class="explicacao"><p>Múltiplos de 4 até 30: 4, 8, …, 28 = 7 números. P = 7/30.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Probabilidade = casos favoráveis ÷ casos possíveis, com todos igualmente prováveis.</p>
+<ol class="passos-resolucao">
+<li>Possíveis: 30 números.</li>
+<li>Múltiplos de 4 até 30: 4, 8, 12, 16, 20, 24, 28, ou seja, 30 ÷ 4 = 7,5 → 7 múltiplos.</li>
+<li>P = 7/30.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Supôs exatamente 1 em cada 4, mas 30 não é múltiplo de 4; seriam 7,5 casos.</li>
+<li><strong>B)</strong> 1/5 = 6/30: contou só 6 múltiplos.</li>
+<li><strong>D)</strong> Contou 8 múltiplos, provavelmente incluindo o 32 ou o 0, que estão fora do intervalo.</li>
+<li><strong>E)</strong> 1/6 = 5/30: faltaram casos na contagem.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> quantidade de múltiplos de k até n = parte inteira de n ÷ k.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado">Um atirador acerta o alvo com probabilidade 0,8. Atirando 2 vezes, a probabilidade de acertar pelo menos uma vez é:</p>
 <ol class="alternativas"><li>0,96</li><li>0,64</li><li>0,80</li><li>0,16</li><li>1,60</li></ol>
-<div class="explicacao"><p>Errar as duas: 0,2 × 0,2 = 0,04. Pelo menos um acerto: 1 − 0,04 = 0,96. (1,60 é impossível: maior que 1.)</p></div>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> "Pelo menos uma vez": calcule a chance de nenhum acerto e subtraia de 1.</p>
+<ol class="passos-resolucao">
+<li>Errar um tiro: 1 − 0,8 = 0,2.</li>
+<li>Errar os dois (independentes, "e" multiplica): 0,2 × 0,2 = 0,04.</li>
+<li>Pelo menos um acerto: 1 − 0,04 = 0,96.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> 0,64 = 0,8 × 0,8 é acertar os dois tiros, não pelo menos um.</li>
+<li><strong>C)</strong> É a chance de acertar um único tiro; com dois tiros ela aumenta.</li>
+<li><strong>D)</strong> 0,16 = 0,8 × 0,2 é acertar só o primeiro e errar o segundo, numa ordem só. Exatamente um seria 0,32.</li>
+<li><strong>E)</strong> Somou 0,8 + 0,8. Probabilidade nunca passa de 1.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> pelo menos um = 1 − P(nenhum). Confira: 0,64 (dois) + 0,32 (exatamente um) = 0,96.</p>
+</div>
 </div>
 <div class="questao" data-correta="d">
 <p class="enunciado">Uma caixa tem 3 lâmpadas boas e 2 queimadas. Retirando duas, sem reposição, qual a probabilidade de as duas serem queimadas?</p>
 <ol class="alternativas"><li>4/25</li><li>2/5</li><li>1/5</li><li>1/10</li><li>3/10</li></ol>
-<div class="explicacao"><p>2/5 × 1/4 = 2/20 = 1/10. (4/25 seria com reposição.)</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> Sem reposição, a segunda retirada muda: há uma lâmpada a menos na caixa. Multiplique as probabilidades em sequência.</p>
+<ol class="passos-resolucao">
+<li>1ª queimada: 2/5.</li>
+<li>2ª queimada (sobrou 1 queimada em 4): 1/4.</li>
+<li>P = 2/5 × 1/4 = 2/20 = 1/10. Por combinação: C(2, 2)/C(5, 2) = 1/10.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> 4/25 = 2/5 × 2/5 seria com reposição.</li>
+<li><strong>B)</strong> 2/5 é só a primeira retirada.</li>
+<li><strong>C)</strong> Contou o mesmo par duas vezes (ordem importando no favorável, mas não no total): 2/10.</li>
+<li><strong>E)</strong> 3/10 = 3/5 × 2/4 é a chance de as duas serem boas.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> "sem reposição": diminua 1 no numerador e no denominador a cada retirada do mesmo tipo.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado">Lançando-se um dado, sabendo que saiu número par, qual a probabilidade de ter saído um número maior que 3?</p>
 <ol class="alternativas"><li>1/2</li><li>2/3</li><li>1/3</li><li>1/6</li><li>5/6</li></ol>
-<div class="explicacao"><p>Universo: {2, 4, 6}. Maiores que 3: {4, 6}. P = 2/3.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Probabilidade condicional: o "sabendo que" reduz o espaço amostral. Conte só dentro dele.</p>
+<ol class="passos-resolucao">
+<li>Saiu par: novo universo {2, 4, 6}, com 3 casos.</li>
+<li>Maiores que 3 dentro dele: {4, 6}, 2 casos.</li>
+<li>P = 2/3.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> 1/2 é P(maior que 3) sem a condição: {4, 5, 6} em 6.</li>
+<li><strong>C)</strong> 1/3 = 2/6 é P(par e maior que 3) sobre o dado inteiro; esqueceu de reduzir o universo.</li>
+<li><strong>D)</strong> 1/6 é a chance de um único resultado do dado.</li>
+<li><strong>E)</strong> Não corresponde a nenhum evento da questão; superestima.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> P(A | B) = P(A e B) ÷ P(B) = (2/6) ÷ (3/6) = 2/3.</p>
+</div>
 </div>

@@ -357,52 +357,158 @@
 <div class="questao" data-correta="b">
 <p class="enunciado">No Windows 10, em configuração padrão, o atalho que exclui um arquivo selecionado sem enviá-lo para a Lixeira é:</p>
 <ol class="alternativas"><li>Ctrl + Delete</li><li>Shift + Delete</li><li>Alt + Delete</li><li>Win + Delete</li><li>Ctrl + Shift + Esc</li></ol>
-<div class="explicacao"><p>Shift + Delete exclui permanentemente. Ctrl + Shift + Esc abre o Gerenciador de Tarefas.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> No Windows, <strong>Delete</strong> envia o item para a Lixeira; <strong>Shift + Delete</strong> exclui permanentemente, sem passar por ela (o Windows pede confirmação antes).</p>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Ctrl + Delete não é o atalho de exclusão definitiva. A combinação que pula a Lixeira usa Shift, não Ctrl.</li>
+<li><strong>C)</strong> Alt + Delete não tem função de exclusão no Explorador de Arquivos.</li>
+<li><strong>D)</strong> Win + Delete não é atalho de exclusão; os atalhos com Win abrem recursos do sistema (Win + E, Win + D, Win + L).</li>
+<li><strong>E)</strong> Ctrl + Shift + Esc abre o Gerenciador de Tarefas. A confusão vem da memória do "Ctrl + Alt + Del".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Delete sozinho = Lixeira; Shift + Delete = sem volta. Lembre também que itens apagados de pen drive ou de unidade de rede não vão para a Lixeira, mesmo com Delete.</p>
+</div>
 </div>
 <div class="questao" data-correta="e">
 <p class="enunciado">No Excel 2016, a célula B2 contém a fórmula =A2*$C$1. Se ela for copiada para B6, a fórmula resultante será:</p>
 <ol class="alternativas"><li>=A2*$C$1</li><li>=A6*$C$5</li><li>=B6*$C$1</li><li>=A6*C5</li><li>=A6*$C$1</li></ol>
-<div class="explicacao"><p>Descendo 4 linhas na mesma coluna, A2 vira A6. $C$1 é absoluta e não muda.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: E.</strong> Ao copiar, a referência <strong>relativa</strong> se desloca o mesmo tanto que a célula; a <strong>absoluta</strong> ($C$1) fica travada.</p>
+<ol class="passos-resolucao">
+<li>Deslocamento: de B2 para B6 é a mesma coluna e 4 linhas abaixo.</li>
+<li>A2 é relativa: coluna A não muda (0 colunas), linha 2 + 4 = 6. Fica A6.</li>
+<li>$C$1 é absoluta: o $ trava coluna e linha, então não muda.</li>
+<li>Resultado: =A6*$C$1.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Mantém A2, como se a referência relativa não se deslocasse ao copiar.</li>
+<li><strong>B)</strong> Deslocou também a linha de $C$1, ignorando que o $ antes do 1 trava a linha.</li>
+<li><strong>C)</strong> Andou uma coluna (A para B), mas a cópia foi feita na mesma coluna.</li>
+<li><strong>D)</strong> Apagou os cifrões e deslocou C1, que estava travada.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> some a cada referência o mesmo deslocamento da célula (aqui, +4 linhas), exceto a parte que tem $ logo antes.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado">Em uma planilha do Excel, a fórmula =PROCV(F2;A2:D100;4;FALSO) retorna:</p>
 <ol class="alternativas"><li>o valor da coluna D da linha em que o valor de F2 for encontrado, de forma exata, na coluna A</li><li>a soma dos valores da coluna D que forem iguais a F2</li><li>o quarto maior valor do intervalo A2:D100</li><li>o valor da coluna F que corresponde à quarta linha da tabela</li><li>a quantidade de vezes que F2 aparece no intervalo</li></ol>
-<div class="explicacao"><p>A PROCV procura F2 na primeira coluna da tabela (A) e devolve o dado da 4ª coluna do intervalo (D). FALSO exige correspondência exata.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> A PROCV procura o valor de F2 na <strong>primeira coluna</strong> da tabela (A) e devolve o dado da coluna indicada pelo número, contada a partir dessa primeira coluna. FALSO exige correspondência exata.</p>
+<ol class="passos-resolucao">
+<li>Valor procurado: F2.</li>
+<li>Tabela: A2:D100. A busca é sempre na 1ª coluna, a coluna A.</li>
+<li>Coluna 4 contada a partir de A: A (1), B (2), C (3), D (4). Retorna a coluna D da linha encontrada.</li>
+<li>FALSO: só aceita valor idêntico; se não achar, aparece #N/D.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> Somar valores que atendem a um critério é papel da SOMASE, não da PROCV.</li>
+<li><strong>C)</strong> O 4 não é posição de ordenação, é o número da coluna a devolver. "Quarto maior valor" seria a função MAIOR.</li>
+<li><strong>D)</strong> F2 é só o valor procurado; a coluna F nem está na tabela. E o 4 indica coluna, não linha.</li>
+<li><strong>E)</strong> Contar quantas vezes um valor aparece é papel da CONT.SE.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> leia a PROCV como "procure o quê; onde; qual coluna devolver; FALSO = exato".</p>
+</div>
 </div>
 <div class="questao" data-correta="c">
 <p class="enunciado">Um usuário envia um e-mail para três pessoas e quer que nenhuma delas veja o endereço das outras. Ele deve inserir os endereços no campo:</p>
 <ol class="alternativas"><li>Para</li><li>Cc</li><li>Cco</li><li>Assunto</li><li>Responder a</li></ol>
-<div class="explicacao"><p>Os destinatários em Cco (cópia oculta) não veem os demais endereços em Cco. Em Para ou Cc, todos veem todos.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Quem está em <strong>Cco</strong> (com cópia oculta) recebe a mensagem, mas seu endereço não aparece para nenhum outro destinatário. Com os três em Cco, ninguém vê o endereço de ninguém.</p>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Para é o destinatário principal, e todos os destinatários veem os endereços que estão nele.</li>
+<li><strong>B)</strong> Cc é cópia visível: todos veem quem recebeu a cópia.</li>
+<li><strong>D)</strong> Assunto é o título da mensagem, não é campo de endereço.</li>
+<li><strong>E)</strong> "Responder a" define para qual endereço vão as respostas, não quem recebe a mensagem.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Cco = cópia oculta: ninguém vê. Por isso "Responder a todos" nunca alcança os destinatários em Cco.</p>
+</div>
 </div>
 <div class="questao" data-correta="d">
 <p class="enunciado">No Microsoft Word 2016 em português, os atalhos Ctrl + N, Ctrl + B e Ctrl + T correspondem, respectivamente, a:</p>
 <ol class="alternativas"><li>novo documento, negrito e tabela</li><li>negrito, abrir e centralizar</li><li>novo documento, salvar e selecionar tudo</li><li>negrito, salvar e selecionar tudo</li><li>negrito, sublinhado e tachado</li></ol>
-<div class="explicacao"><p>No Word PT-BR: Ctrl + N = negrito, Ctrl + B = salvar, Ctrl + T = selecionar tudo. A armadilha C usa os significados do inglês para o N.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> No Word em português, os atalhos seguem as iniciais em português: Ctrl + <strong>N</strong> = Negrito, Ctrl + <strong>B</strong> = salvar e Ctrl + <strong>T</strong> = selecionar Tudo.</p>
+<ol class="passos-resolucao">
+<li>N de Negrito (I de Itálico, S de Sublinhado).</li>
+<li>Como o S ficou com o sublinhado, salvar foi para o B.</li>
+<li>Como o A ficou com Abrir, selecionar Tudo foi para o T.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Usa os significados do inglês: Ctrl + N (New) e Ctrl + B (Bold). No Word PT-BR, novo documento é Ctrl + O.</li>
+<li><strong>B)</strong> Acerta o negrito, mas Ctrl + B não abre (abrir é Ctrl + A) e Ctrl + T não centraliza (centralizar é Ctrl + E).</li>
+<li><strong>C)</strong> Acerta B e T, mas usa o N do inglês (New); no Word PT-BR, N é negrito.</li>
+<li><strong>E)</strong> Sublinhado é Ctrl + S, não Ctrl + B; e Ctrl + T seleciona tudo, não aplica tachado.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> formatação pela inicial em português (N, I, S); salvar e selecionar tudo ficaram com as letras que sobraram (B e T).</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado">O tipo de programa malicioso que se propaga automaticamente pelas redes, explorando vulnerabilidades, sem precisar se anexar a outro arquivo, é o:</p>
 <ol class="alternativas"><li>vírus</li><li>worm</li><li>phishing</li><li>adware</li><li>cookie</li></ol>
-<div class="explicacao"><p>O worm se replica e se espalha sozinho. O vírus depende de um hospedeiro executado. Phishing é golpe de engenharia social e cookie não é malware.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> O <strong>worm</strong> se replica e se espalha sozinho pela rede, explorando falhas, sem precisar de hospedeiro. É exatamente a descrição do enunciado.</p>
+<ul class="por-que-nao">
+<li><strong>A)</strong> O vírus infecta outros arquivos e depende da execução do hospedeiro para agir; não se propaga sozinho.</li>
+<li><strong>C)</strong> Phishing é golpe de engenharia social (mensagem falsa que imita uma instituição para roubar dados), não um programa que se replica.</li>
+<li><strong>D)</strong> Adware exibe propaganda indesejada; não tem como marca a propagação automática pela rede.</li>
+<li><strong>E)</strong> Cookie é um arquivo de texto que o site grava no navegador; não é malware.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> palavras "sozinho", "automaticamente" e "sem hospedeiro" apontam para worm; "infecta arquivo" e "precisa ser executado" apontam para vírus.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Ao utilizar a navegação anônima do Google Chrome, o usuário impede que o provedor de internet e os sites acessados identifiquem sua atividade, pois o navegador oculta o endereço IP do computador.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A navegação anônima só evita que histórico, cookies e dados de formulário fiquem salvos no próprio computador. O provedor, a rede e os sites continuam vendo a atividade e o IP.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A navegação anônima só faz o navegador descartar, ao fechar a janela, o histórico, os cookies e os dados de formulário daquela sessão. Ela <strong>não oculta o IP</strong>: o provedor, a rede da empresa e os sites visitados continuam vendo a atividade.</p>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item atribui à janela anônima um efeito que ela não tem (esconder o IP e tornar o usuário anônimo na internet). Certo seria: "impede que histórico, cookies e dados de formulário da sessão fiquem gravados no computador".</li>
+<li><strong>Onde está a pegadinha:</strong> outra troca comum: dizer que downloads e favoritos feitos na janela anônima são apagados. Eles permanecem.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> anônima para quem usa o mesmo computador, não para a internet.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> O protocolo IMAP permite que as mensagens de correio eletrônico permaneçam no servidor, de modo que o usuário as acesse de forma sincronizada em diferentes dispositivos.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>É a principal diferença entre IMAP (sincroniza, mantém no servidor) e POP3 (baixa para o dispositivo).</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> O <strong>IMAP</strong> mantém as mensagens no servidor e sincroniza pastas e o estado das mensagens (lida, não lida), por isso o usuário vê a mesma caixa em todos os dispositivos.</p>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma trocar IMAP por POP3, que baixa as mensagens para o computador e, em regra, as retira do servidor, ou dizer que o IMAP envia mensagens, função do SMTP.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> SMTP = Sai (envia); POP = "Puxa e apaga"; IMAP = "Igual em todos os aparelhos".</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Na restauração de dados a partir de backups diferenciais, é necessário utilizar o último backup completo e todos os backups diferenciais realizados depois dele.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Cada diferencial acumula tudo o que mudou desde o último completo, então basta o último completo e o último diferencial. Exigir todos é característica do incremental.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> O backup <strong>diferencial</strong> copia tudo o que mudou desde o <strong>último completo</strong>, de forma acumulada. Assim, o último diferencial já contém o que os anteriores tinham, e a restauração usa só o último completo e o último diferencial.</p>
+<ol class="passos-resolucao">
+<li>Exemplo: completo no domingo, diferenciais de segunda a quinta.</li>
+<li>O diferencial de quinta já reúne todas as mudanças desde domingo.</li>
+<li>Falha na sexta: restaure o completo de domingo e o diferencial de quinta.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item descreveu a restauração do backup <strong>incremental</strong>, que copia só o que mudou desde o último backup de qualquer tipo e por isso exige o completo e todos os incrementais seguintes. Certo seria "o último backup completo e o último diferencial".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Diferencial = Desde o completo (acumula); Incremental = desde o último backup qualquer (encadeia).</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Em um sistema Linux, após o comando chmod 750 relatorio.sh, o dono do arquivo pode ler, gravar e executar; os membros do grupo podem ler e executar; e os demais usuários não têm nenhuma permissão.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>7 = 4 + 2 + 1 (rwx), 5 = 4 + 1 (r-x), 0 = nenhuma (---). Resultado: rwxr-x---.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Em octal, r = 4, w = 2 e x = 1, na ordem dono, grupo e outros. 750 resulta em rwxr-x---, exatamente o que o item descreve.</p>
+<ol class="passos-resolucao">
+<li>Dono: 7 = 4 + 2 + 1 = rwx (ler, gravar, executar).</li>
+<li>Grupo: 5 = 4 + 1 = r-x (ler e executar).</li>
+<li>Outros: 0 = --- (nenhuma permissão).</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma trocar a ordem (pôr os "outros" antes do grupo) ou dar gravação ao 5. Também confunde com o 755, em que os outros também leem e executam.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> decomponha cada dígito em 4, 2 e 1: o que sobra de cada parcela diz quais letras entram.</p>
+</div>
 </div>
   <div class="rodape-caderno">
     <a class="botao secundario" href="portugues.html">← Língua Portuguesa</a>

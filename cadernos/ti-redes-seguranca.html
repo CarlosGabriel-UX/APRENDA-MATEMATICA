@@ -372,52 +372,175 @@
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> O endereço 172.32.10.5 pertence a uma das faixas de endereços privados definidas na RFC 1918.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A faixa privada classe B é 172.16.0.0/12, que vai de 172.16.0.0 a 172.31.255.255. O 172.32 já está fora e é endereço público.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A faixa privada classe B da RFC 1918 é <code>172.16.0.0/12</code>, que vai só de 172.16.0.0 a 172.31.255.255. O 172.32.10.5 fica fora dela e é endereço público.</p>
+<ol class="passos-resolucao">
+<li>/12 significa 12 bits fixos: os 8 do 1º octeto (172) e os 4 bits mais altos do 2º octeto.</li>
+<li>Início do bloco no 2º octeto: 16 = 0001 0000. Fixos: <code>0001</code>; os 4 bits de baixo variam de 0000 a 1111, ou seja, de 16 (0001 0000) a 31 (0001 1111).</li>
+<li>2º octeto do item: 32 = 0010 0000. Os 4 bits altos são <code>0010</code>, diferentes de <code>0001</code>: está fora do bloco.</li>
+<li>Também não é 10.x.x.x nem 192.168.x.x, então não pertence a nenhuma faixa privada.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca empurra o limite de 172.31 para 172.32 (ou usa 192.169.x.x). O item ficaria certo com, por exemplo, 172.31.10.5.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> privado classe B é "172 com segundo octeto de 16 a 31"; qualquer coisa fora disso é pública.</p>
+</div>
 </div>
 <div class="questao" data-correta="d">
 <p class="enunciado">Para o host 10.20.30.200/26, o endereço de broadcast da sub-rede é:</p>
 <ol class="alternativas"><li>10.20.30.191</li><li>10.20.30.192</li><li>10.20.30.254</li><li>10.20.30.255</li><li>10.20.30.223</li></ol>
-<div class="explicacao"><p>/26 → máscara .192, número mágico 64. Blocos: 0, 64, 128, 192. O 200 está no bloco 192, cujo broadcast é 256 − 1 = 255. A letra B (.192) é o endereço de rede, e a letra A é o broadcast do bloco anterior.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> Em /26 sobram 6 bits de host, e o broadcast é o endereço com todos esses bits em 1. Para o host .200, isso dá 10.20.30.255.</p>
+<ol class="passos-resolucao">
+<li>/26 = 24 bits nos três primeiros octetos + 2 bits no 4º: máscara 255.255.255.192, com 4º octeto <code>11000000</code>.</li>
+<li>200 em binário: <code>11001000</code>. AND com <code>11000000</code> = <code>11000000</code> = 192. Rede: 10.20.30.192.</li>
+<li>Broadcast: mantém os 2 bits de rede (<code>11</code>) e liga os 6 de host: <code>11111111</code> = 255.</li>
+<li>Conferência pelo número mágico: 256 − 192 = 64; blocos 0, 64, 128, 192. O 200 está no bloco de 192 a 255.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> .191 é o broadcast do bloco anterior (128 a 191).</li>
+<li><strong>B)</strong> .192 é o endereço de rede: todos os bits de host em 0.</li>
+<li><strong>C)</strong> .254 é o último host utilizável, um antes do broadcast.</li>
+<li><strong>E)</strong> .223 seria o broadcast se a máscara fosse /27 (número mágico 32, bloco de 192 a 223).</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> broadcast = início do bloco + número mágico − 1 = 192 + 64 − 1 = 255.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Na conexão TLS, a criptografia assimétrica é usada principalmente no estabelecimento da sessão, enquanto o tráfego de dados é cifrado com chave simétrica, por razões de desempenho.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>É o modelo híbrido: assimétrica (ou troca de chaves) para autenticar e combinar a chave de sessão, simétrica para o volume de dados.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> O TLS usa o modelo híbrido: assimétrica (ou troca de chaves) no handshake para autenticar o servidor e combinar a chave de sessão; simétrica para cifrar o volume de dados, porque é muito mais rápida.</p>
+<ol class="passos-resolucao">
+<li>No handshake, o servidor apresenta o certificado digital, que traz sua chave pública assinada por uma AC.</li>
+<li>Cliente e servidor combinam uma chave de sessão simétrica, por exemplo com Diffie-Hellman efêmero autenticado pela chave do certificado.</li>
+<li>Daí em diante, os dados trafegam cifrados com algoritmo simétrico (como AES), com verificação de integridade.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma inverter os papéis ("simétrica para combinar a chave, assimétrica para os dados") ou dizer que todo o tráfego é cifrado com a chave pública do servidor. Os dois ficam errados, pois a assimétrica é lenta demais para grandes volumes.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> assimétrica para autenticar e combinar a chave; simétrica para cifrar os dados. Vale para TLS e PGP.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Um sistema de detecção de intrusão (IDS) instalado fora do caminho do tráfego bloqueia automaticamente os pacotes maliciosos que identifica, razão pela qual dispensa o uso de firewall.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>O IDS detecta e alerta; quem fica em linha e bloqueia é o IPS. Nenhum dos dois substitui o firewall, que faz o controle de acesso entre redes.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> O IDS é sistema de <strong>detecção</strong>: monitora e alerta, mas não bloqueia. Quem bloqueia em linha é o IPS, e nenhum dos dois dispensa o firewall.</p>
+<ol class="passos-resolucao">
+<li>"Fora do caminho do tráfego" é o modo passivo: o IDS analisa uma cópia do tráfego. Quando ele identifica o pacote, o original já passou.</li>
+<li>Para descartar pacotes é preciso estar em linha (inline): é o IPS.</li>
+<li>O firewall faz controle de acesso entre redes (IP, porta, estado da conexão); IDS e IPS procuram ataques dentro do tráfego permitido. São camadas complementares.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> são dois erros: "bloqueia automaticamente" descreve o IPS, e "dispensa o firewall" é falso. Certo seria: "o IDS detecta e alerta; o IPS, em linha, bloqueia; ambos complementam o firewall".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> D de Detecção só avisa; P de Prevenção barra.</p>
+</div>
 </div>
 <div class="questao" data-correta="c">
 <p class="enunciado">Ana quer enviar a Bruno um arquivo que só Bruno possa ler e que, ao mesmo tempo, comprove ter sido enviado por ela. Ana deve:</p>
 <ol class="alternativas"><li>cifrar com a chave privada de Bruno e assinar com a chave pública dela.</li><li>cifrar com a chave pública dela e assinar com a chave privada de Bruno.</li><li>assinar com a chave privada dela e cifrar com a chave pública de Bruno.</li><li>assinar e cifrar com a chave pública de Bruno.</li><li>calcular o MD5 do arquivo e enviá-lo junto, em claro.</li></ol>
-<div class="explicacao"><p>Assinatura usa a privada do remetente; sigilo usa a pública do destinatário. Ana nunca tem a chave privada de Bruno (A e B). O hash em claro só ajuda na integridade, sem autoria nem sigilo (E).</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Assinatura usa a chave <strong>privada do remetente</strong>; sigilo usa a chave <strong>pública do destinatário</strong>. Ana assina com a privada dela e cifra com a pública de Bruno.</p>
+<ol class="passos-resolucao">
+<li>Sigilo: só Bruno deve abrir, então a cifra precisa ser desfeita pela privada de Bruno. Logo, Ana cifra com a pública de Bruno.</li>
+<li>Autoria: a assinatura tem de ser algo que só Ana consegue produzir. Ela usa a própria chave privada, e Bruno confere com a pública de Ana.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Ana nunca tem a chave privada de Bruno, e assinar com chave pública não prova autoria, pois todos a conhecem.</li>
+<li><strong>B)</strong> Cifrar com a própria pública faz só Ana conseguir abrir; e de novo usa a privada de Bruno.</li>
+<li><strong>D)</strong> A pública de Bruno não serve para assinar: qualquer pessoa poderia gerar essa "assinatura".</li>
+<li><strong>E)</strong> MD5 em claro dá, no máximo, uma checagem de integridade; não há sigilo nem autoria, pois qualquer um recalcula o hash.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> sigilo vai para o destinatário (pública dele); assinatura sai do remetente (privada dele).</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Como o MD5 e o SHA-1 apresentam vulnerabilidades práticas de colisão, não são recomendados para assinaturas digitais e certificados, sendo preferível o SHA-256.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Colisões práticas foram demonstradas para os dois. Em assinatura, uma colisão permite trocar um documento por outro com o mesmo hash. SHA-256 (SHA-2) ou SHA-3 são os recomendados.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> MD5 e SHA-1 têm colisões práticas demonstradas (a do SHA-1 em 2017). Por isso não servem para assinaturas e certificados; o recomendado é SHA-256 (família SHA-2) ou SHA-3.</p>
+<ol class="passos-resolucao">
+<li>A assinatura digital é feita sobre o <strong>hash</strong> do documento, não sobre o documento inteiro.</li>
+<li>Se o atacante produz dois documentos com o mesmo hash (colisão), a assinatura de um vale para o outro: dá para trocar o conteúdo sem invalidar a assinatura.</li>
+<li>Logo, para assinatura e certificação, usa-se hash resistente a colisão, como o SHA-256 (256 bits, 64 dígitos hex).</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca troca para "o MD5 pode ser decifrado e revela o arquivo original" (errado: hash não tem chave e é unidirecional) ou para "SHA-1 é o padrão recomendado para novas assinaturas" (errado: está obsoleto).</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> tamanhos: MD5 = 128 bits, SHA-1 = 160 bits, SHA-256 = 256 bits; só o último é seguro.</p>
+</div>
 </div>
 <div class="questao" data-correta="e">
 <p class="enunciado">Um atacante insere, no campo de comentários de um site, um código JavaScript que é gravado no banco e executado no navegador de todos que visualizam a página. Trata-se de:</p>
 <ol class="alternativas"><li>SQL injection.</li><li>ataque de negação de serviço distribuído.</li><li>ARP spoofing.</li><li>XSS refletido.</li><li>XSS armazenado.</li></ol>
-<div class="explicacao"><p>O script fica gravado no servidor e atinge todos os visitantes: XSS armazenado (persistente). No refletido (D), o script vem na própria requisição da vítima, por exemplo em um link manipulado. Não é SQLi porque o alvo da execução é o navegador, não o SGBD.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: E.</strong> O script fica gravado no servidor (no banco) e roda no navegador de todo visitante da página: é XSS armazenado, também chamado persistente.</p>
+<ol class="passos-resolucao">
+<li>Onde o código executa? No navegador das vítimas. Então é XSS, e não ataque ao SGBD.</li>
+<li>De onde vem o script? Do banco, gravado uma vez e servido a todos que abrem a página: armazenado.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> SQL injection altera a consulta executada no banco de dados; aqui o banco só guarda o texto e quem executa é o navegador.</li>
+<li><strong>B)</strong> DDoS busca derrubar o serviço com tráfego de muitas origens (ataque à disponibilidade); não há injeção de script.</li>
+<li><strong>C)</strong> ARP spoofing é um ataque de homem no meio na rede local, que falsifica a associação entre IP e MAC.</li>
+<li><strong>D)</strong> No XSS refletido o script vem na própria requisição da vítima (um link manipulado, por exemplo) e não fica salvo; o "gravado no banco" elimina essa opção.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> gravado e atinge todos = armazenado; veio no link = refletido.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> O protocolo DNS opera exclusivamente sobre UDP, na porta 53, uma vez que não necessita de entrega confiável.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>O DNS usa UDP 53 nas consultas comuns, mas também TCP 53, por exemplo em transferências de zona e respostas grandes. "Exclusivamente" torna o item errado.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> O DNS usa UDP 53 nas consultas comuns, mas também usa <strong>TCP 53</strong>, por exemplo em transferências de zona e em respostas grandes. O "exclusivamente" derruba o item.</p>
+<ol class="passos-resolucao">
+<li>Consulta comum é pequena: o UDP é mais leve (cabeçalho de 8 bytes, sem handshake) e, se a resposta não vier, o cliente simplesmente repete.</li>
+<li>Quando a resposta não cabe no limite do UDP, o servidor sinaliza truncamento e o cliente refaz a consulta por TCP 53.</li>
+<li>A transferência de zona (cópia da zona inteira do servidor primário para o secundário) precisa de entrega confiável e usa TCP 53.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a palavra "exclusivamente". Certo seria: "o DNS usa preferencialmente UDP 53 e recorre ao TCP 53 em transferências de zona e respostas grandes".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> em item CEBRASPE de redes, termos absolutos (exclusivamente, sempre, nunca) pedem desconfiança imediata.</p>
+</div>
 </div>
 <div class="questao" data-correta="d">
 <p class="enunciado">A assinatura digital de um documento, por si só, garante:</p>
 <ol class="alternativas"><li>confidencialidade, integridade e disponibilidade.</li><li>confidencialidade e autenticidade.</li><li>apenas integridade.</li><li>integridade, autenticidade e não repúdio.</li><li>disponibilidade e não repúdio.</li></ol>
-<div class="explicacao"><p>Assinar não cifra o conteúdo: não há confidencialidade (A e B). Ela garante que o documento não foi alterado, quem o assinou e que o signatário não pode negar a autoria.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> A assinatura digital garante <strong>integridade, autenticidade e não repúdio</strong>. Ela não cifra o conteúdo (sem confidencialidade) e nada tem a ver com disponibilidade.</p>
+<ol class="passos-resolucao">
+<li>O remetente calcula o hash do documento e o assina com sua chave privada.</li>
+<li>O destinatário recalcula o hash e confere com a chave pública do remetente. Se bater, o documento não foi alterado (integridade) e veio do titular da chave privada (autenticidade).</li>
+<li>Como só o signatário tem a chave privada, ele não pode negar a autoria (não repúdio).</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Confidencialidade exige cifra, e disponibilidade se garante com backup e redundância, não com assinatura.</li>
+<li><strong>B)</strong> Inclui confidencialidade, que a assinatura não dá: o documento assinado pode estar em claro.</li>
+<li><strong>C)</strong> "Apenas integridade" é o que um hash simples daria; a assinatura vai além porque usa a chave privada do autor.</li>
+<li><strong>E)</strong> Disponibilidade não tem relação com assinatura, e a opção deixa de fora integridade e autenticidade.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> assinatura = I + A + N (integridade, autenticidade, não repúdio); sigilo, nunca.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> No IPv6, o endereço 2001:0db8:0000:0000:0000:ff00:0042:8329 pode ser escrito de forma abreviada como 2001:db8::ff00:42:8329.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Os três grupos zerados consecutivos viram um único "::" e os zeros à esquerda de cada grupo podem ser omitidos (0db8 → db8, 0042 → 42).</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Duas regras de abreviação do IPv6: os zeros à esquerda de cada grupo podem ser omitidos, e uma única sequência de grupos zerados pode virar <code>::</code>.</p>
+<ol class="passos-resolucao">
+<li>Separe os 8 grupos: 2001 | 0db8 | 0000 | 0000 | 0000 | ff00 | 0042 | 8329.</li>
+<li>Zeros à esquerda: 0db8 → db8 e 0042 → 42. O ff00 continua ff00, porque seus zeros estão à direita.</li>
+<li>Os três grupos 0000 seguidos viram <code>::</code>: 2001:db8::ff00:42:8329.</li>
+<li>Conferência: há 5 grupos escritos, então o <code>::</code> representa 8 − 5 = 3 grupos zerados. Bate.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma cortar zeros à direita (ff00 → ff) ou usar <code>::</code> duas vezes no mesmo endereço; nos dois casos a forma abreviada fica errada ou inválida.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> conte os grupos visíveis; o <code>::</code> vale o que falta para completar 8.</p>
+</div>
 </div>
   <div class="rodape-caderno">
     <a class="botao secundario" href="criminalistica.html">← Noções de Criminalística</a>

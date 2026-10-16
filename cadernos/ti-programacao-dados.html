@@ -386,52 +386,176 @@ print(adiciona(2))   # [1, 2]  (a mesma lista é reaproveitada)</code></pre>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Em complemento de 2 com 8 bits, o número −5 é representado por 11111011.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>5 = 00000101; invertendo, 11111010; somando 1, 11111011.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Para obter −x em complemento de 2: escreva x em binário, inverta todos os bits e some 1. Para −5 com 8 bits, isso dá 11111011.</p>
+<ol class="passos-resolucao">
+<li>5 em 8 bits: <code>00000101</code>.</li>
+<li>Invertendo todos os bits: <code>11111010</code>.</li>
+<li>Somando 1: <code>11111011</code> (0xFB).</li>
+<li>Conferência: 11111011 sem sinal vale 251, e 251 − 256 = −5.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca troca pelo complemento de 1 (<code>11111010</code>, sem somar 1) ou pelo sinal-magnitude (<code>10000101</code>, só liga o bit de sinal). Os dois deixariam o item errado.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> da direita para a esquerda, copie os bits até o primeiro 1 (inclusive) e inverta o resto: 00000101 → 11111011.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Para que ocorra deadlock, basta que estejam presentes as condições de exclusão mútua e de espera circular; as condições de posse e espera e de não preempção são dispensáveis.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>As quatro condições de Coffman são necessárias e devem ocorrer simultaneamente. Eliminar qualquer uma impede o deadlock.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> As quatro condições de Coffman (exclusão mútua, posse e espera, não preempção e espera circular) são todas <strong>necessárias</strong> e precisam ocorrer <strong>simultaneamente</strong>.</p>
+<ol class="passos-resolucao">
+<li>Sem posse e espera, o processo não segura um recurso enquanto espera outro, então não se forma o impasse.</li>
+<li>Sem não preempção, o sistema pode tomar o recurso à força e desfazer o ciclo.</li>
+<li>Por isso a prevenção funciona negando uma única condição: por exemplo, impor ordem fixa na requisição de recursos quebra a espera circular.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item diz que duas condições bastam. Certo seria: "para que ocorra deadlock, as quatro condições devem estar presentes ao mesmo tempo". Outra troca comum: chamar o algoritmo do banqueiro de detecção, quando ele é de evitação.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> quatro condições, todas obrigatórias; tirou uma, não há deadlock.</p>
+</div>
 </div>
 <div class="questao" data-correta="c">
 <p class="enunciado">Considere o código Python:<br><code>v = [3, 8, 1, 9, 4]</code><br><code>print(v[1:4], v[-1], v[::2])</code><br>A saída é:</p>
 <ol class="alternativas"><li>[3, 8, 1] 4 [3, 1, 4]</li><li>[8, 1, 9, 4] 4 [8, 9]</li><li>[8, 1, 9] 4 [3, 1, 4]</li><li>[8, 1, 9] 3 [3, 1, 4]</li><li>[8, 1, 9] 4 [8, 9]</li></ol>
-<div class="explicacao"><p>v[1:4] pega os índices 1, 2 e 3 (o 4 não entra): [8, 1, 9]. v[-1] é o último: 4. v[::2] pega os índices 0, 2 e 4: [3, 1, 4].</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> No fatiamento <code>seq[início:fim:passo]</code>, os índices começam em 0 e o fim não entra. Assim, v[1:4] = [8, 1, 9], v[-1] = 4 e v[::2] = [3, 1, 4].</p>
+<ol class="passos-resolucao">
+<li>Escreva os índices: 3 (0), 8 (1), 1 (2), 9 (3), 4 (4).</li>
+<li><code>v[1:4]</code>: índices 1, 2 e 3 (o 4 não entra) → [8, 1, 9].</li>
+<li><code>v[-1]</code>: índice negativo conta do fim; −1 é o último → 4.</li>
+<li><code>v[::2]</code>: do início ao fim, de 2 em 2: índices 0, 2 e 4 → [3, 1, 4].</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> [3, 8, 1] é v[0:3]: tratou o índice 1 como se fosse o primeiro elemento.</li>
+<li><strong>B)</strong> [8, 1, 9, 4] incluiu o índice final 4, e [8, 9] começou o passo no índice 1.</li>
+<li><strong>D)</strong> v[-1] = 3 confunde o último elemento com o primeiro.</li>
+<li><strong>E)</strong> [8, 9] para v[::2] começa no índice 1; sem início informado, o passo começa no 0.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> o tamanho da fatia é fim − início (4 − 1 = 3 elementos); se der outro número, a alternativa está errada.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Em SQL, a cláusula HAVING permite filtrar grupos com base em funções de agregação, como COUNT e AVG, o que não é possível na cláusula WHERE.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>O WHERE é avaliado antes do GROUP BY, quando os grupos ainda não existem; o HAVING é avaliado depois.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Pela ordem lógica de execução (FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY), o WHERE é avaliado antes de os grupos existirem; por isso só o HAVING pode filtrar por COUNT, AVG e outras agregações.</p>
+<ol class="passos-resolucao">
+<li>O WHERE filtra <strong>linhas</strong>, uma a uma, antes do agrupamento: não há grupo sobre o qual calcular um COUNT.</li>
+<li>O GROUP BY forma os grupos, e o HAVING filtra <strong>grupos</strong> já com as agregações calculadas.</li>
+<li>No exemplo da apostila, <code>WHERE salario &gt;= 4500</code> tira Davi, o GROUP BY forma os grupos 10 e 20, e <code>HAVING COUNT(*) &gt;= 2</code> descarta o grupo 20. Resultado: 10 | 2 | 6000. Escrever <code>WHERE AVG(salario) &gt; 1</code> gera erro de uso indevido de agregação.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca troca os papéis ("o WHERE filtra grupos e o HAVING filtra linhas") ou diz que o HAVING é executado antes do GROUP BY. Os dois ficam errados.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> WHERE = linhas, antes de agrupar; HAVING = grupos, depois de agrupar.</p>
+</div>
 </div>
 <div class="questao" data-correta="e">
 <p class="enunciado">Uma tabela tem chave primária composta (matricula, cod_disciplina) e o atributo nome_aluno, que depende apenas de matricula. Essa tabela viola a:</p>
 <ol class="alternativas"><li>1FN, por ter chave composta.</li><li>3FN, mas não a 2FN.</li><li>FNBC apenas.</li><li>1FN, por conter atributo multivalorado.</li><li>2FN, por haver dependência parcial da chave.</li></ol>
-<div class="explicacao"><p>nome_aluno depende de parte da chave composta: dependência parcial, que viola a 2FN (e, por consequência, as formas superiores). Chave composta não viola a 1FN.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: E.</strong> nome_aluno depende só de matricula, que é <strong>parte</strong> da chave composta. Isso é dependência parcial, proibida pela 2FN.</p>
+<ol class="passos-resolucao">
+<li>Chave primária: (matricula, cod_disciplina).</li>
+<li>nome_aluno é determinado apenas por matricula: depende de parte da chave, e não da chave inteira.</li>
+<li>A 2FN exige que nenhum atributo não chave dependa de parte da chave composta. Correção: separar Aluno(matricula, nome_aluno).</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Chave composta não viola nada; a 1FN só exige valores atômicos.</li>
+<li><strong>B)</strong> É o contrário: a 3FN pressupõe a 2FN, então quem viola a 2FN também está fora da 3FN. "Viola a 3FN, mas não a 2FN" é impossível aqui.</li>
+<li><strong>C)</strong> A FNBC também é violada, mas não "apenas" ela; a falha de base é a dependência parcial (2FN).</li>
+<li><strong>D)</strong> Nada no enunciado indica atributo multivalorado.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> depende de parte da chave → 2FN; depende de outro atributo não chave → 3FN.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> A busca binária tem complexidade O(log n) e pode ser aplicada diretamente a qualquer vetor, esteja ele ordenado ou não.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A complexidade está certa, mas a busca binária exige vetor ordenado. Em vetor desordenado, use busca sequencial, O(n).</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A complexidade O(log n) está certa, mas a busca binária <strong>exige vetor ordenado</strong>. Em vetor desordenado, ela pode não achar um elemento que está lá.</p>
+<ol class="passos-resolucao">
+<li>A cada comparação, a busca binária descarta metade do vetor supondo que os menores ficam à esquerda e os maiores à direita.</li>
+<li>Exemplo: procurar 4 em [7, 2, 9, 4, 1]. O meio é 9; como 4 &lt; 9, descarta a direita e olha [7, 2]. O meio é 7; 4 &lt; 7, descarta de novo e termina sem achar, embora o 4 esteja no índice 3.</li>
+<li>Em vetor desordenado, usa-se a busca sequencial, O(n), ou ordena-se antes, O(n log n).</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca mistura uma parte certa (O(log n)) com uma errada (qualquer vetor). Certo seria: "tem complexidade O(log n), desde que o vetor esteja ordenado".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> busca binária = "ordenado" sempre junto; com 1.000 elementos, cerca de 10 comparações (2¹⁰ = 1.024).</p>
+</div>
 </div>
 <div class="questao" data-correta="d">
 <p class="enunciado">Um classificador de imagens ilícitas obteve 90 verdadeiros positivos, 10 falsos positivos e 30 falsos negativos. Sua precisão e seu recall são, respectivamente:</p>
 <ol class="alternativas"><li>75% e 90%.</li><li>90% e 90%.</li><li>75% e 75%.</li><li>90% e 75%.</li><li>80% e 75%.</li></ol>
-<div class="explicacao"><p>Precisão = 90 / (90 + 10) = 90%. Recall = 90 / (90 + 30) = 75%. A letra A inverte as duas métricas.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> Precisão = VP ÷ (VP + FP) = 90 ÷ 100 = 90%. Recall = VP ÷ (VP + FN) = 90 ÷ 120 = 75%.</p>
+<ol class="passos-resolucao">
+<li>Dados: VP = 90, FP = 10, FN = 30.</li>
+<li>Precisão (dos que o modelo apontou, quantos eram): 90 ÷ (90 + 10) = 0,90 = 90%.</li>
+<li>Recall (dos positivos reais, quantos ele achou): 90 ÷ (90 + 30) = 0,75 = 75%.</li>
+<li>Se pedirem F1: 2 × 0,9 × 0,75 ÷ (0,9 + 0,75) ≈ 81,8%.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Inverte as duas métricas: 75% é o recall, e 90% a precisão.</li>
+<li><strong>B)</strong> Usa a precisão nas duas posições; o recall tem FN, não FP, no denominador.</li>
+<li><strong>C)</strong> Usa o recall nas duas posições.</li>
+<li><strong>E)</strong> 80% vem de subtrair os falsos positivos (90 − 10) em vez de somá-los no denominador.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Precisão olha os falsos Positivos; Recall olha os que o modelo deixou passar (falsos negativos).</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Um modelo que apresenta erro muito baixo nos dados de treinamento e erro elevado nos dados de teste provavelmente sofre de overfitting.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>É o sinal clássico do sobreajuste: o modelo memorizou o treino e não generaliza.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Erro muito baixo no treino e alto no teste é o sinal clássico de overfitting (sobreajuste): o modelo decorou o treino, inclusive o ruído, e não generaliza.</p>
+<ol class="passos-resolucao">
+<li>No treino, o modelo já viu as respostas; erro baixo ali pode ser só memorização.</li>
+<li>O desempenho real é medido em dados que o modelo nunca viu (teste). Se o erro dispara ali, ele não aprendeu o padrão geral.</li>
+<li>Remédios: mais dados, modelo mais simples, regularização, validação cruzada, parada antecipada e dropout.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca troca por underfitting (que erra no treino e no teste) ou sugere "aumentar a complexidade do modelo" como solução para o overfitting, o que piora o problema.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> overfitting = bom no treino, ruim no teste; underfitting = ruim nos dois.</p>
+</div>
 </div>
 <div class="questao" data-correta="c">
 <p class="enunciado">Threads de um mesmo processo compartilham:</p>
 <ol class="alternativas"><li>a pilha de execução e os registradores.</li><li>o contador de programa.</li><li>o espaço de endereçamento (código, dados e heap) e os arquivos abertos.</li><li>nada; cada thread tem memória totalmente isolada.</li><li>apenas a pilha.</li></ol>
-<div class="explicacao"><p>Cada thread tem pilha, registradores e contador de programa próprios, mas todas compartilham a memória e os recursos do processo. Isolamento total de memória é característica de processos diferentes.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Threads de um mesmo processo compartilham o espaço de endereçamento (código, dados e heap) e os recursos do processo, como arquivos abertos. Cada thread tem só a própria pilha, registradores e contador de programa.</p>
+<ol class="passos-resolucao">
+<li>Cada thread é um fluxo de execução: pode estar em um ponto diferente do código, então precisa de PC, registradores e pilha próprios.</li>
+<li>O resto pertence ao processo e é comum a todas as threads. Por isso trocar de thread é barato, mas o acesso compartilhado exige sincronização (mutex, semáforo).</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Pilha e registradores são exatamente o que cada thread tem de próprio.</li>
+<li><strong>B)</strong> O contador de programa é individual; cada thread executa sua própria sequência de instruções.</li>
+<li><strong>D)</strong> Isolamento total de memória é característica de processos diferentes, não de threads.</li>
+<li><strong>E)</strong> A pilha é justamente o que não se compartilha.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> cada thread tem seu "PRP" (pilha, registradores, PC); o resto é do processo.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> No Scrum, o Scrum Master é responsável por atribuir as tarefas da Sprint a cada desenvolvedor e por priorizar o Product Backlog.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Os Developers se auto-organizam para executar o trabalho, e quem gerencia e ordena o Product Backlog é o Product Owner. O Scrum Master atua como facilitador.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> O Scrum Master não distribui tarefas nem prioriza o backlog. Os Developers se auto-organizam para executar o trabalho, e quem gerencia e ordena o Product Backlog é o Product Owner.</p>
+<ol class="passos-resolucao">
+<li>Product Owner: maximiza o valor do produto e gerencia o Product Backlog (decide a ordem).</li>
+<li>Developers: decidem como transformar os itens em incremento e se organizam entre si.</li>
+<li>Scrum Master: garante a aplicação do Scrum, facilita os eventos e remove impedimentos; não é chefe da equipe.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item dá ao Scrum Master duas funções que não são dele. Certo seria: "o Product Owner ordena o Product Backlog, e os Developers se auto-organizam para executar a Sprint".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> PO decide o quê; Developers decidem o como; Scrum Master cuida do processo.</p>
+</div>
 </div>
   <div class="rodape-caderno">
     <a class="botao secundario" href="ti-forense.html">← Computação Forense</a>
