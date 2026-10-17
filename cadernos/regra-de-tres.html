@@ -97,6 +97,7 @@
   <nav class="sumario" data-sumario><strong>Nesta página</strong></nav>
 <h2>Regra de três simples</h2>
 <p>Duas grandezas, três valores conhecidos, um desconhecido. O único trabalho é decidir se a relação é <strong>direta</strong> ou <strong>inversa</strong>.</p>
+<p>A regra de três é só a proporção aplicada a um problema. Se as grandezas são diretamente proporcionais, a <strong>razão</strong> entre elas fica constante (bolos por quilo de farinha), e por isso se iguala uma razão à outra e se multiplica cruzado. Se são inversamente proporcionais, o que fica constante é o <strong>produto</strong> (velocidade × tempo = distância), e por isso se multiplica em linha: produto da primeira situação = produto da segunda. Antes de qualquer conta, vale estimar: a resposta deve ser maior ou menor que o valor conhecido? Isso já elimina alternativas.</p>
 <p>Pergunte: "se uma aumenta, a outra aumenta ou diminui?"</p>
 <ul>
   <li>Aumenta junto → <strong>direta</strong> → multiplica cruzado.</li>
@@ -113,6 +114,21 @@
 <div class="caixa atalho"><span class="rotulo">Atalho: fator de mudança</span>
 <p>Em vez de montar a proporção, veja por quanto a grandeza conhecida foi multiplicada. De 6 kg para 10 kg é × 10/6 = × 5/3. Se é direta, a outra também vai × 5/3: 15 × 5/3 = 25. Se fosse inversa, iria × 3/5.</p></div>
 
+<details class="exemplo"><summary>15 guardas fazem a vistoria de um parque em 12 dias. Com quantos guardas, no mesmo ritmo, a vistoria ficaria pronta em 9 dias?</summary>
+<div class="resolucao">
+<p class="passo">Menos dias exigem mais guardas: inversa. Estimativa: a resposta é maior que 15.</p>
+<p class="passo">Produto constante (o serviço total): 15 × 12 = x × 9 → 180 = 9x → x = 20.</p>
+<p class="resposta-final">Resposta: 20 guardas.</p></div></details>
+
+<details class="exemplo"><summary>Uma impressora imprime 450 páginas em 18 minutos. Quanto tempo leva para imprimir 700 páginas?</summary>
+<div class="resolucao">
+<p class="passo">Mais páginas, mais tempo: direta. Ritmo: 450 / 18 = 25 páginas por minuto.</p>
+<p class="passo">700 / 25 = 28.</p>
+<p class="resposta-final">Resposta: 28 minutos.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Multiplicar cruzado sempre, no automático. No exemplo dos guardas, quem monta 15/x = 12/9 encontra x = 11,25, uma resposta absurda (menos guardas terminando mais rápido). Decida direta ou inversa <strong>antes</strong> de montar, e confira se o resultado faz sentido.</p></div>
+
 <h2>Regra de três composta</h2>
 <p>Três ou mais grandezas. O método mais seguro tem quatro passos:</p>
 <ol>
@@ -121,6 +137,7 @@
   <li>Compare cada outra coluna <strong>só com a coluna do x</strong>, como se as demais estivessem paradas. Se for direta, seta no mesmo sentido; se inversa, sentido contrário.</li>
   <li>Inverta as colunas com seta contrária e iguale a razão do x ao produto das outras.</li>
 </ol>
+<p>Por que comparar cada grandeza só com a do x? Porque é assim que se separa o efeito de cada mudança. Imagine que você muda uma coisa de cada vez: primeiro só o número de operários, depois só as horas por dia. Cada mudança multiplica o resultado por um fator, e o efeito total é o produto desses fatores. A regra de três composta nada mais é que várias regras de três simples feitas em sequência.</p>
 <details class="exemplo"><summary>8 operários, trabalhando 6 h por dia, constroem um muro em 15 dias. Quantos dias 10 operários levam, trabalhando 8 h por dia?</summary>
 <div class="resolucao">
 <table><tr><th>Operários</th><th>Horas/dia</th><th>Dias</th></tr><tr><td>8</td><td>6</td><td>15</td></tr><tr><td>10</td><td>8</td><td>x</td></tr></table>
@@ -133,6 +150,7 @@
 <p>Então vale:</p>
 <span class="formula" data-tex="\dfrac{\text{causa}_1}{\text{consequência}_1} = \dfrac{\text{causa}_2}{\text{consequência}_2}">(produto da causa na situação 1) / (consequência 1) = (produto da causa na situação 2) / (consequência 2)</span>
 <p>No exemplo do muro (mesmo muro): 8 × 6 × 15 = 10 × 8 × x → 720 = 80x → x = 9. Sem setas e sem pensar em direta ou inversa.</p></div>
+<p>O atalho funciona porque o produto das causas mede o "esforço total". 8 operários × 6 h × 15 dias são 720 horas de trabalho de um operário (homens-hora). Para o mesmo muro é preciso o mesmo esforço, seja qual for a combinação. Se o serviço dobra, o esforço necessário dobra; daí a divisão pela consequência.</p>
 
 <details class="exemplo"><summary>5 máquinas produzem 600 peças em 4 dias. Quantas peças 3 máquinas produzem em 10 dias?</summary>
 <div class="resolucao">
@@ -147,6 +165,20 @@
 <p class="passo">4/3 = 60x / 450 → 60x = 600 → x = 10.</p>
 <p class="resposta-final">Resposta: 10 dias.</p></div></details>
 
+<details class="exemplo"><summary>6 pedreiros levantam 30 m de muro em 10 dias. Quantos pedreiros são necessários para levantar 45 m do mesmo muro em 5 dias?</summary>
+<div class="resolucao">
+<p class="passo">Causa: pedreiros × dias. Consequência: metros.</p>
+<p class="passo">(6 × 10) / 30 = (x × 5) / 45 → 2 = 5x / 45 → 5x = 90 → x = 18.</p>
+<p class="passo">Pelo método das setas: mais metros pedem mais pedreiros (direta, × 45/30); menos dias pedem mais pedreiros (inversa, × 10/5). 6 × 3/2 × 2 = 18.</p>
+<p class="resposta-final">Resposta: 18 pedreiros.</p></div></details>
+
+<details class="exemplo"><summary>4 agentes, com a mesma eficiência, digitalizam 1.200 documentos em 6 dias. Quantos documentos 6 agentes 20% mais eficientes digitalizam em 5 dias?</summary>
+<div class="resolucao">
+<p class="passo">Causa: agentes × eficiência × dias. Eficiência dos primeiros: 1; dos novos: 1,2.</p>
+<p class="passo">(4 × 1 × 6) / 1.200 = (6 × 1,2 × 5) / x → 24 / 1.200 = 36 / x.</p>
+<p class="passo">24x = 43.200 → x = 1.800.</p>
+<p class="resposta-final">Resposta: 1.800 documentos.</p></div></details>
+
 <div class="caixa pegadinha"><span class="rotulo">Pegadinhas</span>
 <ul>
 <li><strong>Eficiência:</strong> "trabalhador 20% mais eficiente" entra como 1,2 na causa.</li>
@@ -154,9 +186,26 @@
 <li><strong>Trabalho já feito:</strong> se o enunciado diz que parte da obra já foi feita e então chegaram mais pessoas, a regra de três é só sobre o que <em>falta</em>.</li>
 <li>Nem toda relação é proporcional. "Um bebê com 3 meses pesa 6 kg; com 30 anos pesará 60 kg" não é regra de três.</li>
 </ul></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Comparar as grandezas entre si em vez de comparar cada uma com a do x. "Mais operários e mais horas, então…" mistura dois efeitos e leva à seta errada. Pergunte sempre: "mantendo o resto fixo, se <em>esta</em> coluna aumenta, o x aumenta ou diminui?". E deixe as unidades iguais nas duas linhas (não misture horas com minutos nem metros com quilômetros).</p></div>
 
 <h2>Problemas de "trabalho conjunto" (torneiras)</h2>
 <p>Se A faz o serviço sozinho em a horas e B em b horas, por hora eles fazem <span class="m">1/a + 1/b</span> do serviço.</p>
+<p>O segredo é pensar em <strong>ritmo</strong>, não em tempo. Tempos não se somam: duas torneiras juntas não levam 6 + 3 = 9 horas, levam menos que a mais rápida sozinha. O que se soma é quanto cada uma faz por hora. Se a primeira enche 1/6 do tanque por hora e a segunda 1/3, juntas enchem 1/6 + 2/6 = 3/6 = 1/2 por hora, e o tanque inteiro leva 2 horas. Achado o ritmo conjunto, o tempo é o inverso dele.</p>
+<figure class="figura"><svg viewBox="0 0 320 110" width="320" role="img" aria-label="Tanque representado por barra de 6 partes; em uma hora a torneira A enche 1 parte e a torneira B enche 2 partes, metade do tanque">
+  <rect class="f-area-forte" x="20" y="35" width="48" height="40"/>
+  <rect class="f-area" x="68" y="35" width="96" height="40"/>
+  <rect class="f-linha" x="20" y="35" width="288" height="40"/>
+  <line class="f-linha" x1="68" y1="35" x2="68" y2="75"/>
+  <line class="f-grade" x1="116" y1="35" x2="116" y2="75"/>
+  <line class="f-linha" x1="164" y1="35" x2="164" y2="75"/>
+  <line class="f-grade" x1="212" y1="35" x2="212" y2="75"/>
+  <line class="f-grade" x1="260" y1="35" x2="260" y2="75"/>
+  <text x="44" y="25" text-anchor="middle" class="f-nota">A: 1/6</text>
+  <text x="116" y="25" text-anchor="middle" class="f-nota">B: 2/6</text>
+  <text x="236" y="25" text-anchor="middle" class="f-nota">falta</text>
+  <text x="92" y="96" text-anchor="middle" class="f-titulo">1 hora: 1/2 do tanque</text>
+</svg><figcaption>Em 1 hora, A (6 h sozinha) enche 1/6 e B (3 h sozinha) enche 2/6: juntas, meio tanque. O tanque todo leva 2 horas.</figcaption></figure>
 <span class="formula" data-tex="\text{tempo juntos} = \dfrac{a \cdot b}{a + b}">tempo juntos = (a × b) / (a + b)</span>
 <details class="exemplo"><summary>Uma torneira enche um tanque em 6 h e outra em 3 h. Juntas, em quanto tempo enchem?</summary>
 <div class="resolucao">
@@ -164,6 +213,27 @@
 <p class="resposta-final">Resposta: 2 horas.</p></div></details>
 <div class="caixa dica"><span class="rotulo">Ralo</span>
 <p>Se uma das torneiras é um ralo que esvazia, a fração dela entra com sinal negativo: 1/a − 1/b.</p></div>
+
+<details class="exemplo"><summary>Uma torneira enche um tanque em 4 h e um ralo o esvazia em 6 h. Com o tanque vazio e os dois abertos, em quanto tempo ele enche?</summary>
+<div class="resolucao">
+<p class="passo">Ritmo: 1/4 − 1/6 = 3/12 − 2/12 = 1/12 do tanque por hora.</p>
+<p class="passo">Tempo: o inverso, 12 horas.</p>
+<p class="resposta-final">Resposta: 12 horas.</p></div></details>
+
+<details class="exemplo"><summary>Dois escrivães, juntos, concluem um lote de inquéritos em 6 dias. Sozinho, o primeiro levaria 10 dias. Quanto tempo o segundo levaria sozinho?</summary>
+<div class="resolucao">
+<p class="passo">Ritmo conjunto: 1/6 por dia. Ritmo do primeiro: 1/10.</p>
+<p class="passo">Ritmo do segundo: 1/6 − 1/10 = 5/30 − 3/30 = 2/30 = 1/15.</p>
+<p class="resposta-final">Resposta: 15 dias.</p></div></details>
+
+<details class="exemplo"><summary>Três bombas esvaziam um reservatório sozinhas em 2 h, 3 h e 6 h. Ligadas juntas, quanto tempo levam?</summary>
+<div class="resolucao">
+<p class="passo">A fórmula (a × b)/(a + b) só serve para dois; com três, some os ritmos.</p>
+<p class="passo">1/2 + 1/3 + 1/6 = 3/6 + 2/6 + 1/6 = 6/6 = 1 reservatório por hora.</p>
+<p class="resposta-final">Resposta: 1 hora.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Somar ou tirar a média dos tempos. Para torneiras de 6 h e 3 h, as respostas 9 h (soma) e 4,5 h (média) são absurdas: juntas, elas têm de ser mais rápidas que a mais rápida sozinha, então o tempo precisa ser menor que 3 h. Esse teste elimina várias alternativas antes de qualquer conta.</p></div>
 
 <h2>Questões</h2>
 <div class="questao" data-correta="c">

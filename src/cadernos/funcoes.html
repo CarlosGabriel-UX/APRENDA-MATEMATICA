@@ -1,15 +1,38 @@
 <h2>O que é função</h2>
 <p>Função é uma regra que associa a <strong>cada</strong> valor de entrada (x) <strong>um único</strong> valor de saída (y = f(x)).</p>
+<p>Imagine uma máquina de refrigerante: você aperta um botão (a entrada) e sai uma bebida (a saída). Se o mesmo botão às vezes soltasse guaraná e às vezes água, a máquina estaria com defeito. Função é isso: <strong>cada entrada tem uma saída certa</strong>. Já o contrário é permitido: dois botões diferentes podem soltar a mesma bebida (f(2) = f(−2) = 4 em f(x) = x², por exemplo).</p>
+<p>Na prática de prova, função é uma fórmula que transforma um número em outro: preço em função da quantidade, altura em função do tempo, salário em função das vendas. A letra x é a "variável" que você controla, e f(x) é o resultado.</p>
 <ul>
   <li><strong>Domínio:</strong> os valores de x permitidos.</li>
   <li><strong>Imagem:</strong> os valores de y que realmente aparecem.</li>
   <li>Calcular f(3) é só trocar x por 3 na regra.</li>
 </ul>
+<p>Na hora de achar o domínio, procure as duas operações proibidas nos reais: <strong>dividir por zero</strong> e tirar <strong>raiz quadrada de número negativo</strong>. Fora disso, normalmente qualquer x serve.</p>
 <div class="caixa dica"><span class="rotulo">Teste da reta vertical</span>
 <p>Um gráfico representa função se qualquer reta vertical o corta em no máximo um ponto.</p></div>
+<details class="exemplo"><summary>Dada f(x) = 2x² − 3x + 1, calcule f(−2) e f(0).</summary>
+<div class="resolucao">
+<p class="passo">Troque x por (−2), sempre com parênteses: f(−2) = 2 × (−2)² − 3 × (−2) + 1 = 2 × 4 + 6 + 1 = 15.</p>
+<p class="passo">f(0) = 0 − 0 + 1 = 1. Repare que f(0) é sempre o termo sem x.</p>
+<p class="resposta-final">Resposta: f(−2) = 15 e f(0) = 1.</p></div></details>
+<details class="exemplo"><summary>Qual o domínio de f(x) = √(x − 3) / (x − 5)?</summary>
+<div class="resolucao">
+<p class="passo">Raiz quadrada: o que está dentro não pode ser negativo. x − 3 ≥ 0 → x ≥ 3.</p>
+<p class="passo">Denominador: não pode ser zero. x − 5 ≠ 0 → x ≠ 5.</p>
+<p class="resposta-final">Resposta: todos os reais x com x ≥ 3 e x ≠ 5.</p></div></details>
+<h3>Função composta</h3>
+<p>f(g(x)) significa: aplique primeiro a g e, no resultado, aplique a f. Resolva <strong>de dentro para fora</strong>, como uma linha de produção em que a saída de uma máquina é a entrada da próxima.</p>
+<details class="exemplo"><summary>Sendo f(x) = 2x + 1 e g(x) = x², calcule f(g(3)) e g(f(3)).</summary>
+<div class="resolucao">
+<p class="passo">f(g(3)): primeiro g(3) = 9. Depois f(9) = 19.</p>
+<p class="passo">g(f(3)): primeiro f(3) = 7. Depois g(7) = 49.</p>
+<p class="resposta-final">Resposta: 19 e 49. A ordem importa: f(g(x)) e g(f(x)) costumam dar resultados diferentes.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Substituir número negativo sem parênteses. −2² vale −4 (o quadrado é só do 2), mas (−2)² vale +4. Ao calcular f(−2) em uma função com x², escreva sempre (−2)².</p></div>
 
 <h2>Função afim (1º grau)</h2>
 <span class="formula" data-tex="f(x) = ax + b">f(x) = ax + b</span>
+<p>A função afim descreve tudo que cresce (ou diminui) <strong>sempre no mesmo ritmo</strong>. Cada km a mais no táxi custa os mesmos R$ 2,50, seja o primeiro ou o décimo km. Ritmo constante dá, no gráfico, uma linha reta. O <strong>b</strong> é o ponto de partida (o que você paga mesmo com x = 0) e o <strong>a</strong> é o "preço por unidade".</p>
 <ul>
   <li><strong>a</strong> (coeficiente angular) é a taxa de variação: quanto y muda quando x aumenta 1. Se a &gt; 0, a função é crescente; se a &lt; 0, decrescente.</li>
   <li><strong>b</strong> (coeficiente linear) é onde a reta corta o eixo y (valor de f(0)).</li>
@@ -24,17 +47,45 @@
 <p class="passo">f(12) = 30 + 5 = 35.</p>
 <p class="passo">2,5x + 5 = 40 → 2,5x = 35 → x = 14.</p>
 <p class="resposta-final">Resposta: R$ 35 e 14 km.</p></div></details>
+<details class="exemplo"><summary>Uma caixa-d'água com 1.000 L começa a vazar a uma vazão constante. Após 2 horas, restam 840 L. Em quanto tempo ela fica vazia?</summary>
+<div class="resolucao">
+<p class="passo">Vazão constante é função afim. Taxa: a = (840 − 1.000) / (2 − 0) = −80 L por hora (negativa: o volume diminui).</p>
+<p class="passo">V(t) = 1.000 − 80t. Vazia quando V(t) = 0: 80t = 1.000 → t = 12,5.</p>
+<p class="resposta-final">Resposta: 12,5 horas, ou seja, 12 h 30 min.</p></div></details>
+<details class="exemplo"><summary>A locadora A cobra R$ 90 fixos mais R$ 0,50 por km rodado; a locadora B cobra R$ 30 fixos mais R$ 0,80 por km. Para quantos km o preço é o mesmo?</summary>
+<div class="resolucao">
+<p class="passo">A(x) = 90 + 0,5x e B(x) = 30 + 0,8x. Iguale: 90 + 0,5x = 30 + 0,8x → 60 = 0,3x → x = 200.</p>
+<p class="passo">Conferindo: A = 90 + 100 = 190 e B = 30 + 160 = 190.</p>
+<p class="passo">Abaixo de 200 km a B é mais barata (fixo menor); acima, a A (por km menor).</p>
+<p class="resposta-final">Resposta: 200 km, custando R$ 190 nas duas.</p></div></details>
+<figure class="figura"><svg viewBox="0 0 320 160" width="320" role="img" aria-label="Duas retas: A começa mais alta e sobe devagar, B começa mais baixa e sobe mais rápido; elas se cruzam em 200 km e 190 reais">
+  <line class="f-eixo" x1="40" y1="140" x2="290" y2="140"/>
+  <line class="f-eixo" x1="40" y1="145" x2="40" y2="15"/>
+  <line class="f-linha" x1="40" y1="104" x2="280" y2="44"/>
+  <line class="f-dest" x1="40" y1="128" x2="280" y2="32"/>
+  <line class="f-grade" x1="200" y1="64" x2="200" y2="140"/>
+  <circle class="f-ponto" cx="200" cy="64" r="4.5"/>
+  <text x="286" y="50">A</text>
+  <text x="286" y="34">B</text>
+  <text x="206" y="112" class="f-nota">200 km: R$ 190</text>
+  <text x="8" y="20" class="f-nota">R$</text>
+  <text x="250" y="156" class="f-nota">km</text>
+</svg><figcaption>Quem tem o menor valor fixo começa ganhando; quem tem a menor taxa por km vence depois do cruzamento.</figcaption></figure>
 <div class="caixa dica"><span class="rotulo">Reconheça no texto</span>
 <p>"Valor fixo + valor por unidade" é sempre função afim: plano de celular, conta de luz, salário com comissão, frete.</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Usar regra de três numa função afim com b ≠ 0. Se 12 km custam R$ 35 no táxi, 24 km <strong>não</strong> custam R$ 70: f(24) = 2,5 × 24 + 5 = R$ 65, porque a bandeirada é cobrada uma vez só. Dobrar x só dobra y quando b = 0 (função linear, grandezas diretamente proporcionais).</p></div>
 
 <h2>Função quadrática (2º grau)</h2>
 <span class="formula" data-tex="f(x) = ax^2 + bx + c">f(x) = ax² + bx + c</span>
+<p>Por que o sinal de a decide a "boca"? Para valores grandes de x (positivos ou negativos), o termo ax² cresce muito mais que os outros e domina o resultado. Se a &gt; 0, para x grande a função vai para cima dos dois lados, e a parábola tem um ponto mais baixo (mínimo). Se a &lt; 0, vai para baixo dos dois lados, e há um ponto mais alto (máximo). É por isso que problemas de "lucro máximo", "altura máxima" e "área máxima" quase sempre são quadráticas com a negativo.</p>
 <ul>
   <li>O gráfico é uma <strong>parábola</strong>. Se a &gt; 0, a boca é para cima (tem ponto de mínimo). Se a &lt; 0, para baixo (tem máximo).</li>
   <li>c é onde a parábola corta o eixo y.</li>
   <li>As raízes são as soluções de ax² + bx + c = 0 (veja o caderno de <a href="equacoes.html">equações</a>).</li>
 </ul>
 <h3>Vértice: máximo ou mínimo</h3>
+<p>A parábola é <strong>simétrica</strong>: o lado esquerdo é espelho do direito, e o eixo do espelho passa pelo vértice. Por isso o x do vértice fica exatamente no meio das raízes. Como a soma das raízes é −b/a, a média delas é −b/2a, e daí vem a fórmula.</p>
 <span class="formula" data-tex="x_v = \dfrac{-b}{2a} \qquad y_v = \dfrac{-\Delta}{4a}">x_v = −b / 2a &nbsp;&nbsp;&nbsp; y_v = −Δ / 4a</span>
 <div class="caixa atalho"><span class="rotulo">Atalho: y do vértice sem Δ</span>
 <p>Calcule x_v e substitua na função: y_v = f(x_v). Muitas vezes é mais rápido do que calcular Δ.</p>
@@ -49,6 +100,20 @@
 <p class="passo">Raízes: −5t(t − 4) = 0 → t = 0 ou t = 4. Volta ao chão em 4 s.</p>
 <p class="passo">Vértice na média das raízes: t = 2. h(2) = −20 + 40 = 20.</p>
 <p class="resposta-final">Resposta: altura máxima de 20 m; volta ao chão em 4 s.</p></div></details>
+<details class="exemplo"><summary>Com 40 m de tela, quer-se cercar um canteiro retangular. Qual a maior área possível?</summary>
+<div class="resolucao">
+<p class="passo">Perímetro 40: 2 × (largura + comprimento) = 40, então largura + comprimento = 20. Largura x, comprimento 20 − x.</p>
+<p class="passo">Área: A(x) = x(20 − x) = −x² + 20x. Raízes 0 e 20; vértice na média: x = 10.</p>
+<p class="passo">A(10) = 10 × 10 = 100.</p>
+<p class="resposta-final">Resposta: 100 m², com um quadrado de 10 m de lado.</p></div></details>
+<details class="exemplo"><summary>Qual é o conjunto imagem de f(x) = x² − 6x + 5?</summary>
+<div class="resolucao">
+<p class="passo">a = 1 &gt; 0: boca para cima, a função tem mínimo e sobe indefinidamente.</p>
+<p class="passo">x_v = 6/2 = 3. y_v = f(3) = 9 − 18 + 5 = −4.</p>
+<p class="resposta-final">Resposta: imagem = todos os y com y ≥ −4.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Confundir <strong>onde</strong> ocorre o máximo com <strong>qual</strong> é o máximo. O x_v responde "quantas peças", "em que instante"; o y_v responde "qual o lucro", "qual a altura". No exemplo do lucro, quem marca 20 quando a pergunta é o lucro máximo erra (o lucro é 100). Leia de novo a pergunta antes de marcar.</p></div>
 
 <figure class="figura">
 <svg viewBox="0 0 520 220" width="520" role="img" aria-label="À esquerda, reta crescente que corta o eixo y em b e o eixo x na raiz. À direita, parábola com boca para cima, raízes x1 e x2 e vértice V abaixo do eixo x">
@@ -77,12 +142,32 @@
 <figcaption>À direita: entre as raízes a função tem sinal contrário ao de a; fora delas, o mesmo sinal de a.</figcaption>
 </figure>
 <h2>Estudo do sinal</h2>
+<p>Estudar o sinal é descobrir para quais valores de x a função é positiva, negativa ou zero. A ideia-chave: o gráfico só troca de lado (de cima do eixo x para baixo, ou o contrário) <strong>passando por uma raiz</strong>. Então as raízes dividem a reta em pedaços, e dentro de cada pedaço o sinal não muda. Basta descobrir o sinal de cada pedaço.</p>
 <ul>
   <li><strong>Afim:</strong> à direita da raiz a função tem o sinal de a; à esquerda, o sinal contrário.</li>
   <li><strong>Quadrática com duas raízes:</strong> entre as raízes, sinal contrário ao de a; fora delas, mesmo sinal de a.</li>
+  <li><strong>Quadrática com Δ = 0:</strong> tem o sinal de a em todo lugar, exceto na raiz, onde vale zero.</li>
+  <li><strong>Quadrática com Δ &lt; 0:</strong> não toca o eixo x, logo tem o sinal de a para todo x.</li>
 </ul>
 <div class="caixa atalho"><span class="rotulo">Atalho mnemônico</span>
 <p>Quadrática: "<strong>entre</strong> as raízes, <strong>contra</strong> o a". Para x² − 5x + 6 (raízes 2 e 3, a &gt; 0), a função é negativa entre 2 e 3 e positiva fora.</p></div>
+<details class="exemplo"><summary>Para quais valores de x a função f(x) = −2x + 8 é positiva?</summary>
+<div class="resolucao">
+<p class="passo">Raiz: −2x + 8 = 0 → x = 4.</p>
+<p class="passo">a = −2 &lt; 0: à direita da raiz a função é negativa; à esquerda, positiva. Teste rápido: f(0) = 8 &gt; 0, e 0 está à esquerda de 4. Confere.</p>
+<p class="resposta-final">Resposta: x &lt; 4.</p></div></details>
+<details class="exemplo"><summary>Quantos números inteiros satisfazem x² − 5x + 4 ≤ 0?</summary>
+<div class="resolucao">
+<p class="passo">Raízes: soma 5, produto 4 → 1 e 4. a = 1 &gt; 0.</p>
+<p class="passo">"Entre as raízes, contra o a": entre 1 e 4 a função é negativa. Como o sinal é ≤, as raízes também entram: 1 ≤ x ≤ 4.</p>
+<p class="resposta-final">Resposta: 4 inteiros (1, 2, 3 e 4).</p></div></details>
+<details class="exemplo"><summary>A função f(x) = x² + x + 1 assume algum valor negativo?</summary>
+<div class="resolucao">
+<p class="passo">Δ = 1 − 4 = −3 &lt; 0: a parábola não toca o eixo x.</p>
+<p class="passo">Como a = 1 &gt; 0, ela fica inteira acima do eixo.</p>
+<p class="resposta-final">Resposta: não; f(x) &gt; 0 para todo x real.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Ignorar a diferença entre &lt; e ≤. Com "≤ 0" ou "≥ 0" as raízes entram na resposta (a função vale zero nelas); com "&lt; 0" ou "&gt; 0", não entram. Na contagem de inteiros, isso muda a alternativa.</p></div>
 
 <h2>Leitura de gráficos</h2>
 <p>Muitas questões de função são, na verdade, de leitura de gráfico. Antes de calcular:</p>
@@ -91,6 +176,34 @@
   <li>Identifique onde a função cresce, decresce e onde é máxima.</li>
   <li>Procure pontos que a banca deu de presente (interseção com eixos, valores marcados).</li>
 </ol>
+<p>Lembre que cada ponto do gráfico é um par (x, f(x)): a coordenada horizontal é a entrada e a vertical é a saída. Se o gráfico é uma reta, dois pontos marcados bastam para descobrir a lei da função e calcular qualquer outro valor, mesmo fora da parte desenhada.</p>
+<figure class="figura"><svg viewBox="0 0 320 160" width="320" role="img" aria-label="Reta do custo de produção passando pelos pontos (0, 30) e (10, 80)">
+  <line class="f-eixo" x1="40" y1="140" x2="300" y2="140"/>
+  <line class="f-eixo" x1="40" y1="145" x2="40" y2="15"/>
+  <line class="f-grade" x1="40" y1="76" x2="160" y2="76"/>
+  <line class="f-grade" x1="160" y1="76" x2="160" y2="140"/>
+  <line class="f-dest" x1="40" y1="116" x2="280" y2="36"/>
+  <circle class="f-ponto" cx="40" cy="116" r="4.5"/>
+  <circle class="f-ponto" cx="160" cy="76" r="4.5"/>
+  <text x="14" y="121" class="f-nota">30</text>
+  <text x="14" y="81" class="f-nota">80</text>
+  <text x="154" y="156" class="f-nota">10</text>
+  <text x="36" y="156" class="f-nota">0</text>
+  <text x="250" y="156" class="f-nota">peças</text>
+  <text x="46" y="20" class="f-nota">custo (R$)</text>
+</svg><figcaption>Custo de produção (R$) em função do número de peças.</figcaption></figure>
+<details class="exemplo"><summary>O gráfico acima mostra o custo de produção. Qual o custo de 30 peças?</summary>
+<div class="resolucao">
+<p class="passo">Pontos dados: (0, 30) e (10, 80). Taxa: a = (80 − 30) / (10 − 0) = 5 reais por peça. O ponto em x = 0 dá b = 30 (custo fixo).</p>
+<p class="passo">C(x) = 5x + 30. C(30) = 150 + 30 = 180.</p>
+<p class="resposta-final">Resposta: R$ 180.</p></div></details>
+<details class="exemplo"><summary>No mesmo gráfico, qual a menor quantidade de peças para o custo passar de R$ 100?</summary>
+<div class="resolucao">
+<p class="passo">5x + 30 &gt; 100 → 5x &gt; 70 → x &gt; 14.</p>
+<p class="passo">Peças são inteiras e 14 peças custam exatamente 100 (não passa).</p>
+<p class="resposta-final">Resposta: 15 peças.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Confundir os eixos: a questão dá um valor de y (o custo) e pede o x (as peças), e o candidato lê o gráfico ao contrário. Outro clássico: eixo que não começa no zero ou com escala irregular, que faz uma variação pequena parecer enorme. Confie nos números marcados, não no tamanho visual.</p></div>
 
 <h2>Questões</h2>
 <div class="questao" data-correta="b">

@@ -117,6 +117,8 @@
 <p>Forense computacional é o núcleo da prova específica de Perito Criminal Federal Área 3 (Só PF, Perito). Cai o processo pericial, a preservação da evidência (imagem, hash, bloqueador de escrita, cadeia de custódia), sistemas de arquivos, artefatos do Windows, memória RAM e celulares. A apostila segue a ordem do trabalho do perito: do local do fato ao laudo.</p>
 
 <h2>Processo de forense computacional</h2>
+<p><strong>Por que tanto método?</strong> A evidência digital é frágil e fácil de contestar: basta ligar um computador ou abrir um arquivo para mudar datas, e ninguém enxerga um bit alterado a olho nu. Em juízo, a defesa vai perguntar "como o senhor sabe que isso estava lá e não foi colocado depois?". O processo pericial existe para que a resposta seja sempre a mesma: cada passo foi documentado, a cópia é idêntica ao original (o hash prova) e qualquer outro perito, repetindo os mesmos passos sobre a mesma imagem, chega ao mesmo resultado.</p>
+<p>As fases seguem a lógica de um funil: primeiro se garante <strong>todo</strong> o material (coleta), depois se separa o que interessa (exame) e só então se interpreta (análise), sempre guiado pelos <strong>quesitos</strong>, que são as perguntas feitas pela autoridade.</p>
 <p>As fases mais cobradas seguem o NIST (SP 800-86: coleta, exame, análise e relatório), muitas vezes com uma fase inicial de identificação:</p>
 <ol>
 <li><strong>Identificação</strong>: reconhecer os dispositivos e dados potencialmente relevantes (computadores, mídias, celulares, nuvem, roteadores).</li>
@@ -130,7 +132,24 @@
 <div class="caixa dica"><span class="rotulo">Dica: princípios</span>
 <p>Trabalhe <strong>sempre sobre a cópia</strong>, nunca sobre o original. Todo procedimento deve ser repetível e documentado. Se for inevitável alterar algo (por exemplo, ao coletar memória de uma máquina ligada), registre o que foi feito e por quê.</p></div>
 
+<details class="exemplo"><summary>Classifique cada atividade na fase correta: (a) gerar a imagem do HD e calcular o SHA-256; (b) recuperar arquivos apagados e descartar arquivos de sistema conhecidos pela NSRL; (c) concluir, pela linha do tempo, que o usuário "joao" abriu a planilha minutos antes de apagá-la; (d) descrever no laudo as ferramentas e versões usadas.</summary>
+<div class="resolucao">
+<p class="passo">(a) Adquirir e garantir a integridade: <strong>coleta e preservação</strong>.</p>
+<p class="passo">(b) Extrair e filtrar dados, sem ainda tirar conclusões: <strong>exame</strong>.</p>
+<p class="passo">(c) Correlacionar fatos e responder ao quesito: <strong>análise</strong>.</p>
+<p class="passo">(d) Registrar para permitir a reprodução: <strong>documentação (laudo)</strong>.</p>
+<p class="resposta-final">Resposta: (a) coleta, (b) exame, (c) análise, (d) laudo.</p></div></details>
+<details class="exemplo"><summary>Quesito: "O computador apreendido foi usado para acessar o webmail da vítima em 12/03?". Como o perito organiza o trabalho?</summary>
+<div class="resolucao">
+<p class="passo">Identificação e coleta: imagem forense do disco com hash; se a máquina estava ligada, também a memória.</p>
+<p class="passo">Exame: extrair o histórico e o cache dos navegadores, cookies, arquivos LNK e logs de logon do Windows na imagem.</p>
+<p class="passo">Análise: montar a linha do tempo de 12/03 (quem estava logado, que navegador abriu, que endereço foi acessado) e verificar se os fatos se confirmam entre si.</p>
+<p class="resposta-final">Resposta: o laudo responde ao quesito com base na correlação dos artefatos, citando métodos, ferramentas e hashes, sem extrapolar o que os dados mostram.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar que o perito pode "dar uma olhada rápida" no computador original para ganhar tempo. Qualquer navegação no original altera datas de acesso e arquivos de sistema. O exame é feito na imagem; o original só é tocado na coleta, com bloqueador de escrita.</p></div>
+
 <h2>Coleta e preservação</h2>
+<p><strong>A lógica da coleta</strong> é simples: o perito tem pouco tempo e uma prioridade, não perder nada que não possa ser recuperado depois. O disco aguarda; a memória RAM some no instante em que a energia acaba. Por isso a ordem é do mais volátil ao menos volátil. Em seguida vem a pergunta da preservação: como provar, meses depois, que o que está sendo analisado é exatamente o que foi apreendido? A resposta tem três peças: a <strong>imagem bit a bit</strong> (cópia completa, inclusive do que parece vazio), o <strong>bloqueador de escrita</strong> (o original não muda durante a cópia) e o <strong>hash</strong> (a prova matemática de que cópia e original são iguais).</p>
 <h3>Ordem de volatilidade (RFC 3227)</h3>
 <p>Colete primeiro o que se perde mais rápido:</p>
 <ol>
@@ -164,7 +183,24 @@ sha256sum /dev/sdb /mnt/destino/evidencia.dd</code></pre>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>MD5 está quebrado para <strong>colisão</strong>, mas isso não significa que alguém consiga alterar uma evidência já coletada mantendo o mesmo hash (isso exigiria um ataque de segunda pré-imagem, que não é prático). Mesmo assim, a boa prática é registrar também SHA-256.</p></div>
 
+<details class="exemplo"><summary>No cumprimento de busca, o perito encontra um notebook ligado, com um volume VeraCrypt montado e uma conexão remota aberta. Em que ordem agir?</summary>
+<div class="resolucao">
+<p class="passo">Fotografar a tela e registrar o estado (programas abertos, horário do sistema comparado com a hora oficial).</p>
+<p class="passo">Coletar a <strong>memória RAM</strong> primeiro: ela guarda processos, conexões e, principalmente, a chave do volume cifrado. Documentar a ferramenta usada, já que ela altera um pouco a memória.</p>
+<p class="passo">Com o volume ainda montado, fazer uma cópia lógica (ou imagem do volume decifrado) do conteúdo, pois depois de desligar ele volta a ficar cifrado.</p>
+<p class="passo">Só então desligar e, no laboratório, fazer a imagem do disco com bloqueador de escrita e hash.</p>
+<p class="resposta-final">Resposta: tela → RAM → dados do volume aberto → desligamento → imagem do disco. Desligar primeiro perderia a chave e as conexões.</p></div></details>
+<details class="exemplo"><summary>Explique o comando <code>dd if=/dev/sdb of=evidencia.dd bs=4M conv=noerror,sync</code> e o que acontece se o disco tiver setores defeituosos.</summary>
+<div class="resolucao">
+<p class="passo"><code>if</code> é a origem (o disco inteiro, não uma partição como <code>/dev/sdb1</code>); <code>of</code> é o arquivo de destino; <code>bs=4M</code> lê blocos de 4 MiB por vez.</p>
+<p class="passo"><code>noerror</code> manda continuar quando houver erro de leitura, em vez de abortar. <code>sync</code> completa com zeros o bloco que falhou, para que os dados seguintes fiquem na posição certa dentro da imagem.</p>
+<p class="passo">Consequência: a área ilegível vira zeros na imagem (com bloco grande, uma área maior que o setor defeituoso). Isso deve ir para o laudo, e ferramentas forenses (dc3dd, Guymager, ddrescue) registram os setores com erro e usam leitura mais fina nessas regiões.</p>
+<p class="resposta-final">Resposta: o comando gera imagem bruta do disco inteiro sem parar nos erros; setores ruins são preenchidos com zeros e precisam ser documentados.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Calcular o hash apenas da imagem. O valor só prova alguma coisa se puder ser comparado: registra-se o hash da mídia original (ou o calculado durante a aquisição) e o da imagem, e os dois precisam coincidir.</p></div>
+
 <h2>Cadeia de custódia digital</h2>
+<p><strong>Por que documentar tanto?</strong> A cadeia de custódia é a "biografia" do vestígio: onde estava, quem pegou, onde ficou guardado, quem abriu e para quê. Se houver um buraco nessa história (um pen drive que passou dias sem registro, um lacre trocado sem anotação), a defesa pode alegar que o conteúdo foi plantado ou alterado, e a confiabilidade da prova fica abalada. No mundo digital o hash ajuda muito, mas não substitui o registro: ele prova que o arquivo não mudou <strong>desde que o hash foi calculado</strong>, não o que aconteceu antes disso.</p>
 <p>A cadeia de custódia está nos arts. 158-A a 158-F do CPP (Pacote Anticrime, Lei 13.964/2019) e vale também para vestígios digitais. Detalhes processuais em <a href="processo-penal.html">Processo Penal</a> e em <a href="criminalistica.html">Criminalística</a>.</p>
 <div class="caixa nota"><span class="rotulo">Letra da lei</span>
 <p>"Considera-se cadeia de custódia o conjunto de todos os procedimentos utilizados para manter e documentar a história cronológica do vestígio coletado em locais ou em vítimas de crimes, para rastrear sua posse e manuseio a partir de seu reconhecimento até o descarte." (art. 158-A do CPP)</p></div>
@@ -173,7 +209,20 @@ sha256sum /dev/sdb /mnt/destino/evidencia.dd</code></pre>
 <div class="caixa dica"><span class="rotulo">Dica</span>
 <p>O hash é a "assinatura" da evidência digital: se o hash calculado no laboratório bate com o registrado na coleta, a integridade fica demonstrada mesmo após várias transferências.</p></div>
 
+<details class="exemplo"><summary>Coloque na ordem do art. 158-B do CPP: (1) embalar o HD em saco antiestático lacrado e numerado; (2) fotografar o computador na mesa, com os cabos ligados; (3) perceber, entre vários aparelhos, que o HD externo pode ter relação com o crime; (4) impedir que pessoas mexam no escritório; (5) entregar formalmente o HD ao laboratório.</summary>
+<div class="resolucao">
+<p class="passo">(3) distinguir o elemento de interesse é o <strong>reconhecimento</strong>; (4) preservar o local é o <strong>isolamento</strong>; (2) descrever e fotografar como foi encontrado é a <strong>fixação</strong>.</p>
+<p class="passo">Depois vem a <strong>coleta</strong> (recolher o HD), o <strong>acondicionamento</strong> (1), o <strong>transporte</strong> e o <strong>recebimento</strong> (5), que é o ato formal de transferência da posse.</p>
+<p class="resposta-final">Resposta: 3 → 4 → 2 → (coleta) → 1 → (transporte) → 5.</p></div></details>
+<details class="exemplo"><summary>O perito precisa romper o lacre do celular para fazer a extração. O que deve registrar?</summary>
+<div class="resolucao">
+<p class="passo">O recipiente só pode ser aberto pelo perito que fará a análise ou, motivadamente, por pessoa autorizada (art. 158-D, § 3º, do CPP).</p>
+<p class="passo">Após o rompimento, a ficha de acompanhamento deve trazer nome e matrícula do responsável, data, local, finalidade e as informações do novo lacre; o lacre rompido vai para dentro do novo recipiente (art. 158-D, §§ 4º e 5º).</p>
+<p class="passo">Na parte digital, acrescentam-se o hash da extração, a ferramenta e a versão usadas.</p>
+<p class="resposta-final">Resposta: identificação do responsável, data, local, finalidade, novo lacre (guardando o antigo) e os hashes da extração.</p></div></details>
+
 <h2>Sistemas de arquivos e timestamps</h2>
+<p><strong>Por que o perito estuda sistemas de arquivos?</strong> Porque o sistema de arquivos é o "índice" do disco: ele separa os <strong>dados</strong> (o conteúdo) dos <strong>metadados</strong> (nome, tamanho, datas, onde o conteúdo está). Quando um arquivo é apagado, em geral só o índice é atualizado; quando um arquivo é aberto, copiado ou alterado, datas diferentes mudam. Entendendo essas regras, o perito reconstrói o que aconteceu: um arquivo copiado de outro lugar, um pen drive que trouxe o documento, uma data adulterada por ferramenta antiforense.</p>
 <table>
 <tr><th></th><th>FAT32</th><th>NTFS</th><th>ext4</th></tr>
 <tr><td>Uso</td><td>Pen drives, cartões, compatibilidade</td><td>Windows</td><td>Linux, Android (partições de dados em muitos aparelhos)</td></tr>
@@ -216,7 +265,21 @@ dir /r</code></pre>
 <div class="caixa dica"><span class="rotulo">Dica: timestomping</span>
 <p>Ferramentas antiforenses alteram timestamps. No NTFS, o <code>$STANDARD_INFORMATION</code> é fácil de alterar pelas APIs comuns, enquanto o <code>$FILE_NAME</code> é mais difícil. Divergência entre os dois é sinal de manipulação. O NTFS grava em UTC; o FAT grava em hora local, o que exige atenção ao fuso.</p></div>
 
+<details class="exemplo"><summary>No NTFS, o arquivo <code>propina.xlsx</code> tem data de modificação 02/01/2024 e data de criação 10/03/2024. O suspeito afirma que criou a planilha em março. O que os timestamps sugerem?</summary>
+<div class="resolucao">
+<p class="passo">Criação posterior à modificação é o padrão de arquivo <strong>copiado</strong> (ou extraído/baixado) para aquele local: a cópia recebe nova data de criação, mas mantém a modificação do original.</p>
+<p class="passo">Logo, o conteúdo já existia em 02/01; em 10/03 ele apenas chegou a esta pasta. Vale procurar a origem: LNK com volume removível, registros USBSTOR, anexos de e-mail ou downloads naquela data.</p>
+<p class="resposta-final">Resposta: forte indício de cópia em 10/03 de um arquivo modificado pela última vez em 02/01, o que contradiz a versão de que foi criado em março.</p></div></details>
+<details class="exemplo"><summary>O registro da MFT mostra a última modificação de um arquivo em 2024-05-10 17:30:00 (UTC). O suspeito diz que às 14h30 estava no trabalho, longe do computador. Há conflito?</summary>
+<div class="resolucao">
+<p class="passo">O NTFS grava os timestamps em UTC. O horário de Brasília é UTC−3 (sem horário de verão desde 2019).</p>
+<p class="passo">17:30 UTC − 3 h = 14:30 no horário de Brasília.</p>
+<p class="resposta-final">Resposta: sim. A modificação ocorreu às 14h30 locais, exatamente quando ele diz que estava fora. É preciso apurar quem usava a máquina ou se houve acesso remoto. Ler 17h30 como horário local levaria a uma conclusão errada.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Ler os horários da ferramenta sem conferir o fuso. NTFS e ext4 gravam em UTC; FAT grava em hora local. Antes da linha do tempo, o perito deve verificar o fuso configurado na máquina (no Windows, no hive SYSTEM) e informar no laudo qual fuso está sendo usado.</p></div>
+
 <h2>Arquivos apagados, carving e slack</h2>
+<p><strong>Por que o que foi apagado continua lá?</strong> Zerar fisicamente cada arquivo apagado gastaria tempo e desgaste do disco. Por isso o sistema faz o mais barato: risca a entrada do índice e marca o espaço como livre. É como arrancar a linha do sumário de um livro sem rasgar as páginas. Enquanto nada novo for gravado por cima, o conteúdo pode ser lido. Se o índice ainda existe, recupera-se tudo (nome, datas e conteúdo); se o índice já foi reaproveitado, sobra procurar o conteúdo "na marra", pelo formato do próprio arquivo: isso é o carving.</p>
 <p>Apagar (e esvaziar a lixeira) normalmente só libera a área; o conteúdo fica até ser sobrescrito. Formatação rápida também não zera os dados. Há dois caminhos de recuperação:</p>
 <ul>
 <li><strong>Pelos metadados</strong>: se o registro da MFT ou o inode ainda existe, recupera-se nome, datas e localização.</li>
@@ -244,7 +307,51 @@ dir /r</code></pre>
 <p class="passo">Espaço alocado: 3 × 4.096 = 12.288 bytes.</p>
 <p class="resposta-final">Resposta: slack de 12.288 − 10.000 = 2.288 bytes.</p></div></details>
 
+<figure class="figura"><svg viewBox="0 0 320 120" width="320" role="img" aria-label="Três clusters de 4096 bytes; o arquivo ocupa 10000 bytes e os 2288 bytes finais do terceiro cluster são slack">
+<rect x="10" y="40" width="244.1" height="36" class="f-area-forte"/>
+<rect x="254.1" y="40" width="55.9" height="36" class="f-area"/>
+<rect x="10" y="40" width="100" height="36" class="f-linha"/>
+<rect x="110" y="40" width="100" height="36" class="f-linha"/>
+<rect x="210" y="40" width="100" height="36" class="f-linha"/>
+<text x="60" y="30" text-anchor="middle" class="f-nota">cluster 1</text>
+<text x="160" y="30" text-anchor="middle" class="f-nota">cluster 2</text>
+<text x="260" y="30" text-anchor="middle" class="f-nota">cluster 3</text>
+<text x="132" y="98" text-anchor="middle" class="f-nota">arquivo: 10.000 bytes</text>
+<text x="282" y="98" text-anchor="middle" class="f-nota">slack</text>
+<text x="282" y="112" text-anchor="middle" class="f-nota">2.288</text>
+</svg><figcaption>O arquivo ocupa 3 clusters inteiros (12.288 bytes); o fim do último cluster é o file slack</figcaption></figure>
+<details class="exemplo"><summary>Um arquivo chamado <code>orcamento.xls</code> começa com os bytes <code>25 50 44 46 2D 31 2E 37</code>. Que tipo de arquivo ele é de fato? Mostre um verificador em Python.</summary>
+<div class="resolucao">
+<p class="passo">Pela tabela, <code>25 50 44 46</code> é "%PDF". A extensão .xls foi trocada: o conteúdo é um PDF (os bytes seguintes, "-1.7", indicam a versão).</p>
+<pre><code>ASSINATURAS = {
+    b"\xff\xd8\xff": "JPEG",
+    b"%PDF": "PDF",
+    b"PK\x03\x04": "ZIP (ou DOCX/XLSX/APK)",
+    b"MZ": "executável Windows",
+}
+
+def tipo_real(cabecalho):
+    for magica, nome in ASSINATURAS.items():
+        if cabecalho.startswith(magica):
+            return nome
+    return "desconhecido"
+
+print(tipo_real(bytes.fromhex("25 50 44 46 2D 31 2E 37")))
+print(tipo_real(bytes.fromhex("FF D8 FF E0 00 10 4A 46")))
+print(tipo_real(bytes.fromhex("4D 5A 90 00 03 00 00 00")))</code></pre>
+<p class="passo">Saída: <code>PDF</code>, <code>JPEG</code> e <code>executável Windows</code>, uma por linha. É exatamente o que a "análise de assinatura" das ferramentas forenses faz: compara o começo do arquivo com a extensão declarada.</p>
+<p class="resposta-final">Resposta: é um PDF disfarçado de planilha. A divergência entre extensão e assinatura é, por si só, um ponto a registrar no laudo.</p></div></details>
+<details class="exemplo"><summary>Um pen drive foi formatado. O carving recuperou 40 fotos JPEG, mas sem nome e sem data, e três delas aparecem cortadas pela metade. Explique.</summary>
+<div class="resolucao">
+<p class="passo">A formatação rápida recriou o índice (FAT), apagando nomes e datas, mas deixou os dados. O carving achou as fotos pelas assinaturas <code>FF D8 FF</code> (início) e <code>FF D9</code> (fim).</p>
+<p class="passo">Nome e datas são metadados do sistema de arquivos, que o carving ignora; por isso não voltam (às vezes a data de captura volta pelo EXIF, que está dentro da própria foto).</p>
+<p class="passo">As fotos cortadas estavam <strong>fragmentadas</strong> (em clusters não contíguos) ou tiveram parte sobrescrita: o carving simples supõe que o arquivo está em sequência.</p>
+<p class="resposta-final">Resposta: comportamento esperado do carving: recupera o conteúdo, não os metadados do sistema de arquivos, e falha com fragmentação ou sobrescrita.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Dizer que o carving depende da MFT ou da FAT. É o contrário: o carving <strong>ignora</strong> o sistema de arquivos e varre os bytes brutos. Por isso funciona até em disco formatado ou com sistema de arquivos corrompido.</p></div>
+
 <h2>Artefatos do Windows</h2>
+<p><strong>Por que o Windows "dedura" o usuário?</strong> Quase nenhum desses artefatos foi criado para perícia; eles existem por conveniência. O Prefetch acelera a abertura de programas; a lista de documentos recentes e as Jump Lists facilitam reabrir arquivos; o registro guarda os dispositivos USB para não reinstalar o driver a cada conexão; os logs de eventos servem ao administrador. Como efeito colateral, tudo isso conta a história do que foi feito na máquina. O segredo da prova é saber <strong>qual artefato prova qual ação</strong> e cruzar mais de uma fonte.</p>
 <h3>Registro</h3>
 <table>
 <tr><th>Hive</th><th>Local</th><th>O que interessa</th></tr>
@@ -266,7 +373,29 @@ dir /r</code></pre>
 <div class="caixa atalho"><span class="rotulo">Atalho: que artefato prova o quê</span>
 <p>Executou programa → Prefetch, UserAssist, 4688. Abriu arquivo → LNK, Jump Lists, RecentDocs. Conectou pen drive → USBSTOR (SYSTEM), LNK com volume removível. Entrou no sistema → 4624. Tentou apagar rastros → 1102.</p></div>
 
+<details class="exemplo"><summary>O suspeito nega ter copiado documentos sigilosos para um pen drive. Que artefatos o perito procura no computador?</summary>
+<div class="resolucao">
+<p class="passo">Conexão do dispositivo: hive SYSTEM, chave USBSTOR, com fabricante, modelo e número de série do pen drive (que pode ser comparado com o pen drive apreendido).</p>
+<p class="passo">Uso de arquivos nele: arquivos LNK e Jump Lists apontando para uma unidade removível (com o número de série do volume) e RecentDocs no NTUSER.DAT do usuário.</p>
+<p class="passo">Autoria: log de Segurança com logon (4624) da conta do suspeito no horário, para mostrar quem estava usando a máquina.</p>
+<p class="resposta-final">Resposta: USBSTOR (SYSTEM) + LNK/Jump Lists/RecentDocs (NTUSER.DAT) + eventos de logon, correlacionados numa mesma linha do tempo.</p></div></details>
+<details class="exemplo"><summary>No log de Segurança aparecem 300 eventos 4625 em 5 minutos, vindos do mesmo IP, seguidos de um 4624 e, uma hora depois, de um 1102. Interprete.</summary>
+<div class="resolucao">
+<p class="passo">300 falhas de logon (4625) seguidas em pouco tempo: tentativa de <strong>força bruta</strong> de senha.</p>
+<p class="passo">O 4624 logo depois indica que uma tentativa deu certo: o atacante <strong>entrou</strong>.</p>
+<p class="passo">O 1102 é a limpeza do log de auditoria: tentativa de <strong>apagar rastros</strong>. O próprio evento 1102 registra a conta que fez a limpeza.</p>
+<p class="resposta-final">Resposta: ataque de força bruta bem-sucedido seguido de limpeza dos logs. Vale buscar o que restou em outros artefatos (Prefetch, cópias de sombra, logs remotos).</p></div></details>
+<details class="exemplo"><summary>No UserAssist aparece o valor <code>Abgrcnq.rkr</code> (simplificado). Qual programa foi executado?</summary>
+<div class="resolucao">
+<p class="passo">Os nomes do UserAssist são codificados em ROT13: cada letra anda 13 posições (A↔N, B↔O…). Aplicar ROT13 de novo decodifica.</p>
+<pre><code>import codecs
+print(codecs.decode("Abgrcnq.rkr", "rot13"))   # Notepad.exe</code></pre>
+<p class="resposta-final">Resposta: Notepad.exe. ROT13 só esconde o texto de olhares casuais; não é criptografia.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Tratar a ausência de um artefato como prova de que algo não aconteceu. Prefetch pode estar desativado, LNK pode ter sido apagado, log pode ter sido limpo ou sobrescrito. A ausência é só ausência; a conclusão precisa de outras fontes.</p></div>
+
 <h2>Forense de memória RAM</h2>
+<p><strong>Por que olhar a memória?</strong> O disco mostra o que ficou guardado; a RAM mostra o que estava <strong>acontecendo</strong>. Tudo o que um programa usa precisa passar pela memória em texto claro: a senha digitada, a chave que abre o volume cifrado, o comando do atacante, a conexão com o servidor de controle. Malwares modernos chegam a rodar só na memória, sem deixar arquivo no disco (os chamados fileless). Para analisar, o Volatility reconstrói as estruturas que o próprio sistema operacional mantém (lista de processos, tabelas de conexões) a partir da cópia bruta da RAM.</p>
 <p>A RAM guarda o que não está no disco: processos em execução (inclusive malware que só existe em memória), conexões de rede, comandos digitados, senhas e <strong>chaves de criptografia</strong> de volumes abertos (BitLocker, VeraCrypt). Por isso, com a máquina ligada, a coleta da memória vem antes do desligamento.</p>
 <ul>
 <li>Coleta: FTK Imager, DumpIt, WinPmem (Windows); LiME (Linux). A ferramenta de coleta altera um pouco a memória, o que deve ser documentado.</li>
@@ -283,7 +412,21 @@ dir /r</code></pre>
 <div class="caixa dica"><span class="rotulo">Dica</span>
 <p>Um processo que aparece no <code>psscan</code> e não no <code>pslist</code> pode ter sido desvinculado da lista do kernel (técnica de ocultação) ou simplesmente já ter terminado. A comparação entre os dois é clássica.</p></div>
 
+<details class="exemplo"><summary>No dump de memória, <code>windows.pslist</code> mostra 48 processos e <code>windows.psscan</code> mostra 50. Os dois a mais são <code>svch0st.exe</code> (ativo, com conexão na porta 4444 segundo o <code>netscan</code>) e <code>notepad.exe</code> (com horário de término registrado). Interprete.</summary>
+<div class="resolucao">
+<p class="passo">O <code>notepad.exe</code> tem horário de término: é um processo que simplesmente já <strong>acabou</strong>, cuja estrutura ainda estava na memória. Nada suspeito.</p>
+<p class="passo">O <code>svch0st.exe</code> (com zero no lugar do "o", imitando o legítimo <code>svchost.exe</code>) está ativo, mas some da lista do kernel: sinal de <strong>ocultação por rootkit</strong> (desvinculação da lista). A conexão na porta 4444 reforça a suspeita de controle remoto.</p>
+<p class="resposta-final">Resposta: notepad.exe encerrado (normal); svch0st.exe é provável malware oculto. Próximos passos: <code>windows.cmdline</code>, <code>windows.malfind</code> e extração do executável para análise.</p></div></details>
+<details class="exemplo"><summary>Por que a coleta da RAM de um computador com BitLocker ligado pode ser decisiva?</summary>
+<div class="resolucao">
+<p class="passo">Com o volume desbloqueado, o sistema precisa da chave na memória para ler e gravar no disco.</p>
+<p class="passo">Se a máquina for desligada, a chave some da RAM e o disco volta a ficar cifrado; sem a senha ou a chave de recuperação, o conteúdo fica inacessível.</p>
+<p class="resposta-final">Resposta: o dump da RAM pode conter a chave de cifragem do volume, permitindo depois decifrar a imagem do disco. Desligar antes elimina essa chance.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Dizer que a coleta da memória "não altera nada". A ferramenta de coleta precisa ser executada na própria máquina e ocupa uma parte da RAM. A alteração é mínima e inevitável; o correto é usar ferramenta confiável, de preferência a partir de mídia externa, e documentar.</p></div>
+
 <h2>Dispositivos móveis</h2>
+<p><strong>O que muda no celular?</strong> Diferentemente de um HD, o celular está sempre conectado e quase sempre cifrado. Conectado, ele pode receber um comando de apagamento remoto ou mensagens novas que sobrescrevem as antigas; por isso o primeiro passo é isolá-lo da rede. Cifrado, ele só libera a maior parte dos dados depois que o dono digita a senha pelo menos uma vez desde a última inicialização; por isso um aparelho ligado e desbloqueado vale ouro e não deve ser desligado. Quanto mais profunda a extração (lógica → sistema de arquivos → física), mais dados vêm, inclusive apagados, mas mais difícil ela é de obter.</p>
 <h3>Preservação</h3>
 <ul>
 <li>Isolar o aparelho da rede: <strong>modo avião</strong> ou <strong>bolsa/gaiola de Faraday</strong>. Evita apagamento remoto, chegada de novas mensagens que sobrescrevem dados e alterações de localização.</li>
@@ -303,7 +446,22 @@ dir /r</code></pre>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>Extração lógica <strong>não</strong> é cópia bit a bit e, em regra, não recupera dados apagados. Itens que atribuem à extração lógica a obtenção do espaço não alocado estão errados.</p></div>
 
+<details class="exemplo"><summary>Um celular é apreendido ligado, desbloqueado e recebendo mensagens a todo instante. Quais providências tomar até chegar ao laboratório?</summary>
+<div class="resolucao">
+<p class="passo">Fotografar a tela e registrar marca, modelo e estado. Isolar da rede (modo avião ou bolsa de Faraday) para evitar apagamento remoto e novas mensagens.</p>
+<p class="passo">Manter ligado e carregado (bateria externa), para que o aparelho não reinicie e volte ao estado BFU. Se possível, impedir o bloqueio automático da tela.</p>
+<p class="passo">Acondicionar, lacrar e registrar na cadeia de custódia, inclusive o fato de ter sido colocado em modo avião (é uma intervenção que deve constar).</p>
+<p class="resposta-final">Resposta: documentar, isolar da rede, manter energizado e desbloqueado, lacrar e registrar cada intervenção.</p></div></details>
+<details class="exemplo"><summary>O quesito pede mensagens de WhatsApp apagadas pelo usuário. Uma extração lógica basta?</summary>
+<div class="resolucao">
+<p class="passo">A extração lógica obtém o que o sistema e os backups entregam: as mensagens <strong>atuais</strong>, sem os registros apagados.</p>
+<p class="passo">As mensagens ficam em bancos SQLite. Registros apagados podem sobreviver em páginas livres do banco e no arquivo WAL, que só aparecem numa extração de <strong>sistema de arquivos completo</strong> (ou física).</p>
+<p class="resposta-final">Resposta: não. É preciso extração full file system (ou física, quando viável) e análise dos bancos SQLite, incluindo páginas livres e WAL.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar que retirar o chip isola o celular. Sem o SIM a rede celular cai, mas Wi-Fi e Bluetooth continuam funcionando, e o apagamento remoto pode chegar por eles. O isolamento correto é modo avião (conferindo Wi-Fi e Bluetooth desligados) ou bolsa de Faraday.</p></div>
+
 <h2>Metadados, esteganografia e ferramentas</h2>
+<p><strong>Dados sobre os dados.</strong> Todo arquivo carrega informações sobre si mesmo que o usuário não vê: quem o criou, com que programa, quando, às vezes onde. Para o perito, isso liga um arquivo a uma pessoa, a um aparelho ou a um local. Mas metadado é texto como outro qualquer e pode ser editado; por isso ele é indício que precisa ser confirmado por outras fontes. A esteganografia vai na direção oposta: em vez de deixar rastro, tenta fazer a própria mensagem passar despercebida.</p>
 <h3>Metadados</h3>
 <ul>
 <li><strong>EXIF</strong> (fotos JPEG e outras): fabricante e modelo da câmera, data e hora da captura, configurações, orientação, miniatura e, se ativado, <strong>coordenadas GPS</strong>. Muitas redes sociais removem o EXIF no upload.</li>
@@ -324,6 +482,29 @@ dir /r</code></pre>
 <div class="caixa dica"><span class="rotulo">Dica: filtragem por hash</span>
 <p>Bases de hashes de arquivos <strong>conhecidos e inofensivos</strong> (como a NSRL, do NIST, com arquivos de sistemas e programas) permitem ignorar milhares de arquivos. Bases de hashes de arquivos <strong>de interesse</strong> (como material de abuso sexual infantil já catalogado) permitem alertar automaticamente.</p></div>
 <p><strong>Convenção de Budapeste:</strong> tratado do Conselho da Europa sobre crimes cibernéticos e cooperação internacional (inclusive preservação expedita de dados), promulgado no Brasil pelo Decreto 11.491/2023; veja <a href="legislacao-especial.html">Legislação Especial</a>.</p>
+
+<details class="exemplo"><summary>O EXIF de uma foto traz GPS 23° 33' 0" S e 46° 38' 0" W. Converta para graus decimais, como se digita num mapa.</summary>
+<div class="resolucao">
+<p class="passo">Graus decimais = graus + minutos/60 + segundos/3.600.</p>
+<p class="passo">Latitude: 23 + 33/60 = 23 + 0,55 = 23,55. Sul é negativo: −23,55.</p>
+<p class="passo">Longitude: 46 + 38/60 = 46 + 0,6333… = 46,6333… Oeste é negativo: −46,6333.</p>
+<p class="resposta-final">Resposta: −23,55, −46,6333 (região central da cidade de São Paulo). O dado indica onde a câmera estava, se o GPS estava ativo e os metadados não foram editados.</p></div></details>
+<details class="exemplo"><summary>Com o The Sleuth Kit, como listar os arquivos (inclusive apagados) da partição de uma imagem e extrair um deles?</summary>
+<div class="resolucao">
+<pre><code>mmls imagem.dd                      # tabela de partições: a partição NTFS começa no setor 2048
+fls -o 2048 -r imagem.dd            # lista recursiva; apagados aparecem marcados com *
+istat -o 2048 imagem.dd 1234        # metadados (timestamps, tamanho) do registro 1234
+icat -o 2048 imagem.dd 1234 &gt; recuperado.pdf   # extrai o conteúdo</code></pre>
+<p class="passo"><code>mmls</code> mostra onde cada partição começa; esse deslocamento (em setores) vai no <code>-o</code> dos demais comandos.</p>
+<p class="passo"><code>fls</code> lista nomes e números de registro/inode; <code>istat</code> mostra os metadados; <code>icat</code> grava o conteúdo num arquivo.</p>
+<p class="resposta-final">Resposta: mmls → fls → istat → icat, sempre sobre a imagem, nunca sobre o disco original. O Autopsy faz o mesmo por interface gráfica.</p></div></details>
+<details class="exemplo"><summary>Um pixel tem o valor 200 no canal vermelho. Para esconder o bit 1 por LSB, que valor ele passa a ter? Por que ninguém nota?</summary>
+<div class="resolucao">
+<p class="passo">200 = 11001000. O bit menos significativo (o último) é 0. Trocando por 1: 11001001 = 201.</p>
+<p class="passo">A cor muda de 200 para 201 numa escala de 0 a 255, cerca de 0,4%: imperceptível ao olho. Repetindo em milhares de pixels, cabe uma mensagem inteira.</p>
+<p class="resposta-final">Resposta: 201. A imagem parece idêntica, mas o hash muda, e a análise estatística dos bits menos significativos pode revelar a alteração.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Tratar esteganografia como sinônimo de criptografia. Na esteganografia, ninguém deveria perceber que existe mensagem; na criptografia, todos veem a mensagem, mas não entendem. Item que diga que a esteganografia "torna o conteúdo ilegível" está confundindo as duas.</p></div>
 
 <h2>Questões</h2>
 <div class="questao" data-correta="b">

@@ -1,34 +1,134 @@
 <h2>A definição que resolve 80% das questões</h2>
+<p>Probabilidade é uma <strong>fração do todo</strong>: de todos os resultados que podem acontecer, que parte nos interessa? Se uma urna tem 10 bolas e 3 são azuis, "3 em 10" é a chance de pegar azul. Uma forma intuitiva de pensar: repetindo o sorteio muitas e muitas vezes, cerca de 30% das retiradas dariam azul.</p>
+<p>O ponto delicado é a condição "igualmente prováveis". A fórmula só funciona se cada caso contado tiver a mesma chance. Por isso, em dois dados, o espaço amostral tem 36 pares ordenados, e não 11 somas possíveis: a soma 2 só sai de um jeito, (1,1), enquanto a soma 7 sai de seis.</p>
 <span class="formula" data-tex="P = \dfrac{\text{casos favoráveis}}{\text{casos possíveis}}">P = casos favoráveis / casos possíveis</span>
 <p>Vale quando todos os resultados são <strong>igualmente prováveis</strong> (dado honesto, sorteio justo, moeda não viciada). A probabilidade fica sempre entre 0 e 1 (ou entre 0% e 100%).</p>
+<figure class="figura"><svg viewBox="0 0 320 170" width="320" role="img" aria-label="Quadro 6 por 6 com os 36 resultados de dois dados; as 6 casas com soma 7 formam uma diagonal destacada">
+  <rect class="f-area-forte" x="200" y="30" width="20" height="20"/>
+  <rect class="f-area-forte" x="180" y="50" width="20" height="20"/>
+  <rect class="f-area-forte" x="160" y="70" width="20" height="20"/>
+  <rect class="f-area-forte" x="140" y="90" width="20" height="20"/>
+  <rect class="f-area-forte" x="120" y="110" width="20" height="20"/>
+  <rect class="f-area-forte" x="100" y="130" width="20" height="20"/>
+  <line class="f-grade" x1="120" y1="30" x2="120" y2="150"/>
+  <line class="f-grade" x1="100" y1="50" x2="220" y2="50"/>
+  <line class="f-grade" x1="140" y1="30" x2="140" y2="150"/>
+  <line class="f-grade" x1="100" y1="70" x2="220" y2="70"/>
+  <line class="f-grade" x1="160" y1="30" x2="160" y2="150"/>
+  <line class="f-grade" x1="100" y1="90" x2="220" y2="90"/>
+  <line class="f-grade" x1="180" y1="30" x2="180" y2="150"/>
+  <line class="f-grade" x1="100" y1="110" x2="220" y2="110"/>
+  <line class="f-grade" x1="200" y1="30" x2="200" y2="150"/>
+  <line class="f-grade" x1="100" y1="130" x2="220" y2="130"/>
+  <rect class="f-linha" x="100" y="30" width="120" height="120"/>
+  <text x="110" y="24" text-anchor="middle" class="f-nota">1</text>
+  <text x="92" y="44" text-anchor="end" class="f-nota">1</text>
+  <text x="130" y="24" text-anchor="middle" class="f-nota">2</text>
+  <text x="92" y="64" text-anchor="end" class="f-nota">2</text>
+  <text x="150" y="24" text-anchor="middle" class="f-nota">3</text>
+  <text x="92" y="84" text-anchor="end" class="f-nota">3</text>
+  <text x="170" y="24" text-anchor="middle" class="f-nota">4</text>
+  <text x="92" y="104" text-anchor="end" class="f-nota">4</text>
+  <text x="190" y="24" text-anchor="middle" class="f-nota">5</text>
+  <text x="92" y="124" text-anchor="end" class="f-nota">5</text>
+  <text x="210" y="24" text-anchor="middle" class="f-nota">6</text>
+  <text x="92" y="144" text-anchor="end" class="f-nota">6</text>
+  <text x="160" y="10" text-anchor="middle" class="f-nota">1º dado</text>
+  <text x="40" y="94" text-anchor="middle" class="f-nota">2º dado</text>
+  <text x="232" y="94" class="f-nota">soma 7:</text>
+  <text x="232" y="110" class="f-nota">6 de 36</text>
+</svg><figcaption>Os 36 resultados de dois dados são igualmente prováveis; a soma 7 ocupa a diagonal.</figcaption></figure>
 <details class="exemplo"><summary>Ao lançar dois dados, qual a probabilidade de a soma ser 7?</summary>
 <div class="resolucao">
 <p class="passo">Possíveis: 6 × 6 = 36.</p>
 <p class="passo">Favoráveis: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1) = 6.</p>
 <p class="resposta-final">Resposta: 6/36 = 1/6.</p></div></details>
+<details class="exemplo"><summary>Entre 5 candidatos, incluindo Ana, serão sorteados 2 para uma entrevista. Qual a probabilidade de Ana ser sorteada?</summary>
+<div class="resolucao">
+<p class="passo">Possíveis: duplas sem ordem, C(5, 2) = 10.</p>
+<p class="passo">Favoráveis: duplas com Ana; falta escolher 1 dos outros 4: C(4, 1) = 4.</p>
+<p class="passo">P = 4/10 = 2/5. Conferindo pela intuição: são 2 vagas para 5 pessoas, cada uma tem chance 2/5.</p>
+<p class="resposta-final">Resposta: 2/5 = 40%.</p></div></details>
+<details class="exemplo"><summary>Numa sala há 12 homens e 18 mulheres. Sorteando uma pessoa, qual a probabilidade de ser mulher?</summary>
+<div class="resolucao">
+<p class="passo">Possíveis: 12 + 18 = 30. Favoráveis: 18.</p>
+<p class="resposta-final">Resposta: 18/30 = 3/5 = 60%.</p></div></details>
 <div class="caixa dica"><span class="rotulo">Soma de dois dados</span>
 <p>A soma 7 é a mais provável (6 casos). Para as outras: soma s tem <span class="m">6 − |s − 7|</span> casos. Soma 4 → 3 casos; soma 10 → 3 casos; soma 12 → 1 caso.</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Contar resultados que não têm a mesma chance. "A soma de dois dados vai de 2 a 12, são 11 valores, então P(soma 12) = 1/11" está errado. O certo é 1/36, porque o espaço equiprovável é o dos 36 pares.</p></div>
 
 <h2>Evento complementar</h2>
+<p>Ou o evento acontece, ou não acontece: não há terceira opção. Por isso as duas chances somam 100%. A vantagem prática é enorme: muitas vezes o "não acontecer" tem um caso só, enquanto o "acontecer" tem vários. Em "pelo menos uma cara em 3 moedas", os casos favoráveis são 7 (1, 2 ou 3 caras em várias ordens), mas o contrário é um só: nenhuma cara.</p>
 <span class="formula" data-tex="P(\text{não } A) = 1 - P(A)">P(não A) = 1 − P(A)</span>
 <div class="caixa atalho"><span class="rotulo">Atalho: "pelo menos um"</span>
 <p>Sempre que aparecer "pelo menos um", calcule a chance de <strong>nenhum</strong> e subtraia de 1.</p>
 <p>Três moedas, pelo menos uma cara: P(nenhuma cara) = (1/2)³ = 1/8 → 1 − 1/8 = 7/8.</p></div>
+<details class="exemplo"><summary>Lançando dois dados, qual a probabilidade de sair pelo menos um 6?</summary>
+<div class="resolucao">
+<p class="passo">Nenhum 6: cada dado tem 5 resultados sem 6. 5 × 5 = 25 casos em 36.</p>
+<p class="passo">Pelo menos um 6: 1 − 25/36 = 11/36.</p>
+<p class="passo">Conferindo pela contagem direta: 6 casos com 6 no primeiro dado + 6 com 6 no segundo − 1 caso (6,6) contado duas vezes = 11.</p>
+<p class="resposta-final">Resposta: 11/36.</p></div></details>
+<details class="exemplo"><summary>Uma senha de 3 dígitos (0 a 9, com repetição) é gerada ao acaso. Qual a probabilidade de ela ter pelo menos um dígito 7?</summary>
+<div class="resolucao">
+<p class="passo">Nenhum 7: cada dígito tem 9 opções em 10. P = (9/10)³ = 729/1.000 = 0,729.</p>
+<p class="passo">Pelo menos um 7: 1 − 0,729 = 0,271.</p>
+<p class="resposta-final">Resposta: 0,271 = 27,1%.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Somar as chances de cada tentativa: "pelo menos um 6 em dois dados = 1/6 + 1/6 = 1/3". Essa conta conta o (6,6) duas vezes. Com 7 dados, o mesmo raciocínio daria 7/6, mais de 100%, o que mostra o absurdo.</p></div>
 
 <h2>"E" multiplica (eventos independentes)</h2>
 <p>Se um evento não interfere no outro, a probabilidade de os dois acontecerem é o produto:</p>
+<p>Por que produto? Porque é uma "fração da fração". Se metade dos casos dá cara na moeda, e entre esses um sexto dá 6 no dado, os casos com cara <strong>e</strong> 6 são um sexto da metade: 1/2 × 1/6 = 1/12. Quando os eventos dependem um do outro (sem reposição), a segunda fração é calculada já levando em conta o que aconteceu na primeira.</p>
 <span class="formula" data-tex="P(A \text{ e } B) = P(A) \times P(B)">P(A e B) = P(A) × P(B)</span>
+<figure class="figura"><svg viewBox="0 0 320 160" width="320" role="img" aria-label="Árvore de duas retiradas sem reposição de uma urna com 4 brancas e 6 pretas, com as probabilidades de cada galho e dos quatro resultados">
+  <line class="f-linha" x1="20" y1="80" x2="110" y2="42"/>
+  <line class="f-linha" x1="20" y1="80" x2="110" y2="118"/>
+  <line class="f-linha" x1="134" y1="40" x2="212" y2="20"/>
+  <line class="f-linha" x1="134" y1="40" x2="212" y2="60"/>
+  <line class="f-linha" x1="134" y1="120" x2="212" y2="100"/>
+  <line class="f-linha" x1="134" y1="120" x2="212" y2="140"/>
+  <circle class="f-ponto" cx="20" cy="80" r="5"/>
+  <text x="122" y="45" text-anchor="middle">B</text>
+  <text x="122" y="125" text-anchor="middle">P</text>
+  <text x="58" y="52" text-anchor="middle" class="f-nota">4/10</text>
+  <text x="58" y="118" text-anchor="middle" class="f-nota">6/10</text>
+  <text x="170" y="22" text-anchor="middle" class="f-nota">3/9</text>
+  <text x="170" y="65" text-anchor="middle" class="f-nota">6/9</text>
+  <text x="170" y="102" text-anchor="middle" class="f-nota">4/9</text>
+  <text x="170" y="146" text-anchor="middle" class="f-nota">5/9</text>
+  <text x="222" y="25" text-anchor="middle">B</text>
+  <text x="222" y="65" text-anchor="middle">P</text>
+  <text x="222" y="105" text-anchor="middle">B</text>
+  <text x="222" y="145" text-anchor="middle">P</text>
+  <text x="236" y="25" class="f-nota">BB = 12/90</text>
+  <text x="236" y="65" class="f-nota">BP = 24/90</text>
+  <text x="236" y="105" class="f-nota">PB = 24/90</text>
+  <text x="236" y="145" class="f-nota">PP = 30/90</text>
+</svg><figcaption>Multiplique ao longo de cada caminho. Os quatro resultados somam 90/90 = 1.</figcaption></figure>
 <details class="exemplo"><summary>Uma urna tem 4 bolas brancas e 6 pretas. Tiram-se duas, sem reposição. Qual a probabilidade de ambas serem brancas?</summary>
 <div class="resolucao">
 <p class="passo">1ª branca: 4/10. Sem reposição, sobram 3 brancas em 9: 3/9.</p>
 <p class="passo">4/10 × 3/9 = 12/90 = 2/15.</p>
 <p class="resposta-final">Resposta: 2/15.</p></div></details>
+<details class="exemplo"><summary>Dois peritos analisam, de forma independente, um mesmo vestígio. O primeiro identifica o material com probabilidade 0,7 e o segundo, com 0,6. Qual a probabilidade de os dois identificarem?</summary>
+<div class="resolucao">
+<p class="passo">Independentes: "e" multiplica.</p>
+<p class="passo">0,7 × 0,6 = 0,42.</p>
+<p class="resposta-final">Resposta: 0,42 = 42%.</p></div></details>
+<details class="exemplo"><summary>Lança-se uma moeda e um dado. Qual a probabilidade de sair cara e um número maior que 4?</summary>
+<div class="resolucao">
+<p class="passo">Cara: 1/2. Maior que 4 (5 ou 6): 2/6 = 1/3.</p>
+<p class="passo">1/2 × 1/3 = 1/6. Conferindo: 2 × 6 = 12 resultados, favoráveis (cara, 5) e (cara, 6): 2/12 = 1/6.</p>
+<p class="resposta-final">Resposta: 1/6.</p></div></details>
 <div class="caixa pegadinha"><span class="rotulo">Com ou sem reposição?</span>
 <p>Sem reposição, o total e os favoráveis diminuem a cada retirada. Com reposição, tudo se mantém. Essa é a diferença entre as alternativas armadilha.</p></div>
 <div class="caixa pegadinha"><span class="rotulo">Ordem dos resultados</span>
 <p>"Uma bola branca e uma preta" (em qualquer ordem) pode ser BP ou PB. Calcule um caminho e multiplique pelo número de ordens: 2 × (4/10 × 6/9) = 48/90 = 8/15.</p></div>
 
 <h2>"Ou" soma (tirando a interseção)</h2>
+<p>Somar as chances é juntar os casos favoráveis dos dois eventos. O cuidado é não contar duas vezes o que pertence aos dois ao mesmo tempo. É o mesmo raciocínio de contar pessoas em dois grupos que têm membros em comum: soma os dois grupos e tira quem foi contado em dobro.</p>
 <span class="formula" data-tex="P(A \text{ ou } B) = P(A) + P(B) - P(A \text{ e } B)">P(A ou B) = P(A) + P(B) − P(A e B)</span>
 <figure class="figura">
 <svg viewBox="0 0 300 175" width="300" role="img" aria-label="Dois conjuntos A e B que se cruzam; a interseção A e B está destacada">
@@ -50,9 +150,22 @@
 <p class="passo">Reis: 4/52. Copas: 13/52. Rei de copas (contado duas vezes): 1/52.</p>
 <p class="passo">4/52 + 13/52 − 1/52 = 16/52 = 4/13.</p>
 <p class="resposta-final">Resposta: 4/13.</p></div></details>
+<details class="exemplo"><summary>Lançando um dado, qual a probabilidade de sair número par ou múltiplo de 3?</summary>
+<div class="resolucao">
+<p class="passo">Par: {2, 4, 6}, 3/6. Múltiplo de 3: {3, 6}, 2/6. Os dois ao mesmo tempo: {6}, 1/6.</p>
+<p class="passo">3/6 + 2/6 − 1/6 = 4/6 = 2/3. Conferindo: {2, 3, 4, 6} são 4 de 6.</p>
+<p class="resposta-final">Resposta: 2/3.</p></div></details>
+<details class="exemplo"><summary>Uma urna tem 5 bolas vermelhas, 3 azuis e 2 verdes. Sorteando uma, qual a chance de ser vermelha ou verde?</summary>
+<div class="resolucao">
+<p class="passo">Uma bola não pode ser vermelha e verde ao mesmo tempo: eventos mutuamente exclusivos.</p>
+<p class="passo">5/10 + 2/10 = 7/10. Pelo complementar: 1 − 3/10 (azul) = 7/10.</p>
+<p class="resposta-final">Resposta: 7/10.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Esquecer de subtrair a interseção. Se a soma das probabilidades passar de 1 (ou se o resultado parecer grande demais), quase sempre há casos contados duas vezes.</p></div>
 
 <h2>Probabilidade condicional</h2>
 <p>"Sabendo que B aconteceu" muda o universo: os casos possíveis passam a ser só os de B.</p>
+<p>A informação nova elimina possibilidades. Se alguém diz "o dado deu par", os resultados 1, 3 e 5 deixam de existir para você: o novo espaço amostral tem 3 casos. Toda condicional é isso: jogue fora o que a condição descartou e calcule a fração dentro do que sobrou. A fórmula apenas faz essa "troca de denominador" com probabilidades em vez de quantidades.</p>
 <span class="formula" data-tex="P(A \mid B) = \dfrac{P(A \text{ e } B)}{P(B)}">P(A | B) = P(A e B) / P(B)</span>
 <div class="caixa atalho"><span class="rotulo">Atalho: use a tabela</span>
 <p>Monte uma tabela de dupla entrada com as quantidades. A condição diz em qual linha ou coluna olhar. Depois é só favoráveis sobre o total daquela linha.</p></div>
@@ -61,14 +174,39 @@
 <p class="passo">O universo agora são os fumantes: 10 + 15 = 25.</p>
 <p class="passo">Mulheres entre eles: 15.</p>
 <p class="resposta-final">Resposta: 15/25 = 3/5 = 60%.</p></div></details>
+<details class="exemplo"><summary>Dois dados foram lançados e sabe-se que a soma deu 8. Qual a probabilidade de um dos dados ter dado 3?</summary>
+<div class="resolucao">
+<p class="passo">Novo universo (soma 8): (2,6), (3,5), (4,4), (5,3), (6,2). São 5 casos.</p>
+<p class="passo">Com um 3: (3,5) e (5,3). São 2 casos.</p>
+<p class="resposta-final">Resposta: 2/5.</p></div></details>
+<details class="exemplo"><summary>Um casal tem dois filhos e sabe-se que pelo menos um é menino. Qual a probabilidade de os dois serem meninos? (Considere menino e menina igualmente prováveis.)</summary>
+<div class="resolucao">
+<p class="passo">Casos iniciais: MM, MF, FM, FF. A informação elimina FF.</p>
+<p class="passo">Novo universo: MM, MF, FM (3 casos). Favorável: MM (1 caso).</p>
+<p class="resposta-final">Resposta: 1/3 (e não 1/2, porque MF e FM são casos diferentes).</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Inverter a condição. Na empresa acima, P(mulher | fumante) = 15/25 = 60%, mas P(fumante | mulher) = 15/60 = 25%. O numerador é o mesmo; o que muda é o universo do denominador. Leia o "sabendo que" e é ele que vai embaixo.</p></div>
 
 <h2>Repetições: distribuição binomial</h2>
+<p>Quando a mesma experiência se repete (vários tiros, várias questões chutadas, várias moedas), dá para separar o problema em duas partes. Primeiro, a chance de <strong>uma ordem específica</strong>, por exemplo acertar, acertar, errar: pela regra do "e", p × p × (1 − p). Depois, <strong>quantas ordens</strong> têm exatamente k sucessos: isso é escolher em quais tentativas ocorrem os sucessos, C(n, k). Como todas as ordens têm a mesma chance, multiplica-se uma pela outra.</p>
 <p>Probabilidade de exatamente k sucessos em n tentativas independentes, cada uma com chance p:</p>
 <span class="formula" data-tex="P = C(n, k) \cdot p^k \cdot (1-p)^{\,n-k}">P = C(n, k) × pᵏ × (1 − p)ⁿ⁻ᵏ</span>
 <details class="exemplo"><summary>Lançando uma moeda 4 vezes, qual a chance de sair exatamente 2 caras?</summary>
 <div class="resolucao">
 <p class="passo">C(4, 2) = 6 ordens possíveis. Cada uma com chance (1/2)⁴ = 1/16.</p>
 <p class="resposta-final">Resposta: 6/16 = 3/8.</p></div></details>
+<details class="exemplo"><summary>Um atirador acerta o alvo com probabilidade 0,8. Em 3 tiros independentes, qual a chance de acertar exatamente 2?</summary>
+<div class="resolucao">
+<p class="passo">Uma ordem (AAE): 0,8 × 0,8 × 0,2 = 0,128.</p>
+<p class="passo">Ordens com 2 acertos: AAE, AEA, EAA, ou seja, C(3, 2) = 3.</p>
+<p class="resposta-final">Resposta: 3 × 0,128 = 0,384 = 38,4%.</p></div></details>
+<details class="exemplo"><summary>Um candidato chuta 3 questões de 5 alternativas cada. Qual a probabilidade de acertar exatamente uma?</summary>
+<div class="resolucao">
+<p class="passo">Acerto: 1/5. Erro: 4/5. Uma ordem (acerta, erra, erra): 1/5 × 4/5 × 4/5 = 16/125.</p>
+<p class="passo">A questão acertada pode ser qualquer uma das 3: C(3, 1) = 3.</p>
+<p class="resposta-final">Resposta: 3 × 16/125 = 48/125 = 0,384.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Esquecer o C(n, k) e calcular só uma ordem. No exemplo do atirador, 0,128 é a chance de acertar os dois primeiros e errar o terceiro, nessa ordem. "Exatamente 2" aceita qualquer ordem, por isso multiplica por 3.</p></div>
 
 <h2>Questões</h2>
 <div class="questao" data-correta="c">

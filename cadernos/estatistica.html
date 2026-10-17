@@ -96,69 +96,239 @@
   <div class="selos"><span class="selo media">Cai com frequência</span></div>
   <nav class="sumario" data-sumario><strong>Nesta página</strong></nav>
 <h2>Média aritmética</h2>
+<p>A média responde a uma pergunta simples: <strong>se todos os valores fossem iguais, quanto cada um valeria?</strong> Imagine 5 amigos que juntaram R$ 150 para uma conta. Se cada um pagasse a mesma parte, seriam R$ 30. Esse "valor igualado" é a média. Por isso a conta é sempre a mesma: junte tudo (soma) e reparta igualmente (divida pela quantidade).</p>
+<p>Outra forma de enxergar: a média é o <strong>ponto de equilíbrio</strong> dos dados. Os valores abaixo dela "puxam" para um lado e os acima puxam para o outro, e as diferenças se compensam exatamente. É daí que vem o atalho dos desvios: a soma dos desvios em relação à média é sempre zero.</p>
 <span class="formula" data-tex="\text{média} = \dfrac{\text{soma dos valores}}{\text{quantidade de valores}}">média = soma dos valores / quantidade de valores</span>
+<figure class="figura"><svg viewBox="0 0 320 120" width="320" role="img" aria-label="Reta numérica de 0 a 10 com os valores 2, 4 e 9 marcados e um apoio no 5, a média, mostrando os desvios menos 3, menos 1 e mais 4">
+  <line class="f-eixo" x1="20" y1="60" x2="300" y2="60"/>
+  <line class="f-eixo" x1="20" y1="55" x2="20" y2="65"/>
+  <line class="f-eixo" x1="160" y1="55" x2="160" y2="65"/>
+  <line class="f-eixo" x1="300" y1="55" x2="300" y2="65"/>
+  <circle class="f-ponto" cx="76" cy="60" r="6"/>
+  <circle class="f-ponto" cx="132" cy="60" r="6"/>
+  <circle class="f-ponto" cx="272" cy="60" r="6"/>
+  <text x="76" y="44" text-anchor="middle" class="f-nota">2 (−3)</text>
+  <text x="132" y="44" text-anchor="middle" class="f-nota">4 (−1)</text>
+  <text x="272" y="44" text-anchor="middle" class="f-nota">9 (+4)</text>
+  <polygon class="f-area f-linha" points="160,64 148,84 172,84"/>
+  <text x="20" y="104" text-anchor="middle" class="f-nota">0</text>
+  <text x="160" y="104" text-anchor="middle" class="f-nota">média = 5</text>
+  <text x="300" y="104" text-anchor="middle" class="f-nota">10</text>
+</svg><figcaption>Os dados 2, 4 e 9 se equilibram no 5: desvios −3 − 1 + 4 = 0.</figcaption></figure>
 <div class="caixa atalho"><span class="rotulo">Atalho: a média guarda a soma</span>
 <p>Se a média de 8 números é 15, a soma deles é 120. Quase toda questão de "entrou / saiu um valor" se resolve trabalhando com a <strong>soma</strong>, não com a média.</p></div>
 <details class="exemplo"><summary>A média de idade de 5 amigos é 30 anos. Um sexto amigo entra e a média passa a ser 32. Qual a idade dele?</summary>
 <div class="resolucao">
 <p class="passo">Soma antes: 5 × 30 = 150. Soma depois: 6 × 32 = 192.</p>
 <p class="resposta-final">Resposta: 192 − 150 = 42 anos.</p></div></details>
+<details class="exemplo"><summary>Um candidato tem média 7,5 nas 4 primeiras provas de um curso de formação. Quanto precisa tirar na 5ª prova para fechar com média 8?</summary>
+<div class="resolucao">
+<p class="passo">Soma que ele já tem: 4 × 7,5 = 30.</p>
+<p class="passo">Soma necessária para média 8 em 5 provas: 5 × 8 = 40.</p>
+<p class="passo">Falta: 40 − 30 = 10. Conferindo: (30 + 10) ÷ 5 = 8.</p>
+<p class="resposta-final">Resposta: nota 10.</p></div></details>
+<details class="exemplo"><summary>A média de 8 notas era 6. Descobriu-se que uma nota foi lançada como 4, quando o certo era 9. Qual a média corrigida?</summary>
+<div class="resolucao">
+<p class="passo">Soma original: 8 × 6 = 48. A correção soma 9 − 4 = 5 pontos: nova soma 53.</p>
+<p class="passo">Nova média: 53 ÷ 8 = 6,625. Atalho: a média sobe 5 ÷ 8 = 0,625.</p>
+<p class="resposta-final">Resposta: 6,625.</p></div></details>
 <div class="caixa atalho"><span class="rotulo">Atalho: média por desvios</span>
 <p>Escolha um valor de referência e some só as diferenças. Média de 47, 52, 49, 55 e 47 com referência 50: desvios −3, +2, −1, +5, −3 = 0. A média é 50.</p></div>
+<details class="exemplo"><summary>Cinco servidores recebem R$ 1.980, R$ 2.010, R$ 2.040, R$ 1.970 e R$ 2.000. Qual o salário médio?</summary>
+<div class="resolucao">
+<p class="passo">Referência R$ 2.000. Desvios: −20, +10, +40, −30, 0. Soma: 0.</p>
+<p class="passo">Desvio médio 0 ÷ 5 = 0, então a média é a própria referência. Conferindo: soma 10.000 ÷ 5 = 2.000.</p>
+<p class="resposta-final">Resposta: R$ 2.000.</p></div></details>
 <div class="caixa dica"><span class="rotulo">Propriedades</span>
 <ul>
 <li>Somar k a todos os valores soma k à média.</li>
 <li>Multiplicar todos por k multiplica a média por k.</li>
 </ul></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Quando um valor entra ou sai, dividir a nova soma pela quantidade antiga. Se eram 10 números e saiu um, a nova soma se divide por <strong>9</strong>. Escreva sempre "soma ÷ quantidade" com a quantidade atualizada.</p></div>
 
 <h2>Média ponderada</h2>
+<p>O peso diz <strong>quantas vezes aquele valor conta</strong>. Uma nota 8 com peso 3 vale como se você tivesse tirado 8 em três provas. Por isso a média ponderada nada mais é que uma média aritmética com valores repetidos: multiplique cada valor pelo peso (é a "soma escondida") e divida pela soma dos pesos (é a "quantidade escondida").</p>
 <p>Cada valor tem um peso:</p>
 <span class="formula" data-tex="\text{média} = \dfrac{v_1 p_1 + v_2 p_2 + \cdots}{p_1 + p_2 + \cdots}">média = (v₁·p₁ + v₂·p₂ + …) / (p₁ + p₂ + …)</span>
+<p>Consequência importante: a média ponderada fica sempre <strong>entre</strong> o menor e o maior valor, e mais perto do valor de maior peso.</p>
 <details class="exemplo"><summary>Notas 6 (peso 2), 8 (peso 3) e 5 (peso 1). Qual a média?</summary>
 <div class="resolucao">
 <p class="passo">(12 + 24 + 5) / 6 = 41/6 ≈ 6,83.</p>
 <p class="resposta-final">Resposta: aproximadamente 6,83.</p></div></details>
+<details class="exemplo"><summary>Num concurso, a prova objetiva tem peso 3 e a discursiva, peso 2. Um candidato tirou 7 na objetiva. Quanto precisa na discursiva para ficar com média 7,6?</summary>
+<div class="resolucao">
+<p class="passo">Média = (3 × 7 + 2 × x) ÷ 5 = 7,6.</p>
+<p class="passo">21 + 2x = 38 → 2x = 17 → x = 8,5.</p>
+<p class="passo">Conferindo: (21 + 17) ÷ 5 = 38 ÷ 5 = 7,6.</p>
+<p class="resposta-final">Resposta: 8,5.</p></div></details>
+<details class="exemplo"><summary>Um comerciante comprou 3 kg de café a R$ 10 o quilo e 2 kg a R$ 15 o quilo. Qual o preço médio do quilo?</summary>
+<div class="resolucao">
+<p class="passo">Gasto total: 3 × 10 + 2 × 15 = 30 + 30 = 60 reais.</p>
+<p class="passo">Quantidade total: 5 kg. Preço médio: 60 ÷ 5 = 12.</p>
+<p class="resposta-final">Resposta: R$ 12 por quilo (e não R$ 12,50, que seria a média simples dos preços).</p></div></details>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha: média de médias</span>
 <p>Turma A (20 alunos) com média 7 e turma B (30 alunos) com média 8 não têm média geral 7,5. É ponderada pelo tamanho: (140 + 240)/50 = 7,6.</p></div>
+<div class="caixa atalho"><span class="rotulo">Atalho: a gangorra de dois grupos</span>
+<p>Com dois grupos, as distâncias da média geral até cada média são inversamente proporcionais aos tamanhos. No caso acima, 7,6 está a 0,6 de 7 e a 0,4 de 8: razão 0,6 : 0,4 = 3 : 2, a mesma razão 30 : 20 dos alunos (só que invertida). O grupo maior "puxa" a média para perto de si.</p></div>
 
 <h2>Mediana</h2>
 <p>O valor do meio quando os dados estão <strong>em ordem</strong>.</p>
+<p>A mediana divide os dados em duas metades: metade dos valores fica abaixo dela e metade fica acima. Ela só olha a <strong>posição</strong>, não o tamanho dos valores. Por isso um salário de R$ 50 mil no meio de salários de R$ 2 mil arrasta a média para cima, mas não mexe na mediana: o funcionário rico continua sendo "só mais um valor acima do meio".</p>
 <ul>
   <li>Quantidade ímpar: o termo central. Em 3, 7, 8, 12, 20 a mediana é 8.</li>
   <li>Quantidade par: a média dos dois centrais. Em 2, 4, 9, 11 a mediana é (4 + 9)/2 = 6,5.</li>
 </ul>
+<div class="caixa atalho"><span class="rotulo">Atalho: a posição do meio</span>
+<p>Com n dados ordenados, a mediana está na posição <strong>(n + 1) ÷ 2</strong>. Com n = 9, é o 5º. Com n = 20, dá 10,5: é a média do 10º com o 11º.</p></div>
+<details class="exemplo"><summary>Cinco funcionários ganham R$ 1.500, R$ 1.800, R$ 2.000, R$ 2.200 e R$ 15.000. Compare média e mediana.</summary>
+<div class="resolucao">
+<p class="passo">Soma: 1.500 + 1.800 + 2.000 + 2.200 + 15.000 = 22.500. Média: 22.500 ÷ 5 = 4.500.</p>
+<p class="passo">Dados já em ordem, n = 5: a mediana é o 3º valor, R$ 2.000.</p>
+<p class="passo">A média ficou acima de quatro dos cinco salários por causa de um valor extremo.</p>
+<p class="resposta-final">Resposta: média R$ 4.500; mediana R$ 2.000. A mediana representa melhor o salário "típico".</p></div></details>
+<details class="exemplo"><summary>Em uma turma, 3 alunos tiraram 5, 5 alunos tiraram 6, 8 alunos tiraram 7 e 4 alunos tiraram 8. Qual a mediana das notas?</summary>
+<div class="resolucao">
+<p class="passo">Total: 3 + 5 + 8 + 4 = 20 alunos. Posição (20 + 1) ÷ 2 = 10,5: média do 10º com o 11º.</p>
+<p class="passo">Frequências acumuladas: nota 5 ocupa as posições 1 a 3; nota 6, as posições 4 a 8; nota 7, as posições 9 a 16.</p>
+<p class="passo">O 10º e o 11º estão na nota 7: (7 + 7) ÷ 2 = 7.</p>
+<p class="resposta-final">Resposta: mediana 7.</p></div></details>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>Ordenar antes! A banca entrega os dados embaralhados de propósito.</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Em tabela de frequência, tirar o "meio" da lista de valores distintos (5, 6, 7, 8 daria 6,5). A mediana é calculada sobre <strong>todos</strong> os alunos, contando as repetições. Use a frequência acumulada.</p></div>
 <div class="caixa dica"><span class="rotulo">Média × mediana</span>
 <p>A mediana não é afetada por valores extremos; a média é. Num grupo de salários com um muito alto, a média fica acima da mediana.</p></div>
 
 <h2>Moda</h2>
 <p>O valor que mais se repete. Pode haver mais de uma (bimodal) ou nenhuma (amodal).</p>
+<p>A moda é a medida do "mais comum". Ela é a única das três que funciona também com dados que não são números: não dá para calcular a média de "cores de veículos", mas dá para dizer qual cor aparece mais. Ela é útil quando a pergunta é "o que acontece com mais frequência?", como o tamanho de farda mais pedido ou o tipo de ocorrência mais registrado.</p>
+<details class="exemplo"><summary>Na turma do exemplo anterior (3 alunos com 5, 5 com 6, 8 com 7 e 4 com 8), qual a moda?</summary>
+<div class="resolucao">
+<p class="passo">A maior frequência é 8, que corresponde à nota 7.</p>
+<p class="resposta-final">Resposta: moda 7 (o valor), e não 8 (a frequência).</p></div></details>
+<details class="exemplo"><summary>Determine a moda de 3, 5, 5, 7, 7, 9 e de 2, 4, 6, 8.</summary>
+<div class="resolucao">
+<p class="passo">No primeiro conjunto, 5 e 7 aparecem duas vezes cada, e nenhum valor aparece mais que isso.</p>
+<p class="passo">No segundo, todos aparecem uma única vez.</p>
+<p class="resposta-final">Resposta: o primeiro é bimodal (5 e 7); o segundo é amodal.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Responder a frequência no lugar do valor. Se a tabela diz "nota 7: 8 alunos", a moda é 7. O número 8 só indica quantas vezes a moda apareceu.</p></div>
 
 <h2>Dispersão: amplitude, variância e desvio padrão</h2>
+<p>Média, mediana e moda dizem onde os dados estão "centrados", mas não dizem se eles estão juntos ou espalhados. Duas turmas com notas 6, 7, 8 e 4, 7, 10 têm a mesma média 7, mas a segunda é muito mais irregular. As medidas de dispersão medem justamente esse espalhamento.</p>
+<p>A ideia natural seria tirar a média dos desvios (distância de cada valor até a média). O problema é que os desvios positivos e negativos se cancelam e a soma dá sempre zero. A saída é <strong>elevar ao quadrado</strong> (todo quadrado é positivo): a média desses quadrados é a variância. Como o quadrado muda a unidade (reais viram "reais ao quadrado"), tira-se a raiz no final e volta-se à unidade original: esse é o desvio padrão.</p>
 <ul>
   <li><strong>Amplitude:</strong> maior valor − menor valor.</li>
   <li><strong>Variância (populacional):</strong> média dos quadrados dos desvios em relação à média.</li>
   <li><strong>Desvio padrão:</strong> raiz quadrada da variância. Está na mesma unidade dos dados.</li>
 </ul>
+<figure class="figura"><svg viewBox="0 0 320 140" width="320" role="img" aria-label="Duas linhas de pontos com média 7: turma A com 6, 7 e 8, juntos; turma B com 4, 7 e 10, espalhados">
+  <line class="f-grade" x1="212" y1="22" x2="212" y2="118"/>
+  <text x="212" y="16" text-anchor="middle" class="f-nota">média 7</text>
+  <text x="8" y="55" class="f-nota">Turma A</text>
+  <line class="f-eixo" x1="80" y1="50" x2="300" y2="50"/>
+  <circle class="f-ponto" cx="190" cy="50" r="6"/>
+  <circle class="f-ponto" cx="212" cy="50" r="6"/>
+  <circle class="f-ponto" cx="234" cy="50" r="6"/>
+  <text x="8" y="105" class="f-nota">Turma B</text>
+  <line class="f-eixo" x1="80" y1="100" x2="300" y2="100"/>
+  <circle class="f-ponto" cx="146" cy="100" r="6"/>
+  <circle class="f-ponto" cx="212" cy="100" r="6"/>
+  <circle class="f-ponto" cx="278" cy="100" r="6"/>
+  <text x="80" y="132" text-anchor="middle" class="f-nota">1</text>
+  <text x="146" y="132" text-anchor="middle" class="f-nota">4</text>
+  <text x="212" y="132" text-anchor="middle" class="f-nota">7</text>
+  <text x="278" y="132" text-anchor="middle" class="f-nota">10</text>
+</svg><figcaption>Mesma média, dispersões diferentes: a turma B tem desvio padrão maior.</figcaption></figure>
 <details class="exemplo"><summary>Calcule a variância e o desvio padrão de 2, 4, 6, 8.</summary>
 <div class="resolucao">
 <p class="passo">Média: 5. Desvios: −3, −1, 1, 3. Quadrados: 9, 1, 1, 9. Soma: 20.</p>
 <p class="passo">Variância: 20/4 = 5. Desvio padrão: √5 ≈ 2,24.</p>
 <p class="resposta-final">Resposta: variância 5; desvio padrão ≈ 2,24.</p></div></details>
+<details class="exemplo"><summary>Turma A: notas 6, 7, 8. Turma B: notas 4, 7, 10. Qual turma é mais homogênea? Compare as variâncias.</summary>
+<div class="resolucao">
+<p class="passo">As duas têm média 7. Amplitudes: A = 8 − 6 = 2; B = 10 − 4 = 6.</p>
+<p class="passo">Turma A: desvios −1, 0, 1; quadrados 1, 0, 1; variância 2 ÷ 3 ≈ 0,67; desvio padrão ≈ 0,82.</p>
+<p class="passo">Turma B: desvios −3, 0, 3; quadrados 9, 0, 9; variância 18 ÷ 3 = 6; desvio padrão = √6 ≈ 2,45.</p>
+<p class="resposta-final">Resposta: a turma A é mais homogênea (menor variância e menor desvio padrão).</p></div></details>
+<details class="exemplo"><summary>Uma amostra tem os valores 3, 5 e 7. Calcule a variância amostral e o desvio padrão amostral.</summary>
+<div class="resolucao">
+<p class="passo">Média: 15 ÷ 3 = 5. Desvios: −2, 0, 2. Quadrados: 4, 0, 4. Soma: 8.</p>
+<p class="passo">Amostra: divide por n − 1 = 2. Variância amostral: 8 ÷ 2 = 4.</p>
+<p class="passo">Desvio padrão amostral: √4 = 2. (Se fosse população, a variância seria 8 ÷ 3 ≈ 2,67.)</p>
+<p class="resposta-final">Resposta: variância 4; desvio padrão 2.</p></div></details>
 <div class="caixa atalho"><span class="rotulo">Atalho: o que muda a dispersão</span>
 <ul>
 <li>Somar uma constante a todos os dados <strong>não altera</strong> variância nem desvio padrão.</li>
 <li>Multiplicar todos por k multiplica o desvio padrão por k e a variância por k².</li>
 </ul>
 <p>Variância amostral divide por n − 1 em vez de n. Use quando o enunciado falar em <em>amostra</em>.</p></div>
+<h3>Coeficiente de variação</h3>
+<p>Um desvio padrão de 10 é muito ou pouco? Depende do tamanho dos dados. O coeficiente de variação compara a dispersão com a média: <strong>CV = desvio padrão ÷ média</strong>, normalmente em porcentagem. Quanto menor o CV, mais homogêneo o conjunto.</p>
+<details class="exemplo"><summary>Grupo A: média 50 kg, desvio padrão 5 kg. Grupo B: média 200 kg, desvio padrão 10 kg. Qual é relativamente mais homogêneo?</summary>
+<div class="resolucao">
+<p class="passo">CV de A: 5 ÷ 50 = 0,10 = 10%.</p>
+<p class="passo">CV de B: 10 ÷ 200 = 0,05 = 5%.</p>
+<p class="resposta-final">Resposta: o grupo B, apesar de ter o maior desvio padrão em quilos.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Esquecer que a variância está "ao quadrado". Se a variância é 16, o desvio padrão é 4, e não 8. E o desvio padrão nunca é negativo: multiplicar todos os dados por −2 multiplica o desvio padrão por 2 (o valor absoluto de k) e a variância por 4.</p></div>
 
 <h2>Leitura de tabelas e gráficos</h2>
+<p>Nas provas, a maior parte das questões de gráfico não exige fórmula nenhuma: exige <strong>ler com cuidado</strong> e fazer uma porcentagem ou uma regra de três. O erro quase sempre está em ler o eixo errado, confundir valor absoluto com porcentagem ou esquecer em relação a que a variação é calculada. Antes de calcular, pergunte: o que o eixo vertical mede? Qual é a unidade? Qual é o total?</p>
 <ul>
   <li><strong>Gráfico de setores (pizza):</strong> 360° = 100%, logo 1% = 3,6°. Um setor de 90° é 25%.</li>
   <li><strong>Frequência relativa:</strong> frequência da classe / total.</li>
   <li>Cuidado com eixos que não começam em zero: exageram diferenças.</li>
 </ul>
+<h3>Frequência absoluta, relativa e acumulada</h3>
+<table>
+<tr><th>Idade</th><th>Frequência absoluta</th><th>Frequência relativa</th><th>Acumulada</th></tr>
+<tr><td>18 a 25</td><td>12</td><td>12 ÷ 40 = 30%</td><td>12</td></tr>
+<tr><td>25 a 32</td><td>18</td><td>18 ÷ 40 = 45%</td><td>30</td></tr>
+<tr><td>32 a 39</td><td>10</td><td>10 ÷ 40 = 25%</td><td>40</td></tr>
+</table>
+<p>A soma das frequências relativas é sempre 100%, e a última acumulada é sempre o total. Use isso para conferir a tabela.</p>
+<figure class="figura"><svg viewBox="0 0 320 170" width="320" role="img" aria-label="Gráfico de barras de ocorrências por ano: 2021 com 200, 2022 com 250, 2023 com 300 e 2024 com 240">
+  <line class="f-grade" x1="40" y1="100" x2="300" y2="100"/>
+  <line class="f-grade" x1="40" y1="60" x2="300" y2="60"/>
+  <line class="f-grade" x1="40" y1="20" x2="300" y2="20"/>
+  <text x="34" y="144" text-anchor="end" class="f-nota">0</text>
+  <text x="34" y="104" text-anchor="end" class="f-nota">100</text>
+  <text x="34" y="64" text-anchor="end" class="f-nota">200</text>
+  <text x="34" y="24" text-anchor="end" class="f-nota">300</text>
+  <rect class="f-area f-linha" x="50" y="60" width="40" height="80"/>
+  <rect class="f-area f-linha" x="115" y="40" width="40" height="100"/>
+  <rect class="f-area f-linha" x="180" y="20" width="40" height="120"/>
+  <rect class="f-area f-linha" x="245" y="44" width="40" height="96"/>
+  <text x="70" y="54" text-anchor="middle" class="f-nota">200</text>
+  <text x="135" y="34" text-anchor="middle" class="f-nota">250</text>
+  <text x="200" y="14" text-anchor="middle" class="f-nota">300</text>
+  <text x="265" y="38" text-anchor="middle" class="f-nota">240</text>
+  <line class="f-eixo" x1="40" y1="140" x2="300" y2="140"/>
+  <text x="70" y="158" text-anchor="middle" class="f-nota">2021</text>
+  <text x="135" y="158" text-anchor="middle" class="f-nota">2022</text>
+  <text x="200" y="158" text-anchor="middle" class="f-nota">2023</text>
+  <text x="265" y="158" text-anchor="middle" class="f-nota">2024</text>
+</svg><figcaption>Ocorrências registradas por ano em um batalhão (dados fictícios).</figcaption></figure>
+<details class="exemplo"><summary>Com base no gráfico de barras acima, qual foi a variação percentual das ocorrências de 2022 para 2023 e de 2023 para 2024?</summary>
+<div class="resolucao">
+<p class="passo">2022 → 2023: aumento de 300 − 250 = 50 sobre a base 250: 50 ÷ 250 = 0,20 = +20%.</p>
+<p class="passo">2023 → 2024: queda de 300 − 240 = 60 sobre a base 300: 60 ÷ 300 = 0,20 = −20%.</p>
+<p class="passo">A diferença absoluta não é a mesma (50 e 60), mas a porcentagem é, porque as bases são diferentes.</p>
+<p class="resposta-final">Resposta: +20% e −20%. E repare: 2024 (240) não voltou ao nível de 2022 (250).</p></div></details>
+<details class="exemplo"><summary>Uma pesquisa ouviu 800 pessoas e o gráfico de setores mostra o setor "aprova" com 72°. Quantas pessoas aprovam?</summary>
+<div class="resolucao">
+<p class="passo">Porcentagem: 72 ÷ 3,6 = 20%.</p>
+<p class="passo">20% de 800 = 160. Atalho: 72° é 72/360 = 1/5 da pizza, e 800 ÷ 5 = 160.</p>
+<p class="resposta-final">Resposta: 160 pessoas.</p></div></details>
+<details class="exemplo"><summary>Na tabela de idades acima, que porcentagem dos 40 candidatos tem menos de 32 anos?</summary>
+<div class="resolucao">
+<p class="passo">Frequência acumulada até a classe "25 a 32": 30 candidatos.</p>
+<p class="passo">30 ÷ 40 = 0,75. Conferindo pelas relativas: 30% + 45% = 75%.</p>
+<p class="resposta-final">Resposta: 75%.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Confundir pontos percentuais com porcentagem. Se a taxa de aprovação passou de 20% para 25%, ela subiu <strong>5 pontos percentuais</strong>, mas cresceu <strong>25%</strong> em relação ao valor inicial (5 ÷ 20). A banca costuma colocar as duas respostas nas alternativas.</p></div>
 
 <h2>Questões</h2>
 <div class="questao" data-correta="c">

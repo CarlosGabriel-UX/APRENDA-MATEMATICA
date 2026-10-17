@@ -96,6 +96,8 @@
   <div class="selos"><span class="selo alta">Cai muito</span></div>
   <nav class="sumario" data-sumario><strong>Nesta página</strong></nav>
 <h2>Ordem das operações</h2>
+<p>Uma expressão como <span class="m">2 + 3 × 4</span> só tem uma resposta certa (14) porque todo mundo combinou a mesma ordem de cálculo. Essa ordem não é arbitrária: a multiplicação é uma soma repetida (3 × 4 = 4 + 4 + 4), então ela "amarra" os números mais forte do que a soma; e a potência é uma multiplicação repetida, então amarra mais forte ainda. Resolve-se primeiro o que está mais amarrado.</p>
+<p>Um jeito prático de enxergar isso: os sinais de <strong>+</strong> e <strong>−</strong> que estão fora de parênteses separam a expressão em blocos (termos). Resolva cada bloco por dentro e só no fim faça as somas e subtrações entre eles.</p>
 <p>Numa expressão numérica, a ordem é sempre a mesma:</p>
 <ol>
   <li>Parênteses ( ), depois colchetes [ ], depois chaves { }</li>
@@ -107,7 +109,28 @@
 <p><span class="m">24 ÷ 4 × 2</span> é <strong>12</strong>, não 3. Multiplicação e divisão têm a mesma prioridade, então se resolve da esquerda para a direita: 24 ÷ 4 = 6, e 6 × 2 = 12.</p>
 <p>E <span class="m">−3² = −9</span>, enquanto <span class="m">(−3)² = 9</span>. Sem parênteses, o expoente vale só para o 3.</p></div>
 
+<details class="exemplo"><summary>Calcule 40 − 3 × [12 − (8 − 2)² ÷ 9].</summary>
+<div class="resolucao">
+<p class="passo">Parênteses de dentro: 8 − 2 = 6.</p>
+<p class="passo">Dentro do colchete, potência primeiro: 6² = 36. Depois a divisão: 36 ÷ 9 = 4. Por fim a subtração: 12 − 4 = 8.</p>
+<p class="passo">Agora a expressão é 40 − 3 × 8. Multiplicação antes: 3 × 8 = 24.</p>
+<p class="passo">40 − 24 = 16.</p>
+<p class="resposta-final">Resposta: 16.</p></div></details>
+
+<details class="exemplo"><summary>Calcule {5 + [18 ÷ (2 + 1) − 2²] × 3} − 7.</summary>
+<div class="resolucao">
+<p class="passo">Parênteses: 2 + 1 = 3.</p>
+<p class="passo">Colchete: 18 ÷ 3 = 6 e 2² = 4, então 6 − 4 = 2.</p>
+<p class="passo">Chaves: 5 + 2 × 3 = 5 + 6 = 11. (A multiplicação vem antes da soma, mesmo dentro das chaves.)</p>
+<p class="passo">11 − 7 = 4.</p>
+<p class="resposta-final">Resposta: 4.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Somas e subtrações seguidas também vão da esquerda para a direita: <span class="m">20 − 5 + 3 = 18</span>, e não 20 − 8 = 12. E um sinal de menos antes de parênteses troca o sinal de tudo que está dentro: <span class="m">10 − (6 − 2) = 10 − 4 = 6</span>, que é o mesmo que 10 − 6 + 2. Quem escreve 10 − 6 − 2 = 2 cai na alternativa errada.</p></div>
+
 <h2>Potências</h2>
+<p>Potência é uma multiplicação repetida: <span class="m">2⁵ = 2 × 2 × 2 × 2 × 2 = 32</span>. A base é o número que se repete e o expoente diz quantas vezes ele aparece. Todas as propriedades da tabela saem de <strong>contar fatores</strong>. Em 2³ × 2⁴ há três 2 de um lado e quatro do outro: são sete 2 multiplicados, por isso 2⁷. Em 5⁶ ÷ 5⁴, quatro dos seis 5 de cima se cancelam com os de baixo e sobram dois: 5².</p>
+<p>E por que <span class="m">a⁰ = 1</span> e <span class="m">2⁻¹ = 1/2</span>? Desça a escada dividindo por 2 a cada degrau: 2³ = 8, 2² = 4, 2¹ = 2, 2⁰ = 1, 2⁻¹ = 1/2, 2⁻² = 1/4. Cada vez que o expoente diminui 1, o resultado é dividido pela base. O expoente zero e o negativo são só a continuação natural dessa escada.</p>
 <table>
 <tr><th>Propriedade</th><th>Exemplo</th></tr>
 <tr><td>aᵐ × aⁿ = aᵐ⁺ⁿ</td><td>2³ × 2⁴ = 2⁷ = 128</td></tr>
@@ -121,17 +144,81 @@
 <p>Base negativa: expoente par dá positivo, expoente ímpar dá negativo. <span class="m">(−2)⁴ = 16</span> e <span class="m">(−2)³ = −8</span>.</p>
 <p>E (aᵐ)ⁿ é diferente de a^(mⁿ): <span class="m">(2³)² = 2⁶ = 64</span>, mas <span class="m">2^(3²) = 2⁹ = 512</span>.</p></div>
 
+<h3>Potências de 10 e notação científica</h3>
+<p>Com base 10, o expoente conta zeros: <span class="m">10⁴ = 10.000</span>. Com expoente negativo, conta casas depois da vírgula: <span class="m">10⁻³ = 0,001</span>. Escrever <span class="m">0,00045 = 4,5 × 10⁻⁴</span> permite multiplicar números muito grandes ou muito pequenos somando expoentes.</p>
+<div class="caixa atalho"><span class="rotulo">Atalho: coloque tudo na mesma base</span>
+<p>Quando aparecem 4, 8, 16, 32 junto com 2 (ou 9, 27, 81 junto com 3), reescreva tudo como potência de 2 (ou de 3). Depois é só somar e subtrair expoentes.</p></div>
+
+<details class="exemplo"><summary>Simplifique (2⁵ × 4³) ÷ 8³.</summary>
+<div class="resolucao">
+<p class="passo">Mesma base: 4³ = (2²)³ = 2⁶ e 8³ = (2³)³ = 2⁹.</p>
+<p class="passo">Numerador: 2⁵ × 2⁶ = 2¹¹.</p>
+<p class="passo">Divisão: 2¹¹ ÷ 2⁹ = 2² = 4.</p>
+<p class="resposta-final">Resposta: 4.</p></div></details>
+
+<details class="exemplo"><summary>Calcule 0,0003 × 2.000.000 usando notação científica.</summary>
+<div class="resolucao">
+<p class="passo">0,0003 = 3 × 10⁻⁴ e 2.000.000 = 2 × 10⁶.</p>
+<p class="passo">Multiplique os números e some os expoentes: (3 × 2) × 10⁻⁴⁺⁶ = 6 × 10².</p>
+<p class="resposta-final">Resposta: 600.</p></div></details>
+
+<details class="exemplo"><summary>Qual o valor de (−1)²⁰²⁵ + (−1)²⁰²⁶ + 3⁻² × 3²?</summary>
+<div class="resolucao">
+<p class="passo">Base −1 com expoente ímpar dá −1; com expoente par dá 1.</p>
+<p class="passo">3⁻² × 3² = 3⁰ = 1.</p>
+<p class="passo">−1 + 1 + 1 = 1.</p>
+<p class="resposta-final">Resposta: 1.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Somar potências iguais <strong>não</strong> soma expoentes: <span class="m">2³ + 2³ = 8 + 8 = 16 = 2⁴</span>, e não 2⁶. A regra de somar expoentes só vale para multiplicação. Outro clássico: achar que 2³ = 6. Expoente não multiplica a base; repete a base.</p></div>
+
 <h2>Raízes</h2>
-<p>Raiz é potência com expoente fracionário: <span class="m">ⁿ√aᵐ = a^(m/n)</span>. Daí saem as regras:</p>
+<p>A raiz desfaz a potência. Perguntar "quanto é √49?" é perguntar "que número positivo, elevado ao quadrado, dá 49?". A resposta é 7. Do mesmo jeito, <span class="m">∛125 = 5</span> porque 5³ = 125. Geometricamente, √36 é o lado de um quadrado de área 36.</p>
+<figure class="figura"><svg viewBox="0 0 320 160" width="320" role="img" aria-label="Quadrado dividido em 6 por 6 quadradinhos, com área 36 e lado 6">
+  <rect class="f-area f-linha" x="100" y="15" width="120" height="120"/>
+  <line class="f-grade" x1="120" y1="15" x2="120" y2="135"/>
+  <line class="f-grade" x1="140" y1="15" x2="140" y2="135"/>
+  <line class="f-grade" x1="160" y1="15" x2="160" y2="135"/>
+  <line class="f-grade" x1="180" y1="15" x2="180" y2="135"/>
+  <line class="f-grade" x1="200" y1="15" x2="200" y2="135"/>
+  <line class="f-grade" x1="100" y1="35" x2="220" y2="35"/>
+  <line class="f-grade" x1="100" y1="55" x2="220" y2="55"/>
+  <line class="f-grade" x1="100" y1="75" x2="220" y2="75"/>
+  <line class="f-grade" x1="100" y1="95" x2="220" y2="95"/>
+  <line class="f-grade" x1="100" y1="115" x2="220" y2="115"/>
+  <text x="160" y="80" text-anchor="middle" class="f-titulo">área = 36</text>
+  <text x="88" y="80" text-anchor="end">6</text>
+  <text x="160" y="154" text-anchor="middle" class="f-nota">lado = √36 = 6</text>
+</svg><figcaption>A raiz quadrada da área de um quadrado é o lado dele.</figcaption></figure>
+<p>Raiz é potência com expoente fracionário: <span class="m">ⁿ√aᵐ = a^(m/n)</span>. Faz sentido: <span class="m">√a × √a = a</span>, e pela regra das potências <span class="m">a^(1/2) × a^(1/2) = a¹</span>. Daí saem as regras:</p>
 <ul>
   <li><span class="m">√(a × b) = √a × √b</span>, então <span class="m">√72 = √(36 × 2) = 6√2</span></li>
   <li><span class="m">√a + √b ≠ √(a + b)</span>. Não existe regra para soma.</li>
   <li><strong>Racionalizar:</strong> <span class="m">6 / √3 = 6√3 / 3 = 2√3</span></li>
 </ul>
+<p>Para <strong>simplificar</strong> uma raiz, procure o maior quadrado perfeito que divide o número (4, 9, 16, 25, 36, 49, 64, 81, 100…) e tire a raiz dele para fora. Raízes que ficam com o mesmo "miolo" se somam como termos semelhantes: <span class="m">3√2 + 5√2 = 8√2</span>, assim como 3x + 5x = 8x.</p>
 <div class="caixa atalho"><span class="rotulo">Atalho: raiz quadrada exata</span>
 <p>Olhe o último algarismo: um quadrado perfeito só termina em 0, 1, 4, 5, 6 ou 9. Depois enquadre: √1849 está entre 40 (1600) e 50 (2500); termina em 9, então a raiz termina em 3 ou 7. 43² = 1849. Pronto.</p></div>
 
+<details class="exemplo"><summary>Simplifique √50 + √18 − √8.</summary>
+<div class="resolucao">
+<p class="passo">√50 = √(25 × 2) = 5√2.</p>
+<p class="passo">√18 = √(9 × 2) = 3√2 e √8 = √(4 × 2) = 2√2.</p>
+<p class="passo">Mesmo miolo, então soma como termos semelhantes: 5√2 + 3√2 − 2√2 = 6√2.</p>
+<p class="resposta-final">Resposta: 6√2.</p></div></details>
+
+<details class="exemplo"><summary>Calcule ∛(2⁶ × 27) e racionalize 10/√5.</summary>
+<div class="resolucao">
+<p class="passo">27 = 3³. Então ∛(2⁶ × 3³) = 2^(6/3) × 3^(3/3) = 2² × 3 = 12.</p>
+<p class="passo">Para racionalizar, multiplique em cima e embaixo por √5: 10√5 / (√5 × √5) = 10√5 / 5 = 2√5.</p>
+<p class="resposta-final">Resposta: 12 e 2√5.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Raiz de decimal: <span class="m">√0,09 = 0,3</span> (porque 0,3 × 0,3 = 0,09), mas <span class="m">√0,9</span> não é 0,3; vale cerca de 0,95. Confira sempre elevando a resposta ao quadrado. E <span class="m">√(16 + 9) = √25 = 5</span>, nunca 4 + 3 = 7.</p></div>
+
 <h2>Critérios de divisibilidade</h2>
+<p>Os critérios não são mágica; saem de como escrevemos números em base 10. Como 10 é divisível por 2 e por 5, todas as dezenas, centenas e milhares já são divisíveis por 2 e por 5: só o último algarismo decide. Como 100 é divisível por 4, só os dois últimos algarismos decidem a divisão por 4; como 1000 é divisível por 8, só os três últimos decidem a divisão por 8.</p>
+<p>Para 3 e 9 o truque é que 10 = 9 + 1, 100 = 99 + 1, 1000 = 999 + 1. Então 4.521 = 4 × 999 + 5 × 99 + 2 × 9 + (4 + 5 + 2 + 1). As partes com 9, 99 e 999 já são múltiplas de 9 (e de 3); o que decide é a sobra, que é exatamente a <strong>soma dos algarismos</strong>.</p>
 <table>
 <tr><th>Divisível por</th><th>Quando</th><th>Exemplo</th></tr>
 <tr><td>2</td><td>termina em algarismo par</td><td>3.478</td></tr>
@@ -147,22 +234,131 @@
 <div class="caixa atalho"><span class="rotulo">Atalho: resto da divisão por 3 ou por 9</span>
 <p>O resto da divisão de um número por 9 é o mesmo resto da soma dos seus algarismos por 9. Exemplo: 5.437 → 5+4+3+7 = 19 → resto 1 na divisão por 9. Vale igual para 3.</p></div>
 
+<details class="exemplo"><summary>O número 3.a72 (a é um algarismo) é divisível por 6. Quantos valores a pode assumir?</summary>
+<div class="resolucao">
+<p class="passo">Divisível por 6 = divisível por 2 e por 3. Termina em 2, então já é par.</p>
+<p class="passo">Soma dos algarismos: 3 + a + 7 + 2 = 12 + a. Precisa ser múltiplo de 3, então a também precisa ser: a ∈ {0, 3, 6, 9}.</p>
+<p class="resposta-final">Resposta: 4 valores.</p></div></details>
+
+<details class="exemplo"><summary>Para que 52.x48 seja divisível por 9, qual deve ser o algarismo x?</summary>
+<div class="resolucao">
+<p class="passo">Soma: 5 + 2 + x + 4 + 8 = 19 + x.</p>
+<p class="passo">O múltiplo de 9 alcançável com um algarismo (x de 0 a 9, soma de 19 a 28) é 27. Então x = 8.</p>
+<p class="passo">Conferindo: 52.848 ÷ 9 = 5.872, divisão exata.</p>
+<p class="resposta-final">Resposta: x = 8.</p></div></details>
+
+<details class="exemplo"><summary>Qual o resto da divisão de 7.354 por 4?</summary>
+<div class="resolucao">
+<p class="passo">Só os dois últimos algarismos importam: 54.</p>
+<p class="passo">54 = 4 × 13 + 2.</p>
+<p class="resposta-final">Resposta: resto 2.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>"Divisível por 2 e por 4, então é divisível por 8" está errado: 12 é divisível por 2 e por 4, mas não por 8. O critério do 6 (2 e 3) funciona porque 2 e 3 não têm fator em comum. Para combinar dois critérios, os números precisam ser primos entre si: 3 e 4 dão o 12; 2 e 9 dão o 18; mas 4 e 6 <strong>não</strong> dão o 24.</p></div>
+
 <h2>Números primos e fatoração</h2>
 <p>Primo tem exatamente dois divisores: 1 e ele mesmo. Os primeiros: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47. O <strong>1 não é primo</strong>, e o <strong>2 é o único primo par</strong>.</p>
-<p>Para saber se um número é primo, teste a divisão só pelos primos até a raiz quadrada dele. Para 113: √113 ≈ 10,6, então teste 2, 3, 5 e 7. Nenhum divide, logo 113 é primo.</p>
+<p>Os primos são os "tijolos" de todos os números: qualquer número natural maior que 1 se escreve como produto de primos, e de um único jeito (a ordem dos fatores não conta). Por isso fatorar é tão útil: depois de fatorado, o número mostra todos os seus divisores, quadrados perfeitos, MMC e MDC.</p>
+<p>Para saber se um número é primo, teste a divisão só pelos primos até a raiz quadrada dele. Para 113: √113 ≈ 10,6, então teste 2, 3, 5 e 7. Nenhum divide, logo 113 é primo. O motivo: se n = a × b, os dois fatores não podem ser ambos maiores que √n (o produto passaria de n). Então, se existir um divisor, existe um que é no máximo √n.</p>
+<figure class="figura"><svg viewBox="0 0 320 170" width="320" role="img" aria-label="Árvore de fatoração: 360 se divide em 36 e 10; 36 em 6 e 6; cada 6 em 2 e 3; 10 em 2 e 5. Resultado 2 ao cubo vezes 3 ao quadrado vezes 5">
+  <line class="f-linha" x1="155" y1="28" x2="98" y2="50"/>
+  <line class="f-linha" x1="165" y1="28" x2="222" y2="50"/>
+  <line class="f-linha" x1="85" y1="68" x2="60" y2="90"/>
+  <line class="f-linha" x1="95" y1="68" x2="120" y2="90"/>
+  <line class="f-linha" x1="225" y1="68" x2="208" y2="90"/>
+  <line class="f-linha" x1="235" y1="68" x2="252" y2="90"/>
+  <line class="f-linha" x1="50" y1="108" x2="38" y2="128"/>
+  <line class="f-linha" x1="60" y1="108" x2="72" y2="128"/>
+  <line class="f-linha" x1="120" y1="108" x2="108" y2="128"/>
+  <line class="f-linha" x1="130" y1="108" x2="142" y2="128"/>
+  <circle class="f-area" cx="205" cy="97" r="13"/>
+  <circle class="f-area" cx="255" cy="97" r="13"/>
+  <circle class="f-area" cx="35" cy="137" r="13"/>
+  <circle class="f-area" cx="75" cy="137" r="13"/>
+  <circle class="f-area" cx="105" cy="137" r="13"/>
+  <circle class="f-area" cx="145" cy="137" r="13"/>
+  <text x="160" y="22" text-anchor="middle" class="f-titulo">360</text>
+  <text x="90" y="62" text-anchor="middle">36</text>
+  <text x="230" y="62" text-anchor="middle">10</text>
+  <text x="55" y="102" text-anchor="middle">6</text>
+  <text x="125" y="102" text-anchor="middle">6</text>
+  <text x="205" y="102" text-anchor="middle">2</text>
+  <text x="255" y="102" text-anchor="middle">5</text>
+  <text x="35" y="142" text-anchor="middle">2</text>
+  <text x="75" y="142" text-anchor="middle">3</text>
+  <text x="105" y="142" text-anchor="middle">2</text>
+  <text x="145" y="142" text-anchor="middle">3</text>
+  <text x="240" y="145" text-anchor="middle" class="f-titulo">360 = 2³ × 3² × 5</text>
+</svg><figcaption>Árvore de fatoração: quebre até sobrarem só primos (circulados). Qualquer caminho dá o mesmo resultado.</figcaption></figure>
 
 <h3>Quantidade de divisores</h3>
 <p>Fatore o número, some 1 a cada expoente e multiplique.</p>
 <span class="formula" data-tex="360 = 2^3 \times 3^2 \times 5^1 \;\Rightarrow\; (3+1)(2+1)(1+1) = 24 \text{ divisores}">360 = 2³ × 3² × 5¹ → (3+1)(2+1)(1+1) = 24 divisores</span>
+<p>Por que somar 1? Todo divisor de 360 é formado escolhendo quantos 2, quantos 3 e quantos 5 ele leva. O 2 pode entrar 0, 1, 2 ou 3 vezes (4 escolhas); o 3 pode entrar 0, 1 ou 2 vezes (3 escolhas); o 5, 0 ou 1 vez (2 escolhas). O "+1" é a opção de não usar aquele primo. Pelo princípio multiplicativo, 4 × 3 × 2 = 24.</p>
+
+<details class="exemplo"><summary>Fatore 1.260 e diga quantos divisores naturais ele tem.</summary>
+<div class="resolucao">
+<p class="passo">1.260 ÷ 2 = 630; 630 ÷ 2 = 315; 315 ÷ 3 = 105; 105 ÷ 3 = 35; 35 ÷ 5 = 7; 7 é primo.</p>
+<p class="passo">1.260 = 2² × 3² × 5 × 7. (Conferindo: 4 × 9 × 5 × 7 = 1.260.)</p>
+<p class="passo">Divisores: (2+1)(2+1)(1+1)(1+1) = 3 × 3 × 2 × 2 = 36.</p>
+<p class="resposta-final">Resposta: 1.260 = 2² × 3² × 5 × 7, com 36 divisores.</p></div></details>
+
+<details class="exemplo"><summary>O número 221 é primo?</summary>
+<div class="resolucao">
+<p class="passo">√221 ≈ 14,9 (14² = 196 e 15² = 225). Basta testar os primos até 13: 2, 3, 5, 7, 11, 13.</p>
+<p class="passo">Não é par, a soma dos algarismos é 5 (não divide por 3), não termina em 0 ou 5. 221 ÷ 7 = 31,57…; 221 ÷ 11 = 20,09…; 221 ÷ 13 = 17.</p>
+<p class="resposta-final">Resposta: não; 221 = 13 × 17.</p></div></details>
+
+<details class="exemplo"><summary>Qual o menor número natural pelo qual se deve multiplicar 120 para obter um quadrado perfeito?</summary>
+<div class="resolucao">
+<p class="passo">Num quadrado perfeito, todos os expoentes da fatoração são pares. 120 = 2³ × 3 × 5.</p>
+<p class="passo">Para deixar os expoentes pares, falta um 2, um 3 e um 5: multiplicar por 2 × 3 × 5 = 30.</p>
+<p class="passo">120 × 30 = 3.600 = 60².</p>
+<p class="resposta-final">Resposta: 30.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Contar divisores sem fatorar até o fim. Escrever 12 = 4 × 3 e fazer (1+1)(1+1) = 4 está errado, porque 4 não é primo. O certo é 12 = 2² × 3, com (2+1)(1+1) = 6 divisores: 1, 2, 3, 4, 6, 12.</p></div>
 
 <h2>MMC e MDC</h2>
 <p><strong>MMC</strong> (mínimo múltiplo comum): o menor número que é múltiplo de todos. Usa-se quando as coisas <strong>voltam a coincidir</strong>: ônibus que saem juntos de novo, remédios tomados ao mesmo tempo, luzes que piscam juntas.</p>
 <p><strong>MDC</strong> (máximo divisor comum): o maior número que divide todos. Usa-se quando se quer <strong>dividir em partes iguais, do maior tamanho possível</strong>: cortar tábuas em pedaços iguais, montar kits iguais, dividir terrenos.</p>
-<p>Pela fatoração: o MDC pega os fatores comuns com o <em>menor</em> expoente; o MMC pega todos os fatores com o <em>maior</em> expoente.</p>
+<p>A ideia fica clara listando. Múltiplos de 4: 4, 8, <strong>12</strong>, 16, 20, <strong>24</strong>… Múltiplos de 6: 6, <strong>12</strong>, 18, <strong>24</strong>… Os comuns são 12, 24, 36…, e o menor é 12. Já os divisores de 12 são 1, 2, 3, 4, 6, 12 e os de 18 são 1, 2, 3, 6, 9, 18; os comuns são 1, 2, 3, 6, e o maior é 6. Listar funciona, mas é lento; a fatoração faz o mesmo em uma linha.</p>
+<figure class="figura"><svg viewBox="0 0 320 160" width="320" role="img" aria-label="Reta numérica de 0 a 24 com múltiplos de 4 marcados acima e múltiplos de 6 abaixo; eles coincidem em 0, 12 e 24">
+  <text x="20" y="18" class="f-nota">múltiplos de 4</text>
+  <text x="20" y="154" class="f-nota">múltiplos de 6</text>
+  <line class="f-eixo" x1="20" y1="80" x2="308" y2="80"/>
+  <line class="f-dest f-tracejado" x1="164" y1="30" x2="164" y2="122"/>
+  <line class="f-dest f-tracejado" x1="308" y1="30" x2="308" y2="122"/>
+  <circle class="f-ponto" cx="20" cy="55" r="4"/>
+  <circle class="f-ponto" cx="68" cy="55" r="4"/>
+  <circle class="f-ponto" cx="116" cy="55" r="4"/>
+  <circle class="f-ponto" cx="164" cy="55" r="4"/>
+  <circle class="f-ponto" cx="212" cy="55" r="4"/>
+  <circle class="f-ponto" cx="260" cy="55" r="4"/>
+  <circle class="f-ponto" cx="308" cy="55" r="4"/>
+  <text x="68" y="44" text-anchor="middle" class="f-nota">4</text>
+  <text x="116" y="44" text-anchor="middle" class="f-nota">8</text>
+  <text x="212" y="44" text-anchor="middle" class="f-nota">16</text>
+  <text x="260" y="44" text-anchor="middle" class="f-nota">20</text>
+  <circle class="f-ponto" cx="20" cy="105" r="4"/>
+  <circle class="f-ponto" cx="92" cy="105" r="4"/>
+  <circle class="f-ponto" cx="164" cy="105" r="4"/>
+  <circle class="f-ponto" cx="236" cy="105" r="4"/>
+  <circle class="f-ponto" cx="308" cy="105" r="4"/>
+  <text x="92" y="126" text-anchor="middle" class="f-nota">6</text>
+  <text x="236" y="126" text-anchor="middle" class="f-nota">18</text>
+  <text x="20" y="98" text-anchor="middle" class="f-nota">0</text>
+  <text x="172" y="98" class="f-titulo">12</text>
+  <text x="300" y="98" text-anchor="end" class="f-titulo">24</text>
+</svg><figcaption>Os múltiplos de 4 e de 6 coincidem a cada 12: MMC(4, 6) = 12.</figcaption></figure>
+<p>Pela fatoração: o MDC pega os fatores comuns com o <em>menor</em> expoente; o MMC pega todos os fatores com o <em>maior</em> expoente. O porquê: um divisor comum não pode ter mais fatores do que o número "mais pobre" tem; um múltiplo comum precisa conter tudo o que o número "mais rico" em cada fator tem.</p>
 <span class="formula" data-tex="12 = 2^2 \times 3,\; 18 = 2 \times 3^2 \;\Rightarrow\; \text{MDC} = 2 \times 3 = 6,\; \text{MMC} = 2^2 \times 3^2 = 36">12 = 2² × 3 &nbsp; e &nbsp; 18 = 2 × 3² → MDC = 2 × 3 = 6 &nbsp;·&nbsp; MMC = 2² × 3² = 36</span>
 <div class="caixa atalho"><span class="rotulo">Atalho para dois números</span>
 <p><span class="m">MMC(a, b) × MDC(a, b) = a × b</span>. Achou um, o outro sai por divisão: MMC(12, 18) = 216 / 6 = 36.</p>
 <p>Se um número é múltiplo do outro, o MMC é o maior e o MDC é o menor: MMC(8, 24) = 24.</p></div>
+
+<h3>MDC por divisões sucessivas</h3>
+<p>Para números grandes, divida o maior pelo menor; depois divida o divisor pelo resto, e assim por diante. Quando o resto der zero, o último divisor é o MDC. Funciona porque qualquer número que divide a e b também divide o resto de a por b.</p>
 
 <details class="exemplo"><summary>Três ônibus saem juntos às 7h. Um passa a cada 12 min, outro a cada 15 min e o terceiro a cada 20 min. A que horas saem juntos de novo?</summary>
 <div class="resolucao">
@@ -176,6 +372,24 @@
 <p class="passo">MDC = 2² × 3 = 12 kits.</p>
 <p class="passo">Cada kit: 84 / 12 = 7 azuis e 120 / 12 = 10 pretas.</p>
 <p class="resposta-final">Resposta: 12 kits com 7 azuis e 10 pretas.</p></div></details>
+
+<details class="exemplo"><summary>Calcule MDC(252, 198) por divisões sucessivas.</summary>
+<div class="resolucao">
+<p class="passo">252 = 1 × 198 + 54.</p>
+<p class="passo">198 = 3 × 54 + 36.</p>
+<p class="passo">54 = 1 × 36 + 18.</p>
+<p class="passo">36 = 2 × 18 + 0. Resto zero: o MDC é o último divisor, 18. (Conferindo: 252 = 18 × 14 e 198 = 18 × 11.)</p>
+<p class="resposta-final">Resposta: 18.</p></div></details>
+
+<details class="exemplo"><summary>Três tábuas medem 2,40 m, 3,60 m e 4,20 m. Elas serão cortadas em pedaços de mesmo comprimento, o maior possível, sem sobras. Quantos pedaços serão obtidos?</summary>
+<div class="resolucao">
+<p class="passo">Passe para centímetros para trabalhar com inteiros: 240, 360 e 420.</p>
+<p class="passo">240 = 2⁴ × 3 × 5; 360 = 2³ × 3² × 5; 420 = 2² × 3 × 5 × 7. MDC = 2² × 3 × 5 = 60 cm.</p>
+<p class="passo">Pedaços: 240/60 + 360/60 + 420/60 = 4 + 6 + 7 = 17.</p>
+<p class="resposta-final">Resposta: 17 pedaços de 60 cm.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar o MMC e esquecer de voltar ao enunciado. O MMC dá o <strong>intervalo</strong> até a próxima coincidência, não o horário. Se dois alarmes tocam juntos às 9h e o MMC dos intervalos é 90 minutos, eles tocam juntos de novo às 10h30, e não às 9h90 nem às 10h. O mesmo vale no MDC: a banca pergunta às vezes o tamanho de cada pedaço, às vezes quantos pedaços. Releia a pergunta antes de marcar.</p></div>
 
 <h2>Questões</h2>
 <div class="questao" data-correta="b">

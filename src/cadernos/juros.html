@@ -1,32 +1,73 @@
 <h2>Vocabulário</h2>
+<p>Juro é o <strong>aluguel do dinheiro</strong>. Quem empresta abre mão de usar o dinheiro por um tempo e cobra por isso; quem aplica recebe por deixar o dinheiro com o banco. Como todo aluguel, o valor depende de quanto foi "alugado" (o capital), do preço combinado por período (a taxa) e de quanto tempo durou (o prazo). Toda questão de juros é uma combinação dessas quatro letras.</p>
 <ul>
-  <li><strong>C</strong> – capital (valor aplicado ou emprestado)</li>
-  <li><strong>i</strong> – taxa de juros por período (use em decimal: 3% = 0,03)</li>
-  <li><strong>t</strong> – tempo, na <em>mesma unidade</em> da taxa</li>
-  <li><strong>J</strong> – juros; <strong>M</strong> – montante = C + J</li>
+  <li><strong>C</strong>: capital (valor aplicado ou emprestado)</li>
+  <li><strong>i</strong>: taxa de juros por período (use em decimal: 3% = 0,03)</li>
+  <li><strong>t</strong>: tempo, na <em>mesma unidade</em> da taxa</li>
+  <li><strong>J</strong>: juros; <strong>M</strong>: montante = C + J</li>
 </ul>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha número 1</span>
 <p>Taxa e tempo precisam estar na mesma unidade. Taxa ao mês com tempo em anos? Converta antes. Na prova, o ano comercial tem 360 dias e o mês tem 30.</p></div>
+<details class="exemplo"><summary>Uma pessoa pegou R$ 2.000 emprestados e, 5 meses depois, devolveu R$ 2.300, a juros simples. Identifique C, J e M e calcule a taxa mensal.</summary>
+<div class="resolucao">
+<p class="passo">C = 2.000 (o que foi emprestado), M = 2.300 (o que foi devolvido), J = M − C = 300.</p>
+<p class="passo">Em 5 meses, os juros foram 300 / 2.000 = 15% do capital. Por mês: 15% ÷ 5 = 3%.</p>
+<p class="resposta-final">Resposta: C = R$ 2.000, J = R$ 300, M = R$ 2.300 e i = 3% ao mês.</p></div></details>
+<details class="exemplo"><summary>R$ 1.200 foram aplicados a juros simples de 36% ao ano durante 75 dias. Quanto rendeu?</summary>
+<div class="resolucao">
+<p class="passo">Acerte as unidades. Ano comercial de 360 dias: 36% ao ano = 36% ÷ 360 = 0,1% ao dia.</p>
+<p class="passo">Em 75 dias: 75 × 0,1% = 7,5%. J = 1.200 × 0,075 = 90.</p>
+<p class="resposta-final">Resposta: R$ 90.</p></div></details>
 
 <h2>Juros simples</h2>
 <p>Os juros incidem sempre sobre o capital inicial. Todo mês rende a mesma quantia.</p>
+<p>Como o rendimento de cada mês é sempre igual, o montante cresce como uma <strong>PA</strong>: R$ 1.000 a 2% ao mês viram 1.020, 1.040, 1.060… No gráfico, isso é uma reta (uma função afim, com o capital no papel do valor fixo e C × i como "preço por mês"). É o modelo usado em multas e cobranças de curto prazo e o preferido das questões de prova, porque a conta é direta.</p>
 <span class="formula" data-tex="J = C \cdot i \cdot t \qquad M = C\,(1 + i\,t)">J = C × i × t &nbsp;&nbsp;&nbsp; M = C × (1 + i × t)</span>
 <details class="exemplo"><summary>R$ 4.000 aplicados a juros simples de 2,5% ao mês, por 8 meses. Qual é o montante?</summary>
 <div class="resolucao">
 <p class="passo">J = 4.000 × 0,025 × 8 = 800.</p>
 <p class="resposta-final">Resposta: M = R$ 4.800.</p></div></details>
+<details class="exemplo"><summary>Um capital de R$ 2.500 gerou montante de R$ 2.800 em 8 meses, a juros simples. Qual a taxa mensal?</summary>
+<div class="resolucao">
+<p class="passo">J = 2.800 − 2.500 = 300.</p>
+<p class="passo">300 = 2.500 × i × 8 → 300 = 20.000 × i → i = 0,015.</p>
+<p class="resposta-final">Resposta: 1,5% ao mês.</p></div></details>
+<details class="exemplo"><summary>Que capital, aplicado a juros simples de 1,5% ao mês, produz montante de R$ 5.750 em 10 meses?</summary>
+<div class="resolucao">
+<p class="passo">i × t = 0,015 × 10 = 0,15. M = C × (1 + 0,15) = 1,15C.</p>
+<p class="passo">1,15C = 5.750 → C = 5.750 ÷ 1,15 = 5.000.</p>
+<p class="passo">Conferindo: juros de 5.000 × 0,15 = 750; 5.000 + 750 = 5.750.</p>
+<p class="resposta-final">Resposta: R$ 5.000.</p></div></details>
 <div class="caixa atalho"><span class="rotulo">Atalho: em juros simples, as taxas são proporcionais</span>
 <p>2% ao mês = 24% ao ano = 6% ao trimestre. Basta multiplicar ou dividir.</p>
 <p>E "em quanto tempo o capital dobra?" Dobrar é ganhar 100% de juros: t = 100% / i. A 4% ao mês: 25 meses.</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar o capital tirando a porcentagem do montante. No exemplo acima, 15% de 5.750 dá 862,50, e 5.750 − 862,50 = 4.887,50, que está errado: os 15% são do <strong>capital</strong>, não do montante. O caminho certo é dividir o montante por (1 + i × t).</p></div>
 
 <h2>Juros compostos</h2>
 <p>Os juros de cada período entram no capital e passam a render também ("juros sobre juros").</p>
+<p>Em cada período o saldo é multiplicado por (1 + i). Depois de t períodos, foi multiplicado t vezes: daí a potência (1 + i)ᵗ. O montante cresce como uma <strong>PG</strong> de razão 1 + i, e é por isso que os compostos disparam em prazos longos. É o regime das aplicações, financiamentos e do cartão de crédito no mundo real.</p>
 <span class="formula" data-tex="M = C\,(1 + i)^t \qquad J = M - C">M = C × (1 + i)ᵗ &nbsp;&nbsp;&nbsp; J = M − C</span>
 <details class="exemplo"><summary>R$ 5.000 aplicados a juros compostos de 10% ao mês, por 3 meses. Qual é o montante?</summary>
 <div class="resolucao">
 <p class="passo">1,1³ = 1,331.</p>
 <p class="passo">M = 5.000 × 1,331 = 6.655.</p>
 <p class="resposta-final">Resposta: R$ 6.655 (juros de R$ 1.655; em juros simples seriam R$ 1.500).</p></div></details>
+<details class="exemplo"><summary>R$ 2.000 são aplicados a juros compostos de 5% ao mês por 4 meses. Quanto rendem de juros? (use 1,05⁴ = 1,2155)</summary>
+<div class="resolucao">
+<p class="passo">M = 2.000 × 1,2155 = 2.431.</p>
+<p class="passo">J = 2.431 − 2.000 = 431.</p>
+<p class="resposta-final">Resposta: R$ 431.</p></div></details>
+<details class="exemplo"><summary>Após 2 meses a juros compostos de 20% ao mês, uma dívida chegou a R$ 8.640. Qual era o valor inicial?</summary>
+<div class="resolucao">
+<p class="passo">M = C × 1,2² = 1,44C.</p>
+<p class="passo">1,44C = 8.640 → C = 8.640 ÷ 1,44 = 6.000.</p>
+<p class="resposta-final">Resposta: R$ 6.000.</p></div></details>
+<details class="exemplo"><summary>Um capital de R$ 10.000 virou R$ 12.100 em 2 meses, a juros compostos. Qual a taxa mensal?</summary>
+<div class="resolucao">
+<p class="passo">(1 + i)² = 12.100 / 10.000 = 1,21.</p>
+<p class="passo">1 + i = √1,21 = 1,1 → i = 0,1.</p>
+<p class="resposta-final">Resposta: 10% ao mês (não 10,5%, que seria dividir os 21% por 2).</p></div></details>
 <div class="caixa atalho"><span class="rotulo">Atalho: potências que a banca usa</span>
 <table>
 <tr><th>Fator</th><th>²</th><th>³</th><th>⁴</th></tr>
@@ -38,32 +79,94 @@
 <p>Quando a banca fornece uma tabela ou "use 1,05⁶ ≈ 1,34", <strong>use exatamente o valor dado</strong>, mesmo que não seja o mais preciso.</p></div>
 <div class="caixa dica"><span class="rotulo">Dica: dois períodos de cabeça</span>
 <p>Em 2 períodos, a taxa composta acumulada é <span class="m">2i + i²</span>. A 10%: 20% + 1% = 21%. A 5%: 10% + 0,25% = 10,25%.</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Multiplicar taxa por tempo em juros compostos. 10% ao mês durante 3 meses não é 30%: é 1,1³ − 1 = 33,1%. A conta i × t só vale em juros simples.</p></div>
 
 <h2>Simples × compostos</h2>
+<p>No primeiro período os dois regimes calculam juros sobre o mesmo valor, o capital, e por isso empatam em t = 1. A partir do segundo período, os compostos calculam juros também sobre os juros já ganhos e passam à frente. Antes de completar um período (t entre 0 e 1) acontece o contrário: o composto usa uma raiz, como √1,21 = 1,1, que fica abaixo da fração proporcional dos simples.</p>
 <ul>
   <li>Para t = 1, os dois dão o mesmo montante.</li>
   <li>Para t entre 0 e 1, os simples rendem mais.</li>
   <li>Para t &gt; 1, os compostos rendem mais.</li>
 </ul>
+<figure class="figura"><svg viewBox="0 0 320 160" width="320" role="img" aria-label="Montante de 1.000 reais a 10% por período: reta dos juros simples e curva dos compostos, que se encontram em t = 1 e depois a curva fica acima">
+  <line class="f-eixo" x1="40" y1="140" x2="250" y2="140"/>
+  <line class="f-eixo" x1="40" y1="145" x2="40" y2="15"/>
+  <line class="f-grade" x1="90" y1="116" x2="90" y2="140"/>
+  <line class="f-linha" x1="40" y1="140" x2="240" y2="44"/>
+  <polyline class="f-dest" points="40.0,140.0 52.5,134.2 65.0,128.3 77.5,122.2 90.0,116.0 102.5,109.6 115.0,103.1 127.5,96.4 140.0,89.6 152.5,82.6 165.0,75.4 177.5,68.1 190.0,60.6 202.5,52.9 215.0,45.0 227.5,36.9 240.0,28.6"/>
+  <circle class="f-ponto" cx="90" cy="116" r="4"/>
+  <text x="246" y="32" class="f-nota">compostos</text>
+  <text x="246" y="50" class="f-nota">simples</text>
+  <text x="86" y="156" class="f-nota">1</text>
+  <text x="136" y="156" class="f-nota">2</text>
+  <text x="186" y="156" class="f-nota">3</text>
+  <text x="236" y="156" class="f-nota">4</text>
+  <text x="46" y="20" class="f-nota">montante</text>
+</svg><figcaption>R$ 1.000 a 10% por período: empate em t = 1; depois, os compostos se afastam (1.464,10 contra 1.400 em t = 4).</figcaption></figure>
+<details class="exemplo"><summary>Compare R$ 1.000 a 10% ao mês, nos dois regimes, ao fim de 1, 2, 3 e 4 meses.</summary>
+<div class="resolucao">
+<table>
+<tr><th>Mês</th><th>Simples</th><th>Compostos</th></tr>
+<tr><td>1</td><td>1.100</td><td>1.100</td></tr>
+<tr><td>2</td><td>1.200</td><td>1.210</td></tr>
+<tr><td>3</td><td>1.300</td><td>1.331</td></tr>
+<tr><td>4</td><td>1.400</td><td>1.464,10</td></tr>
+</table>
+<p class="passo">Nos simples, soma-se sempre 100. Nos compostos, multiplica-se por 1,1 a cada mês.</p>
+<p class="resposta-final">Resposta: empatam no 1º mês; depois, os compostos ficam à frente e a diferença aumenta.</p></div></details>
+<details class="exemplo"><summary>R$ 10.000 a 21% ao ano, por 6 meses. Qual o montante em cada regime?</summary>
+<div class="resolucao">
+<p class="passo">Simples: meio ano rende metade da taxa, 10,5%. M = 10.000 × 1,105 = 11.050.</p>
+<p class="passo">Compostos: M = 10.000 × 1,21^(1/2) = 10.000 × √1,21 = 10.000 × 1,1 = 11.000.</p>
+<p class="resposta-final">Resposta: simples R$ 11.050, compostos R$ 11.000. Com prazo menor que um período, os simples rendem mais.</p></div></details>
 
 <h2>Taxas equivalentes, nominais e efetivas</h2>
+<p>Em juros simples, 1% ao mês e 12% ao ano são a mesma coisa. Em compostos, não: os juros de janeiro rendem juros em fevereiro, e assim por diante, então doze meses de 1% acumulam mais que 12%. Para converter, pense no fator de crescimento: crescer um ano inteiro tem que dar o mesmo que crescer doze meses seguidos.</p>
 <p>Em juros compostos, a taxa não se divide simplesmente. Duas taxas são <strong>equivalentes</strong> se levam ao mesmo montante:</p>
 <span class="formula" data-tex="(1 + i_{\text{ano}}) = (1 + i_{\text{mês}})^{12}">(1 + i_ano) = (1 + i_mês)¹²</span>
 <p>Ex.: 10% ao mês não é 120% ao ano em juros compostos; é <span class="m">1,1¹² − 1 ≈ 213,8%</span>.</p>
 <p><strong>Taxa nominal</strong> é a anunciada com período diferente da capitalização: "24% ao ano, capitalizados mensalmente" significa, na verdade, 2% ao mês. A taxa <strong>efetiva</strong> anual é então 1,02¹² − 1 ≈ 26,8%.</p>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>Taxa nominal se divide proporcionalmente (24% a.a. com capitalização mensal → 2% a.m.). Só depois disso você trabalha com juros compostos.</p></div>
+<details class="exemplo"><summary>Uma taxa de 21% ao bimestre, em juros compostos, equivale a quanto ao mês?</summary>
+<div class="resolucao">
+<p class="passo">Um bimestre são 2 meses: (1 + i_mês)² = 1,21.</p>
+<p class="passo">1 + i_mês = √1,21 = 1,1 → i_mês = 10%.</p>
+<p class="resposta-final">Resposta: 10% ao mês (e não 10,5%).</p></div></details>
+<details class="exemplo"><summary>Um banco anuncia 24% ao ano com capitalização trimestral. Qual a taxa efetiva semestral?</summary>
+<div class="resolucao">
+<p class="passo">Taxa nominal: divide proporcionalmente. Um ano tem 4 trimestres: 24% ÷ 4 = 6% ao trimestre (esta é a taxa efetiva trimestral).</p>
+<p class="passo">Um semestre tem 2 trimestres, agora em regime composto: 1,06² = 1,1236.</p>
+<p class="resposta-final">Resposta: 12,36% ao semestre.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Confundir taxa proporcional com equivalente. Dividir 12% ao ano por 12 dá 1% ao mês, que é a taxa <strong>proporcional</strong> (serve em juros simples e para converter taxa nominal). Mas 1% ao mês composto equivale a 1,01¹² − 1 ≈ 12,68% ao ano, um pouco mais que 12%. Veja sempre se o enunciado fala em capitalização composta.</p></div>
 
 <h2>Desconto simples</h2>
+<p>Desconto é o caminho inverso dos juros. Um título (duplicata, nota promissória) tem um valor de face que só vence no futuro. Quem quer receber antes aceita um valor menor, e a diferença é o desconto, uma espécie de juros cobrados pela antecipação. A diferença entre os dois tipos está em <strong>sobre qual valor</strong> a taxa é aplicada.</p>
 <p>Um título de valor <strong>N</strong> (nominal, na data de vencimento) é pago <strong>t</strong> períodos antes. O valor pago é <strong>A</strong> (atual).</p>
 <ul>
   <li><strong>Desconto comercial (por fora):</strong> d = N × i × t. É o mais cobrado.</li>
   <li><strong>Desconto racional (por dentro):</strong> d = A × i × t, com N = A × (1 + i × t).</li>
 </ul>
+<p>Como N é maior que A, o desconto comercial é sempre maior que o racional (com mesma taxa e mesmo prazo).</p>
 <details class="exemplo"><summary>Um título de R$ 10.000 foi descontado 3 meses antes do vencimento a 2% ao mês, desconto comercial simples. Quanto foi pago?</summary>
 <div class="resolucao">
 <p class="passo">d = 10.000 × 0,02 × 3 = 600.</p>
 <p class="resposta-final">Resposta: R$ 9.400.</p></div></details>
+<details class="exemplo"><summary>Um título de R$ 11.000 foi resgatado 5 meses antes do vencimento, com desconto racional simples de 2% ao mês. Qual o desconto?</summary>
+<div class="resolucao">
+<p class="passo">i × t = 0,02 × 5 = 0,10. No racional, N = A × 1,10.</p>
+<p class="passo">A = 11.000 ÷ 1,10 = 10.000. Desconto: 11.000 − 10.000 = 1.000.</p>
+<p class="passo">Comparando: no comercial seria 11.000 × 0,10 = 1.100, maior, como esperado.</p>
+<p class="resposta-final">Resposta: R$ 1.000.</p></div></details>
+<details class="exemplo"><summary>Um título de R$ 8.000 foi descontado a 3% ao mês (desconto comercial simples), e o valor recebido foi R$ 7.040. Com quantos meses de antecedência?</summary>
+<div class="resolucao">
+<p class="passo">d = 8.000 − 7.040 = 960.</p>
+<p class="passo">960 = 8.000 × 0,03 × t = 240t → t = 4.</p>
+<p class="resposta-final">Resposta: 4 meses.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Trocar a base do cálculo. No comercial (por fora), a taxa incide sobre o valor nominal N, o valor "de fora", impresso no título. No racional (por dentro), incide sobre o valor atual A, que está "dentro" e é desconhecido; por isso se divide N por (1 + i × t).</p></div>
 
 <h2>Questões</h2>
 <div class="questao" data-correta="b">
