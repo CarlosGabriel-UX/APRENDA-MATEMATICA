@@ -1,6 +1,8 @@
 <p>Informática para PM-SP e GCM (VUNESP) cobra Windows, Office 2016, internet, e-mail, Google Workspace e Teams. Na PF (CEBRASPE), entram também segurança, nuvem e Linux. Esta apostila segue a ordem do que mais cai e termina com uma tabela de atalhos para revisar na véspera.</p>
 
 <h2>Windows 10 e 11</h2>
+<p>Pense no disco como um armário: as <strong>unidades</strong> (C:, D:, pen drive) são armários diferentes, as <strong>pastas</strong> são gavetas e os <strong>arquivos</strong> são os documentos guardados. Cada arquivo tem um endereço completo, o <strong>caminho</strong>, como <em>C:\Usuarios\Ana\Documentos\relatorio.docx</em>. A barra invertida separa as pastas, e é por isso que ela não pode aparecer dentro de um nome.</p>
+<p>Essa imagem explica a regra de arrastar. Dentro da mesma unidade, mover um arquivo é só trocar o endereço dele no "índice" do armário, sem copiar os dados; por isso o Windows move. Entre unidades diferentes, os dados precisam ser gravados de verdade no outro armário; por isso o padrão é copiar, deixando o original onde estava. As teclas Ctrl e Shift existem para forçar o comportamento contrário.</p>
 <h3>Arquivos, pastas e Explorador</h3>
 <ul>
   <li>O <strong>Explorador de Arquivos</strong> (Win + E) organiza unidades, pastas e arquivos. "Este Computador" mostra as unidades (C:, pen drives, unidades de rede).</li>
@@ -33,9 +35,28 @@
 </ul>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>Excluir um <strong>atalho</strong> não exclui o arquivo original. Já excluir o original deixa o atalho "quebrado".</p></div>
+<details class="exemplo"><summary>Um escrivão arrasta, sem pressionar nenhuma tecla, o arquivo <em>ocorrencia.docx</em> da pasta C:\Documentos para o pen drive E:. O que acontece? E se ele segurar Shift?</summary>
+<div class="resolucao">
+<p class="passo">Origem C: e destino E: são unidades diferentes. Arrastar entre unidades, sem tecla, <strong>copia</strong>: o arquivo passa a existir nos dois lugares.</p>
+<p class="passo">Com Shift pressionado, o Windows <strong>move</strong> sempre, mesmo entre unidades: o arquivo vai para o pen drive e sai de C:\Documentos.</p>
+<p class="resposta-final">Resposta: sem tecla, copia; com Shift, move.</p></div></details>
+<details class="exemplo"><summary>Quais destes nomes o Windows aceita? (1) Relatório 2025/01.docx (2) Laudo: final.pdf (3) BO_2025-01_v2.docx (4) Foto*suspeito.jpg</summary>
+<div class="resolucao">
+<p class="passo">Proibidos: \ / : * ? " &lt; &gt; |</p>
+<p class="passo">(1) tem "/"; (2) tem ":"; (4) tem "*". Todos inválidos.</p>
+<p class="passo">(3) usa apenas letras, números, sublinhado, hífen e ponto: permitido. Espaços e acentos também são aceitos.</p>
+<p class="resposta-final">Resposta: apenas (3).</p></div></details>
+<details class="exemplo"><summary>Um agente apaga, com a tecla Delete, uma pasta que estava no pen drive. No dia seguinte, procura a pasta na Lixeira. Vai encontrá-la?</summary>
+<div class="resolucao">
+<p class="passo">A Lixeira só recebe itens excluídos de unidades internas do computador.</p>
+<p class="passo">Itens apagados de pen drive, cartão de memória ou unidade de rede são excluídos direto, mesmo com Delete simples (o Windows pede confirmação).</p>
+<p class="resposta-final">Resposta: Não. A exclusão foi definitiva.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar que "Delete sempre manda para a Lixeira". Depende de onde está o arquivo: no disco interno, vai para a Lixeira; em pen drive, cartão ou rede, é apagado de vez. E Shift + Delete apaga de vez em qualquer lugar.</p></div>
 
 <h2>Tabela de atalhos</h2>
 <p><strong>Cai muito</strong> na VUNESP. Atenção: no Word e no Excel em português, vários atalhos mudam em relação ao Windows e ao inglês.</p>
+<p>Há uma lógica que ajuda a não decorar às cegas. Atalhos com a tecla <strong>Windows</strong> (Win) mexem no sistema: abrir o Explorador, bloquear a tela, mostrar a área de trabalho. Atalhos com <strong>Ctrl</strong> agem dentro do programa aberto: salvar, copiar, formatar. <strong>Alt</strong> costuma lidar com janelas (Alt + Tab, Alt + F4). E as teclas <strong>F</strong> têm funções fixas por programa (F2 renomeia, F12 salva como). No Office em português, as letras seguem as palavras em português, e é aí que a banca prepara as armadilhas.</p>
 <table>
 <tr><th>Atalho</th><th>Onde</th><th>Função</th></tr>
 <tr><td>Win + E</td><td>Windows</td><td>Abre o Explorador de Arquivos</td></tr>
@@ -70,8 +91,24 @@
 </table>
 <div class="caixa atalho"><span class="rotulo">Atalho: Word em português</span>
 <p>No Word PT-BR, a formatação segue a inicial em português: <strong>N</strong>egrito, <strong>I</strong>tálico, <strong>S</strong>ublinhado. Como o S ficou com o sublinhado, salvar foi para o <strong>B</strong>; e como o A ficou com Abrir, selecionar <strong>T</strong>udo foi para o T.</p></div>
+<details class="exemplo"><summary>No Word 2016 em português, um policial digitou o boletim, quer deixar o título em negrito, selecionar todo o texto e salvar. Quais atalhos?</summary>
+<div class="resolucao">
+<p class="passo">Negrito: Ctrl + N (<strong>N</strong>egrito).</p>
+<p class="passo">Selecionar tudo: Ctrl + T (<strong>T</strong>udo), porque Ctrl + A abre um documento.</p>
+<p class="passo">Salvar: Ctrl + B, porque Ctrl + S ficou com o <strong>S</strong>ublinhado.</p>
+<p class="resposta-final">Resposta: Ctrl + N, Ctrl + T e Ctrl + B.</p></div></details>
+<details class="exemplo"><summary>Situações: (1) o guarda precisa sair da mesa sem desligar o computador e sem deixá-lo acessível; (2) fechou sem querer uma aba do Chrome; (3) um programa travou e não fecha.</summary>
+<div class="resolucao">
+<p class="passo">(1) Bloquear a sessão: Win + L. Os programas continuam abertos, mas é preciso senha para voltar.</p>
+<p class="passo">(2) Reabrir a última aba fechada: Ctrl + Shift + T.</p>
+<p class="passo">(3) Abrir o Gerenciador de Tarefas para finalizar o processo: Ctrl + Shift + Esc.</p>
+<p class="resposta-final">Resposta: Win + L; Ctrl + Shift + T; Ctrl + Shift + Esc.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Responder com o atalho do Office em inglês. Em questão que diz "Word em português", Ctrl + S <strong>sublinha</strong> (não salva) e Ctrl + A <strong>abre</strong> (não seleciona tudo). Já no Explorador de Arquivos e nos navegadores, Ctrl + A seleciona tudo.</p></div>
 
 <h2>Word e PowerPoint</h2>
+<p>A faixa de opções do Office é organizada por <strong>finalidade</strong>, e entender isso resolve boa parte das questões do tipo "em qual guia fica o recurso X". Página Inicial reúne o que se usa o tempo todo (fonte, parágrafo, estilos). Inserir traz objetos para dentro do documento (tabela, imagem, cabeçalho). Layout cuida da página (margens, orientação, quebras). Referências cuida de trabalhos longos (sumário, notas, citações). Revisão é o trabalho de quem confere o texto (ortografia, comentários, alterações controladas). Antes de decorar, pergunte: "essa tarefa serve para quê?".</p>
+<p>Outra ideia central é a de <strong>formatação por modelo</strong>. No Word, os <strong>estilos</strong> (Título 1, Título 2, Normal) dizem ao programa o que é título e o que é texto, e é isso que permite gerar o sumário automático. No PowerPoint, o <strong>Slide Mestre</strong> faz o mesmo papel: muda-se o modelo uma vez e todos os slides acompanham.</p>
 <h3>Word</h3>
 <ul>
   <li><strong>Guias</strong> (faixa de opções): Arquivo, Página Inicial, Inserir, Design, Layout, Referências, Correspondências, Revisão, Exibir.</li>
@@ -87,10 +124,24 @@
   <li>Modos de exibição: Normal, Classificação de Slides, Anotações, Modo de Exibição de Leitura e Apresentação de Slides.</li>
   <li><strong>Esc</strong> encerra a apresentação. As anotações aparecem para o apresentador, não para o público.</li>
 </ul>
+<details class="exemplo"><summary>Um relatório de 10 páginas em retrato precisa ter só a página 6 em paisagem, para caber uma tabela larga. Como fazer no Word?</summary>
+<div class="resolucao">
+<p class="passo">A orientação vale para a <strong>seção</strong> inteira. Com uma quebra de página comum (Ctrl + Enter), o documento continua sendo uma seção só, e mudar a orientação afetaria tudo.</p>
+<p class="passo">Insira uma quebra de seção (Próxima Página) no fim da página 5 e outra no fim da página 6 (Layout &gt; Quebras). Agora a página 6 é uma seção separada.</p>
+<p class="passo">Com o cursor na página 6, use Layout &gt; Orientação &gt; Paisagem, aplicando à seção.</p>
+<p class="resposta-final">Resposta: quebras de seção antes e depois da página e orientação paisagem só naquela seção.</p></div></details>
+<details class="exemplo"><summary>O comando quer o brasão da corporação no canto de todos os 40 slides de uma apresentação, inclusive nos que forem criados depois. Qual o recurso adequado?</summary>
+<div class="resolucao">
+<p class="passo">Colar o brasão slide por slide resolve só os existentes e dá trabalho.</p>
+<p class="passo">O <strong>Slide Mestre</strong> (guia Exibir) define o padrão de todos os slides. O que for inserido nele aparece em todos os slides baseados nele, inclusive nos novos.</p>
+<p class="resposta-final">Resposta: inserir o brasão no Slide Mestre.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Trocar transição por animação. <strong>Transição</strong> acontece na passagem de um slide para outro (guia Transições). <strong>Animação</strong> acontece com um objeto dentro do slide, como um texto que entra voando (guia Animações). Se a questão fala de "efeito ao mudar de slide", é transição.</p></div>
 
 <h2>Excel</h2>
 <h3>Referências</h3>
 <p><strong>Cai muito.</strong> Ao copiar uma fórmula, as referências relativas se deslocam; o cifrão <strong>$</strong> trava a coluna ou a linha que vem logo depois dele.</p>
+<p>Por que o Excel faz isso? Porque, para ele, uma referência relativa não é um endereço fixo, e sim uma <strong>posição em relação à célula da fórmula</strong>. Se em C2 você escreve =A2+B2, o Excel entende "some as duas células à esquerda, na mesma linha". Copiada para C3, a mesma instrução vira =A3+B3. É isso que permite escrever uma fórmula uma vez e arrastá-la por mil linhas. O cifrão serve para os casos em que uma parte da fórmula precisa apontar sempre para o mesmo lugar, como um total, uma taxa ou um valor de referência.</p>
 <table>
 <tr><th>Referência</th><th>Tipo</th><th>Ao copiar</th></tr>
 <tr><td>A1</td><td>Relativa</td><td>Coluna e linha mudam</td></tr>
@@ -131,8 +182,31 @@
 <tr><td>#NÚM!</td><td>Número inválido para a operação</td></tr>
 <tr><td>#####</td><td>Coluna estreita demais para mostrar o valor (não é erro de fórmula)</td></tr>
 </table>
+<h3>Exemplos resolvidos</h3>
+<details class="exemplo"><summary>Ocorrências por bairro em B2:B5 (40, 25, 20, 15) e total em B6 (=SOMA(B2:B5)). Em C2, deseja-se o percentual de B2 sobre o total, com uma fórmula que possa ser arrastada até C5.</summary>
+<div class="resolucao">
+<p class="passo">Total: 40 + 25 + 20 + 15 = 100.</p>
+<p class="passo">Se C2 fosse =B2/B6, ao arrastar para C3 viraria =B3/B7. B7 está vazia: #DIV/0!.</p>
+<p class="passo">O total precisa ficar fixo: =B2/$B$6. Em C3, vira =B3/$B$6 = 25/100 = 0,25; em C5, =B5/$B$6 = 15/100 = 0,15.</p>
+<p class="resposta-final">Resposta: =B2/$B$6 (com formato de porcentagem, C2 mostra 40%). Bastaria também B$6, travando só a linha, já que a cópia é na vertical.</p></div></details>
+<details class="exemplo"><summary>A1 = 10, A2 = 20, A3 = 30. Quanto valem =SOMA(A1:A3) e =SOMA(A1;A3)? E se A2 estiver vazia, A1 = 8 e A3 = 6, quanto vale =MÉDIA(A1:A3)?</summary>
+<div class="resolucao">
+<p class="passo">"A1:A3" é intervalo: 10 + 20 + 30 = 60.</p>
+<p class="passo">"A1;A3" são só as duas células: 10 + 30 = 40.</p>
+<p class="passo">MÉDIA ignora célula vazia: soma 8 + 6 = 14 e divide por 2 células com número = 7. Se A2 tivesse o número 0, a média seria 14 ÷ 3 ≈ 4,67.</p>
+<p class="resposta-final">Resposta: 60; 40; 7.</p></div></details>
+<details class="exemplo"><summary>Tabela A2:C4 com matrícula, nome e posto: (1001, Silva, Cabo), (1002, Souza, Soldado), (1003, Lima, Sargento). Quanto retorna =PROCV(1002;A2:C4;3;FALSO)? E =PROCV(1005;A2:C4;3;FALSO)?</summary>
+<div class="resolucao">
+<p class="passo">A PROCV procura 1002 na <strong>primeira coluna</strong> da tabela (A) e encontra na linha 3.</p>
+<p class="passo">O 3 indica a terceira coluna da tabela (C, posto). Nessa linha, o posto é Soldado.</p>
+<p class="passo">1005 não existe na coluna A e a busca é exata (FALSO): resultado #N/D.</p>
+<p class="resposta-final">Resposta: "Soldado" e #N/D.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Contar a coluna da PROCV a partir da coluna A da planilha. O número é contado a partir da <strong>primeira coluna da tabela informada</strong>: em =PROCV(X;B2:D50;2;FALSO), o 2 devolve a coluna C, não a B. E a PROCV só procura na primeira coluna dessa tabela.</p></div>
 
 <h2>Internet e navegadores</h2>
+<p>A internet funciona no modelo <strong>cliente-servidor</strong>: o navegador (cliente) pede um recurso e um computador remoto (servidor) responde. Para essa conversa acontecer, cada lado segue regras combinadas, os <strong>protocolos</strong>. O HTTP define como pedir e entregar páginas; o HTTPS faz o mesmo dentro de um canal cifrado. Só que computadores se encontram por números (endereços IP), e pessoas lembram nomes. O <strong>DNS</strong> é a "agenda telefônica" que converte o nome digitado no endereço IP do servidor.</p>
+<p>Com essa sequência na cabeça (digita o nome, o DNS acha o IP, o navegador pede pelo protocolo, o servidor responde), fica fácil entender as pegadinhas: o cadeado protege o caminho, não garante quem está do outro lado; e o pharming ataca o passo do DNS, levando você ao servidor errado mesmo com o nome certo.</p>
 <ul>
   <li><strong>URL</strong>: endereço de um recurso. Em <em>https://www.exemplo.gov.br/servicos/index.html</em>: <em>https</em> é o protocolo, <em>www.exemplo.gov.br</em> é o domínio e <em>/servicos/index.html</em> é o caminho.</li>
   <li><strong>HTTP</strong> transfere páginas (porta padrão 80). <strong>HTTPS</strong> é o HTTP com criptografia TLS (porta padrão 443); o cadeado indica conexão cifrada, não que o site seja confiável.</li>
@@ -156,6 +230,21 @@
 <tr><td>intitle:</td><td>Termo no título da página</td><td>intitle:concurso</td></tr>
 <tr><td>*</td><td>Curinga para palavra desconhecida</td><td>"o * da lei"</td></tr>
 </table>
+<details class="exemplo"><summary>Identifique as partes da URL https://portal.exemplo.sp.gov.br:8443/editais/2025.pdf?versao=2</summary>
+<div class="resolucao">
+<p class="passo"><em>https</em>: protocolo (HTTP com criptografia TLS).</p>
+<p class="passo"><em>portal.exemplo.sp.gov.br</em>: nome do servidor (domínio). O final <em>.gov.br</em> indica órgão de governo no Brasil.</p>
+<p class="passo"><em>:8443</em>: porta. Como foi escrita, substitui a padrão do HTTPS (443).</p>
+<p class="passo"><em>/editais/2025.pdf</em>: caminho do recurso no servidor. <em>?versao=2</em>: parâmetro enviado ao servidor.</p>
+<p class="resposta-final">Resposta: protocolo, domínio, porta, caminho e parâmetro, nessa ordem.</p></div></details>
+<details class="exemplo"><summary>Um candidato quer encontrar no Google editais em PDF publicados só em sites do governo, sem resultados sobre estágio. Monte a busca.</summary>
+<div class="resolucao">
+<p class="passo">Tipo de arquivo: filetype:pdf.</p>
+<p class="passo">Restringir ao domínio governamental: site:gov.br.</p>
+<p class="passo">Excluir termo: -estágio (hífen colado na palavra).</p>
+<p class="resposta-final">Resposta: edital filetype:pdf site:gov.br -estágio</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Confiar no cadeado. Ele só indica que a conexão é cifrada com HTTPS. Um site de phishing também pode ter certificado e cadeado. Item que diga "o cadeado garante que o site é legítimo e seguro" está errado; confira o domínio na barra de endereços.</p></div>
 
 <h2>Correio eletrônico</h2>
 <ul>
@@ -171,9 +260,49 @@
 </table>
 <div class="caixa atalho"><span class="rotulo">Atalho</span>
 <p><strong>S</strong>MTP = <strong>S</strong>ai (envia). POP = "Puxa e apaga". IMAP = "Igual em todos os aparelhos". Quem usa webmail pelo navegador acessa via HTTP/HTTPS.</p></div>
+<p>Por que existem protocolos diferentes para enviar e para receber? Porque são trabalhos diferentes, como no correio comum. Levar a carta até a caixa postal do destinatário é uma tarefa (SMTP, que vai de servidor em servidor até chegar). Abrir a caixa postal e ler o que chegou é outra (POP3 ou IMAP, entre o servidor do destinatário e o aparelho dele). A diferença entre POP3 e IMAP é onde a mensagem "mora": no POP3 ela costuma ser trazida para o aparelho; no IMAP ela continua no servidor e cada aparelho apenas mostra uma visão sincronizada dela.</p>
+<figure class="figura"><svg viewBox="0 0 340 160" width="340" role="img" aria-label="Caminho de um e-mail: quem envia entrega ao servidor A por SMTP, o servidor A entrega ao servidor B por SMTP e quem recebe lê no servidor B por POP3 ou IMAP">
+<text x="83" y="40" text-anchor="middle" class="f-nota">SMTP</text>
+<text x="171" y="40" text-anchor="middle" class="f-nota">SMTP</text>
+<text x="259" y="40" text-anchor="middle" class="f-nota">POP3/IMAP</text>
+<rect x="2" y="50" width="74" height="50" rx="6" class="f-fundo f-linha"/>
+<rect x="90" y="50" width="74" height="50" rx="6" class="f-area f-linha"/>
+<rect x="178" y="50" width="74" height="50" rx="6" class="f-area f-linha"/>
+<rect x="266" y="50" width="72" height="50" rx="6" class="f-fundo f-linha"/>
+<text x="39" y="71" text-anchor="middle" class="f-nota">Quem</text>
+<text x="39" y="87" text-anchor="middle" class="f-nota">envia</text>
+<text x="127" y="71" text-anchor="middle" class="f-nota">Servidor</text>
+<text x="127" y="87" text-anchor="middle" class="f-nota">A</text>
+<text x="215" y="71" text-anchor="middle" class="f-nota">Servidor</text>
+<text x="215" y="87" text-anchor="middle" class="f-nota">B</text>
+<text x="302" y="71" text-anchor="middle" class="f-nota">Quem</text>
+<text x="302" y="87" text-anchor="middle" class="f-nota">recebe</text>
+<line x1="76" y1="75" x2="84" y2="75" class="f-linha"/><polygon points="90,75 83,71 83,79" class="f-ponto"/>
+<line x1="164" y1="75" x2="172" y2="75" class="f-linha"/><polygon points="178,75 171,71 171,79" class="f-ponto"/>
+<line x1="252" y1="75" x2="260" y2="75" class="f-linha"/><polygon points="266,75 259,71 259,79" class="f-ponto"/>
+<line x1="2" y1="114" x2="252" y2="114" class="f-eixo f-tracejado"/>
+<line x1="266" y1="114" x2="338" y2="114" class="f-eixo f-tracejado"/>
+<text x="127" y="132" text-anchor="middle" class="f-nota">envio e entrega: SMTP</text>
+<text x="300" y="132" text-anchor="middle" class="f-nota">leitura:</text>
+<text x="300" y="148" text-anchor="middle" class="f-nota">POP3 ou IMAP</text>
+</svg><figcaption>O SMTP leva a mensagem até a caixa do destinatário; POP3 ou IMAP servem para lê-la.</figcaption></figure>
+<details class="exemplo"><summary>Ana envia um e-mail Para: Bruno; Cc: Carla; Cco: Davi. Bruno clica em "Responder a todos". Quem recebe a resposta? Quem sabe que Davi recebeu a mensagem original?</summary>
+<div class="resolucao">
+<p class="passo">"Responder a todos" inclui o remetente (Ana) e quem aparecia em Para e Cc, exceto o próprio Bruno: vai para Ana e Carla.</p>
+<p class="passo">Davi estava em Cco: seu endereço não aparece para Bruno nem para Carla, então não pode ser incluído na resposta.</p>
+<p class="passo">Só Ana (que o colocou em Cco) e o próprio Davi sabem que ele recebeu.</p>
+<p class="resposta-final">Resposta: a resposta vai para Ana e Carla; apenas Ana e Davi sabem do envio a Davi.</p></div></details>
+<details class="exemplo"><summary>Um investigador lê e-mails no celular e no notebook da delegacia e quer ver as mesmas pastas e mensagens lidas nos dois. Qual protocolo de recebimento configurar?</summary>
+<div class="resolucao">
+<p class="passo">Com POP3, em regra, as mensagens são baixadas para o primeiro aparelho que as recebe e saem do servidor; o outro aparelho não as vê.</p>
+<p class="passo">Com IMAP, as mensagens e pastas ficam no servidor, e marcar como lida em um aparelho aparece no outro.</p>
+<p class="resposta-final">Resposta: IMAP. O envio continua sendo feito por SMTP.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar que quem está em Cco fica "invisível" em qualquer situação. Se Davi (em Cco) clicar em "Responder a todos", a resposta dele vai para o remetente e para quem estava em Para e Cc, que passam a saber que ele recebeu a mensagem. A ocultação vale para o envio original, não para o que o destinatário oculto fizer depois.</p></div>
 
 <h2>Google Workspace e Microsoft Teams</h2>
 <p>Cobrados no edital da PM-SP e da GCM.</p>
+<p>A ideia por trás dessas ferramentas é trocar o "arquivo que circula por e-mail" por um <strong>arquivo único na nuvem</strong>, que várias pessoas acessam ao mesmo tempo. Em vez de cinco versões de uma escala de serviço, cada uma com uma alteração diferente, existe uma só, sempre atualizada, com registro de quem mudou o quê. Por isso as questões giram em torno de três pontos: qual ferramenta faz qual tarefa, que nível de permissão dar a cada pessoa e onde os arquivos ficam guardados.</p>
 <ul>
   <li><strong>Google Workspace</strong>: Gmail, Drive (armazenamento), Documentos, Planilhas, Apresentações, Formulários, Agenda, Meet (videoconferência) e Chat.</li>
   <li>Arquivos no Drive são salvos <strong>automaticamente</strong>, editados por várias pessoas ao mesmo tempo e têm <strong>histórico de versões</strong>.</li>
@@ -183,9 +312,29 @@
 </ul>
 <div class="caixa dica"><span class="rotulo">Dica</span>
 <p>Associe pares: Gmail x Outlook, Drive x OneDrive, Documentos x Word, Planilhas x Excel, Meet x reuniões do Teams. A banca costuma perguntar qual ferramenta cumpre determinada tarefa.</p></div>
+<details class="exemplo"><summary>Um sargento compartilha no Google Drive a planilha de escala. Quer que os soldados vejam e possam sugerir trocas, mas sem alterar o conteúdo. Que permissão dar?</summary>
+<div class="resolucao">
+<p class="passo">Leitor só visualiza: os soldados não conseguiriam registrar sugestões.</p>
+<p class="passo">Editor altera o conteúdo: é mais do que o sargento quer.</p>
+<p class="passo">Comentarista vê e comenta, sem editar as células.</p>
+<p class="resposta-final">Resposta: Comentarista.</p></div></details>
+<details class="exemplo"><summary>A guarnição precisa (1) coletar inscrições para um curso pela internet e (2) fazer a reunião de abertura por vídeo, usando o Google Workspace. Quais aplicativos?</summary>
+<div class="resolucao">
+<p class="passo">(1) Coleta de respostas estruturadas: Google Formulários (as respostas podem ir para uma planilha).</p>
+<p class="passo">(2) Videoconferência: Google Meet (pode ser agendada pela Agenda).</p>
+<p class="resposta-final">Resposta: Formulários e Meet.</p></div></details>
+<details class="exemplo"><summary>No Teams, um agente envia um PDF no canal Geral da equipe e outro PDF em um chat individual com um colega. Onde cada arquivo fica armazenado?</summary>
+<div class="resolucao">
+<p class="passo">Arquivo de canal pertence à equipe: fica no SharePoint da equipe (aba Arquivos do canal).</p>
+<p class="passo">Arquivo de chat fica no OneDrive de quem enviou, compartilhado com os participantes.</p>
+<p class="resposta-final">Resposta: canal → SharePoint da equipe; chat → OneDrive do remetente.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar que, num documento compartilhado, a alteração de outra pessoa apaga de vez a versão anterior. O salvamento é automático, mas o <strong>histórico de versões</strong> guarda os estados anteriores e permite restaurá-los. Também não existe "Salvar" obrigatório nos Documentos e Planilhas do Google.</p></div>
 
 <h2>Segurança da informação</h2>
 <p>Princípios: <strong>confidencialidade</strong> (só quem pode acessa), <strong>integridade</strong> (sem alteração indevida), <strong>disponibilidade</strong> (acessível quando necessário) e <strong>autenticidade</strong> (origem verdadeira).</p>
+<p>Esses princípios são a régua para entender qualquer ataque ou defesa: todo incidente fere pelo menos um deles. Um vazamento de dados de investigados fere a confidencialidade; um laudo adulterado fere a integridade; um sistema fora do ar por ransomware fere a disponibilidade; um e-mail que finge vir do comando fere a autenticidade. Do mesmo jeito, cada defesa protege um princípio: criptografia protege a confidencialidade, hash e assinatura digital protegem a integridade e a autenticidade, backup protege a disponibilidade. Quando a questão descrever uma situação, pergunte "qual princípio foi atingido?" antes de procurar o nome do ataque.</p>
+<p>Para os malwares, o critério que mais separa um do outro é <strong>como se espalha</strong> e <strong>o que faz</strong>. Vírus precisa de um hospedeiro e de alguém que o execute; worm se espalha sozinho; cavalo de Troia depende de enganar o usuário para ser instalado. O "o que faz" dá o nome dos demais: sequestrar dados (ransomware), espionar (spyware), abrir uma porta (backdoor), esconder-se (rootkit).</p>
 <table>
 <tr><th>Malware</th><th>Característica marcante</th></tr>
 <tr><td>Vírus</td><td>Infecta outros arquivos ou programas e depende da execução do hospedeiro para agir</td></tr>
@@ -212,8 +361,51 @@
 </table>
 <div class="caixa dica"><span class="rotulo">Dica: regra 3-2-1</span>
 <p>Três cópias dos dados, em dois tipos de mídia, com uma delas fora do local (por exemplo, na nuvem).</p></div>
+<figure class="figura"><svg viewBox="0 0 340 140" width="340" role="img" aria-label="Linha do tempo de domingo a quinta: no esquema incremental é preciso restaurar o completo de domingo e os incrementais de segunda, terça e quarta; no diferencial, só o completo de domingo e o diferencial de quarta">
+<text x="50" y="16" text-anchor="middle" class="f-nota">Dom</text>
+<text x="110" y="16" text-anchor="middle" class="f-nota">Seg</text>
+<text x="170" y="16" text-anchor="middle" class="f-nota">Ter</text>
+<text x="230" y="16" text-anchor="middle" class="f-nota">Qua</text>
+<text x="290" y="16" text-anchor="middle" class="f-nota">Qui</text>
+<text x="2" y="38" class="f-titulo">Incremental: restaura C + I + I + I</text>
+<rect x="30" y="46" width="40" height="26" rx="4" class="f-area-forte f-linha"/>
+<rect x="90" y="46" width="40" height="26" rx="4" class="f-area-forte f-linha"/>
+<rect x="150" y="46" width="40" height="26" rx="4" class="f-area-forte f-linha"/>
+<rect x="210" y="46" width="40" height="26" rx="4" class="f-area-forte f-linha"/>
+<text x="50" y="64" text-anchor="middle">C</text>
+<text x="110" y="64" text-anchor="middle">I</text>
+<text x="170" y="64" text-anchor="middle">I</text>
+<text x="230" y="64" text-anchor="middle">I</text>
+<text x="290" y="64" text-anchor="middle" class="f-nota">falha</text>
+<text x="2" y="98" class="f-titulo">Diferencial: restaura C + último D</text>
+<rect x="30" y="106" width="40" height="26" rx="4" class="f-area-forte f-linha"/>
+<rect x="90" y="106" width="40" height="26" rx="4" class="f-fundo f-linha"/>
+<rect x="150" y="106" width="40" height="26" rx="4" class="f-fundo f-linha"/>
+<rect x="210" y="106" width="40" height="26" rx="4" class="f-area-forte f-linha"/>
+<text x="50" y="124" text-anchor="middle">C</text>
+<text x="110" y="124" text-anchor="middle">D</text>
+<text x="170" y="124" text-anchor="middle">D</text>
+<text x="230" y="124" text-anchor="middle">D</text>
+<text x="290" y="124" text-anchor="middle" class="f-nota">falha</text>
+</svg><figcaption>Caixas destacadas: o que é preciso restaurar após a falha de quinta-feira.</figcaption></figure>
+<details class="exemplo"><summary>Uma delegacia faz backup completo no domingo e incremental de segunda a quarta. Na quinta, o servidor falha. O que restaurar? E se os backups de segunda a quarta fossem diferenciais?</summary>
+<div class="resolucao">
+<p class="passo">Incremental copia só o que mudou desde o <strong>último backup de qualquer tipo</strong>. O de terça não contém o que mudou na segunda; o de quarta não contém o de terça. É preciso a corrente inteira: completo de domingo + incrementais de segunda, terça e quarta, nessa ordem.</p>
+<p class="passo">Diferencial copia tudo o que mudou desde o <strong>último completo</strong>. O de quarta já inclui as mudanças de segunda e terça. Basta: completo de domingo + diferencial de quarta.</p>
+<p class="passo">Contrapartida: o incremental é mais rápido de fazer e ocupa menos espaço a cada dia; o diferencial cresce ao longo da semana, mas restaura mais rápido.</p>
+<p class="resposta-final">Resposta: incremental, 4 backups (C + 3 I); diferencial, 2 backups (C + D de quarta).</p></div></details>
+<details class="exemplo"><summary>Classifique: (1) um programa se espalhou por todos os computadores da rede do batalhão sem que ninguém abrisse arquivo algum; (2) um "jogo grátis" baixado por um usuário passou a enviar suas senhas a terceiros; (3) os arquivos da seção ficaram ilegíveis e apareceu um pedido de pagamento em criptomoeda.</summary>
+<div class="resolucao">
+<p class="passo">(1) Propagação sozinha pela rede, sem hospedeiro e sem ação do usuário: <strong>worm</strong>. Princípio mais afetado: disponibilidade (consome a rede) e, conforme a carga, outros.</p>
+<p class="passo">(2) Programa aparentemente útil com função maliciosa escondida: <strong>cavalo de Troia</strong>, que aqui carrega um spyware. Princípio: confidencialidade.</p>
+<p class="passo">(3) Dados cifrados com pedido de resgate: <strong>ransomware</strong>. Princípio: disponibilidade.</p>
+<p class="resposta-final">Resposta: worm; cavalo de Troia (com spyware); ransomware.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Inverter a restauração de incremental e diferencial. Guarde pela palavra: o <strong>i</strong>ncremental é "<strong>i</strong>ncremento sobre o anterior", então precisa de todos os elos; o <strong>d</strong>iferencial é "<strong>d</strong>iferença em relação ao completo", então basta o último.</p></div>
 
 <h2>Nuvem e Linux</h2>
+<p>Computação em nuvem é <strong>alugar em vez de comprar</strong>: em vez de manter servidores próprios, a instituição usa recursos de um provedor pela internet e paga pelo que consome. Os modelos de serviço mudam conforme <strong>quanto o provedor entrega pronto</strong>. No IaaS, ele entrega a máquina (virtual) e você cuida do resto, sistema operacional incluído. No PaaS, ele entrega também o ambiente para rodar programas, e você só cuida da sua aplicação. No SaaS, ele entrega o programa pronto, e você só usa. Quanto mais perto do SaaS, menos coisas ficam sob a sua responsabilidade.</p>
+<p>No Linux, a lógica das permissões vem de ser um sistema multiusuário desde a origem: cada arquivo tem um dono, um grupo e "os outros", e cada um desses três recebe ou não as permissões de ler (r), escrever (w) e executar (x). Os números do chmod são só a soma dessas permissões em cada posição.</p>
 <h3>Computação em nuvem</h3>
 <ul>
   <li><strong>SaaS</strong> (software como serviço): usa o programa pronto pela internet. Ex.: Gmail, Microsoft 365.</li>
@@ -235,56 +427,178 @@
 </table>
 <p>Permissões em octal: r = 4, w = 2, x = 1, na ordem dono, grupo e outros. <strong>chmod 755</strong> = rwxr-xr-x (dono tudo; grupo e outros leem e executam).</p>
 <p>Diretórios importantes: <strong>/home</strong> (pastas dos usuários), <strong>/etc</strong> (configurações), <strong>/bin</strong> (comandos essenciais), <strong>/tmp</strong> (temporários), <strong>/var</strong> (logs e dados variáveis), <strong>/dev</strong> (dispositivos), <strong>/root</strong> (pasta do superusuário).</p>
+<details class="exemplo"><summary>Classifique o modelo de serviço: (1) a corporação usa o Gmail institucional; (2) o setor de TI aluga máquinas virtuais e instala nelas o próprio sistema; (3) desenvolvedores publicam um aplicativo numa plataforma que já cuida de servidor, sistema e banco de dados.</summary>
+<div class="resolucao">
+<p class="passo">(1) Programa pronto, acessado pelo navegador: <strong>SaaS</strong>.</p>
+<p class="passo">(2) O provedor entrega só a infraestrutura (máquina, disco, rede); o resto é com o cliente: <strong>IaaS</strong>.</p>
+<p class="passo">(3) O provedor entrega o ambiente de execução; o cliente só envia o código: <strong>PaaS</strong>.</p>
+<p class="resposta-final">Resposta: SaaS; IaaS; PaaS.</p></div></details>
+<details class="exemplo"><summary>Um perito executa chmod 640 laudo.txt. Quais permissões ficam? E qual comando lista, com detalhes, todos os arquivos (inclusive ocultos) de /var/log?</summary>
+<div class="resolucao">
+<p class="passo">6 = 4 + 2 = rw- (dono lê e escreve); 4 = r-- (grupo só lê); 0 = --- (outros nada).</p>
+<p class="passo">Resultado: -rw-r----- (o primeiro traço indica arquivo comum).</p>
+<p class="passo">Listagem detalhada (-l) incluindo ocultos (-a):</p>
+<pre><code>chmod 640 laudo.txt
+ls -la /var/log</code></pre>
+<p class="resposta-final">Resposta: rw-r----- ; comando ls -la /var/log.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar que número maior no chmod é "mais seguro". É o contrário: <strong>777</strong> (rwxrwxrwx) dá todas as permissões a qualquer usuário. Outro erro frequente: tentar apagar pasta com conteúdo usando <strong>rmdir</strong> (só remove diretório vazio) ou <strong>rm</strong> sem -r.</p></div>
 <p>Aprofundamento de redes e segurança para a PF está em <a href="ti-redes-seguranca.html">TI: redes e segurança</a>.</p>
 
 <h2>Questões</h2>
 <div class="questao" data-correta="b">
 <p class="enunciado">No Windows 10, em configuração padrão, o atalho que exclui um arquivo selecionado sem enviá-lo para a Lixeira é:</p>
 <ol class="alternativas"><li>Ctrl + Delete</li><li>Shift + Delete</li><li>Alt + Delete</li><li>Win + Delete</li><li>Ctrl + Shift + Esc</li></ol>
-<div class="explicacao"><p>Shift + Delete exclui permanentemente. Ctrl + Shift + Esc abre o Gerenciador de Tarefas.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> No Windows, <strong>Delete</strong> envia o item para a Lixeira; <strong>Shift + Delete</strong> exclui permanentemente, sem passar por ela (o Windows pede confirmação antes).</p>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Ctrl + Delete não é o atalho de exclusão definitiva. A combinação que pula a Lixeira usa Shift, não Ctrl.</li>
+<li><strong>C)</strong> Alt + Delete não tem função de exclusão no Explorador de Arquivos.</li>
+<li><strong>D)</strong> Win + Delete não é atalho de exclusão; os atalhos com Win abrem recursos do sistema (Win + E, Win + D, Win + L).</li>
+<li><strong>E)</strong> Ctrl + Shift + Esc abre o Gerenciador de Tarefas. A confusão vem da memória do "Ctrl + Alt + Del".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Delete sozinho = Lixeira; Shift + Delete = sem volta. Lembre também que itens apagados de pen drive ou de unidade de rede não vão para a Lixeira, mesmo com Delete.</p>
+</div>
 </div>
 <div class="questao" data-correta="e">
 <p class="enunciado">No Excel 2016, a célula B2 contém a fórmula =A2*$C$1. Se ela for copiada para B6, a fórmula resultante será:</p>
 <ol class="alternativas"><li>=A2*$C$1</li><li>=A6*$C$5</li><li>=B6*$C$1</li><li>=A6*C5</li><li>=A6*$C$1</li></ol>
-<div class="explicacao"><p>Descendo 4 linhas na mesma coluna, A2 vira A6. $C$1 é absoluta e não muda.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: E.</strong> Ao copiar, a referência <strong>relativa</strong> se desloca o mesmo tanto que a célula; a <strong>absoluta</strong> ($C$1) fica travada.</p>
+<ol class="passos-resolucao">
+<li>Deslocamento: de B2 para B6 é a mesma coluna e 4 linhas abaixo.</li>
+<li>A2 é relativa: coluna A não muda (0 colunas), linha 2 + 4 = 6. Fica A6.</li>
+<li>$C$1 é absoluta: o $ trava coluna e linha, então não muda.</li>
+<li>Resultado: =A6*$C$1.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Mantém A2, como se a referência relativa não se deslocasse ao copiar.</li>
+<li><strong>B)</strong> Deslocou também a linha de $C$1, ignorando que o $ antes do 1 trava a linha.</li>
+<li><strong>C)</strong> Andou uma coluna (A para B), mas a cópia foi feita na mesma coluna.</li>
+<li><strong>D)</strong> Apagou os cifrões e deslocou C1, que estava travada.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> some a cada referência o mesmo deslocamento da célula (aqui, +4 linhas), exceto a parte que tem $ logo antes.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado">Em uma planilha do Excel, a fórmula =PROCV(F2;A2:D100;4;FALSO) retorna:</p>
 <ol class="alternativas"><li>o valor da coluna D da linha em que o valor de F2 for encontrado, de forma exata, na coluna A</li><li>a soma dos valores da coluna D que forem iguais a F2</li><li>o quarto maior valor do intervalo A2:D100</li><li>o valor da coluna F que corresponde à quarta linha da tabela</li><li>a quantidade de vezes que F2 aparece no intervalo</li></ol>
-<div class="explicacao"><p>A PROCV procura F2 na primeira coluna da tabela (A) e devolve o dado da 4ª coluna do intervalo (D). FALSO exige correspondência exata.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> A PROCV procura o valor de F2 na <strong>primeira coluna</strong> da tabela (A) e devolve o dado da coluna indicada pelo número, contada a partir dessa primeira coluna. FALSO exige correspondência exata.</p>
+<ol class="passos-resolucao">
+<li>Valor procurado: F2.</li>
+<li>Tabela: A2:D100. A busca é sempre na 1ª coluna, a coluna A.</li>
+<li>Coluna 4 contada a partir de A: A (1), B (2), C (3), D (4). Retorna a coluna D da linha encontrada.</li>
+<li>FALSO: só aceita valor idêntico; se não achar, aparece #N/D.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> Somar valores que atendem a um critério é papel da SOMASE, não da PROCV.</li>
+<li><strong>C)</strong> O 4 não é posição de ordenação, é o número da coluna a devolver. "Quarto maior valor" seria a função MAIOR.</li>
+<li><strong>D)</strong> F2 é só o valor procurado; a coluna F nem está na tabela. E o 4 indica coluna, não linha.</li>
+<li><strong>E)</strong> Contar quantas vezes um valor aparece é papel da CONT.SE.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> leia a PROCV como "procure o quê; onde; qual coluna devolver; FALSO = exato".</p>
+</div>
 </div>
 <div class="questao" data-correta="c">
 <p class="enunciado">Um usuário envia um e-mail para três pessoas e quer que nenhuma delas veja o endereço das outras. Ele deve inserir os endereços no campo:</p>
 <ol class="alternativas"><li>Para</li><li>Cc</li><li>Cco</li><li>Assunto</li><li>Responder a</li></ol>
-<div class="explicacao"><p>Os destinatários em Cco (cópia oculta) não veem os demais endereços em Cco. Em Para ou Cc, todos veem todos.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Quem está em <strong>Cco</strong> (com cópia oculta) recebe a mensagem, mas seu endereço não aparece para nenhum outro destinatário. Com os três em Cco, ninguém vê o endereço de ninguém.</p>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Para é o destinatário principal, e todos os destinatários veem os endereços que estão nele.</li>
+<li><strong>B)</strong> Cc é cópia visível: todos veem quem recebeu a cópia.</li>
+<li><strong>D)</strong> Assunto é o título da mensagem, não é campo de endereço.</li>
+<li><strong>E)</strong> "Responder a" define para qual endereço vão as respostas, não quem recebe a mensagem.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Cco = cópia oculta: ninguém vê. Por isso "Responder a todos" nunca alcança os destinatários em Cco.</p>
+</div>
 </div>
 <div class="questao" data-correta="d">
 <p class="enunciado">No Microsoft Word 2016 em português, os atalhos Ctrl + N, Ctrl + B e Ctrl + T correspondem, respectivamente, a:</p>
 <ol class="alternativas"><li>novo documento, negrito e tabela</li><li>negrito, abrir e centralizar</li><li>novo documento, salvar e selecionar tudo</li><li>negrito, salvar e selecionar tudo</li><li>negrito, sublinhado e tachado</li></ol>
-<div class="explicacao"><p>No Word PT-BR: Ctrl + N = negrito, Ctrl + B = salvar, Ctrl + T = selecionar tudo. A armadilha C usa os significados do inglês para o N.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> No Word em português, os atalhos seguem as iniciais em português: Ctrl + <strong>N</strong> = Negrito, Ctrl + <strong>B</strong> = salvar e Ctrl + <strong>T</strong> = selecionar Tudo.</p>
+<ol class="passos-resolucao">
+<li>N de Negrito (I de Itálico, S de Sublinhado).</li>
+<li>Como o S ficou com o sublinhado, salvar foi para o B.</li>
+<li>Como o A ficou com Abrir, selecionar Tudo foi para o T.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Usa os significados do inglês: Ctrl + N (New) e Ctrl + B (Bold). No Word PT-BR, novo documento é Ctrl + O.</li>
+<li><strong>B)</strong> Acerta o negrito, mas Ctrl + B não abre (abrir é Ctrl + A) e Ctrl + T não centraliza (centralizar é Ctrl + E).</li>
+<li><strong>C)</strong> Acerta B e T, mas usa o N do inglês (New); no Word PT-BR, N é negrito.</li>
+<li><strong>E)</strong> Sublinhado é Ctrl + S, não Ctrl + B; e Ctrl + T seleciona tudo, não aplica tachado.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> formatação pela inicial em português (N, I, S); salvar e selecionar tudo ficaram com as letras que sobraram (B e T).</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado">O tipo de programa malicioso que se propaga automaticamente pelas redes, explorando vulnerabilidades, sem precisar se anexar a outro arquivo, é o:</p>
 <ol class="alternativas"><li>vírus</li><li>worm</li><li>phishing</li><li>adware</li><li>cookie</li></ol>
-<div class="explicacao"><p>O worm se replica e se espalha sozinho. O vírus depende de um hospedeiro executado. Phishing é golpe de engenharia social e cookie não é malware.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> O <strong>worm</strong> se replica e se espalha sozinho pela rede, explorando falhas, sem precisar de hospedeiro. É exatamente a descrição do enunciado.</p>
+<ul class="por-que-nao">
+<li><strong>A)</strong> O vírus infecta outros arquivos e depende da execução do hospedeiro para agir; não se propaga sozinho.</li>
+<li><strong>C)</strong> Phishing é golpe de engenharia social (mensagem falsa que imita uma instituição para roubar dados), não um programa que se replica.</li>
+<li><strong>D)</strong> Adware exibe propaganda indesejada; não tem como marca a propagação automática pela rede.</li>
+<li><strong>E)</strong> Cookie é um arquivo de texto que o site grava no navegador; não é malware.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> palavras "sozinho", "automaticamente" e "sem hospedeiro" apontam para worm; "infecta arquivo" e "precisa ser executado" apontam para vírus.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Ao utilizar a navegação anônima do Google Chrome, o usuário impede que o provedor de internet e os sites acessados identifiquem sua atividade, pois o navegador oculta o endereço IP do computador.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A navegação anônima só evita que histórico, cookies e dados de formulário fiquem salvos no próprio computador. O provedor, a rede e os sites continuam vendo a atividade e o IP.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A navegação anônima só faz o navegador descartar, ao fechar a janela, o histórico, os cookies e os dados de formulário daquela sessão. Ela <strong>não oculta o IP</strong>: o provedor, a rede da empresa e os sites visitados continuam vendo a atividade.</p>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item atribui à janela anônima um efeito que ela não tem (esconder o IP e tornar o usuário anônimo na internet). Certo seria: "impede que histórico, cookies e dados de formulário da sessão fiquem gravados no computador".</li>
+<li><strong>Onde está a pegadinha:</strong> outra troca comum: dizer que downloads e favoritos feitos na janela anônima são apagados. Eles permanecem.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> anônima para quem usa o mesmo computador, não para a internet.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> O protocolo IMAP permite que as mensagens de correio eletrônico permaneçam no servidor, de modo que o usuário as acesse de forma sincronizada em diferentes dispositivos.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>É a principal diferença entre IMAP (sincroniza, mantém no servidor) e POP3 (baixa para o dispositivo).</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> O <strong>IMAP</strong> mantém as mensagens no servidor e sincroniza pastas e o estado das mensagens (lida, não lida), por isso o usuário vê a mesma caixa em todos os dispositivos.</p>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma trocar IMAP por POP3, que baixa as mensagens para o computador e, em regra, as retira do servidor, ou dizer que o IMAP envia mensagens, função do SMTP.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> SMTP = Sai (envia); POP = "Puxa e apaga"; IMAP = "Igual em todos os aparelhos".</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Na restauração de dados a partir de backups diferenciais, é necessário utilizar o último backup completo e todos os backups diferenciais realizados depois dele.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Cada diferencial acumula tudo o que mudou desde o último completo, então basta o último completo e o último diferencial. Exigir todos é característica do incremental.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> O backup <strong>diferencial</strong> copia tudo o que mudou desde o <strong>último completo</strong>, de forma acumulada. Assim, o último diferencial já contém o que os anteriores tinham, e a restauração usa só o último completo e o último diferencial.</p>
+<ol class="passos-resolucao">
+<li>Exemplo: completo no domingo, diferenciais de segunda a quinta.</li>
+<li>O diferencial de quinta já reúne todas as mudanças desde domingo.</li>
+<li>Falha na sexta: restaure o completo de domingo e o diferencial de quinta.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item descreveu a restauração do backup <strong>incremental</strong>, que copia só o que mudou desde o último backup de qualquer tipo e por isso exige o completo e todos os incrementais seguintes. Certo seria "o último backup completo e o último diferencial".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Diferencial = Desde o completo (acumula); Incremental = desde o último backup qualquer (encadeia).</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Em um sistema Linux, após o comando chmod 750 relatorio.sh, o dono do arquivo pode ler, gravar e executar; os membros do grupo podem ler e executar; e os demais usuários não têm nenhuma permissão.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>7 = 4 + 2 + 1 (rwx), 5 = 4 + 1 (r-x), 0 = nenhuma (---). Resultado: rwxr-x---.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Em octal, r = 4, w = 2 e x = 1, na ordem dono, grupo e outros. 750 resulta em rwxr-x---, exatamente o que o item descreve.</p>
+<ol class="passos-resolucao">
+<li>Dono: 7 = 4 + 2 + 1 = rwx (ler, gravar, executar).</li>
+<li>Grupo: 5 = 4 + 1 = r-x (ler e executar).</li>
+<li>Outros: 0 = --- (nenhuma permissão).</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma trocar a ordem (pôr os "outros" antes do grupo) ou dar gravação ao 5. Também confunde com o 755, em que os outros também leem e executam.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> decomponha cada dígito em 4, 2 e 1: o que sobra de cada parcela diz quais letras entram.</p>
+</div>
 </div>

@@ -1,10 +1,27 @@
 <h2>Proposições</h2>
 <p>Proposição é uma frase declarativa que pode ser julgada como <strong>verdadeira (V)</strong> ou <strong>falsa (F)</strong>, nunca as duas.</p>
+<p>A lógica de prova é um "jogo de V e F": tudo o que ela faz é combinar valores verdadeiros e falsos. Por isso só entra no jogo a frase que tem um valor definido. Uma pergunta não é verdadeira nem falsa, uma ordem também não. E "x + 2 = 5" depende de quem é x: enquanto a variável não for conhecida, não há como julgar. Um bom teste é perguntar: "posso responder <em>isso é verdade</em> ou <em>isso é mentira</em>?". Se a resposta for não, não é proposição.</p>
 <p><strong>Não são proposições:</strong> perguntas ("Que horas são?"), ordens ("Feche a porta."), exclamações ("Que lindo!"), frases sem sentido completo e sentenças abertas com variável ("x + 2 = 5", "Ele é médico").</p>
+<details class="exemplo"><summary>Quais são proposições? (1) "Brasília é a capital do Brasil." (2) "Estude para a prova!" (3) "O número 7 é par." (4) "x é maior que 3." (5) "Você já foi a São Paulo?"</summary>
+<div class="resolucao">
+<p class="passo">(1) Declarativa e verdadeira: proposição.</p>
+<p class="passo">(2) Ordem: não é proposição. (5) Pergunta: não é proposição.</p>
+<p class="passo">(3) Declarativa e falsa: é proposição (ser falsa não impede).</p>
+<p class="passo">(4) Sentença aberta: o valor depende de x. Não é proposição.</p>
+<p class="resposta-final">Resposta: apenas (1) e (3).</p></div></details>
+<details class="exemplo"><summary>Quantas proposições simples há em "Se João estuda e não se distrai, então João passa ou João é chamado para o curso"?</summary>
+<div class="resolucao">
+<p class="passo">Separe pelos conectivos (se… então, e, ou) e retire as negações.</p>
+<p class="passo">p: João estuda. q: João se distrai (aparece negada, mas é a mesma proposição). r: João passa. s: João é chamado para o curso.</p>
+<p class="passo">Forma simbólica: (p ∧ ~q) → (r ∨ s).</p>
+<p class="resposta-final">Resposta: 4 proposições simples (e a tabela-verdade teria 2⁴ = 16 linhas).</p></div></details>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>"Esta frase é falsa" é um paradoxo e não é proposição. Já "2 + 2 = 5" é proposição: é falsa, mas pode ser julgada.</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Contar a negação como uma proposição nova. "João se distrai" e "João não se distrai" são a mesma proposição simples q, uma vez afirmada e outra negada.</p></div>
 
 <h2>Conectivos e quando cada um é verdadeiro</h2>
+<p>Os conectivos são as "regras de combinação" dos valores. A maioria é intuitiva: "e" exige tudo, "ou" se contenta com um. O que confunde é o condicional. Pense nele como uma <strong>promessa</strong>: "Se eu passar, pago um churrasco". Quando eu quebro a promessa? Só se passar (V) e não pagar (F). Se eu não passar, posso pagar ou não: a promessa não foi desrespeitada, porque ela só falava do caso em que eu passasse. Por isso o condicional só é falso em V → F.</p>
 <table>
 <tr><th>Conectivo</th><th>Símbolo</th><th>É verdadeiro quando…</th></tr>
 <tr><td>Negação: não p</td><td>~p</td><td>p é falsa</td></tr>
@@ -21,20 +38,58 @@
 <li><strong>SE…ENTÃO</strong> é falso só em "Vera Fischer" (V → F).</li>
 <li><strong>SE E SOMENTE SE</strong> é falso quando os valores são diferentes.</li>
 </ul></div>
+<details class="exemplo"><summary>Sendo p verdadeira, q falsa e r verdadeira, qual o valor de (p ∧ q) → r e de (p ∨ q) ↔ ~r?</summary>
+<div class="resolucao">
+<p class="passo">p ∧ q = V e F = F. Então (p ∧ q) → r = F → V = V (condicional só cai em V → F).</p>
+<p class="passo">p ∨ q = V ou F = V. ~r = F. Então V ↔ F = F (valores diferentes).</p>
+<p class="resposta-final">Resposta: a primeira é V; a segunda é F.</p></div></details>
+<details class="exemplo"><summary>Sabe-se que a proposição "Se o suspeito estava no local, então ele foi filmado" é falsa. O que se conclui?</summary>
+<div class="resolucao">
+<p class="passo">Condicional falso só acontece em V → F.</p>
+<p class="passo">Logo o antecedente é V e o consequente é F.</p>
+<p class="resposta-final">Resposta: o suspeito estava no local e não foi filmado.</p></div></details>
+<details class="exemplo"><summary>"Ou Carlos é perito, ou Carlos é delegado." Sabendo que Carlos é perito e é delegado, a proposição é verdadeira ou falsa?</summary>
+<div class="resolucao">
+<p class="passo">"Ou… ou…" é a disjunção exclusiva: exige exatamente uma verdadeira.</p>
+<p class="passo">As duas são verdadeiras: V ⊻ V = F. (Com o "ou" inclusivo, seria V.)</p>
+<p class="resposta-final">Resposta: falsa.</p></div></details>
 <div class="caixa dica"><span class="rotulo">Outras formas do condicional</span>
 <p>"Se p, então q" também aparece como: "q, se p", "p implica q", "p é condição suficiente para q", "q é condição necessária para p", "quando p, q", "todo p é q".</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar que o condicional com antecedente falso é falso. "Se 2 + 2 = 5, então a Lua é de queijo" é <strong>verdadeira</strong>: F → F = V. O condicional só é falso em V → F.</p></div>
 
 <h2>Tabela-verdade</h2>
+<p>A tabela-verdade testa <strong>todas as combinações possíveis</strong> de valores. Cada proposição simples tem 2 valores possíveis (V ou F), e cada nova proposição dobra o número de combinações, como no princípio da contagem: 2 × 2 × … × 2. Para não esquecer nenhuma linha, preencha a primeira coluna com metade V e metade F, a segunda alternando de dois em dois, e assim por diante até a última, que alterna V, F, V, F.</p>
 <p>Com n proposições simples, a tabela tem <strong>2ⁿ linhas</strong>. Com 3 proposições, 8 linhas.</p>
 <ul>
   <li><strong>Tautologia:</strong> verdadeira em todas as linhas (ex.: p ∨ ~p).</li>
   <li><strong>Contradição:</strong> falsa em todas (ex.: p ∧ ~p).</li>
   <li><strong>Contingência:</strong> nem uma nem outra.</li>
 </ul>
+<details class="exemplo"><summary>Monte a tabela-verdade de (p → q) ∨ p e classifique a proposição.</summary>
+<div class="resolucao">
+<table>
+<tr><th>p</th><th>q</th><th>p → q</th><th>(p → q) ∨ p</th></tr>
+<tr><td>V</td><td>V</td><td>V</td><td>V</td></tr>
+<tr><td>V</td><td>F</td><td>F</td><td>V</td></tr>
+<tr><td>F</td><td>V</td><td>V</td><td>V</td></tr>
+<tr><td>F</td><td>F</td><td>V</td><td>V</td></tr>
+</table>
+<p class="passo">Quando p é V, o "ou" já é V. Quando p é F, o condicional p → q é V. Não há linha falsa.</p>
+<p class="resposta-final">Resposta: tautologia.</p></div></details>
+<details class="exemplo"><summary>Sem montar a tabela, decida se p → (p ∧ q) é tautologia.</summary>
+<div class="resolucao">
+<p class="passo">Tente fazer dar F: o condicional precisa de antecedente V e consequente F.</p>
+<p class="passo">p = V. Para p ∧ q ser F com p = V, basta q = F.</p>
+<p class="passo">Achou a linha que derruba (p = V, q = F). E com p = F a proposição é V.</p>
+<p class="resposta-final">Resposta: não é tautologia; é contingência.</p></div></details>
 <div class="caixa atalho"><span class="rotulo">Atalho: procure a linha que derruba</span>
 <p>Para saber se algo é tautologia, não monte a tabela inteira. Tente fazer a proposição dar F. Se conseguir, não é tautologia. Para um condicional, isso é tentar V no antecedente e F no consequente.</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Confundir 2ⁿ com 2 × n. Com 5 proposições simples, a tabela tem 2⁵ = 32 linhas, e não 10. E conte as proposições <strong>distintas</strong>: p aparecendo três vezes na fórmula ainda é uma proposição só.</p></div>
 
 <h2>Negações (as mais cobradas)</h2>
+<p>Negar uma proposição é escrever outra que seja verdadeira <strong>exatamente</strong> quando a original é falsa. Então a pergunta certa é: "o que precisa acontecer para a frase original ser mentira?". Para derrubar "Pedro é aprovado e nomeado", basta uma das partes falhar: ele não é aprovado ou não é nomeado. Para derrubar "todos estudaram", basta um que não estudou. Pensar como quem quer desmentir a frase evita decorar tudo.</p>
 <table>
 <tr><th>Proposição</th><th>Negação</th></tr>
 <tr><td>p e q</td><td>~p ou ~q</td></tr>
@@ -48,22 +103,59 @@
 <div class="caixa atalho"><span class="rotulo">Atalho: negação do condicional = "Mané"</span>
 <p><strong>MA</strong>ntém a primeira, <strong>N</strong>ega a segunda, troca por <strong>E</strong>.</p>
 <p>"Se chove, então levo guarda-chuva" → "Chove <strong>e</strong> não levo guarda-chuva".</p></div>
+<details class="exemplo"><summary>Negue: "O candidato foi aprovado e foi nomeado."</summary>
+<div class="resolucao">
+<p class="passo">Negação do "e" (De Morgan): nega as duas partes e troca "e" por "ou".</p>
+<p class="resposta-final">Resposta: "O candidato não foi aprovado ou não foi nomeado."</p></div></details>
+<details class="exemplo"><summary>Negue: "A viatura está abastecida ou o motorista chegou."</summary>
+<div class="resolucao">
+<p class="passo">Negação do "ou": nega as duas partes e troca "ou" por "e".</p>
+<p class="resposta-final">Resposta: "A viatura não está abastecida e o motorista não chegou." (Também se escreve: "Nem a viatura está abastecida, nem o motorista chegou.")</p></div></details>
+<details class="exemplo"><summary>Negue: "João vai à praia se e somente se faz sol."</summary>
+<div class="resolucao">
+<p class="passo">O bicondicional é V quando os valores são iguais. A negação deve ser V quando são diferentes: é a disjunção exclusiva.</p>
+<p class="resposta-final">Resposta: "Ou João vai à praia, ou faz sol." Forma equivalente: "João vai à praia e não faz sol, ou faz sol e João não vai à praia."</p></div></details>
+<details class="exemplo"><summary>Negue: "Nenhum agente faltou ao plantão."</summary>
+<div class="resolucao">
+<p class="passo">Para desmentir "nenhum", basta um caso.</p>
+<p class="resposta-final">Resposta: "Algum agente faltou ao plantão." (ou "Pelo menos um agente faltou ao plantão").</p></div></details>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>A negação de "Todo político é honesto" não é "Nenhum político é honesto". É "<strong>Algum</strong> político <strong>não</strong> é honesto". Basta um contraexemplo para derrubar o "todo".</p>
 <p>E a negação de uma condicional <em>nunca</em> é outra condicional.</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Negar as partes e esquecer de trocar o conectivo. "Não foi aprovado <strong>e</strong> não foi nomeado" não é a negação de "foi aprovado e nomeado": o "e" precisa virar "ou" (e o "ou" precisa virar "e").</p></div>
 
 <h2>Equivalências</h2>
 <p>Duas proposições são equivalentes quando têm a mesma tabela-verdade. As duas que mais caem:</p>
 <span class="formula" data-tex="p \to q \;\equiv\; {\sim}q \to {\sim}p \quad \text{(contrapositiva)}">p → q ≡ ~q → ~p &nbsp;&nbsp;(contrapositiva)</span>
 <span class="formula" data-tex="p \to q \;\equiv\; {\sim}p \lor q">p → q ≡ ~p ∨ q</span>
+<p>Por que a contrapositiva funciona? "Se p, então q" só é falsa em um caso: p verdadeira e q falsa. "Se não q, então não p" também só é falsa quando ~q é V e ~p é F, ou seja, quando q é falsa e p é verdadeira. É o mesmo caso! Como as duas falham na mesma linha e acertam nas outras, dizem a mesma coisa. O Neymar segue a mesma lógica: "não p ou q" só é falsa quando p é V e q é F.</p>
+
 <div class="caixa atalho"><span class="rotulo">Atalho: "volta negando" e "Neymar"</span>
 <p><strong>Contrapositiva:</strong> inverte a ordem e nega as duas. "Se estudo, passo" ≡ "Se não passo, não estudei".</p>
 <p><strong>Ne-Y-Mar:</strong> <strong>Ne</strong>ga a primeira, <strong>Ma</strong>ntém a segunda, troca por <strong>ou</strong>. "Se estudo, passo" ≡ "Não estudo ou passo".</p></div>
+<details class="exemplo"><summary>Dê duas proposições equivalentes a "Se não estudo, então não passo".</summary>
+<div class="resolucao">
+<p class="passo">Contrapositiva (inverte e nega as duas): "Se passo, então estudo".</p>
+<p class="passo">Neymar (nega a primeira, mantém a segunda, "ou"): negar "não estudo" dá "estudo". Fica "Estudo ou não passo".</p>
+<p class="resposta-final">Resposta: "Se passo, então estudo" e "Estudo ou não passo".</p></div></details>
+<details class="exemplo"><summary>Reescreva como condicional: "Não chove ou a rua fica molhada."</summary>
+<div class="resolucao">
+<p class="passo">É o Neymar ao contrário: "~p ou q" vira "se p, então q". Tire a negação da primeira e use "se… então".</p>
+<p class="passo">p: chove. q: a rua fica molhada.</p>
+<p class="resposta-final">Resposta: "Se chove, então a rua fica molhada" (ou a contrapositiva: "Se a rua não fica molhada, então não chove").</p></div></details>
+<details class="exemplo"><summary>Uma proposição equivalente a "Paulo viaja se e somente se Rita fica" é:</summary>
+<div class="resolucao">
+<p class="passo">O bicondicional equivale a dois condicionais, um em cada sentido: (p → q) ∧ (q → p).</p>
+<p class="resposta-final">Resposta: "Se Paulo viaja, então Rita fica, e se Rita fica, então Paulo viaja."</p></div></details>
 <div class="caixa pegadinha"><span class="rotulo">Não são equivalentes</span>
 <p>"Se p, então q" <strong>não</strong> equivale a "Se q, então p" (recíproca) nem a "Se não p, então não q" (inversa). As bancas colocam essas duas como armadilha.</p></div>
+<div class="caixa dica"><span class="rotulo">Ordem no "ou" e no "e"</span>
+<p>O "ou" e o "e" aceitam trocar a ordem: "Não estudo ou passo" ≡ "Passo ou não estudo". Já no condicional, trocar a ordem sem negar muda o sentido.</p></div>
 
 <h2>Argumentos e diagramas</h2>
 <p>Um argumento é <strong>válido</strong> quando, sendo as premissas verdadeiras, a conclusão é obrigatoriamente verdadeira. A validade depende da forma, não do conteúdo.</p>
+<p>Imagine o argumento como uma máquina: se entrar verdade nas premissas, tem que sair verdade na conclusão, sempre. Não importa se as premissas são verdadeiras no mundo real; a pergunta é "<em>se</em> elas fossem verdadeiras, a conclusão seria forçada?". Por isso um argumento pode ser válido com conteúdo absurdo ("Todo gato voa; Tom é gato; logo Tom voa") e inválido com conteúdo verdadeiro. Para mostrar que é inválido, basta achar <strong>uma</strong> situação em que as premissas são verdadeiras e a conclusão é falsa.</p>
 <div class="caixa atalho"><span class="rotulo">Atalho: comece pela premissa simples</span>
 <p>Nas questões de "considere verdadeiras as premissas", procure a premissa que é uma proposição simples (ou uma conjunção). Ela já é V, e os valores se propagam para as outras.</p></div>
 <details class="exemplo"><summary>Premissas: "Se Ana viaja, Bruno fica." "Se Bruno fica, Carla trabalha." "Carla não trabalha." O que se conclui?</summary>
@@ -72,6 +164,11 @@
 <p class="passo">"Se Bruno fica, Carla trabalha" é V com consequente F, logo o antecedente é F: Bruno não fica.</p>
 <p class="passo">"Se Ana viaja, Bruno fica" é V com consequente F, logo Ana não viaja.</p>
 <p class="resposta-final">Conclusão: Ana não viaja, Bruno não fica, Carla não trabalha.</p></div></details>
+<details class="exemplo"><summary>"Se chove, a rua fica molhada. A rua está molhada. Logo, choveu." O argumento é válido?</summary>
+<div class="resolucao">
+<p class="passo">Procure um cenário com premissas V e conclusão F: não choveu, mas a rua está molhada (alguém lavou a calçada).</p>
+<p class="passo">Nesse cenário, "se chove, a rua fica molhada" continua V (antecedente F), e "a rua está molhada" é V. A conclusão "choveu" é F.</p>
+<p class="resposta-final">Resposta: inválido. Do consequente verdadeiro não se conclui o antecedente (é o erro de usar a recíproca).</p></div></details>
 <h3>Quantificadores com diagramas</h3>
 <p>Para "todo", "algum" e "nenhum", desenhe conjuntos:</p>
 <ul>
@@ -102,30 +199,120 @@
 <figcaption>Os três desenhos básicos de “todo”, “algum” e “nenhum”.</figcaption>
 </figure>
 <p>Uma conclusão só é válida se valer em <strong>todos</strong> os desenhos possíveis das premissas.</p>
+<details class="exemplo"><summary>"Todo policial é servidor. Algum servidor é atleta. Logo, algum policial é atleta." A conclusão é válida?</summary>
+<div class="resolucao">
+<p class="passo">Desenhe "policial" dentro de "servidor". "Atleta" precisa cruzar "servidor", mas pode fazer isso fora da parte dos policiais (figura abaixo).</p>
+<p class="passo">Nesse desenho as duas premissas são verdadeiras e nenhum policial é atleta.</p>
+<p class="resposta-final">Resposta: não é válida. É possível, mas não obrigatória.</p></div></details>
+<figure class="figura"><svg viewBox="0 0 320 160" width="320" role="img" aria-label="Círculo de policiais dentro do círculo de servidores; o círculo de atletas cruza o de servidores sem tocar o de policiais">
+  <circle class="f-area f-linha" cx="130" cy="85" r="70"/>
+  <circle class="f-fundo f-dest" cx="100" cy="90" r="30"/>
+  <circle class="f-linha" cx="235" cy="85" r="50"/>
+  <circle class="f-ponto" cx="192" cy="85" r="4"/>
+  <text x="100" y="94" text-anchor="middle" class="f-nota">Policiais</text>
+  <text x="130" y="40" text-anchor="middle" class="f-nota">Servidores</text>
+  <text x="250" y="90" text-anchor="middle" class="f-nota">Atletas</text>
+</svg><figcaption>Premissas verdadeiras e conclusão falsa: um contraexemplo basta para invalidar.</figcaption></figure>
+<details class="exemplo"><summary>"Todo perito é concursado. Nenhum concursado é estagiário. Logo, nenhum perito é estagiário." A conclusão é válida?</summary>
+<div class="resolucao">
+<p class="passo">"Perito" fica dentro de "concursado". "Estagiário" fica totalmente fora de "concursado".</p>
+<p class="passo">Como "perito" está dentro de "concursado", também fica fora de "estagiário", em qualquer desenho possível.</p>
+<p class="resposta-final">Resposta: válida.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Julgar o argumento pela verdade do conteúdo. Uma conclusão verdadeira no mundo real não torna o argumento válido, e uma premissa absurda não o torna inválido. A pergunta é sempre: "existe desenho (ou valoração) com premissas V e conclusão F?". Se existir, é inválido.</p></div>
 
 <h2>Questões</h2>
 <div class="questao" data-correta="c">
 <p class="enunciado">A negação de "Se o réu é culpado, então ele será preso" é:</p>
 <ol class="alternativas"><li>Se o réu não é culpado, então não será preso.</li><li>O réu não é culpado e será preso.</li><li>O réu é culpado e não será preso.</li><li>Se o réu será preso, então ele é culpado.</li><li>O réu não é culpado ou não será preso.</li></ol>
-<div class="explicacao"><p>Mané: mantém a primeira, nega a segunda, troca por "e".</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> A negação do condicional "se p, então q" é "p e não q". Regra do Mané: MAntém a primeira, Nega a segunda e troca por E.</p>
+<ol class="passos-resolucao">
+<li>p: "o réu é culpado"; q: "ele será preso".</li>
+<li>Mantém p: "O réu é culpado".</li>
+<li>Nega q e troca por "e": "e não será preso".</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> É a inversa (nega as duas e mantém o "se… então"). Não é negação.</li>
+<li><strong>B)</strong> Negou a primeira e manteve a segunda: é o contrário do Mané.</li>
+<li><strong>D)</strong> É a recíproca (inverteu a ordem). Também não nega nada.</li>
+<li><strong>E)</strong> É a negação de "p e q" (De Morgan), não do condicional.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> negação de condicional nunca tem "se… então": procure a alternativa com "e".</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado">Uma proposição equivalente a "Se faço exercícios, então durmo bem" é:</p>
 <ol class="alternativas"><li>Se não durmo bem, então não faço exercícios.</li><li>Se durmo bem, então faço exercícios.</li><li>Se não faço exercícios, então não durmo bem.</li><li>Faço exercícios e não durmo bem.</li><li>Faço exercícios ou durmo bem.</li></ol>
-<div class="explicacao"><p>Contrapositiva: inverte e nega as duas. B é a recíproca, C é a inversa, D é a negação e E não equivale (o certo seria "Não faço exercícios ou durmo bem").</p></div>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> O condicional "se p, então q" tem duas equivalências: a contrapositiva ("se não q, então não p") e o Neymar ("não p ou q").</p>
+<ol class="passos-resolucao">
+<li>p: "faço exercícios"; q: "durmo bem".</li>
+<li>Contrapositiva: inverte a ordem e nega as duas.</li>
+<li>Resultado: "Se não durmo bem, então não faço exercícios".</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> É a recíproca (só inverteu a ordem). Não equivale.</li>
+<li><strong>C)</strong> É a inversa (só negou as duas, sem inverter). Não equivale.</li>
+<li><strong>D)</strong> É a negação (Mané), justamente o oposto.</li>
+<li><strong>E)</strong> Faltou negar a primeira. O Neymar correto seria "Não faço exercícios ou durmo bem".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> "volta negando": inverteu, negue as duas. Se só inverteu ou só negou, é armadilha.</p>
+</div>
 </div>
 <div class="questao" data-correta="d">
 <p class="enunciado">A negação de "Todos os candidatos estudaram" é:</p>
 <ol class="alternativas"><li>Nenhum candidato estudou.</li><li>Todos os candidatos não estudaram.</li><li>Algum candidato estudou.</li><li>Algum candidato não estudou.</li><li>Pelo menos um candidato estudou.</li></ol>
-<div class="explicacao"><p>Todo A é B → Algum A não é B.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> Para negar "todo A é B" basta um contraexemplo: "algum A não é B".</p>
+<ol class="passos-resolucao">
+<li>A frase diz que não há exceção.</li>
+<li>Para torná-la falsa, basta existir um candidato que não estudou.</li>
+<li>Negação: "Algum candidato não estudou".</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> "Nenhum" é o contrário, não a negação. Ambas podem ser falsas ao mesmo tempo (se metade estudou).</li>
+<li><strong>B)</strong> Mesma ideia de "nenhum", só escrita de outro jeito.</li>
+<li><strong>C)</strong> É compatível com "todos estudaram"; não a contradiz.</li>
+<li><strong>E)</strong> Igual à C: "pelo menos um estudou" pode ser verdadeira junto com a original.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> todo ↔ algum… não; nenhum ↔ algum. A negação troca o quantificador e nega o predicado.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado">Sabe-se que "p ou q" é verdadeira e que p é falsa. Então, necessariamente:</p>
 <ol class="alternativas"><li>q é falsa</li><li>q é verdadeira</li><li>"p e q" é verdadeira</li><li>"se q, então p" é verdadeira</li><li>nada se pode concluir sobre q</li></ol>
-<div class="explicacao"><p>Para o "ou" ser V com p F, q tem que ser V. Aí "p e q" é F e "se q, então p" é V → F, ou seja, F.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> A disjunção "p ou q" só é falsa quando as duas são falsas. Com p falsa, q precisa ser verdadeira.</p>
+<ol class="passos-resolucao">
+<li>"p ou q" é V e p é F.</li>
+<li>Se q fosse F, teríamos F ou F = F, contradição. Logo q é V.</li>
+<li>Consequências: "p e q" = F e V = F; "se q, então p" = V → F = F.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Com q falsa, "p ou q" seria falsa, contrariando o enunciado.</li>
+<li><strong>C)</strong> "p e q" exige as duas verdadeiras, e p é falsa.</li>
+<li><strong>D)</strong> "Se q, então p" fica V → F, o único caso falso do condicional ("Vera Fischer").</li>
+<li><strong>E)</strong> Dá para concluir: q é necessariamente verdadeira.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> comece pela informação simples (p é F) e veja o que o conectivo obriga.</p>
+</div>
 </div>
 <div class="questao" data-correta="e">
 <p class="enunciado">Quantas linhas tem a tabela-verdade de uma proposição composta por 4 proposições simples?</p>
 <ol class="alternativas"><li>4</li><li>8</li><li>12</li><li>32</li><li>16</li></ol>
-<div class="explicacao"><p>2⁴ = 16 linhas.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: E.</strong> Cada proposição simples pode ser V ou F. Com n proposições, a tabela-verdade tem 2ⁿ linhas.</p>
+<ol class="passos-resolucao">
+<li>n = 4.</li>
+<li>2⁴ = 2 × 2 × 2 × 2 = 16 linhas.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Respondeu o número de proposições, não de linhas.</li>
+<li><strong>B)</strong> 8 = 2³ é para 3 proposições.</li>
+<li><strong>C)</strong> Multiplicou 4 × 3; não existe essa regra.</li>
+<li><strong>D)</strong> 32 = 2⁵ é para 5 proposições.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> cada proposição nova dobra a tabela: 2, 4, 8, 16, 32.</p>
+</div>
 </div>

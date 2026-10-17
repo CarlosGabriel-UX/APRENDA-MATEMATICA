@@ -96,6 +96,7 @@
   <div class="selos"><span class="selo media">Cai com frequência</span></div>
   <nav class="sumario" data-sumario><strong>Nesta página</strong></nav>
 <h2>Ângulos</h2>
+<p>Quase todas as regras de ângulos saem de dois fatos simples: uma volta completa mede 360° e uma linha reta (meia volta) mede 180°. Ângulos opostos pelo vértice são iguais porque cada um deles, somado ao mesmo vizinho, completa 180°. E a soma dos ângulos internos de um polígono vem do triângulo: escolha um vértice e trace as diagonais que saem dele. O polígono de n lados fica dividido em <strong>n − 2 triângulos</strong>, cada um com 180°.</p>
 <ul>
   <li><strong>Complementares</strong> somam 90°; <strong>suplementares</strong> somam 180°.</li>
   <li><strong>Opostos pelo vértice</strong> são iguais.</li>
@@ -103,14 +104,45 @@
   <li>Soma dos ângulos internos de um polígono de n lados: <span class="m">(n − 2) × 180°</span>. Triângulo: 180°; quadrilátero: 360°.</li>
   <li>Soma dos ângulos <em>externos</em> de qualquer polígono convexo: sempre 360°.</li>
 </ul>
+<figure class="figura"><svg viewBox="0 0 320 160" width="320" role="img" aria-label="Hexágono dividido em 4 triângulos pelas 3 diagonais que saem de um mesmo vértice">
+  <polygon class="f-area f-linha" points="175,80 142.5,136.3 77.5,136.3 45,80 77.5,23.7 142.5,23.7"/>
+  <line class="f-dest" x1="45" y1="80" x2="142.5" y2="23.7"/>
+  <line class="f-dest" x1="45" y1="80" x2="175" y2="80"/>
+  <line class="f-dest" x1="45" y1="80" x2="142.5" y2="136.3"/>
+  <circle class="f-ponto" cx="45" cy="80" r="4.5"/>
+  <text x="84" y="47" class="f-nota">1</text>
+  <text x="117" y="66" class="f-nota">2</text>
+  <text x="117" y="103" class="f-nota">3</text>
+  <text x="84" y="122" class="f-nota">4</text>
+  <text x="196" y="70" class="f-nota">6 − 2 = 4 triângulos</text>
+  <text x="196" y="92" class="f-nota">4 × 180° = 720°</text>
+</svg><figcaption>Do vértice destacado saem 3 diagonais, que dividem o hexágono em 4 triângulos.</figcaption></figure>
 <div class="caixa atalho"><span class="rotulo">Atalho: ângulo externo do triângulo</span>
 <p>O ângulo externo é igual à soma dos dois internos que não são vizinhos dele. Evita calcular o terceiro ângulo.</p></div>
 <div class="caixa atalho"><span class="rotulo">Atalho: polígono regular</span>
 <p>Cada ângulo externo mede 360°/n. O interno é 180° menos isso. Hexágono regular: externo 60°, interno 120°.</p>
 <p>Número de diagonais: <span class="m">n(n − 3)/2</span>. Hexágono: 6 × 3 / 2 = 9.</p></div>
+<details class="exemplo"><summary>Dois ângulos são suplementares, e um deles é igual ao quádruplo do outro, menos 30°. Quanto mede o maior?</summary>
+<div class="resolucao">
+<p class="passo">Menor x, maior 4x − 30. Suplementares: x + 4x − 30 = 180 → 5x = 210 → x = 42.</p>
+<p class="passo">Maior: 4 × 42 − 30 = 138. Conferindo: 42 + 138 = 180.</p>
+<p class="resposta-final">Resposta: 138°.</p></div></details>
+<details class="exemplo"><summary>Cada ângulo interno de um polígono regular mede 140°. Quantos lados e quantas diagonais ele tem?</summary>
+<div class="resolucao">
+<p class="passo">Externo = 180° − 140° = 40°. Como os externos somam 360°: n = 360 / 40 = 9 lados.</p>
+<p class="passo">Diagonais: 9 × (9 − 3) / 2 = 9 × 6 / 2 = 27.</p>
+<p class="resposta-final">Resposta: 9 lados (eneágono) e 27 diagonais.</p></div></details>
+<details class="exemplo"><summary>Duas retas paralelas são cortadas por uma transversal, formando dois ângulos colaterais internos que medem 3x + 10° e 2x + 20°. Quanto mede cada um?</summary>
+<div class="resolucao">
+<p class="passo">Colaterais somam 180°: 3x + 10 + 2x + 20 = 180 → 5x = 150 → x = 30.</p>
+<p class="passo">3 × 30 + 10 = 100° e 2 × 30 + 20 = 80°. Soma 180°.</p>
+<p class="resposta-final">Resposta: 100° e 80°.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Trocar complementar por suplementar. Complementares fecham um canto reto (90°); suplementares fecham uma linha reta (180°). Em "o complemento de 50°" a resposta é 40°; "o suplemento de 50°" é 130°.</p></div>
 
 <h2>Triângulos</h2>
 <h3>Teorema de Pitágoras</h3>
+<p>Pitágoras diz que, num triângulo retângulo, o quadrado construído sobre a hipotenusa tem a mesma área que os quadrados dos dois catetos juntos. Na prática, ele serve para achar um lado quando você conhece os outros dois, e aparece em escadas apoiadas em muros, diagonais de terrenos, rampas e cabos esticados: sempre que houver um ângulo reto escondido no problema.</p>
 <p>Num triângulo retângulo, com hipotenusa a (lado oposto ao ângulo reto) e catetos b e c:</p>
 <span class="formula" data-tex="a^2 = b^2 + c^2">a² = b² + c²</span>
 <figure class="figura">
@@ -127,21 +159,52 @@
 </figure>
 <div class="caixa atalho"><span class="rotulo">Atalho: ternas pitagóricas</span>
 <p>Decore estas e seus múltiplos: <strong>3-4-5</strong>, <strong>5-12-13</strong>, <strong>8-15-17</strong>, <strong>7-24-25</strong>. Catetos 9 e 12? É 3-4-5 × 3: hipotenusa 15, sem conta.</p></div>
+<details class="exemplo"><summary>Um cabo de aço vai do topo de uma torre de 24 m até um ponto do chão a 7 m da base da torre. Qual o comprimento do cabo?</summary>
+<div class="resolucao">
+<p class="passo">Torre e chão formam o ângulo reto; o cabo é a hipotenusa. a² = 24² + 7² = 576 + 49 = 625.</p>
+<p class="passo">a = √625 = 25. É a terna 7-24-25.</p>
+<p class="resposta-final">Resposta: 25 m.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Somar os quadrados quando o desconhecido é um cateto. Se a hipotenusa mede 13 e um cateto 5, o outro é √(169 − 25) = 12, e não √(169 + 25). Antes de aplicar a fórmula, identifique quem é a hipotenusa: o lado de frente para o ângulo reto, sempre o maior.</p></div>
 <h3>Semelhança</h3>
+<p>Triângulos semelhantes têm o mesmo formato e tamanhos diferentes, como uma foto ampliada. Na ampliação, todas as medidas lineares são multiplicadas pelo mesmo número k. A área, que é comprimento vezes comprimento, fica multiplicada por k × k; o volume, por k × k × k.</p>
 <p>Triângulos com os mesmos ângulos são semelhantes: os lados são proporcionais. Se a razão entre os lados é k, a razão entre as áreas é <strong>k²</strong> e entre volumes (sólidos) é <strong>k³</strong>.</p>
 <details class="exemplo"><summary>Um poste projeta uma sombra de 6 m no mesmo momento em que uma pessoa de 1,80 m projeta sombra de 1,20 m. Qual a altura do poste?</summary>
 <div class="resolucao">
 <p class="passo">Os raios de sol formam triângulos semelhantes: altura/sombra é igual. 1,80/1,20 = 1,5.</p>
 <p class="passo">Poste: 6 × 1,5 = 9.</p>
 <p class="resposta-final">Resposta: 9 m.</p></div></details>
+<details class="exemplo"><summary>A maquete de um prédio foi feita na escala 1:50. O piso real de um salão tem 200 m². Qual a área desse piso na maquete, em cm²?</summary>
+<div class="resolucao">
+<p class="passo">Razão entre os comprimentos: k = 1/50. Razão entre as áreas: k² = 1/2.500.</p>
+<p class="passo">200 m² ÷ 2.500 = 0,08 m². Como 1 m² = 10.000 cm²: 0,08 × 10.000 = 800 cm².</p>
+<p class="resposta-final">Resposta: 800 cm² (quem divide só por 50 encontra 4 m², bem errado).</p></div></details>
 <h3>Triângulos especiais</h3>
 <ul>
   <li><strong>Equilátero</strong> de lado L: altura <span class="m">L√3/2</span>, área <span class="m">L²√3/4</span>.</li>
   <li><strong>Diagonal do quadrado</strong> de lado L: <span class="m">L√2</span>.</li>
   <li>Num triângulo 30°-60°-90°, os lados são proporcionais a 1, √3 e 2.</li>
 </ul>
+<details class="exemplo"><summary>Um triângulo equilátero tem perímetro de 18 cm. Quais são sua altura e sua área? (use √3 ≈ 1,73)</summary>
+<div class="resolucao">
+<p class="passo">Lado: 18 ÷ 3 = 6 cm. Altura: 6√3/2 = 3√3 ≈ 3 × 1,73 = 5,19 cm.</p>
+<p class="passo">Área: 6² × √3 / 4 = 36√3/4 = 9√3 ≈ 15,57 cm². Conferindo por base × altura / 2: 6 × 3√3 / 2 = 9√3.</p>
+<p class="resposta-final">Resposta: altura 3√3 ≈ 5,19 cm; área 9√3 ≈ 15,57 cm².</p></div></details>
+<h3>Condição de existência</h3>
+<p>Três medidas só formam um triângulo se <strong>cada lado for menor que a soma dos outros dois</strong>. Basta testar o maior lado. A ideia: o caminho em linha reta entre dois pontos é sempre o mais curto; se o maior lado fosse igual ou maior que a soma dos outros, os dois menores "não alcançariam" para fechar a figura. Lados 3, 4 e 8 não formam triângulo (8 &gt; 3 + 4); lados 3, 4 e 6 formam (6 &lt; 7).</p>
 
 <h2>Áreas e perímetros</h2>
+<p>Perímetro é o <strong>contorno</strong>: quanto de cerca, rodapé ou moldura você precisa. Área é a <strong>superfície</strong>: quantos quadradinhos de 1 × 1 cabem dentro da figura, por isso a unidade vem ao quadrado (m², cm²). As fórmulas de área saem quase todas do retângulo. O paralelogramo é um retângulo com um pedaço cortado de um lado e colado do outro (base × altura). O triângulo é metade de um paralelogramo (por isso o ÷ 2). O trapézio é a média das bases vezes a altura.</p>
+<figure class="figura"><svg viewBox="0 0 320 160" width="320" role="img" aria-label="Triângulo dentro de um retângulo de mesma base e mesma altura, ocupando metade dele">
+  <rect class="f-linha f-tracejado" x="40" y="30" width="160" height="100"/>
+  <polygon class="f-area f-linha" points="40,130 200,130 130,30"/>
+  <line class="f-dest f-tracejado" x1="130" y1="30" x2="130" y2="130"/>
+  <text x="102" y="150" class="f-nota">base</text>
+  <text x="136" y="96" class="f-nota">altura</text>
+  <text x="212" y="70" class="f-nota">o triângulo é</text>
+  <text x="212" y="88" class="f-nota">metade do</text>
+  <text x="212" y="106" class="f-nota">retângulo</text>
+</svg><figcaption>A altura do triângulo forma ângulo reto com a base; não é o lado inclinado.</figcaption></figure>
 <table>
 <tr><th>Figura</th><th>Área</th><th>Perímetro</th></tr>
 <tr><td>Quadrado (lado L)</td><td>L²</td><td>4L</td></tr>
@@ -177,8 +240,26 @@
 <p class="passo">Raio do círculo = metade do lado = 5. Área do círculo: 3,14 × 25 = 78,5.</p>
 <p class="passo">Área do quadrado: 100. Diferença: 21,5.</p>
 <p class="resposta-final">Resposta: 21,5 cm².</p></div></details>
+<details class="exemplo"><summary>Um terreno tem forma de trapézio, com bases de 30 m e 20 m e altura de 12 m. Se o metro quadrado custa R$ 150, qual o preço do terreno?</summary>
+<div class="resolucao">
+<p class="passo">Área: (30 + 20) × 12 / 2 = 50 × 6 = 300 m².</p>
+<p class="passo">Preço: 300 × 150 = 45.000.</p>
+<p class="resposta-final">Resposta: R$ 45.000.</p></div></details>
+<details class="exemplo"><summary>Uma praça circular de 20 m de diâmetro vai receber grama, exceto um canteiro quadrado central de 4 m de lado. Quantos m² de grama serão necessários? (use π = 3,14)</summary>
+<div class="resolucao">
+<p class="passo">Raio = 20 ÷ 2 = 10 m. Área do círculo: 3,14 × 10² = 314 m².</p>
+<p class="passo">Canteiro: 4² = 16 m². Grama: 314 − 16 = 298 m².</p>
+<p class="resposta-final">Resposta: 298 m².</p></div></details>
+<details class="exemplo"><summary>Um terreno retangular de 25 m por 40 m será cercado com 3 voltas de arame. Quantos metros de arame serão usados?</summary>
+<div class="resolucao">
+<p class="passo">Cercar é contorno, ou seja, perímetro: 2 × (25 + 40) = 130 m.</p>
+<p class="passo">Três voltas: 3 × 130 = 390 m.</p>
+<p class="resposta-final">Resposta: 390 m (quem calcula a área, 1.000 m², erra a grandeza).</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Usar o lado inclinado do triângulo ou do paralelogramo como altura. A altura é a distância <strong>perpendicular</strong> entre a base e o vértice (ou o lado) oposto, como a linha tracejada da figura acima.</p></div>
 
 <h2>Sólidos: volumes</h2>
+<p>Volume mede quanto <strong>cabe dentro</strong> de um sólido, em cubinhos de 1 × 1 × 1. Para prismas e cilindros, imagine o sólido como uma pilha de fatias iguais à base: a área da base diz quanto cabe em cada fatia, e a altura diz quantas fatias há. Por isso o volume é área da base × altura. Pirâmides e cones afinam até a ponta e ocupam exatamente um terço do prisma (ou cilindro) correspondente.</p>
 <table>
 <tr><th>Sólido</th><th>Volume</th></tr>
 <tr><td>Cubo (aresta a)</td><td>a³</td></tr>
@@ -191,32 +272,118 @@
 <p>1 dm³ = 1 litro, e 1 m³ = 1.000 litros. Uma caixa de 2 m × 1,5 m × 1 m comporta 3 m³ = 3.000 L.</p></div>
 <div class="caixa dica"><span class="rotulo">Dica: "pontudo" divide por 3</span>
 <p>Pirâmide e cone são sempre um terço do prisma ou cilindro de mesma base e mesma altura.</p></div>
+<details class="exemplo"><summary>Uma caixa-d'água cilíndrica tem raio de 1 m e altura de 2 m. Quantos litros ela comporta? (use π = 3,14)</summary>
+<div class="resolucao">
+<p class="passo">V = π r² h = 3,14 × 1² × 2 = 6,28 m³.</p>
+<p class="passo">Em litros: 6,28 × 1.000 = 6.280 L.</p>
+<p class="resposta-final">Resposta: 6.280 litros.</p></div></details>
+<details class="exemplo"><summary>Um reservatório tem 5 m de comprimento, 3 m de largura e 2 m de altura. Uma bomba o enche à razão de 2.500 litros por hora. Em quanto tempo ele fica cheio, partindo de vazio?</summary>
+<div class="resolucao">
+<p class="passo">V = 5 × 3 × 2 = 30 m³ = 30.000 L.</p>
+<p class="passo">Tempo: 30.000 ÷ 2.500 = 12 horas.</p>
+<p class="resposta-final">Resposta: 12 horas.</p></div></details>
+<details class="exemplo"><summary>Um cone e um cilindro têm a mesma base e a mesma altura. O cilindro comporta 900 cm³. Quanto comporta o cone?</summary>
+<div class="resolucao">
+<p class="passo">O cone é um terço do cilindro correspondente: 900 ÷ 3 = 300.</p>
+<p class="resposta-final">Resposta: 300 cm³ (ou 300 mL, pois 1 cm³ = 1 mL).</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Misturar unidades na mesma conta (comprimento em metros, profundidade em centímetros) ou converter m³ em litros multiplicando por 100. Passe todas as medidas para a mesma unidade antes de multiplicar e lembre: 1 m³ = 1.000 L e 1 cm³ = 1 mL.</p></div>
 
 <h2>Questões</h2>
 <div class="questao" data-correta="b">
 <p class="enunciado">Uma escada de 10 m está apoiada num muro, com o pé a 6 m da base do muro. A que altura a escada toca o muro?</p>
 <ol class="alternativas"><li>4 m</li><li>8 m</li><li>9 m</li><li>12 m</li><li>16 m</li></ol>
-<div class="explicacao"><p>É o triângulo 6-8-10 (3-4-5 × 2). Altura 8 m.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> A escada, o muro e o chão formam um triângulo retângulo: a escada é a hipotenusa. Use Pitágoras ou reconheça a terna pitagórica.</p>
+<ol class="passos-resolucao">
+<li>Hipotenusa 10 e cateto 6: h² + 6² = 10².</li>
+<li>h² = 100 − 36 = 64, então h = 8 m.</li>
+<li>É a terna 3-4-5 multiplicada por 2: 6-8-10.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Subtraiu os lados (10 − 6 = 4). Pitágoras trabalha com os quadrados.</li>
+<li><strong>C)</strong> Confira: 9² + 6² = 81 + 36 = 117, diferente de 100.</li>
+<li><strong>D)</strong> Maior que a própria escada. Um cateto nunca passa da hipotenusa.</li>
+<li><strong>E)</strong> Somou 10 + 6. Também maior que a escada, impossível.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> ternas pitagóricas: 3-4-5 e seus múltiplos (6-8-10, 9-12-15) resolvem na hora.</p>
+</div>
 </div>
 <div class="questao" data-correta="d">
 <p class="enunciado">Quanto mede cada ângulo interno de um octógono regular?</p>
 <ol class="alternativas"><li>108°</li><li>120°</li><li>128°</li><li>135°</li><li>140°</li></ol>
-<div class="explicacao"><p>Externo: 360°/8 = 45°. Interno: 180° − 45° = 135°.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> Em polígono regular, todos os ângulos externos são iguais e somam 360°. O interno é 180° menos o externo.</p>
+<ol class="passos-resolucao">
+<li>Externo: 360° ÷ 8 = 45°.</li>
+<li>Interno: 180° − 45° = 135°.</li>
+<li>Pela soma: Si = (8 − 2) × 180° = 1.080°, e 1.080° ÷ 8 = 135°.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> 108° é o ângulo interno do pentágono regular.</li>
+<li><strong>B)</strong> 120° é o do hexágono regular.</li>
+<li><strong>C)</strong> Cerca de 128,6° é o do heptágono regular (7 lados).</li>
+<li><strong>E)</strong> 140° é o do eneágono regular (9 lados).</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> externo = 360°/n é a conta mais curta; o interno sai por 180° − externo.</p>
+</div>
 </div>
 <div class="questao" data-correta="c">
 <p class="enunciado">Uma piscina tem 8 m de comprimento, 4 m de largura e 1,5 m de profundidade. Quantos litros cabem nela?</p>
 <ol class="alternativas"><li>480</li><li>4.800</li><li>48.000</li><li>480.000</li><li>4.800.000</li></ol>
-<div class="explicacao"><p>8 × 4 × 1,5 = 48 m³ = 48.000 L.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Volume do paralelepípedo = comprimento × largura × profundidade. Depois converta: 1 m³ = 1.000 L.</p>
+<ol class="passos-resolucao">
+<li>8 × 4 = 32 m² de fundo.</li>
+<li>32 × 1,5 = 48 m³.</li>
+<li>48 × 1.000 = 48.000 L.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Multiplicou 48 por 10. A conversão correta é 1 m³ = 1.000 L.</li>
+<li><strong>B)</strong> Multiplicou por 100 em vez de 1.000.</li>
+<li><strong>D)</strong> Multiplicou por 10.000; um zero a mais.</li>
+<li><strong>E)</strong> Multiplicou por 100.000; dois zeros a mais.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> 1 dm³ = 1 L e 1 m³ = 1.000 L. Se calcular em decímetros (80 × 40 × 15 = 48.000 dm³), já sai em litros.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado">Se o raio de um círculo aumenta 10%, sua área aumenta:</p>
 <ol class="alternativas"><li>21%</li><li>10%</li><li>20%</li><li>11%</li><li>100%</li></ol>
-<div class="explicacao"><p>Área depende de r². Fator: 1,1² = 1,21 → aumento de 21%.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> Área do círculo é πr²: depende do quadrado do raio. Então o fator de aumento da área é o quadrado do fator do raio.</p>
+<ol class="passos-resolucao">
+<li>Raio aumenta 10%: fator 1,1.</li>
+<li>Área: fator 1,1² = 1,21.</li>
+<li>1,21 significa aumento de 21%.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> Supôs que a área cresce na mesma proporção do raio. Isso valeria para o perímetro (2πr), não para a área.</li>
+<li><strong>C)</strong> Dobrou os 10%, esquecendo o termo 10% × 10% = 1%.</li>
+<li><strong>D)</strong> Calculou 1,1² como 1,11. Na verdade 1,1 × 1,1 = 1,21.</li>
+<li><strong>E)</strong> 100% seria se a área dobrasse, o que exigiria raio cerca de 41% maior.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> aumentos sucessivos: 10% "duas vezes" = 10 + 10 + (10 × 10)/100 = 21%.</p>
+</div>
 </div>
 <div class="questao" data-correta="e">
 <p class="enunciado">Um trapézio tem bases de 12 cm e 8 cm e altura de 5 cm. Sua área é:</p>
 <ol class="alternativas"><li>40 cm²</li><li>60 cm²</li><li>100 cm²</li><li>480 cm²</li><li>50 cm²</li></ol>
-<div class="explicacao"><p>(12 + 8) × 5 / 2 = 50 cm².</p></div>
+<div class="explicacao">
+<p><strong>Resposta: E.</strong> Área do trapézio: (base maior + base menor) × altura ÷ 2.</p>
+<ol class="passos-resolucao">
+<li>Some as bases: 12 + 8 = 20 cm.</li>
+<li>Multiplique pela altura: 20 × 5 = 100.</li>
+<li>Divida por 2: 50 cm².</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Usou só a base menor, como num retângulo: 8 × 5 = 40.</li>
+<li><strong>B)</strong> Usou só a base maior: 12 × 5 = 60.</li>
+<li><strong>C)</strong> Esqueceu de dividir por 2.</li>
+<li><strong>D)</strong> Multiplicou as três medidas (12 × 8 × 5). Isso nem é unidade de área.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> o trapézio equivale a um retângulo com a média das bases: (12 + 8)/2 = 10, e 10 × 5 = 50.</p>
+</div>
 </div>
   <div class="rodape-caderno">
     <a class="botao secundario" href="sequencias.html">← Sequências, PA e PG</a>

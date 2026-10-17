@@ -4,27 +4,85 @@
 <pre><code>-rwxr-x--- 1 ana pericia 2048 mar 10 14:22 coleta.sh</code></pre>
 <p class="enunciado">Com base nessa saída, julgue o item: um usuário do grupo pericia que não seja ana pode ler e executar coleta.sh, mas não alterá-lo; os demais usuários não têm nenhum acesso, e a permissão equivale, em octal, a 750.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Depois do tipo (-), vêm três trincas: dono rwx = 4+2+1 = 7, grupo r-x = 4+1 = 5, outros --- = 0. Logo, 750: o grupo lê e executa, sem escrever, e os outros nada podem.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Na saída do ls -l, depois do caractere de tipo vêm três trincas de permissão (dono, grupo, outros), e cada letra tem um peso: r = 4, w = 2, x = 1.</p>
+<ol class="passos-resolucao">
+<li>O primeiro caractere (-) indica arquivo comum. Sobram rwx | r-x | ---.</li>
+<li>Dono (ana): rwx = 4 + 2 + 1 = 7. Pode ler, alterar e executar.</li>
+<li>Grupo (pericia): r-x = 4 + 0 + 1 = 5. Lê e executa, mas não escreve, ou seja, não altera o arquivo.</li>
+<li>Outros: --- = 0. Nenhum acesso. Juntando as trincas: 750, exatamente como o item afirma.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma trocar a ordem das trincas (dizer que r-x é do dono ou dos outros) ou somar errado os pesos, por exemplo afirmar 740 ou 755. Também é comum confundir as colunas "ana" (dono) e "pericia" (grupo).</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> cada trinca vira um algarismo: some 4 (r), 2 (w) e 1 (x) das letras presentes; o hífen vale zero.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-informatica-02">
 <p class="enunciado">No Windows 10 e no Windows 11, um arquivo excluído com a tecla Delete de um pen drive conectado pela porta USB é enviado para a Lixeira do computador, de onde pode ser restaurado normalmente.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Em unidades removíveis como pen drives, o Windows não usa a Lixeira: pede confirmação e exclui o arquivo de forma definitiva. A Lixeira atende, em regra, às unidades internas.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A Lixeira do Windows atende, em regra, às unidades internas do computador. Em mídias removíveis, como pen drive e cartão de memória, a exclusão é definitiva.</p>
+<ol class="passos-resolucao">
+<li>Ao pressionar Delete em um arquivo do pen drive, o Windows exibe a pergunta "Deseja excluir este arquivo permanentemente?".</li>
+<li>Confirmada a exclusão, o arquivo não vai para a Lixeira, pois a Lixeira do computador não cobre a unidade removível.</li>
+<li>Portanto, não há como "restaurar normalmente" pela Lixeira; só restaria tentar ferramentas de recuperação de dados, sem garantia.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item troca o comportamento das unidades internas (Delete envia para a Lixeira) pelo das removíveis. Ficaria certo assim: "é excluído permanentemente, sem passar pela Lixeira".</li>
+<li><strong>Onde está a pegadinha:</strong> outro caso de exclusão definitiva cobrado em prova: Shift + Delete, mesmo em disco interno, apaga sem passar pela Lixeira.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> pen drive, cartão de memória, unidade de rede e Shift + Delete: nada vai para a Lixeira.</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-informatica-03">
 <p class="enunciado">No modelo de computação em nuvem IaaS, cabe ao cliente administrar o sistema operacional e as aplicações das máquinas virtuais contratadas, enquanto, no modelo SaaS, o provedor gerencia toda a pilha, inclusive a própria aplicação usada pelo cliente.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>IaaS entrega infraestrutura (máquinas, rede, armazenamento) e o cliente cuida do sistema operacional para cima. No SaaS, o cliente só usa o software pronto; tudo abaixo dele é do provedor. O PaaS fica no meio.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Os modelos de serviço em nuvem dividem a responsabilidade em camadas: quanto mais "pronto" o serviço, menos o cliente administra.</p>
+<ol class="passos-resolucao">
+<li>IaaS (infraestrutura como serviço): o provedor entrega servidores virtuais, rede e armazenamento. O cliente instala e cuida do sistema operacional, do middleware, das aplicações e dos dados.</li>
+<li>PaaS (plataforma como serviço): o provedor também gerencia o sistema operacional e o ambiente de execução; o cliente só implanta o código.</li>
+<li>SaaS (software como serviço): o provedor gerencia toda a pilha, inclusive a aplicação. O cliente apenas usa o software (ex.: webmail, Microsoft 365) e configura o que lhe cabe.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma inverter os papéis, dizendo que no IaaS o provedor administra o sistema operacional, ou atribuindo ao SaaS uma responsabilidade do cliente pela aplicação. Também troca exemplos, chamando de SaaS um serviço de máquinas virtuais.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> IaaS = você recebe a máquina; PaaS = você recebe a plataforma para programar; SaaS = você recebe o programa pronto.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-informatica-04">
 <p class="enunciado">O cavalo de troia caracteriza-se por se replicar automaticamente pela rede, explorando vulnerabilidades para infectar outros computadores sem nenhuma interação do usuário.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Quem se propaga sozinho pela rede é o worm. O cavalo de troia se disfarça de programa legítimo e depende de o usuário executá-lo; ele não se autorreplica.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A descrição do item é a do worm. O cavalo de troia (trojan) se disfarça de programa legítimo e depende de o usuário executá-lo.</p>
+<ol class="passos-resolucao">
+<li>Worm: programa autônomo que se replica sozinho pela rede, explorando vulnerabilidades, sem precisar de ação do usuário nem de hospedeiro.</li>
+<li>Cavalo de troia: chega como algo útil (jogo, crack, anexo) e executa funções maliciosas escondidas, como abrir backdoor ou roubar dados, quando o usuário o roda.</li>
+<li>O trojan não se autorreplica; ele se espalha porque as pessoas o compartilham e executam.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item atribui ao cavalo de troia a característica do worm. Ficaria certo trocando "cavalo de troia" por "worm".</li>
+<li><strong>Onde está a pegadinha:</strong> outra troca frequente: vírus precisa de um arquivo hospedeiro e da execução desse arquivo; worm não precisa.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> "se propaga sozinho pela rede" é palavra-chave de worm; "disfarçado de programa legítimo" é de cavalo de troia.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-informatica-05">
 <p class="enunciado">Ao utilizar a janela de navegação anônima ou privativa de navegadores como Chrome, Firefox e Edge, o usuário impede que o provedor de internet e os sites visitados identifiquem o seu endereço IP.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A navegação privativa só deixa de gravar, no próprio computador, histórico, cookies e dados de formulário ao fechar a janela. O IP continua visível para o provedor, para a rede e para os sites.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A navegação anônima (privativa) protege apenas contra quem usa o mesmo computador: ao fechar a janela, o navegador descarta histórico, cookies, cache e dados de formulário daquela sessão.</p>
+<ol class="passos-resolucao">
+<li>O endereço IP é atribuído pela rede e enviado em todo pacote; o navegador não tem como escondê-lo só por estar no modo privativo.</li>
+<li>Logo, o provedor de internet, o administrador da rede (empresa, escola) e os sites visitados continuam vendo o IP e podem registrar o acesso.</li>
+<li>Para ocultar o IP dos sites seria preciso outra ferramenta, como VPN, proxy ou a rede Tor, e mesmo assim o provedor vê que há conexão com esse serviço.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item atribui ao modo anônimo uma proteção de rede que ele não dá. Ficaria certo assim: "impede que o histórico e os cookies da sessão fiquem gravados no computador".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> modo anônimo esconde do computador, não da rede.</p>
+</div>
 </div>
 </section>
 
@@ -32,29 +90,86 @@
 <div class="questao" data-correta="b" data-id="c-logica-01">
 <p class="enunciado">A negação da proposição "Se o perito encontrou o arquivo, então o laudo ficará pronto" é "Se o perito não encontrou o arquivo, então o laudo não ficará pronto".</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A negação de P → Q é P ∧ ~Q: "O perito encontrou o arquivo e o laudo não ficará pronto". A frase do item é a inversa (~P → ~Q), que não é negação nem equivalência.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A negação de uma condicional P → Q é a conjunção P ∧ ~Q: mantém a primeira parte e nega a segunda, ligando com "e".</p>
+<ol class="passos-resolucao">
+<li>P: "o perito encontrou o arquivo"; Q: "o laudo ficará pronto". A proposição é P → Q.</li>
+<li>A condicional só é falsa quando P é V e Q é F. Negá-la é afirmar exatamente esse caso: P ∧ ~Q.</li>
+<li>Negação correta: "O perito encontrou o arquivo e o laudo não ficará pronto".</li>
+<li>A frase do item tem a forma ~P → ~Q (a inversa), que não é negação nem equivalência de P → Q.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca troca a negação pela inversa ~P → ~Q. Lembre que a negação de "se... então" nunca é outra condicional: ela vira uma frase com "e".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> MA NÉ: Mantém a primeira, E, Nega a segunda.</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-logica-02">
 <p class="enunciado">A proposição "Se houve fraude, então houve prejuízo ao erário" é logicamente equivalente a "Não houve fraude ou houve prejuízo ao erário".</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Equivalência clássica: P → Q ≡ ~P ∨ Q. Troca-se o "se... então" por "ou", negando apenas a primeira parte.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> É uma das equivalências mais cobradas: P → Q ≡ ~P ∨ Q.</p>
+<ol class="passos-resolucao">
+<li>P: "houve fraude"; Q: "houve prejuízo ao erário". A frase original é P → Q.</li>
+<li>P → Q só é falsa quando P = V e Q = F. A disjunção ~P ∨ Q só é falsa quando ~P = F e Q = F, isto é, P = V e Q = F. Mesmo único caso falso, logo são equivalentes.</li>
+<li>Tradução: "Não houve fraude ou houve prejuízo ao erário", exatamente o texto do item.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma escrever "Houve fraude ou não houve prejuízo" (negando a parte errada) ou "Se não houve prejuízo, então não houve fraude" trocado por "Se não houve fraude, então não houve prejuízo". A contrapositiva certa é ~Q → ~P.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> NEYMAR: Nega a primeira, Ou, Mantém o Resto.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-logica-03">
 <p class="enunciado">Considere a tabela-verdade a seguir, em que P e Q são proposições simples e X é uma proposição composta formada apenas por P e Q.</p>
 <table><tr><th>P</th><th>Q</th><th>X</th></tr><tr><td>V</td><td>V</td><td>V</td></tr><tr><td>V</td><td>F</td><td>F</td></tr><tr><td>F</td><td>V</td><td>F</td></tr><tr><td>F</td><td>F</td><td>V</td></tr></table>
 <p class="enunciado">Nessa situação, X pode ser a proposição "P ou Q, mas não ambos" (disjunção exclusiva).</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>X é verdadeira quando P e Q têm o mesmo valor: é a bicondicional P ↔ Q. A disjunção exclusiva é o oposto, com a coluna F, V, V, F.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A coluna X é V, F, F, V: verdadeira quando P e Q têm o mesmo valor. Isso é a bicondicional P ↔ Q, e não a disjunção exclusiva.</p>
+<ol class="passos-resolucao">
+<li>Linhas com valores iguais (V,V) e (F,F): X = V. Linhas com valores diferentes (V,F) e (F,V): X = F.</li>
+<li>P ↔ Q ("P se e somente se Q") é V exatamente quando P e Q coincidem. Bate com a coluna X.</li>
+<li>A disjunção exclusiva P ⊻ Q ("ou P ou Q, mas não ambos") é V quando os valores diferem: coluna F, V, V, F, o oposto de X.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item troca a bicondicional pela disjunção exclusiva, que é justamente a sua negação: ~(P ↔ Q) ≡ P ⊻ Q. Ficaria certo dizendo "X pode ser P se e somente se Q".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> iguais dão V: bicondicional. Diferentes dão V: "ou... ou" exclusivo.</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-logica-04">
 <p class="enunciado">A negação da proposição "Algum agente não usa colete balístico" é "Todo agente usa colete balístico".</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Negar "algum A não é B" é afirmar "todo A é B". Para conferir: se todos usam, fica falso que existe alguém sem colete, e vice-versa.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> A negação de "algum A não é B" é "todo A é B". Quantificadores se negam aos pares: troca-se "algum" por "todo" e nega-se o predicado.</p>
+<ol class="passos-resolucao">
+<li>"Algum agente não usa colete" afirma que existe pelo menos um agente sem colete.</li>
+<li>Para essa afirmação ser falsa, não pode existir nenhum agente sem colete, ou seja, todos usam.</li>
+<li>Logo, a negação é "Todo agente usa colete balístico". Conferindo: as duas frases nunca são verdadeiras juntas nem falsas juntas.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma propor "Nenhum agente usa colete" ou "Algum agente usa colete" como negação, o que é errado. A primeira é a negação de "algum agente usa"; a segunda pode ser verdadeira junto com a original.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> pares de negação: "todo é" ↔ "algum não é"; "nenhum é" ↔ "algum é".</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-logica-05">
 <p class="enunciado">Considere a proposição (P ∧ Q) → (R ∨ S ∨ T), em que P, Q, R, S e T são proposições simples. A tabela-verdade dessa proposição tem 32 linhas, e ela é falsa em exatamente uma delas.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>São 5 proposições simples: 2⁵ = 32 linhas. A condicional só é falsa com antecedente V e consequente F, ou seja, P = Q = V e R = S = T = F: uma única combinação.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> O número de linhas de uma tabela-verdade é 2ⁿ, em que n é o número de proposições simples, e a condicional só é falsa no caso V → F.</p>
+<ol class="passos-resolucao">
+<li>Proposições simples distintas: P, Q, R, S e T, ou seja, n = 5. Linhas: 2⁵ = 32.</li>
+<li>Para a condicional ser falsa, o antecedente P ∧ Q deve ser V: exige P = V e Q = V (uma única combinação).</li>
+<li>O consequente R ∨ S ∨ T deve ser F: a disjunção só é falsa com todas falsas, R = S = T = F (uma única combinação).</li>
+<li>Combinação falsa: 1 × 1 = 1 linha. Nas outras 31 linhas a proposição é verdadeira.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma mudar o número de linhas (dizendo 25 = 5², ou 10 = 2 × 5) ou o número de linhas falsas, trocando a disjunção por conjunção no consequente, o que aumentaria os casos falsos (seriam 7).</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> condicional falsa = "Vera Fischer": antecedente V, consequente F; conte de quantas formas cada parte consegue esse valor e multiplique.</p>
+</div>
 </div>
 </section>
 
@@ -64,7 +179,19 @@
 <table><tr><th>Celulares apreendidos</th><th>Número de operações</th></tr><tr><td>0</td><td>2</td></tr><tr><td>1</td><td>5</td></tr><tr><td>2</td><td>8</td></tr><tr><td>3</td><td>3</td></tr><tr><td>4</td><td>2</td></tr></table>
 <p class="enunciado">Com base nessa tabela, a média de celulares apreendidos por operação é inferior à mediana, e a moda é igual à mediana.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Média = (0×2 + 1×5 + 2×8 + 3×3 + 4×2) ÷ 20 = 38 ÷ 20 = 1,9. Mediana: 10º e 11º valores; as frequências acumuladas são 2, 7, 15, então ambos valem 2. Moda: 2 (frequência 8). Assim, 1,9 &lt; 2 = 2.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Em tabela de frequências, a média pondera cada valor pela sua frequência, a mediana sai da frequência acumulada e a moda é o valor de maior frequência.</p>
+<ol class="passos-resolucao">
+<li>Média: (0×2 + 1×5 + 2×8 + 3×3 + 4×2) ÷ 20 = (0 + 5 + 16 + 9 + 8) ÷ 20 = 38 ÷ 20 = 1,9.</li>
+<li>Mediana: com n = 20 (par), é a média do 10º e do 11º valores. Frequências acumuladas: 2 (valor 0), 7 (valor 1), 15 (valor 2). As posições 8 a 15 valem 2, então o 10º e o 11º são 2. Mediana = 2.</li>
+<li>Moda: maior frequência é 8, no valor 2. Moda = 2.</li>
+<li>Comparando: média 1,9 &lt; mediana 2 e moda 2 = mediana 2. As duas afirmações são verdadeiras.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma dar como moda a maior frequência (8) em vez do valor (2), ou calcular a média dividindo por 5 linhas em vez de 20 operações.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> para a mediana, divida n por 2 e procure em qual valor a frequência acumulada ultrapassa essa posição.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-estatistica-02">
 <p class="enunciado">O gráfico a seguir mostra a quantidade de chamadas atendidas por uma central de denúncias em cada dia útil de certa semana.</p>
@@ -98,24 +225,72 @@
 </svg><figcaption>Figura: chamadas atendidas por dia</figcaption></figure>
 <p class="enunciado">Com base nesse gráfico, a média diária de chamadas atendidas na semana é superior à mediana.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Total = 12 + 15 + 9 + 15 + 19 = 70; média = 70 ÷ 5 = 14. Em ordem: 9, 12, 15, 15, 19; a mediana é o valor do meio, 15. Logo, a média (14) é menor que a mediana (15).</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A média (14) é menor que a mediana (15), e não superior.</p>
+<ol class="passos-resolucao">
+<li>Valores lidos no gráfico: 12, 15, 9, 15 e 19.</li>
+<li>Média: (12 + 15 + 9 + 15 + 19) ÷ 5 = 70 ÷ 5 = 14.</li>
+<li>Mediana: em ordem crescente, 9, 12, 15, 15, 19. Com 5 valores, a mediana é o 3º: 15.</li>
+<li>Comparação: 14 &lt; 15. O item afirma o contrário.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca espera que o aluno tome como mediana o valor do meio do gráfico (quarta, 9) sem ordenar os dados. Ficaria certo assim: "a média diária é inferior à mediana".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> o valor baixo de quarta (9) puxa a média para baixo, mas não mexe na mediana; valores extremos afetam a média, não a mediana.</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-estatistica-03">
 <p class="enunciado">Considere o conjunto de dados populacionais 2, 4, 4, 4, 5, 5, 7, 9. O desvio padrão populacional desse conjunto é igual a 2.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Média = 40 ÷ 8 = 5. Quadrados dos desvios: 9, 1, 1, 1, 0, 0, 4, 16, com soma 32. Variância = 32 ÷ 8 = 4; desvio padrão = √4 = 2.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Desvio padrão populacional é a raiz quadrada da média dos quadrados dos desvios em relação à média, dividindo por n (e não por n − 1).</p>
+<ol class="passos-resolucao">
+<li>Média: (2 + 4 + 4 + 4 + 5 + 5 + 7 + 9) ÷ 8 = 40 ÷ 8 = 5.</li>
+<li>Desvios (x − 5): −3, −1, −1, −1, 0, 0, 2, 4. Quadrados: 9, 1, 1, 1, 0, 0, 4, 16. Soma = 32.</li>
+<li>Variância populacional: 32 ÷ 8 = 4.</li>
+<li>Desvio padrão: √4 = 2.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma pedir a versão amostral, dividindo por n − 1: 32 ÷ 7 ≈ 4,57 e desvio ≈ 2,14. Leia se o enunciado fala em população ou amostra. Outra troca comum é dar a variância (4) como se fosse o desvio padrão.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> variância = média dos quadrados menos o quadrado da média: (4 + 16 + 16 + 16 + 25 + 25 + 49 + 81) ÷ 8 − 5² = 232 ÷ 8 − 25 = 29 − 25 = 4.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-estatistica-04">
 <p class="enunciado">Se, em um conjunto de salários, cada valor for acrescido de R$ 300,00, tanto a média quanto o desvio padrão dos salários aumentarão R$ 300,00.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Somar uma constante desloca todos os valores: a média aumenta R$ 300,00, mas as distâncias até a média não mudam, então o desvio padrão (e a variância) fica igual. Só multiplicar por uma constante altera a dispersão.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> Somar uma constante a todos os valores desloca a média nessa constante, mas não altera nenhuma medida de dispersão.</p>
+<ol class="passos-resolucao">
+<li>Se cada salário x vira x + 300, a nova média é a antiga mais 300.</li>
+<li>O desvio de cada salário em relação à média: (x + 300) − (média + 300) = x − média. Os desvios não mudam.</li>
+<li>Como variância e desvio padrão dependem só desses desvios, ambos ficam iguais.</li>
+<li>Exemplo: salários 1.000 e 3.000 têm média 2.000 e desvio 1.000; somando 300, ficam 1.300 e 3.300, média 2.300, desvio ainda 1.000.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o erro está em "o desvio padrão aumentará R$ 300,00". Ficaria certo: "a média aumentará R$ 300,00 e o desvio padrão permanecerá o mesmo".</li>
+<li><strong>Onde está a pegadinha:</strong> se os salários fossem multiplicados por uma constante k (ex.: reajuste de 10%, k = 1,1), aí sim média e desvio padrão seriam multiplicados por k, e a variância por k².</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> soma mexe só na posição (média, mediana, moda); multiplicação mexe na posição e na dispersão.</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-estatistica-05">
 <p class="enunciado">A tabela a seguir agrupa, em classes, o tempo de resposta de 20 atendimentos de uma equipe de plantão.</p>
 <table><tr><th>Tempo (min)</th><th>Frequência</th></tr><tr><td>0 ⊢ 10</td><td>4</td></tr><tr><td>10 ⊢ 20</td><td>10</td></tr><tr><td>20 ⊢ 30</td><td>6</td></tr></table>
 <p class="enunciado">Usando os pontos médios das classes, o tempo médio de resposta estimado é de 16 minutos.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Pontos médios: 5, 15 e 25. Média = (5×4 + 15×10 + 25×6) ÷ 20 = (20 + 150 + 150) ÷ 20 = 320 ÷ 20 = 16 minutos.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Em dados agrupados em classes, a média é estimada supondo que todos os valores da classe estão no ponto médio dela.</p>
+<ol class="passos-resolucao">
+<li>Pontos médios: (0 + 10) ÷ 2 = 5; (10 + 20) ÷ 2 = 15; (20 + 30) ÷ 2 = 25.</li>
+<li>Produtos ponto médio × frequência: 5 × 4 = 20; 15 × 10 = 150; 25 × 6 = 150. Soma = 320.</li>
+<li>Média: 320 ÷ 20 = 16 minutos.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma usar o limite inferior das classes (0, 10, 20), que daria (0 + 100 + 120) ÷ 20 = 11, ou dividir pelo número de classes (3) em vez do total de atendimentos (20).</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> como as classes têm a mesma amplitude (10), tome 15 como referência: as classes ficam a −1, 0 e +1 dela, e os pesos dão −4 + 0 + 6 = 2; média = 15 + 10 × 2 ÷ 20 = 16.</p>
+</div>
 </div>
 </section>
 
@@ -123,17 +298,52 @@
 <div class="questao" data-correta="a" data-id="c-combinatoria-01">
 <p class="enunciado">Com as letras da palavra PERITO, é possível formar 144 anagramas que começam e terminam por vogal.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>PERITO tem 6 letras distintas, com 3 vogais (E, I, O). Primeira posição: 3 vogais; última: 2 vogais restantes; meio: 4! = 24. Total: 3 × 2 × 24 = 144.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Use o princípio multiplicativo, preenchendo primeiro as posições com restrição (início e fim) e depois as livres.</p>
+<ol class="passos-resolucao">
+<li>PERITO tem 6 letras distintas: P, E, R, I, T, O. Vogais: E, I, O (3).</li>
+<li>1ª posição: 3 vogais possíveis. Última posição: restam 2 vogais.</li>
+<li>Meio (4 posições): as 4 letras que sobraram em qualquer ordem: 4! = 24.</li>
+<li>Total: 3 × 2 × 24 = 144 anagramas.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma calcular 3 × 3 × 4! = 216, esquecendo que a vogal usada no início não pode se repetir no fim, ou usar 6! = 720, ignorando a restrição.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> restrição primeiro: trave as posições exigidas, depois permute o resto com fatorial.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-combinatoria-02">
 <p class="enunciado">A quantidade de senhas numéricas de 4 algarismos distintos, em que o primeiro algarismo não pode ser zero, é igual a 5.040.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Primeiro algarismo: 9 opções (1 a 9). Depois: 9, 8 e 7 (o zero volta a valer). Total: 9 × 9 × 8 × 7 = 4.536. O valor 5.040 = 10 × 9 × 8 × 7 ignora a restrição do zero.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> O total correto é 4.536. O número 5.040 conta também as sequências que começam com zero.</p>
+<ol class="passos-resolucao">
+<li>1º algarismo: não pode ser 0, então há 9 opções (1 a 9).</li>
+<li>2º algarismo: pode ser 0, mas não pode repetir o 1º: 10 − 1 = 9 opções.</li>
+<li>3º e 4º algarismos: 8 e 7 opções (distintos dos anteriores).</li>
+<li>Total: 9 × 9 × 8 × 7 = 4.536.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item usa 10 × 9 × 8 × 7 = 5.040, que é o total sem a restrição do zero. Ficaria certo com 4.536.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> total sem restrição menos os que começam com zero: 5.040 − (1 × 9 × 8 × 7) = 5.040 − 504 = 4.536.</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-combinatoria-03">
 <p class="enunciado">De uma equipe de 8 peritos, serão escolhidos 3 para uma força-tarefa. Nessa situação, se os 3 escolhidos ocuparem funções distintas (coordenador, relator e revisor), o número de formações possíveis será 6 vezes maior que o número de grupos de 3 peritos sem funções definidas.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Sem funções: C(8,3) = 56. Com funções: 8 × 7 × 6 = 336. Cada grupo de 3 pode ser distribuído nas funções de 3! = 6 modos, e 336 = 6 × 56.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Com funções distintas, a ordem importa (arranjo); sem funções, só importa quem está no grupo (combinação). A razão entre eles é 3!.</p>
+<ol class="passos-resolucao">
+<li>Grupos sem função: C(8,3) = (8 × 7 × 6) ÷ (3 × 2 × 1) = 336 ÷ 6 = 56.</li>
+<li>Com funções (coordenador, relator, revisor): A(8,3) = 8 × 7 × 6 = 336.</li>
+<li>Razão: 336 ÷ 56 = 6. Cada grupo de 3 pessoas pode ser distribuído nas 3 funções de 3! = 6 maneiras.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma trocar o fator por 3 (número de funções) ou por 8 (número de peritos). O fator é sempre o fatorial do número de cargos: A(n,p) = C(n,p) × p!.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> arranjo = combinação × p!; com 3 cargos diferentes, multiplique por 6.</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-combinatoria-04">
 <p class="enunciado">A figura a seguir representa um conjunto de quarteirões. Um agente sai do ponto A e deve chegar ao ponto B andando pelas ruas (linhas da figura), deslocando-se apenas para a direita ou para cima.</p>
@@ -153,12 +363,36 @@
 </svg><figcaption>Figura: malha de 4 × 2 quarteirões</figcaption></figure>
 <p class="enunciado">Nessa situação, há exatamente 15 trajetos distintos de A até B.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Todo trajeto tem 4 passos para a direita (D) e 2 para cima (C), em alguma ordem. Basta escolher as posições dos 2 C entre 6 passos: C(6,2) = 15.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Todo trajeto mínimo de A até B é uma sequência de passos à direita (D) e para cima (C); contar trajetos é contar as ordens desses passos.</p>
+<ol class="passos-resolucao">
+<li>A malha tem 4 quarteirões na horizontal e 2 na vertical. Então qualquer trajeto tem 4 D e 2 C, total de 6 passos.</li>
+<li>Um trajeto fica definido escolhendo quais 2 das 6 posições serão C: C(6,2) = (6 × 5) ÷ 2 = 15.</li>
+<li>Pelo outro caminho, é a permutação com repetição de DDDDCC: 6! ÷ (4! × 2!) = 720 ÷ 48 = 15.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma levar o aluno a usar 6! = 720, sem descontar as repetições dos passos iguais, ou a trocar as dimensões da malha. Em uma malha 3 × 3, por exemplo, seriam C(6,3) = 20 trajetos, e não 15.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> trajetos em malha = C(h + v, v), com h quarteirões horizontais e v verticais.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-combinatoria-05">
 <p class="enunciado">O número de maneiras distintas de acomodar 6 agentes ao redor de uma mesa circular, considerando iguais as disposições que diferem apenas por uma rotação, é igual a 720.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Permutação circular de n elementos: (n − 1)!. Para 6 agentes, 5! = 120. O valor 720 = 6! conta cada roda 6 vezes, uma por rotação.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> Em permutação circular, as rotações de uma mesma disposição são iguais; por isso o total é (n − 1)!.</p>
+<ol class="passos-resolucao">
+<li>Fila de 6 pessoas: 6! = 720 ordens.</li>
+<li>Na mesa redonda, cada disposição aparece 6 vezes nessa contagem, uma para cada rotação (cada pessoa poderia ser "a primeira").</li>
+<li>Total: 720 ÷ 6 = 120, que é o mesmo que (6 − 1)! = 5!.</li>
+<li>Outra forma de ver: fixe um agente em uma cadeira e permute os outros 5: 5! = 120.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item usa 6! = 720, a contagem de fila. Ficaria certo com 120.</li>
+<li><strong>Onde está a pegadinha:</strong> se a questão também considerasse iguais as disposições espelhadas (como em colares), o total seria 5! ÷ 2 = 60.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> mesa redonda: fixe um e permute o resto, (n − 1)!.</p>
+</div>
 </div>
 </section>
 
@@ -168,27 +402,85 @@
 <table><tr><th>Tipo</th><th>Criptografado</th><th>Não criptografado</th><th>Total</th></tr><tr><td>Celular</td><td>60</td><td>40</td><td>100</td></tr><tr><td>Notebook</td><td>30</td><td>70</td><td>100</td></tr><tr><td>Total</td><td>90</td><td>110</td><td>200</td></tr></table>
 <p class="enunciado">Escolhendo-se ao acaso um dos dispositivos criptografados, a probabilidade de que ele seja um celular é superior a 60%.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A condição "criptografado" reduz o universo para 90 dispositivos, dos quais 60 são celulares: 60 ÷ 90 = 2/3 ≈ 66,7%, acima de 60%.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> É probabilidade condicional: a informação "criptografado" reduz o espaço amostral à coluna dos criptografados.</p>
+<ol class="passos-resolucao">
+<li>Novo universo: dispositivos criptografados = 90.</li>
+<li>Casos favoráveis dentro dele: celulares criptografados = 60.</li>
+<li>P(celular | criptografado) = 60 ÷ 90 = 2/3 ≈ 66,7%.</li>
+<li>Como 66,7% &gt; 60%, o item está certo.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma inverter a condição: P(criptografado | celular) = 60 ÷ 100 = 60%, que não seria "superior a 60%". Outra troca é dividir pelo total geral: 60 ÷ 200 = 30%.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> na tabela de dupla entrada, a condição indica a linha ou coluna que vira o denominador.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-probabilidade-02">
 <p class="enunciado">No lançamento simultâneo de dois dados comuns, não viciados, a probabilidade de a soma das faces ser igual a 8 é de 1/6.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Soma 8: (2,6), (3,5), (4,4), (5,3), (6,2), ou seja, 5 casos em 36: 5/36. A probabilidade 1/6 = 6/36 vale para a soma 7, a mais provável.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A probabilidade da soma 8 é 5/36, e não 1/6 = 6/36.</p>
+<ol class="passos-resolucao">
+<li>Espaço amostral: 6 × 6 = 36 pares ordenados igualmente prováveis.</li>
+<li>Pares com soma 8: (2,6), (3,5), (4,4), (5,3), (6,2). São 5 casos.</li>
+<li>P(soma 8) = 5/36 ≈ 13,9%, enquanto 1/6 ≈ 16,7%.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> 1/6 é a probabilidade da soma 7, a única com 6 pares: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1). Outro erro comum é contar (2,6) e (6,2) como um único caso, chegando a 3/21.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> para somas de 2 a 7, o número de casos é soma − 1; de 7 a 12, é 13 − soma. Soma 8: 13 − 8 = 5.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-probabilidade-03">
 <p class="enunciado">Se A e B são eventos independentes, com P(A) = 0,3 e P(B) = 0,5, então a probabilidade de ocorrer A ou B é igual a 0,8.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>P(A ∪ B) = P(A) + P(B) − P(A ∩ B). Como são independentes, P(A ∩ B) = 0,3 × 0,5 = 0,15. Logo, 0,3 + 0,5 − 0,15 = 0,65. Somar direto só vale para eventos mutuamente exclusivos.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> Para "A ou B", vale P(A ∪ B) = P(A) + P(B) − P(A ∩ B). Somar direto só funciona quando os eventos são mutuamente exclusivos.</p>
+<ol class="passos-resolucao">
+<li>Independentes: P(A ∩ B) = P(A) × P(B) = 0,3 × 0,5 = 0,15.</li>
+<li>P(A ∪ B) = 0,3 + 0,5 − 0,15 = 0,65.</li>
+<li>Conferindo pelo complementar: P(nem A nem B) = 0,7 × 0,5 = 0,35; 1 − 0,35 = 0,65.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item soma 0,3 + 0,5 = 0,8, confundindo eventos independentes com mutuamente exclusivos. Na verdade, eventos independentes com probabilidades positivas nunca são mutuamente exclusivos, pois P(A ∩ B) = 0,15 ≠ 0.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> independentes: multiplique para "e"; para "ou", use 1 − (1 − p)(1 − q).</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-probabilidade-04">
 <p class="enunciado">Uma caixa contém 5 pen drives, dos quais 2 estão infectados por malware. Retirando-se ao acaso 2 pen drives, sem reposição, a probabilidade de ambos estarem infectados é de 10%.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Primeiro infectado: 2/5; segundo, sobrando 1 infectado entre 4: 1/4. Produto: 2/5 × 1/4 = 2/20 = 1/10 = 10%. Pelo caminho das combinações: 1 ÷ C(5,2) = 1/10.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Sem reposição, a segunda retirada depende da primeira: multiplique as probabilidades já atualizadas.</p>
+<ol class="passos-resolucao">
+<li>1ª retirada infectada: 2 infectados em 5, P = 2/5.</li>
+<li>2ª retirada infectada, dado que a 1ª foi: sobra 1 infectado em 4, P = 1/4.</li>
+<li>P(ambos) = 2/5 × 1/4 = 2/20 = 1/10 = 10%.</li>
+<li>Por combinações: há C(5,2) = 10 pares possíveis e só 1 par com os dois infectados: 1/10.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma propor o cálculo com reposição, (2/5)² = 4/25 = 16%, ou trocar "ambos infectados" por "pelo menos um infectado", que seria 1 − (3/5 × 2/4) = 1 − 0,3 = 70%.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> sem reposição, pense em "favoráveis sobre total de grupos": C(2,2) ÷ C(5,2).</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-probabilidade-05">
 <p class="enunciado">Um programa tenta desbloquear um arquivo em 3 tentativas independentes, cada uma com 20% de chance de sucesso. Nessa situação, a probabilidade de que pelo menos uma tentativa tenha sucesso é inferior a 50%.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Use o complementar: P(nenhum sucesso) = 0,8³ = 0,512. Então P(pelo menos um) = 1 − 0,512 = 0,488 = 48,8%, abaixo de 50%.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> "Pelo menos um" se resolve pelo complementar: 1 menos a probabilidade de nenhum sucesso.</p>
+<ol class="passos-resolucao">
+<li>Falha em uma tentativa: 1 − 0,2 = 0,8.</li>
+<li>Nenhum sucesso nas 3 tentativas independentes: 0,8 × 0,8 × 0,8 = 0,512.</li>
+<li>Pelo menos um sucesso: 1 − 0,512 = 0,488 = 48,8%.</li>
+<li>Como 48,8% &lt; 50%, o item está certo.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma induzir a soma 0,2 + 0,2 + 0,2 = 0,6 = 60%, que conta duas vezes os casos com mais de um sucesso. Com 4 tentativas, 1 − 0,8⁴ = 1 − 0,4096 = 0,5904, e aí passaria de 50%.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> "pelo menos um" = 1 − P(nenhum).</p>
+</div>
 </div>
 </section>
 
@@ -218,31 +510,88 @@
 </svg><figcaption>Figura: rede local em estrela</figcaption></figure>
 <p class="enunciado">Nessa topologia, a falha do PC2 não impede a comunicação entre os demais computadores, mas uma falha no switch deixa os quatro computadores sem comunicação entre si e sem acesso à internet.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Na estrela, cada host tem enlace próprio até o nó central: a queda de um host afeta só ele. O switch, porém, é ponto único de falha; se ele cai, nada passa entre os PCs nem até o roteador.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Na topologia em estrela, cada computador tem um enlace exclusivo até o equipamento central (o switch), que se torna ponto único de falha.</p>
+<ol class="passos-resolucao">
+<li>Falha do PC2: só o enlace dele fica inoperante. PC1, PC3 e PC4 continuam conversando entre si pelo switch e acessando a internet pelo roteador.</li>
+<li>Falha do switch: todo o tráfego entre os PCs passa por ele, então eles ficam isolados uns dos outros.</li>
+<li>Como o roteador também se liga aos PCs através do switch, os quatro perdem o acesso à internet.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma atribuir à estrela o comportamento do barramento (em que um rompimento do cabo principal derruba todos) ou do anel sem redundância (em que a falha de uma estação pode interromper o anel). Outra troca é dizer que a falha do roteador isola os PCs entre si, o que é falso: eles continuam se comunicando pelo switch.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> estrela: falha na ponta afeta só a ponta; falha no centro afeta todos.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-ti-redes-seguranca-02">
 <p class="enunciado">A tabela a seguir mostra os endereços IPv4 configurados em três hosts, todos com máscara /27.</p>
 <table><tr><th>Host</th><th>Endereço</th></tr><tr><td>A</td><td>192.168.10.37/27</td></tr><tr><td>B</td><td>192.168.10.62/27</td></tr><tr><td>C</td><td>192.168.10.65/27</td></tr></table>
 <p class="enunciado">Com base nessa tabela, os hosts A e C pertencem à mesma sub-rede, ao passo que o endereço do host B é o endereço de broadcast dessa sub-rede.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>/27 gera blocos de 32 endereços: .32 a .63, .64 a .95 etc. A (.37) e B (.62) estão no bloco .32/27, cujo broadcast é .63; B é o último host válido. C (.65) está em outra sub-rede, .64/27.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> Com máscara /27, sobram 5 bits para hosts, ou seja, blocos de 2⁵ = 32 endereços no último octeto.</p>
+<ol class="passos-resolucao">
+<li>Blocos /27 no último octeto: 0 a 31, 32 a 63, 64 a 95, 96 a 127 etc.</li>
+<li>A (.37) e B (.62) caem no bloco 32 a 63: rede 192.168.10.32, broadcast 192.168.10.63, hosts válidos de .33 a .62.</li>
+<li>Então B (.62) é o último host válido, e não o broadcast (.63).</li>
+<li>C (.65) cai no bloco 64 a 95 (rede .64/27). Logo, A e C estão em sub-redes diferentes.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> as duas partes do item estão erradas. Ficaria certo assim: "os hosts A e B pertencem à mesma sub-rede, e o endereço de B é o último endereço de host válido dessa sub-rede".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> tamanho do bloco = 256 − valor da máscara no octeto (/27 = 255.255.255.224, 256 − 224 = 32); divida o octeto do host por 32 e arredonde para baixo.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-ti-redes-seguranca-03">
 <p class="enunciado">Um analista montou a tabela a seguir, associando serviços às respectivas portas TCP padrão.</p>
 <table><tr><th>Serviço</th><th>Porta</th></tr><tr><td>SSH</td><td>22</td></tr><tr><td>SMTP</td><td>25</td></tr><tr><td>IMAP</td><td>110</td></tr><tr><td>HTTPS</td><td>443</td></tr><tr><td>RDP</td><td>3389</td></tr></table>
 <p class="enunciado">Todas as associações apresentadas na tabela estão corretas.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A porta 110 é do POP3. O IMAP usa a porta 143 (993 com TLS). As demais estão certas: SSH 22, SMTP 25, HTTPS 443 e RDP 3389.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A porta 110 é do POP3, e não do IMAP. O IMAP usa a porta 143 (e 993 no IMAPS, com TLS).</p>
+<ol class="passos-resolucao">
+<li>SSH: 22. Correto.</li>
+<li>SMTP: 25. Correto (envio entre servidores; 587 é a porta de submissão pelo cliente).</li>
+<li>IMAP: 110. Errado, 110 é POP3 (995 no POP3S). IMAP é 143.</li>
+<li>HTTPS: 443 e RDP: 3389. Corretos. Basta uma associação errada para o item "todas corretas" ser falso.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca troca as portas dos dois protocolos de recebimento de e-mail, POP3 (110) e IMAP (143). Também costuma trocar HTTP (80) com HTTPS (443) e Telnet (23) com SSH (22).</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> portas de e-mail em ordem crescente: SMTP 25, POP3 110, IMAP 143.</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-ti-redes-seguranca-04">
 <p class="enunciado">A função de hash SHA-256 gera, para qualquer entrada, seja um texto de poucas letras, seja um arquivo de vários gigabytes, um resumo de 256 bits, normalmente representado por 64 caracteres hexadecimais.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A saída do hash tem tamanho fixo, independente da entrada. Cada caractere hexadecimal representa 4 bits: 256 ÷ 4 = 64 caracteres.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Funções de hash produzem um resumo de tamanho fixo, qualquer que seja o tamanho da entrada. No SHA-256, são sempre 256 bits.</p>
+<ol class="passos-resolucao">
+<li>Cada dígito hexadecimal representa 4 bits (de 0000 a 1111, ou seja, de 0 a F).</li>
+<li>256 bits ÷ 4 bits por dígito = 64 caracteres hexadecimais.</li>
+<li>Em bytes: 256 ÷ 8 = 32 bytes. Uma letra "a" e uma imagem de disco de 1 TB geram, cada uma, um hash de 64 caracteres.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma dizer que o tamanho do hash cresce com o arquivo, ou trocar os tamanhos: MD5 tem 128 bits (32 hexadecimais) e SHA-1 tem 160 bits (40 hexadecimais).</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> número de caracteres hexadecimais = bits ÷ 4.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-ti-redes-seguranca-05">
 <p class="enunciado">Em uma conexão HTTPS com TLS, todos os dados da aplicação trocados durante a sessão são cifrados com a chave pública do servidor, pois o uso de criptografia simétrica exigiria que cliente e servidor tivessem combinado previamente uma senha.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>O TLS é híbrido: no handshake, usa criptografia assimétrica e certificados para autenticar e acordar uma chave de sessão; depois, os dados são cifrados com algoritmo simétrico (como AES), muito mais rápido. A chave simétrica é negociada na hora, sem combinação prévia.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> O TLS é um sistema híbrido: usa criptografia assimétrica só no handshake e criptografia simétrica para cifrar os dados da sessão.</p>
+<ol class="passos-resolucao">
+<li>No handshake, o servidor apresenta seu certificado (com a chave pública), e cliente e servidor fazem uma troca de chaves, hoje em geral Diffie-Hellman efêmero (ECDHE).</li>
+<li>Dessa troca nasce uma chave de sessão simétrica, criada na hora, sem nenhuma senha combinada antes.</li>
+<li>Os dados da aplicação passam a ser cifrados com algoritmo simétrico, como AES-GCM ou ChaCha20, muito mais rápido que a criptografia assimétrica.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item diz que os dados são cifrados com a chave pública do servidor e que a cifra simétrica exigiria combinação prévia. As duas ideias estão erradas: a chave simétrica é negociada no handshake. Ficaria certo: "os dados são cifrados com uma chave de sessão simétrica acordada no handshake".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> assimétrica para combinar a chave e autenticar; simétrica para transportar os dados.</p>
+</div>
 </div>
 </section>
 
@@ -253,27 +602,85 @@
 00000000: 504b 0304 1400 0600 0800 0000 2100 a1b2  PK..........!...</code></pre>
 <p class="enunciado">Com base nessa saída, é correto concluir que o conteúdo do arquivo não corresponde a uma imagem JPEG, cuja assinatura começa com FF D8 FF, mas a um contêiner no formato ZIP, como os usados por arquivos DOCX e XLSX, o que indica possível alteração da extensão.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Os bytes 50 4B 03 04 ("PK") são a assinatura de arquivo ZIP, base dos formatos DOCX, XLSX, ODT e APK. Ferramentas forenses comparam essa assinatura com a extensão para apontar arquivos renomeados.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> A extensão do nome do arquivo pode ser trocada à vontade; o que revela o formato real é a assinatura (magic number) nos primeiros bytes.</p>
+<ol class="passos-resolucao">
+<li>Os primeiros bytes são 50 4B 03 04. Em ASCII, 50 = "P" e 4B = "K", daí o "PK.." na coluna da direita.</li>
+<li>50 4B 03 04 é a assinatura do cabeçalho local de arquivo ZIP (iniciais de Phil Katz, criador do formato).</li>
+<li>Um JPEG começaria com FF D8 FF. Como não começa, o conteúdo não é JPEG.</li>
+<li>DOCX, XLSX, PPTX, ODT e APK são contêineres ZIP, então o arquivo pode ser um desses renomeado para .jpg, indício de tentativa de ocultação.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma trocar as assinaturas: PDF começa com 25 50 44 46 ("%PDF"), PNG com 89 50 4E 47 (".PNG") e executável do Windows com 4D 5A ("MZ"). Também pode dizer que a extensão define o formato, o que é falso.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> "PK" no início = ZIP ou formato do Office moderno; FF D8 = JPEG.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-ti-forense-02">
 <p class="enunciado">Ao chegar a um local de crime com um computador ligado, o perito, seguindo a ordem de volatilidade, deve primeiro gerar a imagem do disco rígido e só depois coletar o conteúdo da memória RAM, já que o disco armazena volume muito maior de dados.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A ordem de volatilidade manda coletar primeiro o que se perde mais rápido: registradores e cache, memória RAM, conexões de rede e processos, e só depois o disco. A RAM se perde ao desligar; o disco, não. Volume de dados não é o critério.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A ordem de volatilidade manda coletar primeiro os dados que se perdem mais depressa. A RAM vem antes do disco.</p>
+<ol class="passos-resolucao">
+<li>Ordem usual (RFC 3227): registradores e cache; tabela de roteamento, cache ARP, processos e memória RAM; arquivos temporários; disco; logs remotos; mídias de arquivo.</li>
+<li>A RAM guarda processos em execução, conexões de rede, chaves de criptografia e senhas, e tudo some quando o computador é desligado.</li>
+<li>O disco mantém os dados após o desligamento, por isso é coletado depois.</li>
+<li>O critério é a volatilidade, não o volume. Gerar primeiro a imagem do disco, que pode levar horas, arriscaria perder a memória.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item inverte a ordem e usa o tamanho dos dados como justificativa. Ficaria certo: "deve primeiro coletar a memória RAM e só depois o disco, pois a RAM é mais volátil".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> colete primeiro o que morre primeiro: o que se perde ao desligar vem antes do que fica gravado.</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-ti-forense-03">
 <p class="enunciado">Se um único bit de uma imagem forense for alterado após a aquisição, o hash SHA-256 recalculado será completamente diferente do original, razão pela qual a coincidência entre os hashes da aquisição e da verificação é usada para demonstrar a integridade da evidência.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>É o efeito avalanche: qualquer mudança mínima na entrada altera, em média, metade dos bits do resumo. Por isso hashes iguais na aquisição e na verificação sustentam a cadeia de custódia.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Funções de hash criptográficas têm o efeito avalanche: qualquer alteração mínima na entrada muda radicalmente o resumo.</p>
+<ol class="passos-resolucao">
+<li>Alterar 1 bit em um disco de 500 GB muda, em média, cerca de metade dos 256 bits do SHA-256, gerando um hash irreconhecível em relação ao original.</li>
+<li>Por isso, o perito calcula o hash na aquisição e o registra. Ao verificar depois, recalcula: se os valores forem iguais, a imagem não foi alterada.</li>
+<li>Essa comparação sustenta a integridade da evidência e a cadeia de custódia perante o juízo.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma afirmar que uma pequena alteração gera uma pequena mudança no hash, ou que o hash permite recuperar o conteúdo original. As duas afirmações são falsas: o hash é sensível a qualquer bit e não é reversível.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> hash igual = conteúdo igual; hash diferente = conteúdo mudou, por menor que tenha sido a mudança.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-ti-forense-04">
 <p class="enunciado">No sistema de arquivos NTFS, os registros de data e hora de um arquivo são armazenados apenas no atributo $STANDARD_INFORMATION da MFT, não existindo outra cópia desses carimbos de tempo no registro do arquivo.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>O registro da MFT guarda carimbos de tempo em dois atributos: $STANDARD_INFORMATION e $FILE_NAME. Ferramentas de timestomping costumam alterar só o primeiro, e a divergência entre os dois ajuda o perito a detectar a manipulação.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> No NTFS, o registro de cada arquivo na MFT guarda carimbos de tempo em dois atributos: $STANDARD_INFORMATION ($SI) e $FILE_NAME ($FN).</p>
+<ol class="passos-resolucao">
+<li>Cada atributo tem quatro datas (MACB): modificação, acesso, alteração do registro na MFT e criação.</li>
+<li>O Windows Explorer mostra as datas do $SI, que podem ser alteradas por programas comuns por meio da API do sistema.</li>
+<li>As datas do $FN são atualizadas pelo próprio sistema em situações específicas (criação, renomeação, movimentação) e são bem mais difíceis de alterar.</li>
+<li>Ferramentas de timestomping costumam mudar só o $SI. A divergência entre $SI e $FN, como criação no $SI anterior à do $FN, é indício de manipulação.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o erro está em "apenas" e em "não existindo outra cópia". Ficaria certo: "os carimbos de tempo ficam nos atributos $STANDARD_INFORMATION e $FILE_NAME".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> MFT tem datas em dobro: $SI (fácil de forjar) e $FN (difícil de forjar); compare os dois.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-ti-forense-05">
 <p class="enunciado">O uso de bloqueador de escrita durante a aquisição de um disco apreendido torna desnecessário o cálculo do hash da mídia, pois o equipamento já garante que nenhum dado foi alterado.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>São controles complementares. O bloqueador impede gravações na mídia original durante o exame; o hash documenta a integridade e permite provar, a qualquer tempo, que a cópia é idêntica à original.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> Bloqueador de escrita e hash são controles complementares: um previne a alteração, o outro comprova a integridade.</p>
+<ol class="passos-resolucao">
+<li>O bloqueador de escrita (write blocker) fica entre a mídia e a estação de perícia e impede que comandos de gravação cheguem ao disco original.</li>
+<li>O hash, calculado na origem e na cópia, documenta matematicamente que a imagem é idêntica ao original e permite verificar isso a qualquer tempo, inclusive por outro perito.</li>
+<li>Sem o hash, não há como provar no processo que a cópia analisada corresponde ao que foi apreendido, mesmo que o bloqueador tenha funcionado.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item diz que o bloqueador torna o hash dispensável. Ficaria certo: "o uso de bloqueador de escrita não dispensa o cálculo do hash, que comprova a integridade da cópia".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> bloqueador protege; hash prova. Na perícia, um não substitui o outro.</p>
+</div>
 </div>
 </section>
 
@@ -290,7 +697,19 @@ for i, x in enumerate(dados):
 print(total)</code></pre>
 <p class="enunciado">Ao ser executado, esse código imprime o valor 16.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>enumerate fornece o índice i: nos índices pares (0, 2, 4) soma, nos ímpares (1, 3) subtrai. Assim, 5 − 3 + 8 − 3 + 9 = 16.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> enumerate devolve pares (índice, valor). O código soma os elementos de índice par e subtrai os de índice ímpar.</p>
+<ol class="passos-resolucao">
+<li>Índices e valores: (0, 5), (1, 3), (2, 8), (3, 3), (4, 9).</li>
+<li>i = 0 (par): total = 0 + 5 = 5. i = 1 (ímpar): 5 − 3 = 2. i = 2 (par): 2 + 8 = 10.</li>
+<li>i = 3 (ímpar): 10 − 3 = 7. i = 4 (par): 7 + 9 = 16.</li>
+<li>print(total) exibe 16.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma testar se o aluno confunde o índice i com o valor x. Se o teste fosse x % 2 == 0 (valor par), só o 8 seria somado e os ímpares subtraídos: −5 − 3 + 8 − 3 − 9 = −12.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> índices pares somam, ímpares subtraem: (5 + 8 + 9) − (3 + 3) = 22 − 6 = 16.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-ti-programacao-dados-02">
 <p class="enunciado">Considere o código Python a seguir.</p>
@@ -301,7 +720,19 @@ for c in s.replace(" ", ""):
 print(max(cont, key=cont.get), len(cont))</code></pre>
 <p class="enunciado">Ao ser executado, esse código imprime i 14.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>O dicionário conta cada letra (sem o espaço): e aparece 3 vezes; i, r e a, 2 vezes cada. max com key=cont.get devolve a chave de maior contagem, e. len(cont) conta as letras distintas (p, e, r, i, c, a, f, d, l): 9. Saída: e 9. O 14 seria o total de letras, não de chaves.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> O código imprime e 9: a letra mais frequente é e, e há 9 letras distintas.</p>
+<ol class="passos-resolucao">
+<li>s.replace(" ", "") gera "periciafederal", com 14 letras.</li>
+<li>O laço monta o dicionário de contagem: p 1, e 3, r 2, i 2, c 1, a 2, f 1, d 1, l 1.</li>
+<li>max(cont, key=cont.get) percorre as chaves e devolve a de maior valor: e (3 ocorrências).</li>
+<li>len(cont) é o número de chaves, isto é, de letras distintas: 9. Saída: e 9.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item troca as duas respostas: i aparece só 2 vezes (não é o máximo), e 14 é o total de letras, não o tamanho do dicionário. len de um dicionário conta chaves, não a soma dos valores.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> len(dict) = quantidade de chaves distintas; sum(dict.values()) = total contado.</p>
+</div>
 </div>
 <div class="questao" data-correta="a" data-id="c-ti-programacao-dados-03">
 <p class="enunciado">Considere o código Python a seguir.</p>
@@ -313,7 +744,19 @@ c.append(5)
 print(len(a), len(c))</code></pre>
 <p class="enunciado">Ao ser executado, esse código imprime 4 5.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>b = a não copia a lista: as duas variáveis apontam para o mesmo objeto, então o append em b altera a (4 elementos). Já a[:] cria uma cópia; o append em c não afeta a. Resultado: 4 5.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Em Python, atribuir uma lista a outra variável não copia: cria outro nome para o mesmo objeto. Já o fatiamento a[:] cria uma cópia rasa.</p>
+<ol class="passos-resolucao">
+<li>a = [1, 2, 3]; b = a: a e b apontam para a mesma lista.</li>
+<li>b.append(4): a lista compartilhada vira [1, 2, 3, 4], então len(a) = 4.</li>
+<li>c = a[:]: c é uma lista nova, [1, 2, 3, 4], independente de a.</li>
+<li>c.append(5): só c muda, [1, 2, 3, 4, 5], len(c) = 5. Saída: 4 5.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca costuma esperar que o aluno ache que b = a faz cópia, levando a "3 4", ou que a[:] mantém a referência, levando a "5 5".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> b = a compartilha; a[:], list(a) e a.copy() copiam.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-ti-programacao-dados-04">
 <p class="enunciado">Considere a tabela APREENSAO, de um banco de dados relacional, e a consulta SQL a seguir.</p>
@@ -325,13 +768,36 @@ GROUP BY cidade
 HAVING COUNT(*) &gt;= 2;</code></pre>
 <p class="enunciado">O resultado dessa consulta tem duas linhas, uma para Recife e outra para Natal.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>O WHERE filtra antes de agrupar: sobram as linhas 1, 2, 4 e 6. Contagem: Recife 2, Natal 1, Manaus 1. O HAVING mantém só Recife, com qtd = 2. Duas linhas seria o resultado esquecendo o WHERE.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> O resultado tem uma única linha (Recife, 2). A ordem lógica é: WHERE filtra linhas, GROUP BY agrupa, HAVING filtra grupos.</p>
+<ol class="passos-resolucao">
+<li>WHERE valor &gt; 1000 mantém as linhas 1 (Recife, 1500), 2 (Natal, 3200), 4 (Recife, 2100) e 6 (Manaus, 4000). Saem a 3 (900) e a 5 (800).</li>
+<li>GROUP BY cidade: Recife 2, Natal 1, Manaus 1.</li>
+<li>HAVING COUNT(*) &gt;= 2: só Recife passa. Resultado: uma linha, Recife | 2.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a resposta "Recife e Natal" aparece quando se ignora o WHERE: sem ele, Recife teria 3 e Natal 2, e ambas passariam no HAVING. A banca explora justamente a diferença entre WHERE (antes de agrupar) e HAVING (depois).</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> aplique o WHERE riscando linhas da tabela, depois conte por grupo, e só então aplique o HAVING.</p>
+</div>
 </div>
 <div class="questao" data-correta="b" data-id="c-ti-programacao-dados-05">
 <p class="enunciado">Considere o código Python a seguir.</p>
 <pre><code>print(17 // 5, 17 % 5, -7 // 2)</code></pre>
 <p class="enunciado">Ao ser executado, esse código imprime 3 2 -3.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Em Python, // é a divisão inteira que arredonda para baixo (piso), e não em direção ao zero. 17 // 5 = 3 e 17 % 5 = 2, mas −7 ÷ 2 = −3,5, cujo piso é −4. Saída: 3 2 -4.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> Em Python, // é divisão inteira com arredondamento para baixo (piso, em direção a −∞), e não truncamento em direção ao zero. A saída é 3 2 -4.</p>
+<ol class="passos-resolucao">
+<li>17 // 5: 17 ÷ 5 = 3,4; piso = 3.</li>
+<li>17 % 5: resto de 17 − 5 × 3 = 2.</li>
+<li>-7 // 2: −7 ÷ 2 = −3,5; o piso (maior inteiro ≤ −3,5) é −4, e não −3.</li>
+<li>Saída: 3 2 -4.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item usa −3, que seria o resultado em C ou Java, linguagens que truncam em direção ao zero. Em Python, vale sempre a = (a // b) × b + a % b, então -7 % 2 é 1, pois (−4) × 2 + 1 = −7.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> com números negativos, // em Python vai para o inteiro mais à esquerda na reta: −3,5 vira −4.</p>
+</div>
 </div>
 </section>

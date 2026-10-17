@@ -97,6 +97,34 @@
   <nav class="sumario" data-sumario><strong>Nesta página</strong></nav>
 <h2>Princípio fundamental da contagem</h2>
 <p>Se uma escolha tem m opções e, para cada uma, outra escolha tem n opções, as duas juntas têm <strong>m × n</strong> possibilidades. Com ele você resolve a maioria das questões, sem decorar fórmula.</p>
+<p>Por que multiplica? Pense em 2 camisas e 3 calças. Para a camisa A, há 3 calças possíveis; para a camisa B, de novo 3. São 3 + 3 = 2 × 3 = 6 roupas. A multiplicação é só uma soma repetida: cada opção da primeira escolha "abre" todas as opções da segunda. O desenho abaixo, chamado árvore de possibilidades, mostra isso.</p>
+<figure class="figura"><svg viewBox="0 0 320 160" width="320" role="img" aria-label="Árvore de possibilidades: do início saem as camisas A e B; de cada camisa saem as calças 1, 2 e 3, formando 6 combinações">
+  <line class="f-linha" x1="20" y1="80" x2="120" y2="45"/>
+  <line class="f-linha" x1="20" y1="80" x2="120" y2="115"/>
+  <line class="f-linha" x1="120" y1="45" x2="220" y2="20"/>
+  <line class="f-linha" x1="120" y1="45" x2="220" y2="45"/>
+  <line class="f-linha" x1="120" y1="45" x2="220" y2="70"/>
+  <line class="f-linha" x1="120" y1="115" x2="220" y2="90"/>
+  <line class="f-linha" x1="120" y1="115" x2="220" y2="115"/>
+  <line class="f-linha" x1="120" y1="115" x2="220" y2="140"/>
+  <circle class="f-ponto" cx="20" cy="80" r="5"/>
+  <circle class="f-ponto" cx="120" cy="45" r="5"/>
+  <circle class="f-ponto" cx="120" cy="115" r="5"/>
+  <circle class="f-ponto" cx="220" cy="20" r="4"/>
+  <circle class="f-ponto" cx="220" cy="45" r="4"/>
+  <circle class="f-ponto" cx="220" cy="70" r="4"/>
+  <circle class="f-ponto" cx="220" cy="90" r="4"/>
+  <circle class="f-ponto" cx="220" cy="115" r="4"/>
+  <circle class="f-ponto" cx="220" cy="140" r="4"/>
+  <text x="120" y="33" text-anchor="middle">A</text>
+  <text x="120" y="138" text-anchor="middle">B</text>
+  <text x="232" y="24" class="f-nota">(A, 1)</text>
+  <text x="232" y="49" class="f-nota">(A, 2)</text>
+  <text x="232" y="74" class="f-nota">(A, 3)</text>
+  <text x="232" y="94" class="f-nota">(B, 1)</text>
+  <text x="232" y="119" class="f-nota">(B, 2)</text>
+  <text x="232" y="144" class="f-nota">(B, 3)</text>
+</svg><figcaption>2 camisas e 3 calças: cada camisa abre 3 galhos, total 2 × 3 = 6.</figcaption></figure>
 <div class="caixa atalho"><span class="rotulo">O método dos tracinhos</span>
 <ol>
 <li>Desenhe um tracinho para cada posição a preencher.</li>
@@ -112,28 +140,86 @@
 <div class="resolucao">
 <p class="passo">10 × 10 × 10 × 10.</p>
 <p class="resposta-final">Resposta: 10.000.</p></div></details>
+<details class="exemplo"><summary>Com os algarismos 1, 2, 3, 4 e 5, quantos números de 1 ou 2 algarismos distintos podem ser formados?</summary>
+<div class="resolucao">
+<p class="passo">Números de 1 algarismo: 5.</p>
+<p class="passo">Números de 2 algarismos distintos: 5 × 4 = 20.</p>
+<p class="passo">Um número tem 1 algarismo <strong>ou</strong> 2 algarismos, nunca os dois: some os casos.</p>
+<p class="resposta-final">Resposta: 5 + 20 = 25.</p></div></details>
 <div class="caixa dica"><span class="rotulo">"E" multiplica, "ou" soma</span>
 <p>Escolher uma camisa <strong>e</strong> uma calça: multiplique. Ir de ônibus <strong>ou</strong> de metrô: some as opções.</p></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Preencher os tracinhos da esquerda para a direita sem olhar a restrição. Em "números pares de 3 algarismos distintos com 0, 1, 2, 3, 4", começar pela centena faz você não saber se o 0 já foi usado. Quando duas restrições brigam (centena sem 0 e unidade par), separe em casos: unidade 0 ou unidade diferente de 0.</p></div>
 
 <h2>Fatorial</h2>
 <p><span class="m">n! = n × (n − 1) × … × 2 × 1</span>, com 0! = 1. Valores: 3! = 6, 4! = 24, 5! = 120, 6! = 720, 7! = 5.040.</p>
+<p>O fatorial aparece porque é a conta dos tracinhos quando você coloca <strong>todos</strong> os elementos em fila: o primeiro lugar tem n opções, o segundo n − 1, e assim até sobrar 1. E por que 0! = 1? Porque existe exatamente um jeito de organizar nada: não fazer nada. Essa convenção também faz as fórmulas de arranjo e combinação funcionarem nos casos extremos, como C(5, 5) = 5! ÷ (5! × 0!) = 1.</p>
 <div class="caixa atalho"><span class="rotulo">Atalho: simplifique fatoriais</span>
 <p>Nunca calcule fatoriais grandes por inteiro. <span class="m">10!/8! = 10 × 9 = 90</span>, porque 10! = 10 × 9 × 8!.</p></div>
+<details class="exemplo"><summary>Calcule 12! ÷ (10! × 2!).</summary>
+<div class="resolucao">
+<p class="passo">Abra o 12! só até o 10!: 12! = 12 × 11 × 10!.</p>
+<p class="passo">Corte o 10!: fica (12 × 11) ÷ 2! = 132 ÷ 2.</p>
+<p class="resposta-final">Resposta: 66 (que é C(12, 2)).</p></div></details>
+<details class="exemplo"><summary>Resolva a equação (n + 1)! ÷ n! = 8.</summary>
+<div class="resolucao">
+<p class="passo">(n + 1)! = (n + 1) × n!. Dividindo por n!, sobra n + 1.</p>
+<p class="passo">n + 1 = 8 → n = 7. Conferindo: 8! ÷ 7! = 8.</p>
+<p class="resposta-final">Resposta: n = 7.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Simplificar fatorial como se fosse número comum: 6! ÷ 3! <strong>não</strong> é 2!. O certo é 6 × 5 × 4 = 120. Também não vale somar: 3! + 2! = 8, enquanto 5! = 120.</p></div>
 
 <h2>A pergunta que decide tudo: a ordem importa?</h2>
 <p>Troque dois elementos de lugar. Se virou <strong>outra coisa</strong>, a ordem importa (arranjo/permutação). Se é <strong>a mesma coisa</strong>, não importa (combinação).</p>
+<p>Esse teste funciona porque arranjo e combinação contam coisas diferentes. No arranjo, "Ana presidente e Bruno vice" é diferente de "Bruno presidente e Ana vice". Na combinação, a dupla {Ana, Bruno} é uma só, não importa quem foi escolhido primeiro. Toda vez que a resposta "sim, mudou" aparecer, multiplique direto nos tracinhos; quando for "não mudou", divida pelas repetições.</p>
 <table>
 <tr><th>Situação</th><th>Ordem importa?</th><th>Tipo</th></tr>
 <tr><td>Senha, placa, número, fila, pódio, cargos diferentes (presidente e vice)</td><td>Sim</td><td>Arranjo / permutação</td></tr>
 <tr><td>Comissão, grupo, time, salada de frutas, aperto de mãos, escolher 3 livros</td><td>Não</td><td>Combinação</td></tr>
 </table>
+<figure class="figura"><svg viewBox="0 0 320 140" width="320" role="img" aria-label="Escolhendo 2 letras entre A, B e C: com ordem há 6 resultados, AB, BA, AC, CA, BC e CB; sem ordem há 3 grupos, pois cada par aparece duas vezes">
+  <text x="75" y="20" text-anchor="middle" class="f-titulo">Com ordem: 6</text>
+  <text x="250" y="20" text-anchor="middle" class="f-titulo">Sem ordem: 3</text>
+  <text x="75" y="55" text-anchor="middle">AB e BA</text>
+  <text x="75" y="85" text-anchor="middle">AC e CA</text>
+  <text x="75" y="115" text-anchor="middle">BC e CB</text>
+  <line class="f-dest" x1="130" y1="50" x2="195" y2="50"/>
+  <line class="f-dest" x1="130" y1="80" x2="195" y2="80"/>
+  <line class="f-dest" x1="130" y1="110" x2="195" y2="110"/>
+  <text x="250" y="55" text-anchor="middle">{A, B}</text>
+  <text x="250" y="85" text-anchor="middle">{A, C}</text>
+  <text x="250" y="115" text-anchor="middle">{B, C}</text>
+  <text x="162" y="134" text-anchor="middle" class="f-nota">÷ 2! = 2</text>
+</svg><figcaption>Cada grupo de 2 aparece 2! vezes na lista com ordem: 6 ÷ 2 = 3.</figcaption></figure>
+<details class="exemplo"><summary>Num grupo de 5 policiais, de quantas formas se escolhe (a) uma dupla para patrulha e (b) um motorista e um encarregado?</summary>
+<div class="resolucao">
+<p class="passo">(a) Dupla de patrulha: trocar os dois de lugar dá a mesma dupla. Combinação: (5 × 4) ÷ 2! = 10.</p>
+<p class="passo">(b) Motorista e encarregado são funções diferentes: trocar muda o resultado. Arranjo: 5 × 4 = 20.</p>
+<p class="resposta-final">Resposta: (a) 10; (b) 20. O dobro, porque cada dupla vira 2 escalas diferentes.</p></div></details>
+<details class="exemplo"><summary>Classifique: (a) números de telefone de 8 dígitos; (b) escolher 3 sabores de sorvete numa casquinha de 3 bolas, sem repetir sabor, de 10 disponíveis.</summary>
+<div class="resolucao">
+<p class="passo">(a) Trocar dois dígitos gera outro telefone: a ordem importa.</p>
+<p class="passo">(b) Morango, chocolate e creme formam a mesma escolha em qualquer ordem: combinação, C(10, 3) = 720 ÷ 6 = 120.</p>
+<p class="resposta-final">Resposta: (a) ordem importa (contagem direta, com repetição de dígitos permitida); (b) combinação, 120 escolhas.</p></div></details>
 
 <h2>Permutação: todos em fila</h2>
+<p>Permutar é reorganizar <strong>todos</strong> os elementos. É o caso particular do princípio da contagem em que nenhum elemento fica de fora: n opções para o primeiro lugar, n − 1 para o segundo, até 1, ou seja, n!.</p>
 <span class="formula" data-tex="P_n = n!">Pₙ = n!</span>
 <p>Anagramas de AMOR: 4! = 24.</p>
 <h3>Com repetição</h3>
 <p>Divida pelo fatorial de cada letra repetida.</p>
+<p>O motivo: se as três letras A de ARARA tivessem cores diferentes, haveria 5! arrumações. Mas, sem cor, trocar os A entre si não cria palavra nova, e cada palavra foi contada 3! vezes por causa dos A e 2! vezes por causa dos R. Dividir desfaz essa contagem repetida.</p>
 <span class="formula" data-tex="\text{ARARA: } \dfrac{5!}{3!\,\cdot\,2!} = \dfrac{120}{12} = 10">ARARA: 5! / (3! × 2!) = 120 / 12 = 10</span>
+<details class="exemplo"><summary>Quantos anagramas tem a palavra BANANA?</summary>
+<div class="resolucao">
+<p class="passo">6 letras: B (1), A (3), N (2).</p>
+<p class="passo">6! ÷ (3! × 2!) = 720 ÷ (6 × 2) = 720 ÷ 12.</p>
+<p class="resposta-final">Resposta: 60 anagramas.</p></div></details>
+<details class="exemplo"><summary>Quantos anagramas de PROVA começam por vogal?</summary>
+<div class="resolucao">
+<p class="passo">Restrição primeiro: a 1ª letra é O ou A, 2 opções.</p>
+<p class="passo">As 4 letras restantes se permutam nas 4 posições: 4! = 24.</p>
+<p class="resposta-final">Resposta: 2 × 24 = 48.</p></div></details>
 <div class="caixa atalho"><span class="rotulo">Atalho: "juntos" vira um bloco</span>
 <p>Se algumas pessoas devem ficar juntas, trate-as como um bloco único. Permute os blocos e depois permute quem está dentro do bloco.</p>
 <p>5 pessoas em fila, com Ana e Bia juntas: blocos = 4 → 4! = 24; dentro do bloco, 2! = 2. Total: 48.</p></div>
@@ -141,16 +227,39 @@
 <p>Ana e Bia <em>não</em> juntas: 5! − 48 = 120 − 48 = 72.</p></div>
 <h3>Permutação circular</h3>
 <p>n pessoas ao redor de uma mesa redonda: <span class="m">(n − 1)!</span>. Fixe uma pessoa e permute as outras.</p>
+<p>Na mesa redonda não existe "primeiro lugar": se todos levantarem e sentarem uma cadeira para a direita, cada um continua com os mesmos vizinhos, e a arrumação é a mesma. Cada disposição aparece n vezes entre as n! filas, e n! ÷ n = (n − 1)!.</p>
+<details class="exemplo"><summary>De quantas formas 6 pessoas podem sentar em volta de uma mesa redonda? E se duas delas fizerem questão de sentar lado a lado?</summary>
+<div class="resolucao">
+<p class="passo">Sem restrição: (6 − 1)! = 5! = 120.</p>
+<p class="passo">Lado a lado: o par vira um bloco, então são 5 "elementos" na roda: (5 − 1)! = 24. Dentro do bloco, 2! = 2.</p>
+<p class="resposta-final">Resposta: 120 sem restrição; 24 × 2 = 48 com as duas juntas.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Esquecer de permutar quem está dentro do bloco. "Ana e Bia juntas" inclui Ana-Bia e Bia-Ana: o fator 2! é obrigatório. Com 3 pessoas juntas, o fator é 3! = 6.</p></div>
 
 <h2>Arranjo: escolher alguns, com ordem</h2>
+<p>O arranjo é a permutação que "para no meio": você tem n elementos, mas só p posições. Os tracinhos começam em n e descem até completar p fatores. A fórmula com fatoriais apenas corta os fatores que sobrariam: n! ÷ (n − p)! deixa exatamente os p primeiros.</p>
 <span class="formula" data-tex="A(n, p) = \dfrac{n!}{(n-p)!}">A(n, p) = n! / (n − p)!</span>
 <p>Na prática, é o produto dos tracinhos: pódio (1º, 2º e 3º) de 8 corredores = 8 × 7 × 6 = 336.</p>
+<details class="exemplo"><summary>Quantas senhas de 4 dígitos distintos podem ser formadas com os algarismos de 0 a 9?</summary>
+<div class="resolucao">
+<p class="passo">Senha: a ordem importa. Dígitos distintos: sem repetição.</p>
+<p class="passo">10 × 9 × 8 × 7 = 5.040. Pela fórmula: 10! ÷ 6! = 5.040.</p>
+<p class="resposta-final">Resposta: 5.040 senhas.</p></div></details>
+<details class="exemplo"><summary>Um comandante precisa escalar 3 de seus 7 policiais, um para cada turno (manhã, tarde e noite), sem que ninguém trabalhe em dois turnos. Quantas escalas são possíveis?</summary>
+<div class="resolucao">
+<p class="passo">Turnos diferentes: trocar dois policiais de turno muda a escala. Ordem importa.</p>
+<p class="passo">Manhã: 7; tarde: 6; noite: 5.</p>
+<p class="resposta-final">Resposta: 7 × 6 × 5 = 210 escalas.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Ignorar se pode ou não repetir. "Senha de 4 dígitos" sem mais nada permite repetição: 10⁴ = 10.000. "Senha de 4 dígitos distintos" não permite: 10 × 9 × 8 × 7 = 5.040. Procure no enunciado as palavras <em>distintos</em>, <em>diferentes</em> ou <em>sem repetição</em>.</p></div>
 
 <h2>Combinação: escolher alguns, sem ordem</h2>
+<p>A combinação nasce do arranjo. Se você conta os pódios de 3 entre 8 corredores, obtém 336. Mas se só interessa <strong>quem</strong> foi para a final (sem posição), cada trio foi contado 3! = 6 vezes, uma para cada ordem dos três. Basta dividir: 336 ÷ 6 = 56. É exatamente o que a fórmula faz.</p>
 <span class="formula" data-tex="C(n, p) = \dfrac{n!}{p!\,(n-p)!}">C(n, p) = n! / [p! (n − p)!]</span>
 <div class="caixa atalho"><span class="rotulo">Atalho: faça o arranjo e divida por p!</span>
 <p>C(10, 3) = (10 × 9 × 8) / (3 × 2 × 1) = 720 / 6 = 120.</p>
 <p>E use a simetria: <span class="m">C(n, p) = C(n, n − p)</span>. C(20, 18) = C(20, 2) = 190.</p></div>
+<p>A simetria tem uma explicação simples: escolher 18 pessoas para ficar é o mesmo que escolher as 2 que vão sair.</p>
 <details class="exemplo"><summary>De 6 homens e 4 mulheres, quantas comissões de 3 homens e 2 mulheres podem ser formadas?</summary>
 <div class="resolucao">
 <p class="passo">Homens: C(6, 3) = 20. Mulheres: C(4, 2) = 6.</p>
@@ -161,38 +270,121 @@
 <p class="passo">Cada aperto é um par sem ordem: C(n, 2) = n(n − 1)/2 = 45 → n(n − 1) = 90.</p>
 <p class="passo">10 × 9 = 90.</p>
 <p class="resposta-final">Resposta: 10 pessoas.</p></div></details>
+<details class="exemplo"><summary>Quantas diagonais tem um decágono (polígono de 10 lados)?</summary>
+<div class="resolucao">
+<p class="passo">Segmentos ligando 2 dos 10 vértices: C(10, 2) = 45.</p>
+<p class="passo">Desses, 10 são lados. Diagonais: 45 − 10 = 35.</p>
+<p class="passo">Conferindo pela fórmula n(n − 3) ÷ 2: 10 × 7 ÷ 2 = 35.</p>
+<p class="resposta-final">Resposta: 35 diagonais.</p></div></details>
+<details class="exemplo"><summary>De 8 pessoas, entre elas Ana e Bia, quantas comissões de 3 podem ser formadas sem que Ana e Bia estejam juntas?</summary>
+<div class="resolucao">
+<p class="passo">Total sem restrição: C(8, 3) = 56.</p>
+<p class="passo">Comissões com Ana e Bia juntas: as duas já estão dentro, falta 1 das outras 6: C(6, 1) = 6.</p>
+<p class="resposta-final">Resposta: 56 − 6 = 50.</p></div></details>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinhas</span>
 <ul>
 <li>"<strong>Pelo menos</strong> uma mulher": calcule o total e subtraia os casos com <strong>nenhuma</strong> mulher.</li>
 <li>Comissão com cargos (presidente, secretário) volta a ter ordem: é arranjo.</li>
 <li>Diagonais de polígono: C(n, 2) − n (todos os segmentos menos os lados).</li>
 </ul></div>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Em grupos com duas partes (homens e mulheres), somar em vez de multiplicar: C(6, 3) + C(4, 2) = 26 está errado. Você escolhe os homens <strong>e</strong> as mulheres ao mesmo tempo, então é 20 × 6 = 120.</p></div>
 
 <h2>Questões</h2>
 <div class="questao" data-correta="d">
 <p class="enunciado">Quantos anagramas tem a palavra CASA?</p>
 <ol class="alternativas"><li>6</li><li>8</li><li>10</li><li>12</li><li>24</li></ol>
-<div class="explicacao"><p>4 letras com A repetido duas vezes: 4!/2! = 24/2 = 12.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> Anagrama é permutação das letras. Quando há letra repetida, divida pelo fatorial das repetições, porque trocar dois A de lugar não cria palavra nova.</p>
+<ol class="passos-resolucao">
+<li>CASA tem 4 letras: 4! = 24 se todas fossem diferentes.</li>
+<li>O A aparece 2 vezes: divida por 2! = 2.</li>
+<li>24 ÷ 2 = 12 anagramas.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Permutou só as 3 letras distintas (C, A, S): 3! = 6, esquecendo que a palavra tem 4 posições.</li>
+<li><strong>B)</strong> Não vem de nenhuma regra de permutação; costuma ser contagem manual incompleta.</li>
+<li><strong>C)</strong> Também é contagem na mão que pulou casos. Listar anagramas é arriscado na prova.</li>
+<li><strong>E)</strong> Fez 4! = 24 e esqueceu de dividir pela repetição do A.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> permutação com repetição = n! dividido pelo fatorial de cada letra repetida.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado">De um grupo de 8 pessoas, quantas comissões de 3 podem ser formadas?</p>
 <ol class="alternativas"><li>24</li><li>56</li><li>112</li><li>336</li><li>512</li></ol>
-<div class="explicacao"><p>Comissão: sem ordem. C(8, 3) = (8 × 7 × 6)/6 = 56. (336 seria se houvesse cargos.)</p></div>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Comissão não tem cargo: trocar a ordem das pessoas dá a mesma comissão. A ordem não importa, então é combinação.</p>
+<ol class="passos-resolucao">
+<li>C(8, 3) = (8 × 7 × 6) ÷ 3!.</li>
+<li>8 × 7 × 6 = 336 e 3! = 6.</li>
+<li>336 ÷ 6 = 56 comissões.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Multiplicou 8 × 3, o que não conta nada com sentido aqui.</li>
+<li><strong>C)</strong> Dividiu 336 só por 3 (ou por 2 e não por 6). A divisão é por 3! = 6.</li>
+<li><strong>D)</strong> Fez o arranjo 8 × 7 × 6 e não dividiu por 3!: isso valeria se houvesse cargos diferentes.</li>
+<li><strong>E)</strong> Fez 8³, permitindo repetir a mesma pessoa, o que é impossível numa comissão.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> faça o arranjo (tracinhos) e divida por p!, aqui 336 ÷ 6.</p>
+</div>
 </div>
 <div class="questao" data-correta="c">
 <p class="enunciado">De um grupo de 8 pessoas, de quantas formas se escolhem um presidente, um vice e um tesoureiro?</p>
 <ol class="alternativas"><li>24</li><li>56</li><li>336</li><li>512</li><li>40.320</li></ol>
-<div class="explicacao"><p>Cargos diferentes: a ordem importa. 8 × 7 × 6 = 336.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Presidente, vice e tesoureiro são cargos diferentes: trocar duas pessoas de cargo muda o resultado. A ordem importa, então é arranjo (princípio fundamental da contagem).</p>
+<ol class="passos-resolucao">
+<li>Presidente: 8 opções.</li>
+<li>Vice: sobram 7 opções. Tesoureiro: 6 opções.</li>
+<li>8 × 7 × 6 = 336.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Multiplicou 8 × 3, sem relação com a contagem.</li>
+<li><strong>B)</strong> É C(8, 3), a combinação: valeria para comissão sem cargos.</li>
+<li><strong>D)</strong> Fez 8³ = 512, deixando a mesma pessoa ocupar dois cargos.</li>
+<li><strong>E)</strong> É 8! = 40.320, que seria pôr as 8 pessoas em fila, e não escolher só 3.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> teste trocando duas pessoas de lugar: se mudou o resultado (cargos), multiplica direto nos tracinhos e não divide.</p>
+</div>
 </div>
 <div class="questao" data-correta="e">
 <p class="enunciado">Quantos números pares de 3 algarismos distintos podem ser formados com 1, 2, 3, 4 e 5?</p>
 <ol class="alternativas"><li>12</li><li>60</li><li>36</li><li>30</li><li>24</li></ol>
-<div class="explicacao"><p>Comece pela restrição: unidade par (2 ou 4), 2 opções. Centena: 4. Dezena: 3. Total 2 × 4 × 3 = 24.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: E.</strong> Use o método dos tracinhos começando pela posição com restrição: para ser par, o número tem que terminar em algarismo par.</p>
+<ol class="passos-resolucao">
+<li>Unidade (restrição): 2 ou 4, ou seja, 2 opções.</li>
+<li>Centena: sobram 4 algarismos. Dezena: sobram 3.</li>
+<li>2 × 4 × 3 = 24 números.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Considerou só um algarismo par na unidade: 1 × 4 × 3 = 12.</li>
+<li><strong>B)</strong> Fez 5 × 4 × 3 = 60, contando todos os números de algarismos distintos, sem a exigência de ser par.</li>
+<li><strong>C)</strong> Colocou 3 opções na unidade (1, 3 e 5): 3 × 4 × 3 = 36 é a quantidade de ímpares.</li>
+<li><strong>D)</strong> Supôs que metade dos 60 seria par (30). Não é: só 2 dos 5 algarismos são pares.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> confira: pares + ímpares = 24 + 36 = 60, o total sem restrição.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado">De 5 homens e 3 mulheres, quantas comissões de 3 pessoas têm pelo menos uma mulher?</p>
 <ol class="alternativas"><li>46</li><li>30</li><li>56</li><li>10</li><li>40</li></ol>
-<div class="explicacao"><p>Total: C(8, 3) = 56. Sem mulheres: C(5, 3) = 10. Pelo menos uma: 56 − 10 = 46.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> "Pelo menos uma mulher" se resolve pelo complementar: total de comissões menos as comissões sem nenhuma mulher.</p>
+<ol class="passos-resolucao">
+<li>Total: C(8, 3) = (8 × 7 × 6) ÷ 6 = 56.</li>
+<li>Sem mulher (só homens): C(5, 3) = (5 × 4 × 3) ÷ 6 = 10.</li>
+<li>Pelo menos uma: 56 − 10 = 46. Conferindo por casos: 1 mulher 3 × 10 = 30, 2 mulheres 3 × 5 = 15, 3 mulheres 1. Soma 46.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> Contou só as comissões com exatamente uma mulher (3 × C(5, 2) = 30). Faltam os casos com 2 e 3 mulheres.</li>
+<li><strong>C)</strong> É o total de comissões, sem tirar as que não têm mulher.</li>
+<li><strong>D)</strong> É o número de comissões sem nenhuma mulher, justamente o que deveria ser subtraído.</li>
+<li><strong>E)</strong> Soma de casos incompleta ou errada; nenhum caminho correto leva a 40.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> "pelo menos um" = total − nenhum. É mais rápido do que somar caso a caso.</p>
+</div>
 </div>
   <div class="rodape-caderno">
     <a class="botao secundario" href="estatistica.html">← Estatística básica</a>

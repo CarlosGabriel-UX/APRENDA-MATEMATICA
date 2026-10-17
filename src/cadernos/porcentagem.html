@@ -1,5 +1,6 @@
 <h2>A ideia que resolve quase tudo: fator multiplicativo</h2>
 <p>Porcentagem é só uma fração com denominador 100: <span class="m">35% = 35/100 = 0,35</span>. O grande atalho é trocar "aumentar" e "diminuir" por <strong>multiplicar por um fator</strong>.</p>
+<p>O porquê é simples. Aumentar um preço x em 12% é fazer x + 0,12x. Colocando o x em evidência, fica x × (1 + 0,12) = 1,12x. O "1" representa o valor que já existia (100%) e o 0,12 é o acréscimo. No desconto é igual: x − 0,20x = 0,80x, porque depois de tirar 20% sobram 80%. Pensar no que <strong>sobra</strong> ou no que <strong>passa a existir</strong>, em vez de calcular a parte e depois somar, economiza uma conta e evita erro.</p>
 <table>
 <tr><th>Situação</th><th>Fator</th><th>Exemplo</th></tr>
 <tr><td>Aumento de p%</td><td>1 + p/100</td><td>+15% → × 1,15</td></tr>
@@ -9,7 +10,23 @@
 <div class="caixa atalho"><span class="rotulo">Atalho</span>
 <p>Preço com 12% de aumento: <span class="m">250 × 1,12 = 280</span>. Uma conta, em vez de "calcula 12%, depois soma".</p></div>
 
+<details class="exemplo"><summary>Um salário de R$ 2.400 foi reajustado em 7,5%. Qual o novo salário?</summary>
+<div class="resolucao">
+<p class="passo">Fator de aumento: 1 + 0,075 = 1,075.</p>
+<p class="passo">2.400 × 1,075 = 2.400 + 2.400 × 0,075 = 2.400 + 180 = 2.580.</p>
+<p class="resposta-final">Resposta: R$ 2.580.</p></div></details>
+
+<details class="exemplo"><summary>Um produto de R$ 350 teve desconto de 18%. Quanto passou a custar?</summary>
+<div class="resolucao">
+<p class="passo">Com 18% de desconto, sobram 82%: fator 0,82.</p>
+<p class="passo">350 × 0,82 = 287.</p>
+<p class="resposta-final">Resposta: R$ 287.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Montar o fator errado em percentuais pequenos ou grandes. Desconto de 5% é fator <strong>0,95</strong>, e não 0,5 (isso seria desconto de 50%). Aumento de 120% é fator <strong>2,2</strong> (o valor mais que dobra); já "passou a valer 120% do anterior" é fator 1,2. Leia se o enunciado fala do acréscimo ou do valor final.</p></div>
+
 <h2>Contas de cabeça</h2>
+<p>"Por cento" quer dizer "a cada cem". Então 10% é a décima parte (1/10), 1% é a centésima parte (1/100), 25% é um quarto, 50% é metade. Em prova sem calculadora, a estratégia é quebrar qualquer porcentagem em pedaços fáceis (10%, 5%, 1%) e somar.</p>
 <ul>
   <li><strong>10%</strong>: anda a vírgula uma casa. 10% de 370 = 37.</li>
   <li><strong>1%</strong>: anda duas casas. 1% de 370 = 3,7.</li>
@@ -17,11 +34,50 @@
   <li><strong>25%</strong>: divide por 4. <strong>50%</strong>: divide por 2. <strong>20%</strong>: divide por 5.</li>
   <li>Monte o resto: 35% = 10% + 10% + 10% + 5%. 15% = 10% + 5%.</li>
 </ul>
+<table>
+<tr><th>Porcentagem</th><th>Fração</th></tr>
+<tr><td>12,5%</td><td>1/8</td></tr>
+<tr><td>20%</td><td>1/5</td></tr>
+<tr><td>25%</td><td>1/4</td></tr>
+<tr><td>33,3…%</td><td>1/3</td></tr>
+<tr><td>37,5%</td><td>3/8</td></tr>
+<tr><td>75%</td><td>3/4</td></tr>
+</table>
 <div class="caixa atalho"><span class="rotulo">Atalho: inverta a ordem</span>
 <p><span class="m">x% de y = y% de x</span>. Calcular 16% de 25 é difícil? Faça 25% de 16 = 4.</p></div>
 
+<details class="exemplo"><summary>Calcule 35% de 640 sem calculadora.</summary>
+<div class="resolucao">
+<p class="passo">10% de 640 = 64, então 30% = 192.</p>
+<p class="passo">5% = metade de 10% = 32.</p>
+<p class="passo">35% = 192 + 32 = 224.</p>
+<p class="resposta-final">Resposta: 224.</p></div></details>
+
+<details class="exemplo"><summary>Calcule 4% de 2.750 e 12,5% de 480.</summary>
+<div class="resolucao">
+<p class="passo">1% de 2.750 = 27,5. Então 4% = 4 × 27,5 = 110.</p>
+<p class="passo">12,5% = 1/8. 480 ÷ 8 = 60.</p>
+<p class="resposta-final">Resposta: 110 e 60.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Confundir 0,5% com 5%. 0,5% de 800 é 4 (metade de 1%, que é 8), e não 40. Em taxas pequenas, como juros mensais e multas diárias, a banca gosta desse tipo de alternativa.</p></div>
+
 <h2>Aumentos e descontos sucessivos</h2>
 <p>Porcentagens sucessivas <strong>não se somam</strong>: os fatores se multiplicam.</p>
+<p>O motivo é que cada porcentagem é calculada sobre um valor diferente. Num aumento de 20% seguido de desconto de 20%, o desconto incide sobre o valor já aumentado (120), e 20% de 120 é 24, mais do que os 20 que tinham entrado. Por isso o resultado fica abaixo do original. Como multiplicação é comutativa, a ordem dos aumentos e descontos não altera o resultado final.</p>
+<figure class="figura"><svg viewBox="0 0 320 170" width="320" role="img" aria-label="Três barras: valor inicial 100, depois de aumento de 20% vira 120, depois de desconto de 20% vira 96, abaixo da linha de referência de 100">
+  <line class="f-grade" x1="15" y1="45" x2="305" y2="45"/>
+  <line class="f-eixo" x1="15" y1="145" x2="305" y2="145"/>
+  <rect class="f-area" x="30" y="45" width="60" height="100"/>
+  <rect class="f-area-forte" x="130" y="25" width="60" height="120"/>
+  <rect class="f-area" x="230" y="49" width="60" height="96"/>
+  <text x="60" y="39" text-anchor="middle" class="f-titulo">100</text>
+  <text x="160" y="19" text-anchor="middle" class="f-titulo">120</text>
+  <text x="260" y="70" text-anchor="middle" class="f-titulo">96</text>
+  <text x="60" y="163" text-anchor="middle" class="f-nota">início</text>
+  <text x="160" y="163" text-anchor="middle" class="f-nota">+20%</text>
+  <text x="260" y="163" text-anchor="middle" class="f-nota">−20% sobre 120</text>
+</svg><figcaption>O desconto de 20% incide sobre 120 e tira 24: o valor final fica 4% abaixo do inicial.</figcaption></figure>
 <span class="formula" data-tex="+20\% \text{ e depois } -20\% \;\Rightarrow\; 1{,}20 \times 0{,}80 = 0{,}96 \;\Rightarrow\; \text{perda de } 4\%">+20% e depois −20% → 1,20 × 0,80 = 0,96 → perda de 4%</span>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>Dois descontos de 10% não dão 20% de desconto. Dão <span class="m">0,9 × 0,9 = 0,81</span>, ou seja, 19%.</p>
@@ -30,17 +86,48 @@
 <p>Taxa total = <span class="m">a + b + (a × b)/100</span>, com desconto entrando como negativo.</p>
 <p>+30% e −10%: 30 − 10 + (30 × −10)/100 = 20 − 3 = <strong>+17%</strong>.</p></div>
 
+<details class="exemplo"><summary>Um produto de R$ 200 sofreu dois aumentos seguidos de 10%. Qual o preço final e o aumento total?</summary>
+<div class="resolucao">
+<p class="passo">Fator total: 1,1 × 1,1 = 1,21.</p>
+<p class="passo">200 × 1,21 = 242.</p>
+<p class="passo">Aumento total de 21% (e não 20%): o segundo aumento incidiu sobre 220.</p>
+<p class="resposta-final">Resposta: R$ 242, aumento total de 21%.</p></div></details>
+
+<details class="exemplo"><summary>Uma loja dá 20% de desconto na etiqueta e mais 15% para pagamento à vista. Um item de R$ 500 sai por quanto à vista? Qual o desconto único equivalente?</summary>
+<div class="resolucao">
+<p class="passo">Fator total: 0,80 × 0,85 = 0,68.</p>
+<p class="passo">500 × 0,68 = 340.</p>
+<p class="passo">Sobram 68%, então o desconto único equivalente é 100% − 68% = 32% (e não 35%).</p>
+<p class="resposta-final">Resposta: R$ 340, desconto equivalente de 32%.</p></div></details>
+
 <h2>Variação percentual</h2>
 <span class="formula" data-tex="\text{variação} = \dfrac{\text{final} - \text{inicial}}{\text{inicial}}">variação = (valor final − valor inicial) / valor inicial</span>
 <p>A base é <strong>sempre o valor de antes</strong>, a menos que o enunciado diga "em relação ao preço final".</p>
+<p>A ideia é medir a mudança em relação ao ponto de partida. Um aumento de R$ 10 é enorme num produto de R$ 20 (50%) e pequeno num de R$ 1.000 (1%). Por isso a diferença sempre é dividida pelo valor de referência. Um atalho é dividir final por inicial: o que passar de 1 é aumento, o que faltar para 1 é queda.</p>
 <details class="exemplo"><summary>Um produto passou de R$ 80 para R$ 92. Qual foi o aumento percentual?</summary>
 <div class="resolucao">
 <p class="passo">Diferença: 12. Sobre a base 80: 12/80 = 0,15.</p>
 <p class="passo">Ou pelo fator: 92/80 = 1,15.</p>
 <p class="resposta-final">Resposta: 15%.</p></div></details>
 
+<details class="exemplo"><summary>O número de ocorrências num bairro caiu de 400 para 300 por mês. Qual foi a redução percentual? E quanto precisaria aumentar para voltar a 400?</summary>
+<div class="resolucao">
+<p class="passo">Queda: (300 − 400)/400 = −100/400 = −25%.</p>
+<p class="passo">Para voltar: a base agora é 300. (400 − 300)/300 = 100/300 ≈ 33,3%.</p>
+<p class="resposta-final">Resposta: redução de 25%; seria preciso aumento de cerca de 33,3% para voltar.</p></div></details>
+
+<details class="exemplo"><summary>Um preço caiu de R$ 250 para R$ 210. Qual foi o desconto percentual?</summary>
+<div class="resolucao">
+<p class="passo">Fator: 210/250 = 0,84.</p>
+<p class="passo">Falta 0,16 para chegar a 1.</p>
+<p class="resposta-final">Resposta: desconto de 16%.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Confundir <strong>pontos percentuais</strong> com porcentagem. Se a taxa de desemprego subiu de 10% para 12%, ela subiu <strong>2 pontos percentuais</strong>, mas aumentou <strong>20%</strong> (2/10). As bancas, principalmente a CEBRASPE, cobram exatamente essa diferença em itens de certo ou errado.</p></div>
+
 <h2>Achar o valor original</h2>
 <p>Quando o enunciado dá o valor <em>depois</em> do aumento ou desconto, <strong>divida pelo fator</strong>.</p>
+<p>É só desfazer a conta. Se o original foi multiplicado por 0,85 para virar o preço final, o caminho de volta é dividir por 0,85. A porcentagem foi calculada sobre o valor original, que é justamente o que não conhecemos; por isso não dá para "devolver" a porcentagem calculando-a sobre o valor final.</p>
 <details class="exemplo"><summary>Depois de um desconto de 15%, uma TV saiu por R$ 1.700. Qual era o preço original?</summary>
 <div class="resolucao">
 <p class="passo">Preço final = original × 0,85. Então original = 1.700 / 0,85.</p>
@@ -49,19 +136,59 @@
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>Somar 15% de 1.700 de volta (dando 1.955) é o erro que a banca coloca como alternativa. O desconto foi calculado sobre o preço original, não sobre o final.</p></div>
 
+<details class="exemplo"><summary>Após um aumento de 20%, uma conta de luz ficou em R$ 360. Qual era o valor antes?</summary>
+<div class="resolucao">
+<p class="passo">Original × 1,2 = 360.</p>
+<p class="passo">360 / 1,2 = 3.600 / 12 = 300.</p>
+<p class="resposta-final">Resposta: R$ 300.</p></div></details>
+
+<details class="exemplo"><summary>Um produto teve aumento de 25% e depois desconto de 10%, passando a custar R$ 225. Qual era o preço inicial?</summary>
+<div class="resolucao">
+<p class="passo">Fator total: 1,25 × 0,90 = 1,125.</p>
+<p class="passo">Inicial = 225 / 1,125 = 200.</p>
+<p class="passo">Conferindo: 200 × 1,25 = 250; 250 × 0,9 = 225.</p>
+<p class="resposta-final">Resposta: R$ 200.</p></div></details>
+
 <h2>Lucro e prejuízo</h2>
 <p>Lucro = venda − custo. O ponto que decide a questão é a base:</p>
 <ul>
   <li><strong>Lucro sobre o custo:</strong> venda = custo × (1 + p).</li>
   <li><strong>Lucro sobre a venda:</strong> venda − custo = p × venda, então venda = custo / (1 − p).</li>
 </ul>
+<p>Por que a base muda tudo? O mesmo lucro em reais representa porcentagens diferentes conforme a referência. Uma peça de custo 60 vendida por 80 dá lucro de 20: isso é 33,3% do custo, mas só 25% da venda. Quando o enunciado não diz a base, a convenção é usar o <strong>custo</strong> (o "valor de antes"). Prejuízo funciona igual, com fator menor que 1.</p>
 <details class="exemplo"><summary>Uma peça custa R$ 60. A loja quer lucro de 25% sobre o preço de venda. Por quanto deve vender?</summary>
 <div class="resolucao">
 <p class="passo">Se o lucro é 25% da venda, o custo é 75% da venda: 0,75 × V = 60.</p>
 <p class="passo">V = 60 / 0,75 = 80.</p>
 <p class="resposta-final">Resposta: R$ 80 (lucro de 20, que é 25% de 80).</p></div></details>
 
+<details class="exemplo"><summary>Um comerciante comprou uma mercadoria por R$ 120 e quer lucrar 30% sobre o custo. Por quanto deve vender?</summary>
+<div class="resolucao">
+<p class="passo">Venda = 120 × 1,30 = 156.</p>
+<p class="resposta-final">Resposta: R$ 156 (lucro de R$ 36).</p></div></details>
+
+<details class="exemplo"><summary>Um objeto foi vendido por R$ 90 com prejuízo de 25% sobre o custo. Qual era o custo?</summary>
+<div class="resolucao">
+<p class="passo">Prejuízo de 25% sobre o custo: venda = custo × 0,75.</p>
+<p class="passo">Custo = 90 / 0,75 = 120.</p>
+<p class="resposta-final">Resposta: R$ 120 (prejuízo de R$ 30).</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Calcular a margem sobre a base errada. Com custo 60 e venda 80, o lucro de 20 é 25% <strong>da venda</strong> e 33,3% <strong>do custo</strong>. As duas porcentagens costumam aparecer nas alternativas; a resposta certa depende de uma palavra do enunciado.</p></div>
+
 <h2>Porcentagem de porcentagem e misturas</h2>
+<p>"30% de 40%" é uma fração de outra fração, então se multiplica: 0,3 × 0,4 = 0,12. Pense em camadas: primeiro se recorta 40% do grupo, depois 30% desse recorte. O resultado é uma fatia do total.</p>
+<figure class="figura"><svg viewBox="0 0 320 150" width="320" role="img" aria-label="Retângulo representando todos os funcionários; 40% da largura são mulheres e, dentro delas, 30% da altura são pós-graduadas, formando 12% do total">
+  <rect class="f-area" x="20" y="10" width="112" height="110"/>
+  <rect class="f-area-forte" x="20" y="87" width="112" height="33"/>
+  <rect class="f-linha" x="20" y="10" width="280" height="110"/>
+  <line class="f-linha" x1="132" y1="10" x2="132" y2="120"/>
+  <line class="f-linha f-tracejado" x1="20" y1="87" x2="132" y2="87"/>
+  <text x="76" y="50" text-anchor="middle" class="f-nota">mulheres: 40%</text>
+  <text x="216" y="70" text-anchor="middle" class="f-nota">homens: 60%</text>
+  <text x="76" y="108" text-anchor="middle" class="f-titulo">12%</text>
+  <text x="20" y="140" class="f-nota">faixa escura: 30% das mulheres</text>
+</svg><figcaption>A parte destacada é 30% de 40% do retângulo inteiro, ou seja, 12% do total.</figcaption></figure>
 <details class="exemplo"><summary>Numa empresa, 40% dos funcionários são mulheres, e 30% delas têm pós-graduação. Que percentual do total são mulheres pós-graduadas?</summary>
 <div class="resolucao">
 <p class="passo">30% de 40% = 0,3 × 0,4 = 0,12.</p>
@@ -69,29 +196,115 @@
 <div class="caixa dica"><span class="rotulo">Dica: use 100 como total</span>
 <p>Quando o problema não dá o total, suponha que ele é 100 (pessoas, reais, litros). As porcentagens viram quantidades e a conta fica visual.</p></div>
 
+<details class="exemplo"><summary>Num concurso, 60% dos candidatos são homens. Foram aprovados 25% dos homens e 40% das mulheres. Que percentual do total de candidatos foi aprovado?</summary>
+<div class="resolucao">
+<p class="passo">Suponha 100 candidatos: 60 homens e 40 mulheres.</p>
+<p class="passo">Aprovados: 25% de 60 = 15 homens; 40% de 40 = 16 mulheres.</p>
+<p class="passo">Total aprovado: 15 + 16 = 31 de 100.</p>
+<p class="resposta-final">Resposta: 31%.</p></div></details>
+
+<details class="exemplo"><summary>Misturam-se 20 litros de uma solução com 30% de álcool e 30 litros de outra com 80% de álcool. Qual a porcentagem de álcool na mistura?</summary>
+<div class="resolucao">
+<p class="passo">Álcool na primeira: 30% de 20 = 6 L. Na segunda: 80% de 30 = 24 L.</p>
+<p class="passo">Álcool total: 30 L, num volume de 20 + 30 = 50 L.</p>
+<p class="passo">30/50 = 0,6.</p>
+<p class="resposta-final">Resposta: 60%.</p></div></details>
+
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Tirar a média simples das porcentagens. Na mistura acima, (30% + 80%)/2 = 55% está errado, porque os volumes são diferentes e a solução mais forte entrou em maior quantidade. Sempre converta as porcentagens em quantidades, some as quantidades e só no fim divida pelo total.</p></div>
+
 <h2>Questões</h2>
 <div class="questao" data-correta="c">
 <p class="enunciado">Um salário sofreu aumento de 10% e, no mês seguinte, outro de 20%. O aumento total foi de:</p>
 <ol class="alternativas"><li>28%</li><li>30%</li><li>32%</li><li>33%</li><li>35%</li></ol>
-<div class="explicacao"><p>1,1 × 1,2 = 1,32. Ou pelo atalho: 10 + 20 + (10 × 20)/100 = 32%.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Aumentos sucessivos não se somam: os fatores se multiplicam.</p>
+<ol class="passos-resolucao">
+<li>Aumento de 10%: fator 1,1. Aumento de 20%: fator 1,2.</li>
+<li>1,1 × 1,2 = 1,32.</li>
+<li>Fator 1,32 = aumento total de 32%. Com 100: 100 → 110 → 132.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Subtraiu o termo cruzado (10 × 20/100 = 2) em vez de somar.</li>
+<li><strong>B)</strong> Somou as porcentagens, o erro mais cobrado. O segundo aumento incide sobre o salário já aumentado.</li>
+<li><strong>D)</strong> Errou a multiplicação: 1,1 × 1,2 = 1,32, não 1,33.</li>
+<li><strong>E)</strong> Não sai de nenhum cálculo correto; superestima o efeito acumulado.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> dois percentuais seguidos: a + b + (a × b)/100 = 10 + 20 + 2 = 32%.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado">O preço de um produto caiu de R$ 250 para R$ 210. A redução foi de:</p>
 <ol class="alternativas"><li>14%</li><li>16%</li><li>19%</li><li>20%</li><li>40%</li></ol>
-<div class="explicacao"><p>Diferença 40 sobre a base 250: 40/250 = 0,16 = 16%.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Variação percentual = diferença ÷ valor de antes. A base é sempre o valor inicial.</p>
+<ol class="passos-resolucao">
+<li>Diferença: 250 − 210 = 40.</li>
+<li>Base: o valor de antes, 250.</li>
+<li>40 ÷ 250 = 0,16 = 16%.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> 14% de 250 é 35, não 40.</li>
+<li><strong>C)</strong> Usou o valor novo como base: 40 ÷ 210 ≈ 19%.</li>
+<li><strong>D)</strong> 20% de 250 é 50, e a redução foi de 40.</li>
+<li><strong>E)</strong> Confundiu a diferença em reais (40) com porcentagem.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> pelo fator: 210 ÷ 250 = 0,84, ou seja, o preço passou a 84% e caiu 16%.</p>
+</div>
 </div>
 <div class="questao" data-correta="e">
 <p class="enunciado">Após um aumento de 30%, um aluguel passou a custar R$ 1.950. Qual era o valor anterior?</p>
 <ol class="alternativas"><li>R$ 1.365</li><li>R$ 1.400</li><li>R$ 1.450</li><li>R$ 1.465</li><li>R$ 1.500</li></ol>
-<div class="explicacao"><p>1.950 / 1,3 = 1.500. (Tirar 30% de 1.950 dá 1.365, a alternativa armadilha.)</p></div>
+<div class="explicacao">
+<p><strong>Resposta: E.</strong> Quando o enunciado dá o valor depois do aumento, divida pelo fator. Não tire a porcentagem do valor final.</p>
+<ol class="passos-resolucao">
+<li>Aumento de 30%: fator 1,3.</li>
+<li>Valor anterior × 1,3 = 1.950.</li>
+<li>Valor anterior = 1.950 ÷ 1,3 = 1.500. Confira: 1.500 + 30% (450) = 1.950.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Tirou 30% de 1.950. É a armadilha: os 30% foram calculados sobre o valor antigo, não sobre o novo.</li>
+<li><strong>B)</strong> 1.400 × 1,3 = 1.820, não 1.950.</li>
+<li><strong>C)</strong> 1.450 × 1,3 = 1.885.</li>
+<li><strong>D)</strong> 1.465 × 1,3 = 1.904,50.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> teste as alternativas multiplicando por 1,3. Só uma bate exatamente.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado">Uma loja aumentou um preço em 25% e depois anunciou "20% de desconto". Em relação ao preço inicial, o preço final é:</p>
 <ol class="alternativas"><li>igual</li><li>5% maior</li><li>5% menor</li><li>4% maior</li><li>45% maior</li></ol>
-<div class="explicacao"><p>1,25 × 0,80 = 1,00. O preço voltou exatamente ao original.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> Aumento seguido de desconto: multiplique os fatores. O desconto incide sobre o preço já aumentado.</p>
+<ol class="passos-resolucao">
+<li>Aumento de 25%: fator 1,25. Desconto de 20%: fator 0,80.</li>
+<li>1,25 × 0,80 = 1,00.</li>
+<li>Preço final igual ao inicial. Com 100: 100 → 125 → 125 − 25 = 100.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> Fez 25 − 20 = 5, somando e subtraindo porcentagens como se tivessem a mesma base.</li>
+<li><strong>C)</strong> Inverteu o raciocínio; o desconto de 20% sobre 125 tira exatamente os 25 ganhos.</li>
+<li><strong>D)</strong> Errou a conta 1,25 × 0,8; o resultado é exatamente 1.</li>
+<li><strong>E)</strong> Somou os dois percentuais, ignorando que um é desconto.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> pela fórmula: 25 − 20 + (25 × (−20))/100 = 5 − 5 = 0%.</p>
+</div>
 </div>
 <div class="questao" data-correta="d">
 <p class="enunciado">Qual é o valor de 28% de 25?</p>
 <ol class="alternativas"><li>5</li><li>6</li><li>6,5</li><li>7</li><li>7,5</li></ol>
-<div class="explicacao"><p>Inverta: 25% de 28 = 28 / 4 = 7.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> A porcentagem é comutativa: x% de y = y% de x. Inverta para cair numa conta fácil.</p>
+<ol class="passos-resolucao">
+<li>28% de 25 = 25% de 28.</li>
+<li>25% é a quarta parte: 28 ÷ 4 = 7.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> 5 é 20% de 25.</li>
+<li><strong>B)</strong> 6 é 24% de 25.</li>
+<li><strong>C)</strong> 6,5 é 26% de 25.</li>
+<li><strong>E)</strong> 7,5 é 30% de 25.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> cada 1% de 25 vale 0,25. Então 28% = 28 × 0,25 = 7.</p>
+</div>
 </div>

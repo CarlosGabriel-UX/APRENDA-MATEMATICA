@@ -1,6 +1,7 @@
 <p>Esta apostila cobre a base de computação da prova específica de Perito Criminal Federal Área 3 (Só PF, Perito): arquitetura, sistemas operacionais, bancos de dados e SQL, Python, algoritmos, engenharia de software, inteligência artificial e big data. A CEBRASPE gosta de itens que pedem para <strong>prever a saída</strong> de um código ou de uma consulta, então treine com os exemplos linha a linha.</p>
 
 <h2>Arquitetura de computadores e bases numéricas</h2>
+<p><strong>A ideia geral.</strong> O computador é uma máquina que repete sem parar o mesmo ciclo: pega a próxima instrução na memória, entende o que ela pede e executa. A CPU faz as contas muito depressa, mas a memória principal é bem mais lenta que ela; por isso existe a hierarquia de memória, com pequenas memórias rápidas (cache) perto da CPU guardando o que provavelmente será usado em seguida. Quase toda pergunta de arquitetura se resolve lembrando esse equilíbrio entre velocidade, capacidade e custo.</p>
 <h3>Componentes</h3>
 <ul>
 <li><strong>CPU</strong>: unidade de controle (UC, busca e decodifica instruções), unidade lógica e aritmética (ULA, faz as contas) e registradores (como o PC, contador de programa, que aponta a próxima instrução, e o IR, registrador de instrução).</li>
@@ -14,6 +15,7 @@
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>ROM e memória flash são não voláteis. A cache é feita de SRAM (mais rápida e cara); a memória principal, de DRAM. Item que diga que a cache é mais lenta que a RAM, ou que a RAM guarda dados sem energia, está errado.</p></div>
 <h3>Bases numéricas (Cai muito)</h3>
+<p><strong>Por que binário e hexadecimal?</strong> O circuito só distingue dois estados (com ou sem tensão), então tudo vira 0 e 1. Só que um byte em binário tem 8 dígitos, o que é difícil de ler. Como 16 = 2<sup>4</sup>, cada dígito hexadecimal representa exatamente 4 bits, e um byte cabe em 2 dígitos hexa. É por isso que editores hexadecimais, hashes, endereços MAC e IPv6 usam hexa. A regra de qualquer base é a mesma do decimal: cada posição vale a base elevada à posição, contando da direita a partir de zero.</p>
 <p>Decore os dígitos hexadecimais acima de 9: <strong>A = 10 (1010), B = 11 (1011), C = 12 (1100), D = 13 (1101), E = 14 (1110), F = 15 (1111)</strong>. Potências de 2 úteis: 2<sup>8</sup> = 256, 2<sup>10</sup> = 1.024, 2<sup>16</sup> = 65.536.</p>
 <div class="caixa atalho"><span class="rotulo">Atalho: 1 dígito hexa = 4 bits</span>
 <p>Binário para hexa: agrupe de 4 em 4 bits a partir da direita e troque cada grupo pelo dígito hexadecimal correspondente. <code>1011 0110</code> = <code>B6</code>. Para octal, agrupe de 3 em 3.</p>
@@ -29,7 +31,22 @@
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha: 127 + 1</span>
 <p>Em 8 bits com sinal, 127 + 1 dá 10000000, que vale −128 (estouro, ou overflow). E existe um só zero em complemento de 2, ao contrário do sinal-magnitude e do complemento de 1.</p></div>
 
+<details class="exemplo"><summary>Converta 0x3F para decimal e binário, e 157 (decimal) para binário e hexadecimal.</summary>
+<div class="resolucao">
+<p class="passo">0x3F: 3 × 16 + 15 = 48 + 15 = 63. Em binário, cada dígito vira 4 bits: 3 = 0011, F = 1111, logo 0011 1111.</p>
+<p class="passo">157 = 128 + 16 + 8 + 4 + 1 (sobra 29 depois de 128; 29 = 16 + 13; 13 = 8 + 4 + 1) = 1001 1101.</p>
+<p class="passo">Agrupando de 4 em 4: 1001 = 9 e 1101 = D. Conferência: 9 × 16 + 13 = 144 + 13 = 157.</p>
+<p class="resposta-final">Resposta: 0x3F = 63 = 00111111; 157 = 10011101 = 0x9D.</p></div></details>
+<details class="exemplo"><summary>Um processador tem barramento de endereços de 32 bits e cada endereço aponta para 1 byte. Qual a memória máxima endereçável? E com 36 bits?</summary>
+<div class="resolucao">
+<p class="passo">Com n bits de endereço há 2<sup>n</sup> endereços diferentes. 2<sup>32</sup> = 2<sup>2</sup> × 2<sup>30</sup> = 4 × 1 GiB = 4 GiB.</p>
+<p class="passo">Com 36 bits: 2<sup>36</sup> = 2<sup>4</sup> × 2<sup>32</sup> = 16 × 4 GiB = 64 GiB.</p>
+<p class="resposta-final">Resposta: 4 GiB com 32 bits e 64 GiB com 36 bits. Cada bit a mais dobra a capacidade endereçável.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Agrupar os bits a partir da esquerda ao converter binário para hexa. O agrupamento é sempre a partir da <strong>direita</strong>, completando com zeros à esquerda: 101101 = 0010 1101 = 0x2D, e não 1011 01.</p></div>
+
 <h2>Sistemas operacionais</h2>
+<p><strong>Para que serve o sistema operacional?</strong> Ele é o administrador da máquina: divide a CPU entre os programas (escalonamento), dá a cada um a ilusão de ter a memória só para si (memória virtual) e controla o acesso a discos, rede e periféricos. Como há muito mais programas querendo rodar do que núcleos de CPU, o SO troca de processo o tempo todo, em milissegundos, e o usuário tem a impressão de que tudo roda ao mesmo tempo. Quase todos os temas abaixo são consequências dessa divisão de recursos: quem usa primeiro (escalonamento), o que acontece quando dois esperam um pelo outro (deadlock) e como caber mais programas do que a RAM comporta (paginação).</p>
 <h3>Processos e threads</h3>
 <ul>
 <li><strong>Processo</strong>: programa em execução, com espaço de endereçamento próprio, descritores de arquivos e contexto.</li>
@@ -51,6 +68,27 @@
 <p class="passo">FCFS: P1 espera 0, P2 espera 8, P3 espera 12. Média = 20/3 ≈ 6,67 ms.</p>
 <p class="passo">SJF: ordem P3, P2, P1. Esperas 0, 2 e 6. Média = 8/3 ≈ 2,67 ms.</p>
 <p class="resposta-final">Resposta: SJF reduz a espera média de cerca de 6,67 ms para 2,67 ms.</p></div></details>
+<details class="exemplo"><summary>Round Robin com quantum de 2 ms: P1 (5 ms), P2 (3 ms) e P3 (1 ms) chegam juntos, nessa ordem. Monte a linha do tempo e calcule o tempo médio de espera.</summary>
+<div class="resolucao">
+<p class="passo">P1 roda de 0 a 2 (faltam 3); P2 de 2 a 4 (falta 1); P3 de 4 a 5 (termina); P1 de 5 a 7 (falta 1); P2 de 7 a 8 (termina); P1 de 8 a 9 (termina).</p>
+<p class="passo">Espera = término − duração (todos chegaram em 0). P1: 9 − 5 = 4. P2: 8 − 3 = 5. P3: 5 − 1 = 4.</p>
+<p class="resposta-final">Resposta: média = (4 + 5 + 4) / 3 = 13/3 ≈ 4,33 ms.</p></div></details>
+<figure class="figura"><svg viewBox="0 0 320 120" width="320" role="img" aria-label="Diagrama de Gantt do Round Robin: P1 de 0 a 2, P2 de 2 a 4, P3 de 4 a 5, P1 de 5 a 7, P2 de 7 a 8, P1 de 8 a 9">
+<rect x="20" y="40" width="60" height="34" class="f-area f-linha"/><text x="50" y="62" text-anchor="middle">P1</text>
+<rect x="80" y="40" width="60" height="34" class="f-fundo f-linha"/><text x="110" y="62" text-anchor="middle">P2</text>
+<rect x="140" y="40" width="30" height="34" class="f-fundo f-linha"/><text x="155" y="62" text-anchor="middle">P3</text>
+<rect x="170" y="40" width="60" height="34" class="f-area f-linha"/><text x="200" y="62" text-anchor="middle">P1</text>
+<rect x="230" y="40" width="30" height="34" class="f-fundo f-linha"/><text x="245" y="62" text-anchor="middle">P2</text>
+<rect x="260" y="40" width="30" height="34" class="f-area f-linha"/><text x="275" y="62" text-anchor="middle">P1</text>
+<text x="20" y="92" text-anchor="middle" class="f-nota">0</text>
+<text x="80" y="92" text-anchor="middle" class="f-nota">2</text>
+<text x="140" y="92" text-anchor="middle" class="f-nota">4</text>
+<text x="170" y="92" text-anchor="middle" class="f-nota">5</text>
+<text x="230" y="92" text-anchor="middle" class="f-nota">7</text>
+<text x="260" y="92" text-anchor="middle" class="f-nota">8</text>
+<text x="290" y="92" text-anchor="middle" class="f-nota">9</text>
+<text x="160" y="24" text-anchor="middle" class="f-titulo">Round Robin, quantum = 2 ms</text>
+</svg><figcaption>Cada processo usa no máximo 2 ms e volta para o fim da fila; quem termina antes do quantum libera a CPU na hora</figcaption></figure>
 <h3>Deadlock (Cai muito)</h3>
 <p>Impasse em que processos esperam, indefinidamente, recursos presos uns pelos outros. As <strong>quatro condições</strong> (de Coffman) precisam ocorrer <strong>simultaneamente</strong>:</p>
 <ol>
@@ -62,6 +100,11 @@
 <p>Tratamento: <strong>prevenção</strong> (negar uma das quatro condições, por exemplo impondo ordem fixa na requisição de recursos, o que quebra a espera circular), <strong>evitação</strong> (algoritmo do banqueiro, que só concede recursos se o sistema continuar em estado seguro), <strong>detecção e recuperação</strong> (matar processos ou retomar recursos) ou ignorar (algoritmo do avestruz).</p>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>As quatro condições são <strong>necessárias</strong>: basta eliminar uma para que o deadlock seja impossível. O algoritmo do banqueiro é de <strong>evitação</strong>, não de detecção.</p></div>
+<details class="exemplo"><summary>O processo A trava a impressora e pede o scanner; o processo B trava o scanner e pede a impressora. Há deadlock? Como evitar com uma regra simples?</summary>
+<div class="resolucao">
+<p class="passo">As quatro condições estão presentes: cada recurso é exclusivo, cada processo segura um e espera outro, ninguém toma o recurso à força e A espera B, que espera A (espera circular).</p>
+<p class="passo">Regra de prevenção: numerar os recursos e obrigar todos a pedir em ordem crescente (por exemplo, sempre impressora antes do scanner). Assim B não consegue segurar o scanner esperando a impressora, e o ciclo não se forma.</p>
+<p class="resposta-final">Resposta: sim, há deadlock; impor uma ordem global de requisição quebra a espera circular.</p></div></details>
 <h3>Memória virtual e paginação</h3>
 <ul>
 <li>A memória virtual dá a cada processo um espaço de endereçamento próprio, que pode ser maior que a RAM, usando o disco como extensão.</li>
@@ -76,7 +119,11 @@
 <p class="passo">Sobram 32 − 12 = 20 bits para o número da página.</p>
 <p class="resposta-final">Resposta: 12 bits de deslocamento e 2<sup>20</sup> = 1.048.576 páginas.</p></div></details>
 
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Dizer que as threads de um mesmo processo compartilham a pilha. Elas compartilham código, dados globais, heap e arquivos abertos, mas cada thread tem a sua <strong>pilha</strong>, seus <strong>registradores</strong> e seu <strong>contador de programa</strong>; sem isso, não poderiam executar funções diferentes ao mesmo tempo.</p></div>
+
 <h2>Bancos de dados relacionais e normalização</h2>
+<p><strong>Por que normalizar?</strong> Imagine uma única planilha com pedidos, em que o nome do cliente se repete em cada linha. Se o cliente muda de nome, é preciso alterar centenas de linhas, e basta esquecer uma para o banco ficar contraditório (anomalia de atualização). Se o último pedido de um cliente é apagado, o cadastro dele some junto (anomalia de exclusão). Normalizar é separar os assuntos em tabelas diferentes, de modo que <strong>cada fato fique guardado em um lugar só</strong>, ligadas por chaves. As formas normais são apenas o roteiro para encontrar o que está no lugar errado.</p>
 <p>Vocabulário: <strong>relação</strong> = tabela; <strong>tupla</strong> = linha; <strong>atributo</strong> = coluna; <strong>domínio</strong> = conjunto de valores permitidos para o atributo; <strong>grau</strong> = número de colunas; <strong>cardinalidade</strong> = número de linhas.</p>
 <h3>Chaves</h3>
 <ul>
@@ -98,10 +145,24 @@
 <p class="passo">nome_produto depende só de cod_produto, e cpf_cliente depende só de num_pedido: dependências parciais, violam a 2FN.</p>
 <p class="passo">nome_cliente depende de cpf_cliente, que não é chave: dependência transitiva, viola a 3FN.</p>
 <p class="resposta-final">Resposta: separe em Pedido(num_pedido, cpf_cliente), Cliente(cpf_cliente, nome_cliente), Produto(cod_produto, nome_produto) e ItemPedido(num_pedido, cod_produto, qtd).</p></div></details>
+<details class="exemplo"><summary>A tabela Investigado(cpf, nome, telefones) guarda, em uma linha, telefones = "11 9999-0000, 11 9888-1111". Qual forma normal é violada e como corrigir?</summary>
+<div class="resolucao">
+<p class="passo">O atributo telefones guarda vários valores na mesma célula: não é atômico. Viola a <strong>1FN</strong>.</p>
+<p class="passo">Correção: Investigado(cpf, nome) e TelefoneInvestigado(cpf, telefone), com chave (cpf, telefone) e cpf como chave estrangeira. Agora dá para buscar "quem usa o telefone X" com um WHERE simples.</p>
+<p class="resposta-final">Resposta: viola a 1FN; cria-se uma tabela à parte, uma linha por telefone.</p></div></details>
+<details class="exemplo"><summary>Na tabela Servidor(matricula, cpf, nome, cargo), matrícula e CPF são únicos. Quais são as chaves candidatas? {matricula, nome} é superchave?</summary>
+<div class="resolucao">
+<p class="passo">matricula sozinha identifica a linha e é mínima: chave candidata. cpf também: chave candidata.</p>
+<p class="passo">{matricula, nome} identifica a linha (porque contém matricula), então é <strong>superchave</strong>, mas não é mínima: tirando nome, ainda identifica.</p>
+<p class="resposta-final">Resposta: chaves candidatas: {matricula} e {cpf}; uma vira primária e a outra fica como alternativa. {matricula, nome} é superchave, não candidata.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Exigir que a chave estrangeira seja única. A chave estrangeira <strong>pode se repetir</strong>: vários funcionários apontam para o mesmo departamento. Quem é única é a chave primária referenciada.</p></div>
 <div class="caixa atalho"><span class="rotulo">Atalho: "a chave, a chave inteira e nada além da chave"</span>
 <p>1FN: depende <strong>da chave</strong> (valores atômicos). 2FN: da <strong>chave inteira</strong>. 3FN: de <strong>nada além da chave</strong>. Tabela com chave primária simples (uma coluna) que está na 1FN já está automaticamente na 2FN.</p></div>
 
 <h2>SQL e NoSQL</h2>
+<p><strong>Como pensar em SQL.</strong> O SQL é declarativo: você descreve <strong>o que</strong> quer, e o banco decide como buscar. Para prever o resultado de uma consulta, imite o banco: comece pelo FROM (junte as tabelas), filtre as linhas com o WHERE, forme os grupos, filtre os grupos com o HAVING e só no fim escolha as colunas e a ordem. Fazendo isso numa tabelinha de rascunho, os itens de "quantas linhas retorna" ficam mecânicos.</p>
+<p>O NoSQL nasceu de outro problema: guardar volumes gigantes, com formato variável, espalhados por muitas máquinas. Para crescer assim, abre-se mão de parte das garantias do modelo relacional (esquema fixo, junções, consistência imediata).</p>
 <p>Grupos de comandos: <strong>DDL</strong> (CREATE, ALTER, DROP, TRUNCATE), <strong>DML</strong> (SELECT, INSERT, UPDATE, DELETE), <strong>DCL</strong> (GRANT, REVOKE) e <strong>TCL</strong> (COMMIT, ROLLBACK, SAVEPOINT).</p>
 <p>Tabelas de exemplo:</p>
 <table>
@@ -136,11 +197,37 @@ HAVING COUNT(*) &gt;= 2;
 <li><code>DELETE</code> sem WHERE apaga todas as linhas, mas mantém a tabela (e é DML); <code>TRUNCATE</code> esvazia a tabela (DDL); <code>DROP</code> remove a tabela inteira.</li>
 <li><code>CROSS JOIN</code> faz o produto cartesiano: 4 × 3 = 12 linhas aqui.</li>
 </ul></div>
+<details class="exemplo"><summary>Com as tabelas acima, quem ganha acima da média salarial? Qual departamento não tem nenhum funcionário?</summary>
+<div class="resolucao">
+<pre><code>SELECT nome FROM funcionarios
+WHERE salario &gt; (SELECT AVG(salario) FROM funcionarios);
+
+SELECT d.nome
+FROM departamentos d
+LEFT JOIN funcionarios f ON f.depto_id = d.id
+WHERE f.id IS NULL;</code></pre>
+<p class="passo">Média: (5000 + 7000 + 5000 + 4000) / 4 = 21000 / 4 = 5250. Só Bruno (7000) passa.</p>
+<p class="passo">No LEFT JOIN, todo departamento aparece; o que não tem funcionário fica com as colunas de f em NULL. Perícia e TI têm funcionários; Jurídico (30) não.</p>
+<p class="resposta-final">Resposta: a primeira consulta retorna Bruno; a segunda, Jurídico.</p></div></details>
+<details class="exemplo"><summary>O que retornam <code>SELECT COUNT(DISTINCT salario) FROM funcionarios</code> e <code>SELECT nome, salario FROM funcionarios ORDER BY salario DESC, nome LIMIT 2</code>?</summary>
+<div class="resolucao">
+<p class="passo">Salários: 5000, 7000, 5000, 4000. Distintos: 4000, 5000 e 7000 → 3.</p>
+<p class="passo">Ordenando do maior para o menor: Bruno 7000; depois Ana e Carla empatadas em 5000, desempatadas pelo nome em ordem alfabética (Ana antes); por fim Davi. LIMIT 2 pega as duas primeiras.</p>
+<p class="resposta-final">Resposta: 3; e (Bruno, 7000), (Ana, 5000).</p></div></details>
 <h3>NoSQL (noções)</h3>
 <p>Modelos: <strong>chave-valor</strong> (Redis; cache e sessões), <strong>documentos</strong> JSON/BSON (MongoDB; esquema flexível), <strong>colunar ou família de colunas</strong> (Cassandra, HBase; grandes volumes distribuídos) e <strong>grafos</strong> (Neo4j; redes de vínculos, rastreio de transações).</p>
 <p>Bancos NoSQL favorecem <strong>escalabilidade horizontal</strong> e esquema flexível, muitas vezes com consistência eventual (modelo BASE, em vez de ACID estrito). O <strong>teorema CAP</strong> diz que um sistema distribuído, diante de uma partição de rede, precisa escolher entre consistência e disponibilidade.</p>
 
+<details class="exemplo"><summary>Uma investigação precisa mapear vínculos entre pessoas, empresas e contas bancárias, com perguntas do tipo "quem está a até 3 ligações do investigado?". Que modelo NoSQL é mais adequado?</summary>
+<div class="resolucao">
+<p class="passo">A pergunta é sobre <strong>relacionamentos</strong> e caminhos entre entidades. No relacional, cada ligação a mais exige mais uma junção, e a consulta fica cara.</p>
+<p class="passo">No banco de <strong>grafos</strong>, pessoas, empresas e contas são vértices e os vínculos são arestas; percorrer caminhos é a operação natural.</p>
+<p class="resposta-final">Resposta: banco de grafos (como Neo4j). Para guardar sessões e cache, chave-valor; para documentos JSON variados, orientado a documentos.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Ler NoSQL como "sem SQL nenhum". A sigla é entendida como <strong>Not only SQL</strong>: vários bancos NoSQL têm linguagens parecidas com SQL (o Cassandra usa a CQL), e o que muda é o modelo de dados, não a existência de consultas.</p></div>
+
 <h2>Python</h2>
+<p><strong>Como prever a saída de um código.</strong> A banca não quer que você programe, quer que você <strong>execute o código de cabeça</strong>. Para isso, trate cada variável como uma caixinha com um valor e atualize a caixinha a cada linha, na ordem em que o Python executaria. Dois detalhes do Python derrubam muita gente: em listas e dicionários, a variável guarda uma <strong>referência</strong> ao objeto (duas variáveis podem apontar para a mesma lista), e a indentação define o que está dentro do laço ou do <code>if</code>.</p>
 <ul>
 <li>Tipagem <strong>dinâmica</strong> (a variável não tem tipo declarado) e <strong>forte</strong> (não converte sozinho: <code>"3" + 3</code> gera TypeError).</li>
 <li>Tipos: <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>, <code>None</code>, <code>list</code> (mutável), <code>tuple</code> (imutável), <code>dict</code> (chave → valor, mutável), <code>set</code> (sem repetição, sem ordem).</li>
@@ -193,7 +280,61 @@ print(adiciona(2))   # [1, 2]  (a mesma lista é reaproveitada)</code></pre>
 <div class="caixa dica"><span class="rotulo">Dica de prova</span>
 <p>Para prever saídas, escreva os índices embaixo de cada caractere e acompanhe as variáveis em uma tabelinha, linha por linha. Desconfie de toda atribuição de lista (<code>b = a</code>): ela não copia.</p></div>
 
+<details class="exemplo"><summary>Qual a saída deste código?</summary>
+<div class="resolucao">
+<pre><code>total = 0
+i = 1
+while True:
+    if i % 3 == 0:
+        i += 1
+        continue
+    total += i
+    if total &gt; 10:
+        break
+    i += 1
+print(i, total)</code></pre>
+<p class="passo">i = 1: total = 1; i = 2: total = 3; i = 3: múltiplo de 3, o <code>continue</code> pula para a próxima volta depois de fazer i = 4.</p>
+<p class="passo">i = 4: total = 7; i = 5: total = 12, que é maior que 10, então <code>break</code> sai do laço antes de incrementar i.</p>
+<p class="resposta-final">Resposta: <code>5 12</code>.</p></div></details>
+<details class="exemplo"><summary>Contagem de palavras com dicionário: o que é impresso?</summary>
+<div class="resolucao">
+<pre><code>texto = "pf pcf pf perito pf pcf"
+contagem = {}
+for palavra in texto.split():
+    contagem[palavra] = contagem.get(palavra, 0) + 1
+print(contagem)
+print(max(contagem, key=contagem.get))
+print(sorted(contagem.items(), key=lambda par: par[1]))</code></pre>
+<p class="passo"><code>split()</code> separa pelos espaços. <code>get(palavra, 0)</code> devolve 0 na primeira vez, e o dicionário guarda as chaves na ordem de inserção.</p>
+<p class="passo"><code>max</code> com <code>key=contagem.get</code> compara pelas contagens; <code>sorted</code> com a lambda ordena os pares pelo segundo elemento, em ordem crescente.</p>
+<pre><code>{'pf': 3, 'pcf': 2, 'perito': 1}
+pf
+[('perito', 1), ('pcf', 2), ('pf', 3)]</code></pre>
+<p class="resposta-final">Resposta: as três linhas acima.</p></div></details>
+<details class="exemplo"><summary>try, except, else e finally: qual a saída?</summary>
+<div class="resolucao">
+<pre><code>def divide(a, b):
+    try:
+        r = a / b
+    except ZeroDivisionError:
+        return "erro"
+    else:
+        return r
+    finally:
+        print("fim", end=" ")
+
+print(divide(6, 3))
+print(divide(1, 0))</code></pre>
+<p class="passo">divide(6, 3): sem erro, vai para o <code>else</code>, que vai devolver 2.0; antes de sair, o <code>finally</code> roda e imprime "fim " na mesma linha.</p>
+<p class="passo">divide(1, 0): gera ZeroDivisionError, cai no <code>except</code>, que vai devolver "erro"; de novo o <code>finally</code> roda antes.</p>
+<pre><code>fim 2.0
+fim erro</code></pre>
+<p class="resposta-final">Resposta: as duas linhas acima. O <code>finally</code> executa sempre, mesmo quando há <code>return</code>.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Achar que <code>range(1, 5)</code> inclui o 5, ou que <code>s[1:4]</code> inclui o índice 4. Em Python, o fim do intervalo <strong>nunca entra</strong>: <code>range(1, 5)</code> gera 1, 2, 3, 4, e a quantidade de elementos é fim − início.</p></div>
+
 <h2>Estruturas de dados e complexidade</h2>
+<p><strong>Por que escolher a estrutura certa?</strong> Os mesmos dados podem ser guardados de formas diferentes, e cada forma deixa algumas operações baratas e outras caras. No vetor, chegar ao elemento 500 é imediato, mas inserir no começo obriga a empurrar todos. Na lista encadeada é o contrário. A notação <strong>O( )</strong> mede como o trabalho cresce quando a entrada cresce: O(n) dobra quando n dobra; O(n²) quadruplica; O(log n) quase não muda. Para n = 1.000, um algoritmo O(n²) faz da ordem de 1.000.000 de passos, enquanto um O(n log n) faz cerca de 10.000.</p>
 <ul>
 <li><strong>Pilha</strong>: LIFO (último a entrar, primeiro a sair), operações push e pop. Usada em chamadas de função e no "desfazer".</li>
 <li><strong>Fila</strong>: FIFO (primeiro a entrar, primeiro a sair). Usada em escalonamento e buffers.</li>
@@ -216,7 +357,68 @@ print(adiciona(2))   # [1, 2]  (a mesma lista é reaproveitada)</code></pre>
 <div class="caixa atalho"><span class="rotulo">Atalho: busca binária</span>
 <p>Cada comparação corta o vetor pela metade. Com 1.000 elementos, no máximo cerca de 10 comparações (2<sup>10</sup> = 1.024); com 1 milhão, cerca de 20. Ordenação por comparação não consegue ser melhor que O(n log n) no pior caso.</p></div>
 
+<details class="exemplo"><summary>Busca binária pelo valor 25 no vetor [3, 8, 12, 17, 25, 31, 40]. Quantas comparações? E para o valor 5, que não existe?</summary>
+<div class="resolucao">
+<pre><code>def busca_binaria(v, alvo):
+    ini, fim = 0, len(v) - 1
+    passos = 0
+    while ini &lt;= fim:
+        meio = (ini + fim) // 2
+        passos += 1
+        if v[meio] == alvo:
+            return meio, passos
+        elif v[meio] &lt; alvo:
+            ini = meio + 1
+        else:
+            fim = meio - 1
+    return -1, passos
+
+v = [3, 8, 12, 17, 25, 31, 40]
+print(busca_binaria(v, 25))   # (4, 3)
+print(busca_binaria(v, 5))    # (-1, 3)</code></pre>
+<p class="passo">Para 25: meio = 3 (17 &lt; 25, vai para a direita); meio = (4 + 6) // 2 = 5 (31 &gt; 25, vai para a esquerda); meio = 4 (25, achou).</p>
+<p class="passo">Para 5: meio 3 (17), meio 1 (8), meio 0 (3 &lt; 5): ini passa de fim e a busca termina sem achar.</p>
+<p class="resposta-final">Resposta: 3 comparações nos dois casos; com 7 elementos, nunca passa de 3 (2<sup>3</sup> = 8 &gt; 7).</p></div></details>
+<figure class="figura"><svg viewBox="0 0 320 150" width="320" role="img" aria-label="Árvore binária de busca com raiz 50; filhos 30 e 70; netos 20, 40, 60 e 80; o caminho de busca do 60 passa por 50, 70 e 60">
+<line x1="160" y1="25" x2="90" y2="70" class="f-linha"/>
+<line x1="160" y1="25" x2="230" y2="70" class="f-dest"/>
+<line x1="90" y1="70" x2="55" y2="120" class="f-linha"/>
+<line x1="90" y1="70" x2="125" y2="120" class="f-linha"/>
+<line x1="230" y1="70" x2="195" y2="120" class="f-dest"/>
+<line x1="230" y1="70" x2="265" y2="120" class="f-linha"/>
+<circle cx="160" cy="25" r="16" class="f-area f-linha"/><text x="160" y="30" text-anchor="middle">50</text>
+<circle cx="90" cy="70" r="16" class="f-fundo f-linha"/><text x="90" y="75" text-anchor="middle">30</text>
+<circle cx="230" cy="70" r="16" class="f-area f-linha"/><text x="230" y="75" text-anchor="middle">70</text>
+<circle cx="55" cy="120" r="16" class="f-fundo f-linha"/><text x="55" y="125" text-anchor="middle">20</text>
+<circle cx="125" cy="120" r="16" class="f-fundo f-linha"/><text x="125" y="125" text-anchor="middle">40</text>
+<circle cx="195" cy="120" r="16" class="f-area f-linha"/><text x="195" y="125" text-anchor="middle">60</text>
+<circle cx="265" cy="120" r="16" class="f-fundo f-linha"/><text x="265" y="125" text-anchor="middle">80</text>
+</svg><figcaption>Árvore binária de busca: para achar 60, compara com 50 (vai à direita), com 70 (vai à esquerda) e chega ao 60</figcaption></figure>
+<details class="exemplo"><summary>Insira 1, 2 e 3; remova um; insira 4; remova dois. Que elementos saem e o que sobra, numa pilha e numa fila?</summary>
+<div class="resolucao">
+<pre><code>from collections import deque
+pilha = []
+for x in [1, 2, 3]:
+    pilha.append(x)
+a = pilha.pop()
+pilha.append(4)
+b = pilha.pop()
+c = pilha.pop()
+print(a, b, c, pilha)        # 3 4 2 [1]
+fila = deque([1, 2, 3])
+a = fila.popleft()
+fila.append(4)
+b = fila.popleft()
+c = fila.popleft()
+print(a, b, c, list(fila))   # 1 2 3 [4]</code></pre>
+<p class="passo">Pilha (LIFO): sai sempre o do topo. Sai 3; entra 4; saem 4 e 2; sobra [1].</p>
+<p class="passo">Fila (FIFO): sai sempre o mais antigo. Sai 1; entra 4 no fim; saem 2 e 3; sobra [4].</p>
+<p class="resposta-final">Resposta: pilha remove 3, 4, 2 e sobra 1; fila remove 1, 2, 3 e sobra 4.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Aplicar busca binária em vetor desordenado. A busca binária só funciona porque, com o vetor ordenado, olhar o meio diz de que lado o valor está. Num vetor fora de ordem ela pode "não achar" um elemento que existe; aí só resta a busca sequencial, ou ordenar antes (O(n log n)).</p></div>
+
 <h2>Engenharia de software</h2>
+<p><strong>A ideia por trás dos processos.</strong> Construir software é lidar com incerteza: o cliente nem sempre sabe o que quer, e os requisitos mudam. O modelo cascata aposta em planejar tudo no início e seguir o plano; funciona quando os requisitos são estáveis, mas descobre os problemas tarde, quando consertar custa caro. Os métodos ágeis apostam no contrário: entregar pedaços pequenos e funcionando a cada poucas semanas, mostrar ao cliente e ajustar o rumo. O Scrum é a forma mais cobrada de organizar esse ciclo curto.</p>
 <ul>
 <li><strong>Cascata</strong>: fases sequenciais (requisitos, projeto, implementação, testes, implantação); mudanças tardias custam caro. <strong>Espiral</strong>: iterativo e orientado a <strong>riscos</strong>.</li>
 <li>Requisitos <strong>funcionais</strong> (o que o sistema faz) x <strong>não funcionais</strong> (desempenho, segurança, usabilidade, disponibilidade).</li>
@@ -234,7 +436,22 @@ print(adiciona(2))   # [1, 2]  (a mesma lista é reaproveitada)</code></pre>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha</span>
 <p>O Scrum Master não é chefe da equipe nem distribui tarefas: os Developers se auto-organizam. A Review inspeciona o <strong>produto</strong> (incremento) com os interessados; a Retrospectiva inspeciona o <strong>processo</strong> e a forma de trabalho do time. Kanban não tem sprints fixas e limita o trabalho em andamento (WIP).</p></div>
 
+<details class="exemplo"><summary>Classifique os requisitos de um sistema de laudos: (a) emitir o laudo em PDF assinado; (b) responder às buscas em até 2 segundos; (c) registrar em log todo acesso a laudos sigilosos; (d) funcionar 99,9% do tempo.</summary>
+<div class="resolucao">
+<p class="passo">(a) Descreve algo que o sistema <strong>faz</strong>: funcional.</p>
+<p class="passo">(b) e (d) descrevem <strong>como</strong> ele deve se comportar (desempenho e disponibilidade): não funcionais.</p>
+<p class="passo">(c) Registrar o acesso é uma função que o sistema executa: funcional (ligada a um objetivo de segurança, mas descrita como comportamento do sistema).</p>
+<p class="resposta-final">Resposta: (a) e (c) funcionais; (b) e (d) não funcionais.</p></div></details>
+<details class="exemplo"><summary>No meio da Sprint, o diretor pede ao Scrum Master que inclua uma nova funcionalidade urgente e distribua as tarefas entre os Developers. Como o Scrum trata o caso?</summary>
+<div class="resolucao">
+<p class="passo">Quem decide prioridades do produto é o <strong>Product Owner</strong>; o pedido deve ir para ele, que o coloca no Product Backlog.</p>
+<p class="passo">Durante a Sprint, não se fazem mudanças que coloquem em risco a meta da Sprint; o escopo pode ser esclarecido e renegociado com o Product Owner. As tarefas não são distribuídas pelo Scrum Master: os Developers se auto-organizam.</p>
+<p class="resposta-final">Resposta: o pedido vai ao Product Owner, entra no Product Backlog e, em regra, é planejado numa próxima Sprint; o Scrum Master não atribui tarefas.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Afirmar que o ágil "dispensa documentação". O Manifesto diz que software em funcionamento vale <strong>mais</strong> que documentação abrangente, não que a documentação não tem valor. Documenta-se o necessário.</p></div>
+
 <h2>Inteligência artificial, aprendizado de máquina e big data</h2>
+<p><strong>O que é "aprender" para uma máquina.</strong> Em vez de o programador escrever as regras ("se o e-mail tem tal palavra, é spam"), o algoritmo recebe muitos exemplos e ajusta sozinho os parâmetros de um modelo para errar o menos possível. Se os exemplos vêm com a resposta certa (rótulo), o aprendizado é supervisionado; se não vêm, o algoritmo só pode procurar padrões e grupos (não supervisionado). O objetivo nunca é acertar os exemplos de treino, e sim acertar casos <strong>novos</strong>; por isso se guarda uma parte dos dados para teste, que o modelo não vê durante o treino.</p>
 <table>
 <tr><th>Tipo</th><th>Dados</th><th>Tarefas e exemplos</th></tr>
 <tr><td><strong>Supervisionado</strong></td><td>Rotulados (entrada e resposta certa)</td><td>Classificação (spam ou não, fraude ou não) e regressão (prever valor). Árvores de decisão, regressão logística, SVM, redes neurais</td></tr>
@@ -260,6 +477,19 @@ print(adiciona(2))   # [1, 2]  (a mesma lista é reaproveitada)</code></pre>
 <p class="passo">VP = 30, FP = 40 − 30 = 10, FN = 50 − 30 = 20.</p>
 <p class="passo">Precisão = 30 / 40 = 75%. Recall = 30 / 50 = 60%.</p>
 <p class="resposta-final">Resposta: precisão de 75% e recall de 60% (F1 ≈ 66,7%).</p></div></details>
+<details class="exemplo"><summary>Um classificador de imagens tem 99% de acerto no treino e 70% no teste. Outro tem 72% no treino e 71% no teste. Diagnostique cada um.</summary>
+<div class="resolucao">
+<p class="passo">Primeiro: grande diferença entre treino (99%) e teste (70%). O modelo decorou o treino e não generaliza: <strong>overfitting</strong>.</p>
+<p class="passo">Segundo: desempenho baixo e parecido nos dois. O modelo é simples demais para o problema: <strong>underfitting</strong>.</p>
+<p class="resposta-final">Resposta: o primeiro sofre overfitting (remédios: mais dados, regularização, modelo mais simples); o segundo, underfitting (modelo mais rico, mais atributos).</p></div></details>
+<details class="exemplo"><summary>Supervisionado ou não supervisionado? (a) prever o valor de um imóvel a partir de vendas anteriores; (b) separar 1 milhão de transações em grupos de perfil parecido, sem rótulo; (c) classificar mensagens como golpe ou não, a partir de mensagens já rotuladas.</summary>
+<div class="resolucao">
+<p class="passo">(a) Há resposta conhecida (preço) e ela é um número: supervisionado, <strong>regressão</strong>.</p>
+<p class="passo">(b) Sem rótulo, buscando grupos: não supervisionado, <strong>agrupamento</strong> (por exemplo, k-means).</p>
+<p class="passo">(c) Há rótulo e ele é uma categoria: supervisionado, <strong>classificação</strong>.</p>
+<p class="resposta-final">Resposta: (a) supervisionado/regressão, (b) não supervisionado/agrupamento, (c) supervisionado/classificação.</p></div></details>
+<div class="caixa pegadinha"><span class="rotulo">Erro comum</span>
+<p>Trocar precisão por recall. Precisão olha para o que o modelo <strong>apontou</strong> (dos alertas, quantos eram verdadeiros); recall olha para o que <strong>existia</strong> (dos positivos reais, quantos foram achados). Dica: recall tem o FN no denominador, isto é, mede o que "escapou".</p></div>
 <div class="caixa pegadinha"><span class="rotulo">Pegadinha: acurácia com classes desbalanceadas</span>
 <p>Se 1% das transações são fraude, um modelo que diz "nunca é fraude" tem 99% de acurácia e recall zero. Em triagem pericial, em que deixar passar um positivo é grave, o recall importa mais.</p></div>
 <h3>Big data: os 5 Vs</h3>
@@ -270,50 +500,174 @@ print(adiciona(2))   # [1, 2]  (a mesma lista é reaproveitada)</code></pre>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Em complemento de 2 com 8 bits, o número −5 é representado por 11111011.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>5 = 00000101; invertendo, 11111010; somando 1, 11111011.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Para obter −x em complemento de 2: escreva x em binário, inverta todos os bits e some 1. Para −5 com 8 bits, isso dá 11111011.</p>
+<ol class="passos-resolucao">
+<li>5 em 8 bits: <code>00000101</code>.</li>
+<li>Invertendo todos os bits: <code>11111010</code>.</li>
+<li>Somando 1: <code>11111011</code> (0xFB).</li>
+<li>Conferência: 11111011 sem sinal vale 251, e 251 − 256 = −5.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca troca pelo complemento de 1 (<code>11111010</code>, sem somar 1) ou pelo sinal-magnitude (<code>10000101</code>, só liga o bit de sinal). Os dois deixariam o item errado.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> da direita para a esquerda, copie os bits até o primeiro 1 (inclusive) e inverta o resto: 00000101 → 11111011.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Para que ocorra deadlock, basta que estejam presentes as condições de exclusão mútua e de espera circular; as condições de posse e espera e de não preempção são dispensáveis.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>As quatro condições de Coffman são necessárias e devem ocorrer simultaneamente. Eliminar qualquer uma impede o deadlock.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> As quatro condições de Coffman (exclusão mútua, posse e espera, não preempção e espera circular) são todas <strong>necessárias</strong> e precisam ocorrer <strong>simultaneamente</strong>.</p>
+<ol class="passos-resolucao">
+<li>Sem posse e espera, o processo não segura um recurso enquanto espera outro, então não se forma o impasse.</li>
+<li>Sem não preempção, o sistema pode tomar o recurso à força e desfazer o ciclo.</li>
+<li>Por isso a prevenção funciona negando uma única condição: por exemplo, impor ordem fixa na requisição de recursos quebra a espera circular.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item diz que duas condições bastam. Certo seria: "para que ocorra deadlock, as quatro condições devem estar presentes ao mesmo tempo". Outra troca comum: chamar o algoritmo do banqueiro de detecção, quando ele é de evitação.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> quatro condições, todas obrigatórias; tirou uma, não há deadlock.</p>
+</div>
 </div>
 <div class="questao" data-correta="c">
 <p class="enunciado">Considere o código Python:<br><code>v = [3, 8, 1, 9, 4]</code><br><code>print(v[1:4], v[-1], v[::2])</code><br>A saída é:</p>
 <ol class="alternativas"><li>[3, 8, 1] 4 [3, 1, 4]</li><li>[8, 1, 9, 4] 4 [8, 9]</li><li>[8, 1, 9] 4 [3, 1, 4]</li><li>[8, 1, 9] 3 [3, 1, 4]</li><li>[8, 1, 9] 4 [8, 9]</li></ol>
-<div class="explicacao"><p>v[1:4] pega os índices 1, 2 e 3 (o 4 não entra): [8, 1, 9]. v[-1] é o último: 4. v[::2] pega os índices 0, 2 e 4: [3, 1, 4].</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> No fatiamento <code>seq[início:fim:passo]</code>, os índices começam em 0 e o fim não entra. Assim, v[1:4] = [8, 1, 9], v[-1] = 4 e v[::2] = [3, 1, 4].</p>
+<ol class="passos-resolucao">
+<li>Escreva os índices: 3 (0), 8 (1), 1 (2), 9 (3), 4 (4).</li>
+<li><code>v[1:4]</code>: índices 1, 2 e 3 (o 4 não entra) → [8, 1, 9].</li>
+<li><code>v[-1]</code>: índice negativo conta do fim; −1 é o último → 4.</li>
+<li><code>v[::2]</code>: do início ao fim, de 2 em 2: índices 0, 2 e 4 → [3, 1, 4].</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> [3, 8, 1] é v[0:3]: tratou o índice 1 como se fosse o primeiro elemento.</li>
+<li><strong>B)</strong> [8, 1, 9, 4] incluiu o índice final 4, e [8, 9] começou o passo no índice 1.</li>
+<li><strong>D)</strong> v[-1] = 3 confunde o último elemento com o primeiro.</li>
+<li><strong>E)</strong> [8, 9] para v[::2] começa no índice 1; sem início informado, o passo começa no 0.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> o tamanho da fatia é fim − início (4 − 1 = 3 elementos); se der outro número, a alternativa está errada.</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Em SQL, a cláusula HAVING permite filtrar grupos com base em funções de agregação, como COUNT e AVG, o que não é possível na cláusula WHERE.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>O WHERE é avaliado antes do GROUP BY, quando os grupos ainda não existem; o HAVING é avaliado depois.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Pela ordem lógica de execução (FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY), o WHERE é avaliado antes de os grupos existirem; por isso só o HAVING pode filtrar por COUNT, AVG e outras agregações.</p>
+<ol class="passos-resolucao">
+<li>O WHERE filtra <strong>linhas</strong>, uma a uma, antes do agrupamento: não há grupo sobre o qual calcular um COUNT.</li>
+<li>O GROUP BY forma os grupos, e o HAVING filtra <strong>grupos</strong> já com as agregações calculadas.</li>
+<li>No exemplo da apostila, <code>WHERE salario &gt;= 4500</code> tira Davi, o GROUP BY forma os grupos 10 e 20, e <code>HAVING COUNT(*) &gt;= 2</code> descarta o grupo 20. Resultado: 10 | 2 | 6000. Escrever <code>WHERE AVG(salario) &gt; 1</code> gera erro de uso indevido de agregação.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca troca os papéis ("o WHERE filtra grupos e o HAVING filtra linhas") ou diz que o HAVING é executado antes do GROUP BY. Os dois ficam errados.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> WHERE = linhas, antes de agrupar; HAVING = grupos, depois de agrupar.</p>
+</div>
 </div>
 <div class="questao" data-correta="e">
 <p class="enunciado">Uma tabela tem chave primária composta (matricula, cod_disciplina) e o atributo nome_aluno, que depende apenas de matricula. Essa tabela viola a:</p>
 <ol class="alternativas"><li>1FN, por ter chave composta.</li><li>3FN, mas não a 2FN.</li><li>FNBC apenas.</li><li>1FN, por conter atributo multivalorado.</li><li>2FN, por haver dependência parcial da chave.</li></ol>
-<div class="explicacao"><p>nome_aluno depende de parte da chave composta: dependência parcial, que viola a 2FN (e, por consequência, as formas superiores). Chave composta não viola a 1FN.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: E.</strong> nome_aluno depende só de matricula, que é <strong>parte</strong> da chave composta. Isso é dependência parcial, proibida pela 2FN.</p>
+<ol class="passos-resolucao">
+<li>Chave primária: (matricula, cod_disciplina).</li>
+<li>nome_aluno é determinado apenas por matricula: depende de parte da chave, e não da chave inteira.</li>
+<li>A 2FN exige que nenhum atributo não chave dependa de parte da chave composta. Correção: separar Aluno(matricula, nome_aluno).</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Chave composta não viola nada; a 1FN só exige valores atômicos.</li>
+<li><strong>B)</strong> É o contrário: a 3FN pressupõe a 2FN, então quem viola a 2FN também está fora da 3FN. "Viola a 3FN, mas não a 2FN" é impossível aqui.</li>
+<li><strong>C)</strong> A FNBC também é violada, mas não "apenas" ela; a falha de base é a dependência parcial (2FN).</li>
+<li><strong>D)</strong> Nada no enunciado indica atributo multivalorado.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> depende de parte da chave → 2FN; depende de outro atributo não chave → 3FN.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> A busca binária tem complexidade O(log n) e pode ser aplicada diretamente a qualquer vetor, esteja ele ordenado ou não.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>A complexidade está certa, mas a busca binária exige vetor ordenado. Em vetor desordenado, use busca sequencial, O(n).</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> A complexidade O(log n) está certa, mas a busca binária <strong>exige vetor ordenado</strong>. Em vetor desordenado, ela pode não achar um elemento que está lá.</p>
+<ol class="passos-resolucao">
+<li>A cada comparação, a busca binária descarta metade do vetor supondo que os menores ficam à esquerda e os maiores à direita.</li>
+<li>Exemplo: procurar 4 em [7, 2, 9, 4, 1]. O meio é 9; como 4 &lt; 9, descarta a direita e olha [7, 2]. O meio é 7; 4 &lt; 7, descarta de novo e termina sem achar, embora o 4 esteja no índice 3.</li>
+<li>Em vetor desordenado, usa-se a busca sequencial, O(n), ou ordena-se antes, O(n log n).</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca mistura uma parte certa (O(log n)) com uma errada (qualquer vetor). Certo seria: "tem complexidade O(log n), desde que o vetor esteja ordenado".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> busca binária = "ordenado" sempre junto; com 1.000 elementos, cerca de 10 comparações (2¹⁰ = 1.024).</p>
+</div>
 </div>
 <div class="questao" data-correta="d">
 <p class="enunciado">Um classificador de imagens ilícitas obteve 90 verdadeiros positivos, 10 falsos positivos e 30 falsos negativos. Sua precisão e seu recall são, respectivamente:</p>
 <ol class="alternativas"><li>75% e 90%.</li><li>90% e 90%.</li><li>75% e 75%.</li><li>90% e 75%.</li><li>80% e 75%.</li></ol>
-<div class="explicacao"><p>Precisão = 90 / (90 + 10) = 90%. Recall = 90 / (90 + 30) = 75%. A letra A inverte as duas métricas.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: D.</strong> Precisão = VP ÷ (VP + FP) = 90 ÷ 100 = 90%. Recall = VP ÷ (VP + FN) = 90 ÷ 120 = 75%.</p>
+<ol class="passos-resolucao">
+<li>Dados: VP = 90, FP = 10, FN = 30.</li>
+<li>Precisão (dos que o modelo apontou, quantos eram): 90 ÷ (90 + 10) = 0,90 = 90%.</li>
+<li>Recall (dos positivos reais, quantos ele achou): 90 ÷ (90 + 30) = 0,75 = 75%.</li>
+<li>Se pedirem F1: 2 × 0,9 × 0,75 ÷ (0,9 + 0,75) ≈ 81,8%.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Inverte as duas métricas: 75% é o recall, e 90% a precisão.</li>
+<li><strong>B)</strong> Usa a precisão nas duas posições; o recall tem FN, não FP, no denominador.</li>
+<li><strong>C)</strong> Usa o recall nas duas posições.</li>
+<li><strong>E)</strong> 80% vem de subtrair os falsos positivos (90 − 10) em vez de somá-los no denominador.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Precisão olha os falsos Positivos; Recall olha os que o modelo deixou passar (falsos negativos).</p>
+</div>
 </div>
 <div class="questao" data-correta="a">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> Um modelo que apresenta erro muito baixo nos dados de treinamento e erro elevado nos dados de teste provavelmente sofre de overfitting.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>É o sinal clássico do sobreajuste: o modelo memorizou o treino e não generaliza.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Certo.</strong> Erro muito baixo no treino e alto no teste é o sinal clássico de overfitting (sobreajuste): o modelo decorou o treino, inclusive o ruído, e não generaliza.</p>
+<ol class="passos-resolucao">
+<li>No treino, o modelo já viu as respostas; erro baixo ali pode ser só memorização.</li>
+<li>O desempenho real é medido em dados que o modelo nunca viu (teste). Se o erro dispara ali, ele não aprendeu o padrão geral.</li>
+<li>Remédios: mais dados, modelo mais simples, regularização, validação cruzada, parada antecipada e dropout.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> a banca troca por underfitting (que erra no treino e no teste) ou sugere "aumentar a complexidade do modelo" como solução para o overfitting, o que piora o problema.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> overfitting = bom no treino, ruim no teste; underfitting = ruim nos dois.</p>
+</div>
 </div>
 <div class="questao" data-correta="c">
 <p class="enunciado">Threads de um mesmo processo compartilham:</p>
 <ol class="alternativas"><li>a pilha de execução e os registradores.</li><li>o contador de programa.</li><li>o espaço de endereçamento (código, dados e heap) e os arquivos abertos.</li><li>nada; cada thread tem memória totalmente isolada.</li><li>apenas a pilha.</li></ol>
-<div class="explicacao"><p>Cada thread tem pilha, registradores e contador de programa próprios, mas todas compartilham a memória e os recursos do processo. Isolamento total de memória é característica de processos diferentes.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Threads de um mesmo processo compartilham o espaço de endereçamento (código, dados e heap) e os recursos do processo, como arquivos abertos. Cada thread tem só a própria pilha, registradores e contador de programa.</p>
+<ol class="passos-resolucao">
+<li>Cada thread é um fluxo de execução: pode estar em um ponto diferente do código, então precisa de PC, registradores e pilha próprios.</li>
+<li>O resto pertence ao processo e é comum a todas as threads. Por isso trocar de thread é barato, mas o acesso compartilhado exige sincronização (mutex, semáforo).</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Pilha e registradores são exatamente o que cada thread tem de próprio.</li>
+<li><strong>B)</strong> O contador de programa é individual; cada thread executa sua própria sequência de instruções.</li>
+<li><strong>D)</strong> Isolamento total de memória é característica de processos diferentes, não de threads.</li>
+<li><strong>E)</strong> A pilha é justamente o que não se compartilha.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> cada thread tem seu "PRP" (pilha, registradores, PC); o resto é do processo.</p>
+</div>
 </div>
 <div class="questao" data-correta="b">
 <p class="enunciado"><span class="tag-banca">Certo ou errado</span> No Scrum, o Scrum Master é responsável por atribuir as tarefas da Sprint a cada desenvolvedor e por priorizar o Product Backlog.</p>
 <ol class="alternativas"><li>Certo</li><li>Errado</li></ol>
-<div class="explicacao"><p>Os Developers se auto-organizam para executar o trabalho, e quem gerencia e ordena o Product Backlog é o Product Owner. O Scrum Master atua como facilitador.</p></div>
+<div class="explicacao">
+<p><strong>Resposta: Errado.</strong> O Scrum Master não distribui tarefas nem prioriza o backlog. Os Developers se auto-organizam para executar o trabalho, e quem gerencia e ordena o Product Backlog é o Product Owner.</p>
+<ol class="passos-resolucao">
+<li>Product Owner: maximiza o valor do produto e gerencia o Product Backlog (decide a ordem).</li>
+<li>Developers: decidem como transformar os itens em incremento e se organizam entre si.</li>
+<li>Scrum Master: garante a aplicação do Scrum, facilita os eventos e remove impedimentos; não é chefe da equipe.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>Onde está a pegadinha:</strong> o item dá ao Scrum Master duas funções que não são dele. Certo seria: "o Product Owner ordena o Product Backlog, e os Developers se auto-organizam para executar a Sprint".</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> PO decide o quê; Developers decidem o como; Scrum Master cuida do processo.</p>
+</div>
 </div>
