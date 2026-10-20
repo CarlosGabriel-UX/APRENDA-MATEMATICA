@@ -13,8 +13,9 @@
 <meta property="og:description" content="Matemática e apostilas gratuitas para concursos: imersão para PM-SP, GCM São Paulo, Polícia Federal e Perito Criminal Federal, com atalhos de prova e questões comentadas.">
 <meta property="og:url" content="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#3156f5">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%233156f5'/%3E%3Crect x='8' y='14.5' width='16' height='3' rx='1.5' fill='%23fff'/%3E%3Ccircle cx='16' cy='9' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='23' r='2.6' fill='%23fff'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#f7f5ef" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232a44c7'/%3E%3Crect x='6.5' y='13.5' width='19' height='5' rx='2.5' fill='%23ffd84a'/%3E%3Ccircle cx='16' cy='8.5' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='23.5' r='2.6' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="assets/js/app.js"></script>
 <script type="application/ld+json">
@@ -31,23 +32,27 @@
 <body data-pagina="inicio" data-titulo="Aprenda Matemática">
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="topo">
-  <a class="marca" href="index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="gradiente-logo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3156f5"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#gradiente-logo)"/><rect x="8" y="14.5" width="16" height="3" rx="1.5" fill="#fff"/><circle cx="16" cy="9" r="2.6" fill="#fff"/><circle cx="16" cy="23" r="2.6" fill="#fff"/></svg><span class="nome">Aprenda <span>Matemática</span></span></a>
+  <div class="topo-interno">
+  <a class="marca" href="index.html"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2a44c7"/><rect x="6.5" y="13.5" width="19" height="5" rx="2.5" fill="#ffd84a"/><circle cx="16" cy="8.5" r="2.6" fill="#fff"/><circle cx="16" cy="23.5" r="2.6" fill="#fff"/></svg><span class="nome">Aprenda <span>Matemática</span></span></a>
   <nav class="nav-topo" aria-label="Atalhos">
-    <a href="cadernos/imersao.html" class="destaque">Imersão concursos</a>
+    <a href="cadernos/imersao.html">Imersão concursos</a>
     <a href="cadernos/questoes.html">Questões</a>
     <a href="cadernos/trilhas.html">Trilhas</a>
     <a href="cadernos/formulario.html">Formulário</a>
     <a href="cadernos/erros.html">Erros <span class="contador" data-contagem-erros hidden></span></a>
-    <button type="button" class="botao-fonte" aria-label="Mudar o tamanho da letra">Aa</button>
-    <button type="button" class="botao-tema" aria-label="Alternar tema claro ou escuro">🌙 Escuro</button>
   </nav>
+  <div class="ajustes">
+    <button type="button" class="botao-icone botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span></button>
+    <button type="button" class="botao-icone botao-tema" aria-label="Alternar tema claro ou escuro"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+  </div>
+  </div>
 </header>
 <div class="progresso-leitura" aria-hidden="true"><span></span></div>
 <main class="container" id="conteudo">
   <section class="hero">
     <div class="hero-texto">
       <p class="sobretitulo">Gratuito · 14 cadernos de matemática · 16 apostilas · 418 questões comentadas</p>
-      <h1>Estude para concursos<br><span>sem perder tempo.</span></h1>
+      <h1>Estude para concursos <mark>sem perder tempo.</mark></h1>
       <p>Matemática com atalhos de prova e uma imersão completa para PM-SP, GCM São Paulo,
       Polícia Federal e Perito Criminal Federal: o que cai, em que ordem estudar e apostilas de todas as matérias.</p>
       <div class="acoes">
@@ -56,8 +61,14 @@
       </div>
     </div>
     <div class="hero-arte" aria-hidden="true">
-      <span style="--cor:#15803d">%</span><span style="--cor:#166534">CF</span><span style="--cor:#6d28d9">∧</span>
-      <span style="--cor:#be123c">Aa</span><span style="--cor:#991b1b">CP</span><span style="--cor:#1d4ed8">IP</span>
+      <div class="amostra">
+        <span class="amostra-num">Questão · Porcentagem</span>
+        <p>Um produto de R$ 200 sobe 10% e depois cai 10%. O preço final é:</p>
+        <span class="amostra-alt"><b>A</b>R$ 200</span>
+        <span class="amostra-alt certa"><b>B</b>R$ 198</span>
+        <span class="amostra-alt"><b>C</b>R$ 202</span>
+        <span class="amostra-atalho"><strong>Atalho:</strong> 200 × 1,1 × 0,9 = 198</span>
+      </div>
     </div>
   </section>
 
@@ -74,7 +85,7 @@
     </div>
   </section>
 
-  <input class="busca" type="search" placeholder="Buscar concurso, matéria ou assunto (ex.: PF, crase, porcentagem, flagrante…)" aria-label="Buscar concurso, matéria ou assunto">
+  <input class="busca" type="search" placeholder="Buscar concurso, matéria ou assunto (ex.: PF, crase, porcentagem…)" aria-label="Buscar concurso, matéria ou assunto">
   <p class="sem-resultado" hidden>Nada encontrado. Tente outra palavra.</p>
 
   <section class="grupo-cadernos destaque-imersao">
@@ -399,12 +410,11 @@
 </footer>
 <button type="button" class="voltar-topo" aria-label="Voltar ao topo" hidden>↑</button>
 <nav class="nav-inferior" aria-label="Navegação principal">
-  <a href="index.html"><span aria-hidden="true">⌂</span>Início</a>
-  <a href="cadernos/imersao.html"><span aria-hidden="true">★</span>Imersão</a>
-  <a href="cadernos/questoes.html"><span aria-hidden="true">?</span>Questões</a>
-  <a href="cadernos/erros.html"><span aria-hidden="true">✗</span>Erros<span class="contador" data-contagem-erros hidden></span></a>
-  <button type="button" class="botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span>Letra</button>
-  <button type="button" class="botao-tema" aria-label="Alternar tema claro ou escuro">Tema</button>
+  <a href="index.html" aria-current="page"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg><span>Início</span></a>
+  <a href="cadernos/imersao.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg><span>Imersão</span></a>
+  <a href="cadernos/questoes.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11.5 11 13.5 15.5 9"/><rect x="3.5" y="3.5" width="17" height="17" rx="4"/></svg><span>Questões</span></a>
+  <a href="cadernos/erros.html"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h12v17l-6-4-6 4z"/><path d="m9.5 8 5 5M14.5 8l-5 5"/></svg><span>Erros</span><span class="contador" data-contagem-erros hidden></span></a>
+  <a href="index.html#cadernos" class="abrir-menu" aria-controls="menu-lateral"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>Matérias</span></a>
 </nav>
 </body>
 </html>

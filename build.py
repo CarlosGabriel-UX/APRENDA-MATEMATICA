@@ -264,15 +264,29 @@ NIVEIS = [
 ]
 
 LOGO = ('<svg class="logo" viewBox="0 0 32 32" aria-hidden="true">'
-        '<defs><linearGradient id="gradiente-logo" x1="0" y1="0" x2="1" y2="1">'
-        '<stop offset="0" stop-color="#3156f5"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>'
-        '<rect width="32" height="32" rx="9" fill="url(#gradiente-logo)"/>'
-        '<rect x="8" y="14.5" width="16" height="3" rx="1.5" fill="#fff"/>'
-        '<circle cx="16" cy="9" r="2.6" fill="#fff"/><circle cx="16" cy="23" r="2.6" fill="#fff"/></svg>')
+        '<rect width="32" height="32" rx="8" fill="#2a44c7"/>'
+        '<rect x="6.5" y="13.5" width="19" height="5" rx="2.5" fill="#ffd84a"/>'
+        '<circle cx="16" cy="8.5" r="2.6" fill="#fff"/><circle cx="16" cy="23.5" r="2.6" fill="#fff"/></svg>')
 FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
-           "%3Crect width='32' height='32' rx='9' fill='%233156f5'/%3E"
-           "%3Crect x='8' y='14.5' width='16' height='3' rx='1.5' fill='%23fff'/%3E"
-           "%3Ccircle cx='16' cy='9' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='23' r='2.6' fill='%23fff'/%3E%3C/svg%3E")
+           "%3Crect width='32' height='32' rx='8' fill='%232a44c7'/%3E"
+           "%3Crect x='6.5' y='13.5' width='19' height='5' rx='2.5' fill='%23ffd84a'/%3E"
+           "%3Ccircle cx='16' cy='8.5' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='23.5' r='2.6' fill='%23fff'/%3E%3C/svg%3E")
+
+# Ícones de traço (24x24) do cabeçalho e da barra inferior do celular.
+def svg(caminho: str) -> str:
+    return ('<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+            f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{caminho}</svg>')
+
+
+ICONES = {
+    "inicio": svg('<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/>'),
+    "imersao": svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/>'),
+    "questoes": svg('<path d="M9 11.5 11 13.5 15.5 9"/><rect x="3.5" y="3.5" width="17" height="17" rx="4"/>'),
+    "erros": svg('<path d="M6 3.5h12v17l-6-4-6 4z"/><path d="m9.5 8 5 5M14.5 8l-5 5"/>'),
+    "menu": svg('<path d="M4 6h16M4 12h16M4 18h10"/>'),
+    "lua": svg('<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>'),
+    "fechar": svg('<path d="M6 6l12 12M18 6 6 18"/>'),
+}
 
 
 def icone(slug: str, glifo: str, classe: str = "icone") -> str:
@@ -289,6 +303,11 @@ def icone_menu(slug: str, glifo: str) -> str:
     return icone(slug, glifo, "icone mini")
 
 
+def botao_menu(rotulo: str) -> str:
+    return (f'<button type="button" class="botao-menu" aria-controls="menu-lateral" aria-expanded="false">'
+            f'{ICONES["menu"]} {rotulo}</button>')
+
+
 def menu_lateral(atual: str, prefixo: str) -> str:
     if atual in SLUGS_IMERSAO:
         return menu_imersao(atual, prefixo)
@@ -303,8 +322,10 @@ def menu_lateral(atual: str, prefixo: str) -> str:
             )
         return "\n".join(out)
 
-    return f"""<aside class="lateral">
-  <button type="button" class="botao secundario botao-menu">☰ Todos os cadernos</button>
+    return f"""{botao_menu("Todos os cadernos")}
+<aside class="lateral" id="menu-lateral" aria-label="Todos os cadernos">
+  <div class="cabeca-gaveta"><strong>Todos os cadernos</strong>
+    <button type="button" class="botao-icone fechar-menu" aria-label="Fechar o menu">{ICONES["fechar"]}</button></div>
   <div class="lista-cadernos">
     <h3>Comece aqui</h3>
     <ul>
@@ -342,8 +363,10 @@ def menu_imersao(atual: str, prefixo: str) -> str:
     grupos = "\n".join(
         f"    <h3>{escape(nome)}</h3>\n    <ul>\n{itens([por_slug[s] for s in slugs])}\n    </ul>"
         for nome, slugs in GRUPOS_APOSTILAS)
-    return f"""<aside class="lateral">
-  <button type="button" class="botao secundario botao-menu">☰ Concursos e matérias</button>
+    return f"""{botao_menu("Concursos e matérias")}
+<aside class="lateral" id="menu-lateral" aria-label="Concursos e matérias">
+  <div class="cabeca-gaveta"><strong>Concursos e matérias</strong>
+    <button type="button" class="botao-icone fechar-menu" aria-label="Fechar o menu">{ICONES["fechar"]}</button></div>
   <div class="lista-cadernos">
     <h3>Imersão</h3>
     <ul>
@@ -367,10 +390,26 @@ def menu_imersao(atual: str, prefixo: str) -> str:
 </aside>"""
 
 
+def secao(slug: str) -> str:
+    """Seção do site a que a página pertence (para destacar o atalho certo no menu)."""
+    if slug in {p[0] for p in PAGINAS_QUESTOES}:
+        return "questoes"
+    if slug in SLUGS_IMERSAO:
+        return "imersao"
+    return slug
+
+
 def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
            slug: str = "inicio", titulo_curto: str = "", dados_estruturados: str = "",
            com_formulas: bool = False) -> str:
     url = URL_BASE + caminho
+    atual = secao(slug)
+
+    def link_nav(alvo: str, rotulo: str, href: str) -> str:
+        marca = (' aria-current="page"' if href.endswith(f"/{slug}.html") or (slug == "inicio" and alvo == "inicio")
+                 else (' aria-current="true"' if alvo == atual else ""))
+        return f'<a href="{raiz}{href}"{marca}>{rotulo}</a>'
+
     katex = (f'<link rel="stylesheet" href="{raiz}assets/vendor/katex/katex.min.css">\n'
              f'<script defer src="{raiz}assets/vendor/katex/katex.min.js"></script>\n'
              if com_formulas else "")
@@ -389,7 +428,8 @@ def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
 <meta property="og:description" content="{escape(descricao)}">
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#3156f5">{'<meta name="robots" content="noindex">' if slug == "erros" else ""}
+<meta name="theme-color" content="#f7f5ef" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)">{'<meta name="robots" content="noindex">' if slug == "erros" else ""}
 <link rel="icon" href="{FAVICON}">
 <link rel="stylesheet" href="{raiz}assets/css/style.css">
 <script src="{raiz}assets/js/app.js"></script>
@@ -397,16 +437,20 @@ def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
 <body data-pagina="{slug}" data-titulo="{escape(titulo_curto or titulo)}">
 <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 <header class="topo">
+  <div class="topo-interno">
   <a class="marca" href="{raiz}index.html">{LOGO}<span class="nome">Aprenda <span>Matemática</span></span></a>
   <nav class="nav-topo" aria-label="Atalhos">
-    <a href="{raiz}cadernos/imersao.html" class="destaque">Imersão concursos</a>
-    <a href="{raiz}cadernos/questoes.html">Questões</a>
-    <a href="{raiz}cadernos/trilhas.html">Trilhas</a>
-    <a href="{raiz}cadernos/formulario.html">Formulário</a>
-    <a href="{raiz}cadernos/erros.html">Erros <span class="contador" data-contagem-erros hidden></span></a>
-    <button type="button" class="botao-fonte" aria-label="Mudar o tamanho da letra">Aa</button>
-    <button type="button" class="botao-tema" aria-label="Alternar tema claro ou escuro">🌙 Escuro</button>
+    {link_nav("imersao", "Imersão concursos", "cadernos/imersao.html")}
+    {link_nav("questoes", "Questões", "cadernos/questoes.html")}
+    {link_nav("trilhas", "Trilhas", "cadernos/trilhas.html")}
+    {link_nav("formulario", "Formulário", "cadernos/formulario.html")}
+    {link_nav("erros", 'Erros <span class="contador" data-contagem-erros hidden></span>', "cadernos/erros.html")}
   </nav>
+  <div class="ajustes">
+    <button type="button" class="botao-icone botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span></button>
+    <button type="button" class="botao-icone botao-tema" aria-label="Alternar tema claro ou escuro">{ICONES["lua"]}</button>
+  </div>
+  </div>
 </header>
 <div class="progresso-leitura" aria-hidden="true"><span></span></div>
 {corpo}
@@ -418,12 +462,11 @@ def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
 </footer>
 <button type="button" class="voltar-topo" aria-label="Voltar ao topo" hidden>↑</button>
 <nav class="nav-inferior" aria-label="Navegação principal">
-  <a href="{raiz}index.html"><span aria-hidden="true">⌂</span>Início</a>
-  <a href="{raiz}cadernos/imersao.html"><span aria-hidden="true">★</span>Imersão</a>
-  <a href="{raiz}cadernos/questoes.html"><span aria-hidden="true">?</span>Questões</a>
-  <a href="{raiz}cadernos/erros.html"><span aria-hidden="true">✗</span>Erros<span class="contador" data-contagem-erros hidden></span></a>
-  <button type="button" class="botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span>Letra</button>
-  <button type="button" class="botao-tema" aria-label="Alternar tema claro ou escuro">Tema</button>
+  {link_nav("inicio", ICONES["inicio"] + "<span>Início</span>", "index.html")}
+  {link_nav("imersao", ICONES["imersao"] + "<span>Imersão</span>", "cadernos/imersao.html")}
+  {link_nav("questoes", ICONES["questoes"] + "<span>Questões</span>", "cadernos/questoes.html")}
+  {link_nav("erros", ICONES["erros"] + '<span>Erros</span><span class="contador" data-contagem-erros hidden></span>', "cadernos/erros.html")}
+  <a href="{raiz}index.html#cadernos" class="abrir-menu" aria-controls="menu-lateral">{ICONES["menu"]}<span>Matérias</span></a>
 </nav>
 </body>
 </html>
@@ -474,10 +517,12 @@ def gerar_caderno(item, anterior=None, proximo=None) -> None:
     corpo = f"""<div class="container layout">
 {menu_lateral(slug, "")}
 <article class="caderno" id="conteudo" style="--cor: {COR.get(slug, "#2357d9")}">
+  <header class="cabeca-caderno">
   <h1>{icone(slug, glifo)} <span>{escape(titulo)}</span></h1>
   <p class="subtitulo">{escape(resumo)}</p>
   {selos}
-  {"" if slug in SEM_SUMARIO else '<nav class="sumario" data-sumario><strong>Nesta página</strong></nav>'}
+  </header>
+  {"" if slug in SEM_SUMARIO else '<details class="sumario" data-sumario open><summary>Nesta página</summary></details>'}
 {conteudo}{rodape}
 </article>
 </div>"""
@@ -641,7 +686,7 @@ def gerar_inicio() -> None:
   <section class="hero">
     <div class="hero-texto">
       <p class="sobretitulo">Gratuito · {len(CADERNOS)} cadernos de matemática · {len(APOSTILAS)} apostilas · {total_questoes} questões comentadas</p>
-      <h1>Estude para concursos<br><span>sem perder tempo.</span></h1>
+      <h1>Estude para concursos <mark>sem perder tempo.</mark></h1>
       <p>Matemática com atalhos de prova e uma imersão completa para PM-SP, GCM São Paulo,
       Polícia Federal e Perito Criminal Federal: o que cai, em que ordem estudar e apostilas de todas as matérias.</p>
       <div class="acoes">
@@ -650,8 +695,14 @@ def gerar_inicio() -> None:
       </div>
     </div>
     <div class="hero-arte" aria-hidden="true">
-      <span style="--cor:#15803d">%</span><span style="--cor:#166534">CF</span><span style="--cor:#6d28d9">∧</span>
-      <span style="--cor:#be123c">Aa</span><span style="--cor:#991b1b">CP</span><span style="--cor:#1d4ed8">IP</span>
+      <div class="amostra">
+        <span class="amostra-num">Questão · Porcentagem</span>
+        <p>Um produto de R$ 200 sobe 10% e depois cai 10%. O preço final é:</p>
+        <span class="amostra-alt"><b>A</b>R$ 200</span>
+        <span class="amostra-alt certa"><b>B</b>R$ 198</span>
+        <span class="amostra-alt"><b>C</b>R$ 202</span>
+        <span class="amostra-atalho"><strong>Atalho:</strong> 200 × 1,1 × 0,9 = 198</span>
+      </div>
     </div>
   </section>
 
@@ -668,7 +719,7 @@ def gerar_inicio() -> None:
     </div>
   </section>
 
-  <input class="busca" type="search" placeholder="Buscar concurso, matéria ou assunto (ex.: PF, crase, porcentagem, flagrante…)" aria-label="Buscar concurso, matéria ou assunto">
+  <input class="busca" type="search" placeholder="Buscar concurso, matéria ou assunto (ex.: PF, crase, porcentagem…)" aria-label="Buscar concurso, matéria ou assunto">
   <p class="sem-resultado" hidden>Nada encontrado. Tente outra palavra.</p>
 
   <section class="grupo-cadernos destaque-imersao">

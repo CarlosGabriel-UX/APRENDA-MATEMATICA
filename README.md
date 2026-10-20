@@ -30,7 +30,7 @@ As questões ficam em `src/questoes/<banca>-*.html`, cada matéria dentro de `<s
 
 ## Como funciona
 
-O site é estático (HTML, CSS e JavaScript puro) e roda direto no GitHub Pages. A única biblioteca é o [KaTeX](https://katex.org) (licença MIT), copiado em `assets/vendor/katex/` para desenhar as fórmulas sem depender de CDN. As fontes Inter e Plus Jakarta Sans (licença SIL OFL) ficam em `assets/vendor/fontes/`. Se ele não carregar, a fórmula aparece em texto simples.
+O site é estático (HTML, CSS e JavaScript puro) e roda direto no GitHub Pages. A única biblioteca é o [KaTeX](https://katex.org) (licença MIT), copiado em `assets/vendor/katex/` para desenhar as fórmulas sem depender de CDN. As fontes Inter (texto) e Fraunces (títulos), ambas com licença SIL OFL, ficam em `assets/vendor/fontes/`. Se ele não carregar, a fórmula aparece em texto simples.
 
 ```
 src/cadernos/*.html   conteúdo de cada caderno (só o miolo, em HTML simples)
@@ -38,7 +38,7 @@ src/questoes/*.html   questões do banco, separadas por banca e por matéria
 build.py              monta as páginas finais com menu, cabeçalho e rodapé
 cadernos/*.html       páginas geradas (não edite à mão)
 index.html            página inicial gerada
-assets/css, assets/js estilo e interações (tema escuro, questões, progresso, busca)
+assets/css, assets/js estilo e interações (tema escuro, menu em gaveta no celular, questões, progresso, busca)
 ```
 
 ### Editar ou criar um caderno
