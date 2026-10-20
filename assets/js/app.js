@@ -1,4 +1,4 @@
-/* Aprenda Matemática: interações do site (tema, questões, progresso, busca). */
+/* Aprenda Matemática: interações do site (tema, questões, progresso, revisão, backup, busca). */
 (function () {
   "use strict";
 
@@ -9,6 +9,9 @@
   var CHAVE_ULTIMO = "am-ultimo-caderno";
   var CHAVE_RESPOSTAS = "am-respostas";
   var TAMANHOS = [100, 112.5, 125, 90];
+  /* Revisão espaçada: depois de cada acerto, a questão volta em 1, 3 e 7 dias. */
+  var INTERVALOS = [1, 3, 7];
+  var DIA = 24 * 60 * 60 * 1000;
 
   function ler(chave, padrao) {
     try {
@@ -86,6 +89,7 @@
     montarLeitura();
     montarProgresso();
     montarBusca();
+    montarBackup();
 
     /* Ao imprimir, abre todas as resoluções. */
     window.addEventListener("beforeprint", function () {
@@ -177,7 +181,7 @@
     estat("estudados", Array.isArray(feitos) ? feitos.length : 0);
     estat("resolvidas", ids.length);
     estat("acerto", ids.length ? Math.round(100 * certas / ids.length) + "%" : "–");
-    estat("erros", lerErros().length);
+    estat("erros", lerPendentes().length);
   }
 
   /* ---------- barra de leitura e botão de voltar ao topo ---------- */
@@ -212,16 +216,17 @@
 
   /* ---------- sumário automático a partir dos h2 ---------- */
   function montarSumario() {
+    var titulos = document.querySelectorAll("article.caderno h2");
+    /* Os ids valem em toda página: os links da busca apontam para eles. */
+    titulos.forEach(function (h, i) { if (!h.id) h.id = "secao-" + (i + 1); });
     var alvo = document.querySelector("[data-sumario]");
     if (!alvo) return;
-    var titulos = document.querySelectorAll("article.caderno h2");
     if (!titulos.length) { alvo.remove(); return; }
     var nav = document.createElement("nav");
     nav.setAttribute("aria-label", "Nesta página");
     var ol = document.createElement("ol");
     nav.appendChild(ol);
-    titulos.forEach(function (h, i) {
-      if (!h.id) h.id = "secao-" + (i + 1);
+    titulos.forEach(function (h) {
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = "#" + h.id;
@@ -242,24 +247,43 @@
     var e = ler(CHAVE_ERROS, []);
     return Array.isArray(e) ? e : [];
   }
+  /* Questões antigas, gravadas antes da revisão espaçada, não têm data: valem para hoje. */
+  function vence(e) { return !e.proxima || e.proxima <= Date.now(); }
+  function lerPendentes() { return lerErros().filter(vence); }
   function guardarErro(item) {
     var erros = lerErros().filter(function (e) { return e.id !== item.id; });
+    item.etapa = 0;
+    item.proxima = Date.now();
     erros.push(item);
     gravar(CHAVE_ERROS, erros);
     atualizarContagemErros();
   }
-  function removerErro(id) {
+  /* Acerto numa questão do caderno de erros: agenda a próxima revisão ou tira da lista.
+     Devolve null (não estava na lista), 0 (saiu da lista) ou os dias até a próxima revisão. */
+  function revisarAcerto(id) {
     var erros = lerErros();
-    var restantes = erros.filter(function (e) { return e.id !== id; });
-    if (restantes.length !== erros.length) {
-      gravar(CHAVE_ERROS, restantes);
-      atualizarContagemErros();
-      return true;
+    var e = erros.filter(function (x) { return x.id === id; })[0];
+    if (!e) return null;
+    var etapa = e.etapa || 0;
+    var dias = 0;
+    if (etapa >= INTERVALOS.length) {
+      erros = erros.filter(function (x) { return x.id !== id; });
+    } else {
+      dias = INTERVALOS[etapa];
+      e.etapa = etapa + 1;
+      e.proxima = Date.now() + dias * DIA;
     }
-    return false;
+    gravar(CHAVE_ERROS, erros);
+    atualizarContagemErros();
+    return dias;
+  }
+  function reiniciarRevisao(id) {
+    var erros = lerErros();
+    erros.forEach(function (e) { if (e.id === id) { e.etapa = 0; e.proxima = Date.now(); } });
+    gravar(CHAVE_ERROS, erros);
   }
   function atualizarContagemErros() {
-    var n = lerErros().length;
+    var n = lerPendentes().length;
     document.querySelectorAll("[data-contagem-erros]").forEach(function (el) {
       el.textContent = n ? String(n) : "";
       el.hidden = !n;
@@ -270,11 +294,36 @@
   function montarListaErros() {
     var alvo = document.querySelector("[data-lista-erros]");
     if (!alvo) return;
-    var erros = lerErros();
+    var todos = lerErros();
+    var erros = todos.filter(vence);
+    var agendados = todos.filter(function (e) { return !vence(e); })
+      .sort(function (a, b) { return a.proxima - b.proxima; });
+    var htmlAgenda = "";
+    if (agendados.length) {
+      htmlAgenda = '<details class="agenda-revisao"><summary>Próximas revisões <span>' + agendados.length +
+        "</span></summary><ul>";
+      agendados.forEach(function (e) {
+        var caixa = document.createElement("div");
+        caixa.innerHTML = e.html;
+        var enunciado = caixa.querySelector(".enunciado");
+        var texto = (enunciado ? enunciado.textContent : "").trim();
+        if (texto.length > 110) texto = texto.slice(0, 107) + "…";
+        var li = document.createElement("li");
+        var quando = document.createElement("strong");
+        quando.textContent = new Date(e.proxima).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" });
+        li.appendChild(quando);
+        li.appendChild(document.createTextNode(" " + e.titulo + (texto ? ": " + texto : "")));
+        htmlAgenda += li.outerHTML;
+      });
+      htmlAgenda += "</ul></details>";
+    }
     if (!erros.length) {
-      alvo.innerHTML = '<div class="caixa nota"><span class="rotulo">Nenhum erro guardado</span>' +
-        "<p>Quando você errar uma questão em qualquer caderno, ela aparece aqui automaticamente. " +
-        "Ao acertá-la (aqui ou no caderno), ela sai da lista.</p></div>";
+      alvo.innerHTML = (todos.length
+        ? '<div class="caixa dica"><span class="rotulo">Nada para revisar hoje</span>' +
+          "<p>Todas as questões que você errou estão agendadas. Elas voltam aqui no dia marcado abaixo.</p></div>"
+        : '<div class="caixa nota"><span class="rotulo">Nenhum erro guardado</span>' +
+          "<p>Quando você errar uma questão em qualquer caderno, ela aparece aqui automaticamente. " +
+          "Cada acerto agenda uma nova revisão (em 1, 3 e 7 dias); depois disso, ela sai da lista.</p></div>") + htmlAgenda;
       return;
     }
     var grupos = {};
@@ -283,8 +332,9 @@
       if (!grupos[e.slug]) { grupos[e.slug] = { titulo: e.titulo, itens: [] }; ordem.push(e.slug); }
       grupos[e.slug].itens.push(e);
     });
-    var html = '<p class="resumo-erros"><span>Você tem <strong>' + erros.length + "</strong> questão(ões) para revisar.</span>" +
-      '<button type="button" class="botao secundario limpar-erros">Limpar tudo</button></p>';
+    var html = '<p class="resumo-erros"><span>Você tem <strong>' + erros.length + "</strong> questão(ões) para revisar hoje." +
+      (agendados.length ? " Outras " + agendados.length + " estão agendadas." : "") + "</span>" +
+      '<button type="button" class="botao secundario limpar-erros">Limpar tudo</button></p>' + htmlAgenda;
     ordem.forEach(function (slug) {
       var g = grupos[slug];
       html += '<h2>' + g.titulo + "</h2>";
@@ -422,10 +472,15 @@
               ? "Não foi dessa vez. O item está " + (correta === "a" ? "Certo" : "Errado") + "."
               : "Não foi dessa vez. A resposta é a alternativa " + correta.toUpperCase() + ".");
           if (acertou) {
-            if (removerErro(id)) texto += " Ela saiu do seu caderno de erros.";
+            var dias = revisarAcerto(id);
+            if (dias === 0) texto += " Revisão concluída: ela saiu do seu caderno de erros.";
+            else if (dias) texto += " Ela volta para revisão em " + dias + (dias === 1 ? " dia." : " dias.");
           } else if (pagina !== "erros") {
             guardarErro({ id: id, slug: pagina, titulo: tituloPagina, html: original });
             texto += " Guardada no seu caderno de erros.";
+          } else {
+            reiniciarRevisao(id);
+            texto += " A revisão recomeça: ela continua na lista de hoje.";
           }
           veredito.textContent = texto;
           atualizarPlacar();
@@ -554,14 +609,81 @@
     marcarVisual();
   }
 
-  /* ---------- busca na página inicial ---------- */
+  /* ---------- busca: filtra os cartões e procura dentro de todas as páginas ---------- */
+  function normalizar(s) {
+    return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+  }
+  function escaparHtml(s) {
+    return s.replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; });
+  }
+  /* Trecho do texto em volta do primeiro termo encontrado, com os termos marcados. */
+  function trecho(texto, termos) {
+    var norm = normalizar(texto);
+    var pos = norm.indexOf(termos[0]);
+    var ini = Math.max(0, pos - 60);
+    var fim = Math.min(texto.length, ini + 180);
+    var pedaco = texto.slice(ini, fim);
+    var pedacoNorm = norm.slice(ini, fim);
+    var marcas = [];
+    termos.forEach(function (t) {
+      var i = pedacoNorm.indexOf(t);
+      while (i !== -1) { marcas.push([i, i + t.length]); i = pedacoNorm.indexOf(t, i + t.length); }
+    });
+    marcas.sort(function (a, b) { return a[0] - b[0]; });
+    var html = "", cursor = 0;
+    marcas.forEach(function (m) {
+      if (m[0] < cursor) return;
+      html += escaparHtml(pedaco.slice(cursor, m[0])) + "<mark>" + escaparHtml(pedaco.slice(m[0], m[1])) + "</mark>";
+      cursor = m[1];
+    });
+    html += escaparHtml(pedaco.slice(cursor));
+    return (ini > 0 ? "…" : "") + html + (fim < texto.length ? "…" : "");
+  }
   function montarBusca() {
     var campo = document.querySelector(".busca");
     if (!campo) return;
-    function normalizar(s) {
-      return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+    var saida = document.querySelector(".resultados-busca");
+    var indice = null, carregando = false;
+    function carregarIndice() {
+      if (indice || carregando || !campo.getAttribute("data-indice") || !window.fetch) return;
+      carregando = true;
+      fetch(campo.getAttribute("data-indice")).then(function (r) { return r.json(); }).then(function (dados) {
+        indice = dados.map(function (s) {
+          return { p: s.p, u: s.u, h: s.h, t: s.t, n: normalizar(s.p + " " + s.h + " " + s.t), nh: normalizar(s.h) };
+        });
+        buscar();
+      }).catch(function () { carregando = false; });
     }
-    campo.addEventListener("input", function () {
+    function buscarConteudo(termo) {
+      if (!saida) return false;
+      var termos = termo.split(/\s+/).filter(function (t) { return t.length > 1; });
+      if (!termos.length || !indice) { saida.hidden = true; saida.innerHTML = ""; return false; }
+      var achados = [];
+      indice.forEach(function (s) {
+        if (!termos.every(function (t) { return s.n.indexOf(t) !== -1; })) return;
+        var pontos = 0;
+        termos.forEach(function (t) {
+          if (s.nh.indexOf(t) !== -1) pontos += 10;
+          pontos += Math.min(5, s.n.split(t).length - 1);
+        });
+        achados.push({ s: s, pontos: pontos });
+      });
+      achados.sort(function (a, b) { return b.pontos - a.pontos; });
+      if (!achados.length) { saida.hidden = true; saida.innerHTML = ""; return false; }
+      var html = "<h2>Dentro das páginas <small>" + achados.length + (achados.length === 1 ? " trecho" : " trechos") + "</small></h2><ol>";
+      achados.slice(0, 15).forEach(function (a) {
+        var s = a.s;
+        var achouNoTexto = termos.some(function (t) { return normalizar(s.t).indexOf(t) !== -1; });
+        html += '<li><a href="' + escaparHtml(s.u) + '"><span class="onde">' + escaparHtml(s.p) +
+          (s.h ? " › " + escaparHtml(s.h) : "") + "</span>" +
+          (achouNoTexto ? '<span class="trecho">' + trecho(s.t, termos) + "</span>" : "") + "</a></li>";
+      });
+      html += "</ol>";
+      saida.innerHTML = html;
+      saida.hidden = false;
+      return true;
+    }
+    function buscar() {
       var termo = normalizar(campo.value.trim());
       document.querySelectorAll(".grade .cartao").forEach(function (c) {
         var texto = normalizar(c.textContent + " " + (c.getAttribute("data-termos") || ""));
@@ -574,8 +696,71 @@
         if (visiveis) algum = true;
       });
       document.querySelectorAll(".titulo-bloco").forEach(function (t) { t.hidden = !!termo; });
+      var noConteudo = buscarConteudo(termo);
       var vazio = document.querySelector(".sem-resultado");
-      if (vazio) vazio.hidden = algum;
+      if (vazio) vazio.hidden = algum || noConteudo || (!indice && !!termo);
+    }
+    campo.addEventListener("focus", carregarIndice);
+    campo.addEventListener("input", function () { carregarIndice(); buscar(); });
+    /* O botão de busca do topo leva para index.html#busca. */
+    if (window.location.hash === "#busca") {
+      campo.focus();
+      carregarIndice();
+    }
+  }
+
+  /* ---------- backup do progresso (exportar e importar um arquivo) ---------- */
+  function montarBackup() {
+    document.querySelectorAll("[data-backup]").forEach(function (caixa) {
+      var aviso = caixa.querySelector(".aviso-backup");
+      var entrada = caixa.querySelector('input[type="file"]');
+      function avisar(texto) { if (aviso) aviso.textContent = texto; }
+      caixa.querySelector(".exportar").addEventListener("click", function () {
+        var dados = {};
+        try {
+          for (var i = 0; i < localStorage.length; i++) {
+            var k = localStorage.key(i);
+            if (k && k.indexOf("am-") === 0) dados[k] = localStorage.getItem(k);
+          }
+        } catch (e) { avisar("Este navegador não deixa ler o progresso salvo."); return; }
+        var hoje = new Date().toISOString().slice(0, 10);
+        var arquivo = new Blob([JSON.stringify({ site: "aprenda-matematica", versao: 1, data: hoje, dados: dados }, null, 1)],
+          { type: "application/json" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(arquivo);
+        a.download = "aprenda-matematica-progresso-" + hoje + ".json";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+        avisar("Arquivo salvo. Guarde-o para levar o progresso para outro aparelho.");
+      });
+      caixa.querySelector(".importar").addEventListener("click", function () { entrada.click(); });
+      entrada.addEventListener("change", function () {
+        var f = entrada.files && entrada.files[0];
+        if (!f) return;
+        var leitor = new FileReader();
+        leitor.onload = function () {
+          var pacote;
+          try { pacote = JSON.parse(leitor.result); } catch (e) { pacote = null; }
+          if (!pacote || pacote.site !== "aprenda-matematica" || typeof pacote.dados !== "object") {
+            avisar("Esse arquivo não é um backup do Aprenda Matemática.");
+            entrada.value = "";
+            return;
+          }
+          if (!window.confirm("Trocar o progresso deste aparelho pelo do arquivo de " + (pacote.data || "backup") + "?")) {
+            entrada.value = "";
+            return;
+          }
+          try {
+            Object.keys(pacote.dados).forEach(function (k) {
+              if (k.indexOf("am-") === 0 && typeof pacote.dados[k] === "string") localStorage.setItem(k, pacote.dados[k]);
+            });
+          } catch (e) { avisar("Não deu para gravar o progresso neste navegador."); return; }
+          window.location.reload();
+        };
+        leitor.readAsText(f);
+      });
     });
   }
 })();

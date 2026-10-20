@@ -11,7 +11,10 @@ Não precisa de nenhuma biblioteca: só Python 3.
 """
 import json
 import re
+import subprocess
+from datetime import date
 from html import escape
+from html.parser import HTMLParser
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent
@@ -20,6 +23,10 @@ SAIDA = RAIZ / "cadernos"
 
 SITE = "Aprenda Matemática"
 URL_BASE = "https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/"
+# Caminho do site no domínio: a página 404 usa links absolutos porque pode abrir em qualquer pasta.
+CAMINHO_SITE = "/APRENDA-MATEMATICA/"
+# Imagem que aparece ao compartilhar um link (WhatsApp, redes sociais): 1200 x 630.
+IMAGEM_OG = "assets/og-imagem.png"
 
 # (slug, ícone (glifo), título, resumo, frequência em provas, termos extras de busca)
 GUIAS = [
@@ -286,7 +293,19 @@ ICONES = {
     "menu": svg('<path d="M4 6h16M4 12h16M4 18h10"/>'),
     "lua": svg('<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>'),
     "fechar": svg('<path d="M6 6l12 12M18 6 6 18"/>'),
+    "busca": svg('<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/>'),
 }
+
+# Exportar e importar o progresso (fica na página inicial e no caderno de erros).
+BACKUP = """<div class="backup" data-backup>
+    <p><strong>Seu progresso fica só neste aparelho.</strong> Salve um arquivo para não perder nada ou para continuar em outro celular ou computador.</p>
+    <div class="acoes-backup">
+      <button type="button" class="botao secundario exportar">Exportar progresso</button>
+      <button type="button" class="botao secundario importar">Importar progresso</button>
+      <input type="file" accept="application/json,.json" hidden>
+    </div>
+    <p class="aviso-backup" role="status"></p>
+  </div>"""
 
 
 def icone(slug: str, glifo: str, classe: str = "icone") -> str:
@@ -403,6 +422,7 @@ def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
            slug: str = "inicio", titulo_curto: str = "", dados_estruturados: str = "",
            com_formulas: bool = False) -> str:
     url = URL_BASE + caminho
+    indexar = slug not in ("erros", "404")
     atual = secao(slug)
 
     def link_nav(alvo: str, rotulo: str, href: str) -> str:
@@ -420,16 +440,20 @@ def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{escape(titulo)}</title>
 <meta name="description" content="{escape(descricao)}">
-<link rel="canonical" href="{url}">
+{f'<link rel="canonical" href="{url}">' if indexar else '<meta name="robots" content="noindex">'}
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="{SITE}">
 <meta property="og:title" content="{escape(titulo)}">
 <meta property="og:description" content="{escape(descricao)}">
 <meta property="og:url" content="{url}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{URL_BASE}{IMAGEM_OG}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aprenda Matemática: estude para concursos sem perder tempo">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f7f5ef" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)">{'<meta name="robots" content="noindex">' if slug == "erros" else ""}
+<meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="{FAVICON}">
 <link rel="stylesheet" href="{raiz}assets/css/style.css">
 <script src="{raiz}assets/js/app.js"></script>
@@ -447,6 +471,7 @@ def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
     {link_nav("erros", 'Erros <span class="contador" data-contagem-erros hidden></span>', "cadernos/erros.html")}
   </nav>
   <div class="ajustes">
+    <a class="botao-icone botao-busca" href="{raiz}index.html#busca" aria-label="Buscar no site" title="Buscar no site">{ICONES["busca"]}</a>
     <button type="button" class="botao-icone botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span></button>
     <button type="button" class="botao-icone botao-tema" aria-label="Alternar tema claro ou escuro">{ICONES["lua"]}</button>
   </div>
@@ -499,6 +524,8 @@ def gerar_caderno(item, anterior=None, proximo=None) -> None:
         conteudo = conteudo.replace("<!-- mapa -->", mapa_materias(MATERIAS[slug]))
     if "<!-- banco -->" in conteudo:
         conteudo = conteudo.replace("<!-- banco -->", montar_banco(SLUGS_BANCAS[slug][6]))
+    if "<!-- backup -->" in conteudo:
+        conteudo = conteudo.replace("<!-- backup -->", BACKUP)
     if "<!-- bancas -->" in conteudo:
         conteudo = conteudo.replace("<!-- bancas -->", tabela_bancas())
     nav_ant = (f'<a class="botao secundario" href="{anterior[0]}.html">← {escape(anterior[2])}</a>'
@@ -715,12 +742,17 @@ def gerar_inicio() -> None:
     <div class="estatisticas">
       <div><strong data-estat="resolvidas">0</strong><span>questões resolvidas</span></div>
       <div><strong data-estat="acerto">–</strong><span>de acerto</span></div>
-      <a href="cadernos/erros.html"><strong data-estat="erros">0</strong><span>no caderno de erros</span></a>
+      <a href="cadernos/erros.html"><strong data-estat="erros">0</strong><span>erros para revisar hoje</span></a>
     </div>
+  <details class="guardar-progresso">
+  <summary>Guardar o progresso ou levar para outro aparelho</summary>
+  {BACKUP}
+  </details>
   </section>
 
-  <input class="busca" type="search" placeholder="Buscar concurso, matéria ou assunto (ex.: PF, crase, porcentagem…)" aria-label="Buscar concurso, matéria ou assunto">
+  <input class="busca" id="busca" type="search" data-indice="assets/busca.json" placeholder="Buscar em todo o site (ex.: PF, crase, Bhaskara, habeas corpus…)" aria-label="Buscar em todo o site">
   <p class="sem-resultado" hidden>Nada encontrado. Tente outra palavra.</p>
+  <section class="resultados-busca" aria-live="polite" hidden></section>
 
   <section class="grupo-cadernos destaque-imersao">
     <h2>Imersão: escolha seu concurso <small>Cada guia traz o mapa das matérias, a ordem de estudo e um plano semana a semana.</small></h2>
@@ -781,15 +813,129 @@ def gerar_inicio() -> None:
     (RAIZ / "index.html").write_text(html, encoding="utf-8")
 
 
+def data_git(*caminhos: Path) -> str:
+    """Data do último commit que mexeu nos arquivos (AAAA-MM-DD); hoje, se não houver git."""
+    try:
+        saida = subprocess.run(["git", "log", "-1", "--format=%cs", "--", *map(str, caminhos)],
+                               cwd=RAIZ, capture_output=True, text=True, timeout=10).stdout.strip()
+    except (OSError, subprocess.SubprocessError):
+        saida = ""
+    return saida or date.today().isoformat()
+
+
 def gerar_sitemap() -> None:
-    caminhos = [""] + [f"cadernos/{c[0]}.html" for c in TODAS + PAGINAS_IMERSAO + INSTITUCIONAIS]
+    def fontes(slug: str):
+        lista = [SRC / f"{slug}.html"]
+        if slug in SLUGS_BANCAS:
+            lista += sorted(QUESTOES_SRC.glob(f"{SLUGS_BANCAS[slug][6]}-*.html"))
+        return lista
+    entradas = [("", data_git(SRC, QUESTOES_SRC, RAIZ / "build.py"))]
+    entradas += [(f"cadernos/{c[0]}.html", data_git(*fontes(c[0])))
+                 for c in TODAS + PAGINAS_IMERSAO + INSTITUCIONAIS]
     urls = "\n".join(
-        f"  <url><loc>{URL_BASE}{c}</loc></url>" for c in caminhos
+        f"  <url><loc>{URL_BASE}{c}</loc><lastmod>{d}</lastmod></url>" for c, d in entradas
     )
     (RAIZ / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         f"{urls}\n</urlset>\n", encoding="utf-8")
+
+
+class LeitorBusca(HTMLParser):
+    """Separa o texto do artigo de uma página gerada em trechos, um por título h2."""
+    PULAR = {"script", "style", "svg", "button", "figure"}
+    VAZIOS = {"br", "img", "input", "meta", "link", "hr", "source", "wbr", "col"}
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.pilha = []          # tags abertas dentro do artigo
+        self.no_artigo = False
+        self.pular = 0
+        self.no_h2 = False
+        self.titulo_h2 = []
+        self.n_h2 = 0
+        self.trechos = [["", "", []]]   # [id, título, partes de texto]
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if not self.no_artigo:
+            if tag == "article" and "caderno" in (a.get("class") or ""):
+                self.no_artigo = True
+            return
+        if tag in self.VAZIOS:
+            return
+        self.pilha.append(tag)
+        classes = a.get("class") or ""
+        if self.pular or tag in self.PULAR or "rodape-caderno" in classes or "cabeca-caderno" in classes \
+                or "filtro-materias" in classes or "sumario" in classes:
+            self.pular += 1
+            return
+        if tag == "h2":
+            self.n_h2 += 1
+            self.no_h2 = True
+            self.titulo_h2 = []
+            self.trechos.append([a.get("id") or f"secao-{self.n_h2}", "", []])
+        elif tag in ("p", "li", "td", "th", "h3", "h4", "summary", "div", "tr"):
+            self.trechos[-1][2].append(" ")
+
+    def handle_endtag(self, tag):
+        if not self.no_artigo or tag in self.VAZIOS:
+            return
+        if tag == "article" and not self.pilha:
+            self.no_artigo = False
+            return
+        if not self.pilha:
+            return
+        self.pilha.pop()
+        if self.pular:
+            self.pular -= 1
+            return
+        if tag == "h2" and self.no_h2:
+            self.no_h2 = False
+            self.trechos[-1][1] = " ".join("".join(self.titulo_h2).split())
+
+    def handle_data(self, dados):
+        if not self.no_artigo or self.pular:
+            return
+        if self.no_h2:
+            self.titulo_h2.append(dados)
+        else:
+            self.trechos[-1][2].append(dados)
+
+
+def gerar_indice_busca() -> None:
+    """Grava assets/busca.json: um trecho por seção de cada página, para a busca da página inicial."""
+    itens = []
+    paginas = TODAS + PAGINAS_IMERSAO + FERRAMENTAS + INSTITUCIONAIS
+    for slug, _, titulo, *_ in paginas:
+        if slug == "erros":
+            continue
+        leitor = LeitorBusca()
+        leitor.feed((SAIDA / f"{slug}.html").read_text(encoding="utf-8"))
+        for ancora, titulo_h2, partes in leitor.trechos:
+            texto = " ".join("".join(partes).split())
+            if not texto and not titulo_h2:
+                continue
+            itens.append({"p": titulo, "h": titulo_h2,
+                          "u": f"cadernos/{slug}.html" + (f"#{ancora}" if ancora else ""), "t": texto})
+    (RAIZ / "assets" / "busca.json").write_text(
+        json.dumps(itens, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+
+def gerar_404() -> None:
+    corpo = f"""<main class="container pagina-404" id="conteudo">
+  <p class="sobretitulo">Erro 404</p>
+  <h1>Esta página não existe.</h1>
+  <p>O endereço pode ter mudado ou ter sido digitado com algum erro. Procure o assunto na busca ou volte ao início.</p>
+  <div class="acoes">
+    <a class="botao" href="{CAMINHO_SITE}index.html#busca">Buscar no site</a>
+    <a class="botao secundario" href="{CAMINHO_SITE}index.html">Ir para o início</a>
+    <a class="botao secundario" href="{CAMINHO_SITE}cadernos/questoes.html">Banco de questões</a>
+  </div>
+</main>"""
+    html = pagina(f"Página não encontrada · {SITE}", "Página não encontrada.", corpo, CAMINHO_SITE,
+                  "404.html", "404", "Página não encontrada")
+    (RAIZ / "404.html").write_text(html, encoding="utf-8")
 
 
 def main() -> None:
@@ -806,9 +952,11 @@ def main() -> None:
     for item in [IMERSAO] + PAGINAS_QUESTOES + FERRAMENTAS + INSTITUCIONAIS:
         gerar_caderno(item)
     gerar_inicio()
+    gerar_404()
     gerar_sitemap()
+    gerar_indice_busca()
     total = len(TODAS) + len(PAGINAS_IMERSAO) + len(FERRAMENTAS) + len(INSTITUCIONAIS)
-    print(f"Geradas {total} páginas, index.html e sitemap.xml")
+    print(f"Geradas {total} páginas, index.html, 404.html, sitemap.xml e assets/busca.json")
 
 
 if __name__ == "__main__":

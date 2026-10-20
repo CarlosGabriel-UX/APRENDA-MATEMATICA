@@ -24,9 +24,11 @@ Questões originais separadas por banca e por matéria, muitas com figura (SVG),
 
 As questões ficam em `src/questoes/<banca>-*.html`, cada matéria dentro de `<section data-materia="slug">`, e cada questão tem um `data-id` fixo (ex.: `v-geometria-03`) para o caderno de erros não se perder quando novas questões entrarem. A ordem das matérias de cada banco fica em `ORDEM_BANCO`, no `build.py`.
 
-- **Caderno de erros:** toda questão errada em qualquer caderno é guardada automaticamente (no navegador) e sai da lista quando o aluno acerta.
+- **Caderno de erros com revisão espaçada:** toda questão errada em qualquer caderno é guardada automaticamente (no navegador). Cada acerto agenda a próxima revisão para 1, 3 e 7 dias depois; quem acerta na revisão de 7 dias tira a questão da lista, e um novo erro recomeça a contagem.
+- **Backup do progresso:** na página inicial e no caderno de erros, o aluno exporta o progresso para um arquivo `.json` e importa em outro aparelho.
+- **Busca em todo o site:** o `build.py` gera `assets/busca.json`, com um trecho de texto por seção (título `h2`) de cada página. A busca da página inicial só baixa esse arquivo quando o aluno clica no campo; o ícone de lupa do topo leva para ela.
 - **Trilhas:** ordem de estudo e prioridades por estilo de banca (Cebraspe, FGV, FCC, Vunesp, Cesgranrio) e por área do cargo.
-- **SEO:** cada página tem descrição, link canônico, Open Graph e dados estruturados (schema.org). O `build.py` também gera o `sitemap.xml`.
+- **SEO:** cada página tem descrição, link canônico, Open Graph com imagem de compartilhamento (`assets/og-imagem.png`, 1200 × 630) e dados estruturados (schema.org). O `build.py` também gera o `sitemap.xml`, com a data do último commit de cada página, e a `404.html`, que o GitHub Pages mostra quando o endereço não existe.
 
 ## Como funciona
 
