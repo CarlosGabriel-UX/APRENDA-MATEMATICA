@@ -211,7 +211,8 @@ SLUGS_BANCAS = {b[0]: b for b in BANCAS}
 # Ordem das matérias em cada banco (as que não estiverem aqui vão para o fim).
 ORDEM_BANCO = {
     "vunesp": ["portugues", "porcentagem", "razao-proporcao", "regra-de-tres", "fracoes", "aritmetica",
-               "equacoes", "geometria", "estatistica", "sequencias", "logica", "direito-constitucional",
+               "equacoes", "funcoes", "geometria", "estatistica", "sequencias", "juros", "combinatoria",
+               "probabilidade", "logica", "direito-constitucional",
                "direito-administrativo", "direito-penal", "processo-penal", "legislacao-especial",
                "informatica", "historia", "geografia", "realidade-sp"],
     "cebraspe": ["portugues", "direito-constitucional", "direito-administrativo", "direito-penal",

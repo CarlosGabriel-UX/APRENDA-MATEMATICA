@@ -20,9 +20,9 @@ Todo o conteúdo é original e livre para estudo. Os guias seguem os editais de 
 
 ## Banco de questões
 
-Questões originais separadas por banca e por matéria, muitas com figura (SVG), gráfico, tabela ou código: uma página para o estilo **VUNESP** (PM-SP e GCM, 5 alternativas) e outra para o estilo **CEBRASPE** (PF e Perito, Certo ou Errado), com filtro por matéria e placar da matéria filtrada. A página **Provas oficiais** mostra onde achar as provas e os gabaritos oficiais de cada banca e como usá-los num simulado. Nenhuma prova ou apostila de terceiros é copiada para o site.
+Questões originais separadas por banca e por matéria, muitas com figura (SVG), gráfico, tabela ou código: uma página para o estilo **VUNESP** (PM-SP e GCM, 5 alternativas, agora também com juros, funções, combinatória e probabilidade) e outra para o estilo **CEBRASPE** (PF e Perito, Certo ou Errado), com filtro por matéria e placar da matéria filtrada. A página **Provas oficiais** mostra onde achar as provas e os gabaritos oficiais de cada banca e como usá-los num simulado. Nenhuma prova ou apostila de terceiros é copiada para o site.
 
-As questões ficam em `src/questoes/<banca>-*.html`, cada matéria dentro de `<section data-materia="slug">`, e cada questão tem um `data-id` fixo (ex.: `v-geometria-03`) para o caderno de erros não se perder quando novas questões entrarem. A ordem das matérias de cada banco fica em `ORDEM_BANCO`, no `build.py`.
+As questões ficam em `src/questoes/<banca>-*.html`, cada matéria dentro de `<section data-materia="slug">`, e cada questão tem um `data-id` fixo (ex.: `v-geometria-03`) para o caderno de erros não se perder quando novas questões entrarem. A ordem das matérias de cada banco fica em `ORDEM_BANCO`, no `build.py`. As explicações das questões de matemática e lógica trazem uma figura da resolução (`<figure class="figura resolucao">`, logo depois da linha "Resposta").
 
 - **Caderno de erros com revisão espaçada:** toda questão errada em qualquer caderno é guardada automaticamente (no navegador). Cada acerto agenda a próxima revisão para 1, 3 e 7 dias depois; quem acerta na revisão de 7 dias tira a questão da lista, e um novo erro recomeça a contagem.
 - **Backup do progresso:** na página inicial e no caderno de erros, o aluno exporta o progresso para um arquivo `.json` e importa em outro aparelho.

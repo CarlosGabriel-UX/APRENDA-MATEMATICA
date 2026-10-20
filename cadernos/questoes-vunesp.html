@@ -132,7 +132,7 @@
 <div class="caixa atalho"><span class="rotulo">Atalho: na VUNESP, não deixe em branco</span>
 <p>Errar não tira ponto. Elimine as alternativas absurdas e, se sobrar dúvida, chute entre as que restaram. Veja mais táticas em <a href="estrategias.html">Estratégias de prova</a>.</p></div>
 <div class="filtro-materias" data-filtro role="group" aria-label="Filtrar por matéria">
-<button type="button" class="ativo" data-materia="" aria-pressed="true">Todas <span>100</span></button>
+<button type="button" class="ativo" data-materia="" aria-pressed="true">Todas <span>120</span></button>
 <button type="button" data-materia="portugues" aria-pressed="false"><span class="icone mini medio" style="--cor: #be123c" aria-hidden="true">Aa</span> Língua Portuguesa <span>5</span></button>
 <button type="button" data-materia="porcentagem" aria-pressed="false"><span class="icone mini curto" style="--cor: #15803d" aria-hidden="true">%</span> Porcentagem <span>5</span></button>
 <button type="button" data-materia="razao-proporcao" aria-pressed="false"><span class="icone mini longo" style="--cor: #6d28d9" aria-hidden="true">a:b</span> Razão e proporção <span>5</span></button>
@@ -140,9 +140,13 @@
 <button type="button" data-materia="fracoes" aria-pressed="false"><span class="icone mini curto" style="--cor: #c2410c" aria-hidden="true">½</span> Frações e números decimais <span>5</span></button>
 <button type="button" data-materia="aritmetica" aria-pressed="false"><span class="icone mini curto" style="--cor: #1d4ed8" aria-hidden="true">÷</span> Aritmética e divisibilidade <span>5</span></button>
 <button type="button" data-materia="equacoes" aria-pressed="false"><span class="icone mini medio" style="--cor: #be185d" aria-hidden="true">x=</span> Equações e sistemas <span>5</span></button>
+<button type="button" data-materia="funcoes" aria-pressed="false"><span class="icone mini longo" style="--cor: #4338ca" aria-hidden="true">f(x)</span> Funções <span>5</span></button>
 <button type="button" data-materia="geometria" aria-pressed="false"><span class="icone mini curto" style="--cor: #b45309" aria-hidden="true">△</span> Geometria plana e espacial <span>5</span></button>
 <button type="button" data-materia="estatistica" aria-pressed="false"><span class="icone mini medio" style="--cor: #1e40af" aria-hidden="true">x̄</span> Estatística básica <span>5</span></button>
 <button type="button" data-materia="sequencias" aria-pressed="false"><span class="icone mini medio" style="--cor: #0f766e" aria-hidden="true">aₙ</span> Sequências, PA e PG <span>5</span></button>
+<button type="button" data-materia="juros" aria-pressed="false"><span class="icone mini medio" style="--cor: #a16207" aria-hidden="true">R$</span> Juros simples e compostos <span>5</span></button>
+<button type="button" data-materia="combinatoria" aria-pressed="false"><span class="icone mini medio" style="--cor: #9333ea" aria-hidden="true">n!</span> Análise combinatória <span>5</span></button>
+<button type="button" data-materia="probabilidade" aria-pressed="false"><span class="icone mini curto" style="--cor: #a21caf" aria-hidden="true">P</span> Probabilidade <span>5</span></button>
 <button type="button" data-materia="logica" aria-pressed="false"><span class="icone mini curto" style="--cor: #6d28d9" aria-hidden="true">∧</span> Raciocínio lógico <span>5</span></button>
 <button type="button" data-materia="direito-constitucional" aria-pressed="false"><span class="icone mini medio" style="--cor: #166534" aria-hidden="true">CF</span> Direito Constitucional <span>5</span></button>
 <button type="button" data-materia="direito-administrativo" aria-pressed="false"><span class="icone mini longo" style="--cor: #4d7c0f" aria-hidden="true">Adm</span> Direito Administrativo <span>5</span></button>
@@ -1566,6 +1570,150 @@
 </div>
 </div>
 </section>
+<section class="bloco-questoes" data-materia="funcoes" style="--cor: #4338ca">
+<h2 id="funcoes"><span class="icone mini longo" style="--cor: #4338ca" aria-hidden="true">f(x)</span> Funções</h2>
+<p class="teoria"><a href="funcoes.html">Rever a teoria de Funções →</a> · 5 questões</p>
+<div class="questao" data-correta="a" data-id="v-funcoes-01">
+<p class="enunciado">Dada a função f(x) = 3x − 4, o valor de f(2) + f(−1) é:</p>
+<ol class="alternativas"><li>−5</li><li>5</li><li>−1</li><li>1</li><li>−9</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> Calcule cada valor separadamente, trocando x pelo número, e depois some.</p>
+<ol class="passos-resolucao">
+<li>f(2) = 3 × 2 − 4 = 6 − 4 = 2.</li>
+<li>f(−1) = 3 × (−1) − 4 = −3 − 4 = −7.</li>
+<li>f(2) + f(−1) = 2 + (−7) = −5.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> Trocou o sinal do resultado: 2 + (−7) dá −5, não 5.</li>
+<li><strong>C)</strong> Calculou f(2 + (−1)) = f(1) = −1; f(a) + f(b) não é f(a + b).</li>
+<li><strong>D)</strong> Calculou 3 × (−1) como +3 e achou f(−1) = −1; então 2 + (−1) = 1.</li>
+<li><strong>E)</strong> Esqueceu de multiplicar 2 por 3: f(2) = 2 − 4 = −2, e −2 + (−7) = −9.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Em função afim, f(a) + f(b) só é igual a f(a + b) quando o termo independente é zero. Aqui não é.</p>
+</div>
+</div>
+<div class="questao" data-correta="b" data-id="v-funcoes-02">
+<p class="enunciado">Em uma cidade, a corrida de táxi custa R$ 5,00 de bandeirada mais R$ 2,50 por quilômetro rodado. Um passageiro pagou R$ 40,00. A distância percorrida foi de:</p>
+<ol class="alternativas"><li>16 km</li><li>14 km</li><li>12 km</li><li>18 km</li><li>13 km</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> O preço é uma função afim: P(x) = 5 + 2,5x, em que x é a distância em km.</p>
+<figure class="figura resolucao"><svg viewBox="0 0 400 205" width="400" role="img" aria-label="Reta do preço do táxi começando em R$ 5 e passando pelo ponto de 14 km e R$ 40">
+  <line x1="50" y1="175" x2="380" y2="175" class="f-eixo"/>
+  <line x1="50" y1="175" x2="50" y2="20" class="f-eixo"/>
+  <line x1="50" y1="171" x2="50" y2="179" class="f-eixo"/>
+  <text x="50" y="194" class="f-nota" text-anchor="middle">0</text>
+  <line x1="150" y1="171" x2="150" y2="179" class="f-eixo"/>
+  <text x="150" y="194" class="f-nota" text-anchor="middle">5</text>
+  <line x1="250" y1="171" x2="250" y2="179" class="f-eixo"/>
+  <text x="250" y="194" class="f-nota" text-anchor="middle">10</text>
+  <line x1="330" y1="171" x2="330" y2="179" class="f-eixo"/>
+  <text x="330" y="194" class="f-nota" text-anchor="middle">14</text>
+  <text x="44" y="161" class="f-nota" text-anchor="end">R$ 5</text>
+  <text x="44" y="35" class="f-nota" text-anchor="end">R$ 40</text>
+  <line x1="50" y1="157" x2="370" y2="13" class="f-dest"/>
+  <line x1="50" y1="31" x2="330" y2="31" class="f-grade"/>
+  <line x1="330" y1="175" x2="330" y2="31" class="f-grade"/>
+  <circle cx="330" cy="31" r="6" class="f-ponto"/>
+  <circle cx="50" cy="157" r="5" class="f-ponto"/>
+  <text x="322" y="19" class="f-titulo" text-anchor="end">(14 km, R$ 40)</text>
+  <text x="60" y="173" class="f-nota" text-anchor="start">bandeirada</text>
+  <text x="390" y="194" class="f-nota" text-anchor="end">km</text>
+</svg><figcaption>A reta começa em 5 (a bandeirada) e sobe 2,50 por km. Ela atinge R$ 40 em x = 14.</figcaption></figure>
+<ol class="passos-resolucao">
+<li>5 + 2,5x = 40.</li>
+<li>2,5x = 35.</li>
+<li>x = 35 ÷ 2,5 = 14 km. Conferência: 5 + 2,5 × 14 = 5 + 35 = 40.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Dividiu 40 por 2,5 sem descontar a bandeirada.</li>
+<li><strong>C)</strong> Descontou a bandeirada duas vezes (40 − 10 = 30 e 30 ÷ 2,5 = 12).</li>
+<li><strong>D)</strong> Somou a bandeirada em vez de subtrair (45 ÷ 2,5 = 18).</li>
+<li><strong>E)</strong> Erro de divisão: 13 × 2,5 = 32,50, mais 5 dá 37,50, não 40.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Tire primeiro a parte fixa (5) e depois divida pelo preço por unidade (2,5).</p>
+</div>
+</div>
+<div class="questao" data-correta="b" data-id="v-funcoes-03">
+<p class="enunciado">O lucro mensal, em milhares de reais, de uma empresa de segurança é dado por L(x) = −x² + 40x − 300, em que x é o número de contratos fechados. O lucro máximo mensal dessa empresa é de:</p>
+<ol class="alternativas"><li>20 mil reais</li><li>100 mil reais</li><li>300 mil reais</li><li>400 mil reais</li><li>500 mil reais</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Com a < 0, a parábola tem concavidade para baixo e o valor máximo está no vértice.</p>
+<figure class="figura resolucao"><svg viewBox="0 0 400 210" width="400" role="img" aria-label="Parábola de concavidade para baixo com vértice no ponto x 20, lucro 100, e raízes 10 e 30">
+  <line x1="30" y1="103.2" x2="390" y2="103.2" class="f-eixo"/>
+  <path d="M40 183.2 L44.25 176.09 L48.5 169.16 L52.75 162.41 L57 155.84 L61.25 149.45 L65.5 143.24 L69.75 137.21 L74 131.36 L78.25 125.69 L82.5 120.2 L86.75 114.89 L91 109.76 L95.25 104.81 L99.5 100.04 L103.75 95.45 L108 91.04 L112.25 86.81 L116.5 82.76 L120.75 78.89 L125 75.2 L129.25 71.69 L133.5 68.36 L137.75 65.21 L142 62.24 L146.25 59.45 L150.5 56.84 L154.75 54.41 L159 52.16 L163.25 50.09 L167.5 48.2 L171.75 46.49 L176 44.96 L180.25 43.61 L184.5 42.44 L188.75 41.45 L193 40.64 L197.25 40.01 L201.5 39.56 L205.75 39.29 L210 39.2 L214.25 39.29 L218.5 39.56 L222.75 40.01 L227 40.64 L231.25 41.45 L235.5 42.44 L239.75 43.61 L244 44.96 L248.25 46.49 L252.5 48.2 L256.75 50.09 L261 52.16 L265.25 54.41 L269.5 56.84 L273.75 59.45 L278 62.24 L282.25 65.21 L286.5 68.36 L290.75 71.69 L295 75.2 L299.25 78.89 L303.5 82.76 L307.75 86.81 L312 91.04 L316.25 95.45 L320.5 100.04 L324.75 104.81 L329 109.76 L333.25 114.89 L337.5 120.2 L341.75 125.69 L346 131.36 L350.25 137.21 L354.5 143.24 L358.75 149.45 L363 155.84 L367.25 162.41 L371.5 169.16 L375.75 176.09 L380 183.2" class="f-dest"/>
+  <line x1="210" y1="103.2" x2="210" y2="39.2" class="f-grade"/>
+  <circle cx="210" cy="39.2" r="5" class="f-ponto"/>
+  <text x="210" y="27.2" class="f-titulo" text-anchor="middle">vértice (20, 100)</text>
+  <circle cx="96.67" cy="103.2" r="5" class="f-ponto"/>
+  <text x="90.67" y="121.2" class="f-titulo" text-anchor="end">10</text>
+  <circle cx="323.33" cy="103.2" r="5" class="f-ponto"/>
+  <text x="329.33" y="121.2" class="f-titulo" text-anchor="start">30</text>
+</svg><figcaption>Concavidade para baixo: o ponto mais alto é o vértice, no meio das raízes 10 e 30. Lá o lucro é 100 mil.</figcaption></figure>
+<ol class="passos-resolucao">
+<li>x do vértice: −b ÷ 2a = −40 ÷ (−2) = 20 contratos.</li>
+<li>Lucro máximo: L(20) = −400 + 800 − 300 = 100.</li>
+<li>Pela fórmula: Δ = 1.600 − 1.200 = 400; yᵥ = −Δ ÷ 4a = −400 ÷ (−4) = 100.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> 20 é o número de contratos que dá o lucro máximo (xᵥ), não o lucro.</li>
+<li><strong>C)</strong> 300 é o custo fixo (termo independente), não o máximo.</li>
+<li><strong>D)</strong> 400 é o Δ; falta dividir por −4a.</li>
+<li><strong>E)</strong> Somou 800 − 300 esquecendo o −400 (o −x² com x = 20).</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Ache xᵥ = −b/2a e substitua na função: é mais rápido do que decorar −Δ/4a.</p>
+</div>
+</div>
+<div class="questao" data-correta="b" data-id="v-funcoes-04">
+<p class="enunciado">Considere a função f(x) = x² − 5x + 6. Os valores reais de x para os quais f(x) < 0 são:</p>
+<ol class="alternativas"><li>x < 2 ou x > 3</li><li>2 < x < 3</li><li>x > 3</li><li>x < 2</li><li>não existe x com f(x) < 0</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Com a > 0, a parábola abre para cima: ela fica negativa só entre as raízes.</p>
+<figure class="figura resolucao"><svg viewBox="0 0 400 200" width="400" role="img" aria-label="Parábola de concavidade para cima com raízes 2 e 3; entre elas a curva fica abaixo do eixo">
+  <line x1="30" y1="150" x2="390" y2="150" class="f-eixo"/>
+  <path d="M176 150 L177.7 150.49 L179.4 150.95 L181.1 151.39 L182.8 151.8 L184.5 152.19 L186.2 152.55 L187.9 152.89 L189.6 153.2 L191.3 153.49 L193 153.75 L194.7 153.99 L196.4 154.2 L198.1 154.39 L199.8 154.55 L201.5 154.69 L203.2 154.8 L204.9 154.89 L206.6 154.95 L208.3 154.99 L210 155 L211.7 154.99 L213.4 154.95 L215.1 154.89 L216.8 154.8 L218.5 154.69 L220.2 154.55 L221.9 154.39 L223.6 154.2 L225.3 153.99 L227 153.75 L228.7 153.49 L230.4 153.2 L232.1 152.89 L233.8 152.55 L235.5 152.19 L237.2 151.8 L238.9 151.39 L240.6 150.95 L242.3 150.49 L244 150 Z" class="f-marca"/>
+  <path d="M40 30 L44.25 36.17 L48.5 42.19 L52.75 48.05 L57 53.75 L61.25 59.3 L65.5 64.69 L69.75 69.92 L74 75 L78.25 79.92 L82.5 84.69 L86.75 89.3 L91 93.75 L95.25 98.05 L99.5 102.19 L103.75 106.17 L108 110 L112.25 113.67 L116.5 117.19 L120.75 120.55 L125 123.75 L129.25 126.8 L133.5 129.69 L137.75 132.42 L142 135 L146.25 137.42 L150.5 139.69 L154.75 141.8 L159 143.75 L163.25 145.55 L167.5 147.19 L171.75 148.67 L176 150 L180.25 151.17 L184.5 152.19 L188.75 153.05 L193 153.75 L197.25 154.3 L201.5 154.69 L205.75 154.92 L210 155 L214.25 154.92 L218.5 154.69 L222.75 154.3 L227 153.75 L231.25 153.05 L235.5 152.19 L239.75 151.17 L244 150 L248.25 148.67 L252.5 147.19 L256.75 145.55 L261 143.75 L265.25 141.8 L269.5 139.69 L273.75 137.42 L278 135 L282.25 132.42 L286.5 129.69 L290.75 126.8 L295 123.75 L299.25 120.55 L303.5 117.19 L307.75 113.67 L312 110 L316.25 106.17 L320.5 102.19 L324.75 98.05 L329 93.75 L333.25 89.3 L337.5 84.69 L341.75 79.92 L346 75 L350.25 69.92 L354.5 64.69 L358.75 59.3 L363 53.75 L367.25 48.05 L371.5 42.19 L375.75 36.17 L380 30" class="f-dest"/>
+  <circle cx="176" cy="150" r="5" class="f-ponto"/>
+  <text x="170" y="142" class="f-titulo" text-anchor="end">2</text>
+  <circle cx="244" cy="150" r="5" class="f-ponto"/>
+  <text x="250" y="142" class="f-titulo" text-anchor="start">3</text>
+  <text x="210" y="168" class="f-nota" text-anchor="middle">f(x) &lt; 0</text>
+  <text x="80.8" y="100" class="f-nota" text-anchor="middle">f(x) &gt; 0</text>
+  <text x="339.2" y="100" class="f-nota" text-anchor="middle">f(x) &gt; 0</text>
+</svg><figcaption>A parábola abre para cima e corta o eixo em 2 e 3: só o pedaço entre as raízes fica abaixo de zero.</figcaption></figure>
+<ol class="passos-resolucao">
+<li>Raízes: soma 5 e produto 6, logo 2 e 3.</li>
+<li>Concavidade para cima (a = 1 > 0): positiva fora das raízes, negativa entre elas.</li>
+<li>f(x) < 0 para 2 < x < 3. Teste: f(2,5) = 6,25 − 12,5 + 6 = −0,25 < 0.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> É onde f(x) > 0, o oposto do pedido.</li>
+<li><strong>C)</strong> Pegou só um dos lados de fora das raízes, onde a função é positiva.</li>
+<li><strong>D)</strong> Também é uma região onde a função é positiva.</li>
+<li><strong>E)</strong> Há valores negativos sim, como f(2,5) = −0,25.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> a > 0: "sorriso". Entre as raízes a boca do sorriso fica abaixo do eixo, então o sinal é o contrário do de a.</p>
+</div>
+</div>
+<div class="questao" data-correta="a" data-id="v-funcoes-05">
+<p class="enunciado">O gráfico de uma função afim f passa pelos pontos (0, 3) e (2, 7). O valor de f(10) é:</p>
+<ol class="alternativas"><li>23</li><li>20</li><li>30</li><li>13</li><li>35</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> Uma função afim é f(x) = ax + b: b é onde a reta corta o eixo y, e a é quanto y sobe para cada 1 de x.</p>
+<ol class="passos-resolucao">
+<li>b = f(0) = 3.</li>
+<li>De x = 0 para x = 2, y sobe de 3 para 7: a = (7 − 3) ÷ 2 = 2.</li>
+<li>f(x) = 2x + 3, então f(10) = 20 + 3 = 23.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> Esqueceu o b: 2 × 10 = 20.</li>
+<li><strong>C)</strong> Usou 3 como inclinação: 3 × 10 = 30.</li>
+<li><strong>D)</strong> Usou inclinação 1: 10 + 3 = 13.</li>
+<li><strong>E)</strong> Tratou como proporção direta (2 → 7, então 10 → 35), mas a reta não passa pela origem.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Cada 1 em x soma 2 em y. De x = 2 a x = 10 são 8 passos: 7 + 8 × 2 = 23.</p>
+</div>
+</div>
+</section>
 <section class="bloco-questoes" data-materia="geometria" style="--cor: #b45309">
 <h2 id="geometria"><span class="icone mini curto" style="--cor: #b45309" aria-hidden="true">△</span> Geometria plana e espacial</h2>
 <p class="teoria"><a href="geometria.html">Rever a teoria de Geometria plana e espacial →</a> · 5 questões</p>
@@ -2276,6 +2424,480 @@
 <li><strong>E)</strong> Avançou 3 giros a partir da Figura 1, chegando à Figura 4; o resto 3 já indica a Figura 3.</li>
 </ul>
 <p class="atalho-questao"><strong>Atalho:</strong> Em ciclos, use o resto: termo n = termo do resto de n ÷ tamanho do ciclo (resto 0 = último do ciclo).</p>
+</div>
+</div>
+</section>
+<section class="bloco-questoes" data-materia="juros" style="--cor: #a16207">
+<h2 id="juros"><span class="icone mini medio" style="--cor: #a16207" aria-hidden="true">R$</span> Juros simples e compostos</h2>
+<p class="teoria"><a href="juros.html">Rever a teoria de Juros simples e compostos →</a> · 5 questões</p>
+<div class="questao" data-correta="c" data-id="v-juros-01">
+<p class="enunciado">Um guarda aplicou R$ 2.000,00 a juros simples de 3% ao mês durante 5 meses. Ao final da aplicação, o montante foi de:</p>
+<ol class="alternativas"><li>R$ 300,00</li><li>R$ 2.060,00</li><li>R$ 2.300,00</li><li>R$ 2.318,55</li><li>R$ 2.600,00</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Nos juros simples, os juros de cada mês são sempre calculados sobre o capital inicial.</p>
+<figure class="figura resolucao"><svg viewBox="0 0 400 130" width="400" role="img" aria-label="Barra com o capital de R$ 2.000 e cinco blocos iguais de R$ 60 de juros">
+  <rect x="20" y="40" width="313.04" height="40" rx="0" class="f-area f-linha"/>
+  <text x="176.52" y="65" text-anchor="middle">R$ 2.000</text>
+  <text x="176.52" y="100" class="f-nota" text-anchor="middle">capital</text>
+  <rect x="333.04" y="40" width="9.39" height="40" rx="0" class="f-marca f-linha"/>
+  <rect x="342.43" y="40" width="9.39" height="40" rx="0" class="f-marca f-linha"/>
+  <rect x="351.83" y="40" width="9.39" height="40" rx="0" class="f-marca f-linha"/>
+  <rect x="361.22" y="40" width="9.39" height="40" rx="0" class="f-marca f-linha"/>
+  <rect x="370.61" y="40" width="9.39" height="40" rx="0" class="f-marca f-linha"/>
+  <path d="M333 36 V30 H380 V36" class="f-linha"/><text x="356.5" y="22" class="f-titulo" text-anchor="middle">5 × 60 = 300</text>
+  <text x="200" y="125" class="f-titulo" text-anchor="middle">montante: 2.000 + 300 = R$ 2.300</text>
+</svg><figcaption>Juros simples: todo mês rende o mesmo valor (3% de 2.000 = 60), sempre sobre o capital inicial.</figcaption></figure>
+<ol class="passos-resolucao">
+<li>Juros de um mês: 3% de 2.000 = 0,03 × 2.000 = R$ 60.</li>
+<li>Juros de 5 meses: 5 × 60 = R$ 300.</li>
+<li>Montante: 2.000 + 300 = R$ 2.300.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> R$ 300,00 são só os juros; a pergunta pede o montante (capital + juros).</li>
+<li><strong>B)</strong> Contou os juros de um mês só (3% de 2.000 = 60).</li>
+<li><strong>D)</strong> É o resultado com juros compostos (2.000 × 1,03⁵); o enunciado diz juros simples.</li>
+<li><strong>E)</strong> Usou 6% ao mês, o dobro da taxa: 2.000 × 0,06 × 5 = 600.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> M = C × (1 + i × t) = 2.000 × (1 + 0,15) = 2.000 × 1,15 = 2.300.</p>
+</div>
+</div>
+<div class="questao" data-correta="b" data-id="v-juros-02">
+<p class="enunciado">Uma associação de servidores aplicou R$ 5.000,00 a juros compostos de 10% ao ano. Após 2 anos, sem retiradas, o montante será de:</p>
+<ol class="alternativas"><li>R$ 6.000,00</li><li>R$ 6.050,00</li><li>R$ 5.500,00</li><li>R$ 6.655,00</li><li>R$ 1.050,00</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Nos juros compostos, os juros de cada ano entram no capital do ano seguinte (juros sobre juros).</p>
+<figure class="figura resolucao"><svg viewBox="0 0 440 168" width="440" role="img" aria-label="Três barras: 5.000, depois 5.500 com 500 de juros, depois 6.050 com 550 de juros">
+  <text x="10" y="37" class="f-titulo" text-anchor="start">Início</text>
+  <text x="10" y="82" class="f-titulo" text-anchor="start">1º ano</text>
+  <text x="10" y="127" class="f-titulo" text-anchor="start">2º ano</text>
+  <rect x="80" y="18" width="247.93" height="30" rx="0" class="f-area f-linha"/>
+  <text x="203.97" y="38" text-anchor="middle">5.000</text>
+  <rect x="80" y="63" width="247.93" height="30" rx="0" class="f-area f-linha"/>
+  <text x="203.97" y="83" text-anchor="middle">5.000</text>
+  <rect x="327.93" y="63" width="24.79" height="30" rx="0" class="f-marca f-linha"/>
+  <rect x="80" y="108" width="272.73" height="30" rx="0" class="f-area f-linha"/>
+  <text x="216.36" y="128" text-anchor="middle">5.500</text>
+  <rect x="352.73" y="108" width="27.27" height="30" rx="0" class="f-marca f-linha"/>
+  <text x="358.73" y="83" class="f-nota" text-anchor="start">+500 = 5.500</text>
+  <text x="386" y="128" class="f-titulo" text-anchor="start">+550</text>
+  <text x="200" y="158" class="f-titulo" text-anchor="middle">montante: 6.050</text>
+</svg><figcaption>No 2º ano, os 10% incidem sobre 5.500 (juros sobre juros): 550, e não 500.</figcaption></figure>
+<ol class="passos-resolucao">
+<li>1º ano: 5.000 × 1,10 = 5.500.</li>
+<li>2º ano: 5.500 × 1,10 = 6.050.</li>
+<li>Pela fórmula: M = 5.000 × 1,1² = 5.000 × 1,21 = 6.050.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> É o montante com juros simples (500 por ano, sem juros sobre juros).</li>
+<li><strong>C)</strong> É o montante depois de só 1 ano.</li>
+<li><strong>D)</strong> É o montante depois de 3 anos (5.000 × 1,1³).</li>
+<li><strong>E)</strong> R$ 1.050,00 são só os juros do período; a pergunta pede o montante.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Fator de dois aumentos de 10%: 1,1 × 1,1 = 1,21, ou seja, 21% sobre o capital inicial.</p>
+</div>
+</div>
+<div class="questao" data-correta="c" data-id="v-juros-03">
+<p class="enunciado">Um capital aplicado a juros simples de 2% ao mês rendeu R$ 360,00 de juros em 6 meses. Esse capital era de:</p>
+<ol class="alternativas"><li>R$ 1.800,00</li><li>R$ 2.160,00</li><li>R$ 3.000,00</li><li>R$ 3.600,00</li><li>R$ 18.000,00</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Nos juros simples, a taxa total do período é a taxa mensal vezes o número de meses.</p>
+<ol class="passos-resolucao">
+<li>Taxa total: 2% × 6 = 12% = 0,12.</li>
+<li>12% do capital = 360: 0,12 × C = 360.</li>
+<li>C = 360 ÷ 0,12 = R$ 3.000. Conferência: 3.000 × 0,02 × 6 = 360.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Dividiu 360 por 0,2 (20%), errando a taxa total do período.</li>
+<li><strong>B)</strong> Multiplicou 360 por 6 em vez de dividir pela taxa.</li>
+<li><strong>D)</strong> Dividiu 360 por 0,1, como se a taxa total fosse 10%.</li>
+<li><strong>E)</strong> Dividiu 360 só pela taxa mensal (0,02), esquecendo os 6 meses.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Pergunte: 360 é 12% de quanto? 360 ÷ 12 = 30 (1%), e 30 × 100 = 3.000.</p>
+</div>
+</div>
+<div class="questao" data-correta="c" data-id="v-juros-04">
+<p class="enunciado">Aplicado a juros simples de 4% ao mês, um capital dobra de valor em:</p>
+<ol class="alternativas"><li>18 meses</li><li>20 meses</li><li>25 meses</li><li>24 meses</li><li>50 meses</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Dobrar o capital significa render juros iguais ao próprio capital, ou seja, 100%.</p>
+<ol class="passos-resolucao">
+<li>Os juros precisam somar 100% do capital.</li>
+<li>Cada mês rende 4%: 100% ÷ 4% = 25 meses.</li>
+<li>Conferência com C = 100: 100 × 0,04 × 25 = 100 de juros, montante 200.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> 18 meses vem da "regra do 72" (72 ÷ 4), que vale aproximadamente para juros compostos, não para simples.</li>
+<li><strong>B)</strong> Corresponderia a juros de 5% ao mês (100 ÷ 5).</li>
+<li><strong>D)</strong> Seriam 96% de juros (24 × 4%): ainda falta 4% para dobrar.</li>
+<li><strong>E)</strong> Corresponderia a juros de 2% ao mês.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Em juros simples, o tempo para dobrar é 100 ÷ taxa: 100 ÷ 4 = 25.</p>
+</div>
+</div>
+<div class="questao" data-correta="b" data-id="v-juros-05">
+<p class="enunciado">Um aparelho de rádio custa R$ 1.000,00 à vista ou R$ 1.100,00 em pagamento único 2 meses após a compra. A taxa mensal de juros simples cobrada no pagamento a prazo é de:</p>
+<ol class="alternativas"><li>10%</li><li>5%</li><li>4,88%</li><li>2,5%</li><li>9,09%</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Compare os juros com o valor à vista (o capital) e divida pelo número de meses.</p>
+<ol class="passos-resolucao">
+<li>Juros: 1.100 − 1.000 = R$ 100.</li>
+<li>Taxa no período: 100 ÷ 1.000 = 10% em 2 meses.</li>
+<li>Taxa mensal (simples): 10% ÷ 2 = 5% ao mês.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> 10% é a taxa dos 2 meses juntos, não a mensal.</li>
+<li><strong>C)</strong> É a taxa mensal composta equivalente (√1,1 − 1 ≈ 4,88%); o enunciado pede juros simples.</li>
+<li><strong>D)</strong> Dividiu os 10% por 4 em vez de por 2.</li>
+<li><strong>E)</strong> Calculou os juros sobre o valor a prazo (100 ÷ 1.100) e não dividiu pelos 2 meses.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Juros simples: taxa total ÷ meses. 100 de 1.000 é 10%; em 2 meses, 5% ao mês.</p>
+</div>
+</div>
+</section>
+<section class="bloco-questoes" data-materia="combinatoria" style="--cor: #9333ea">
+<h2 id="combinatoria"><span class="icone mini medio" style="--cor: #9333ea" aria-hidden="true">n!</span> Análise combinatória</h2>
+<p class="teoria"><a href="combinatoria.html">Rever a teoria de Análise combinatória →</a> · 5 questões</p>
+<div class="questao" data-correta="b" data-id="v-combinatoria-01">
+<p class="enunciado">Para o treinamento, um guarda pode escolher entre 3 calças, 4 camisetas e 2 bonés diferentes. O número de maneiras distintas de ele se vestir usando uma calça, uma camiseta e um boné é:</p>
+<ol class="alternativas"><li>9</li><li>24</li><li>12</li><li>8</li><li>36</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Escolhas independentes feitas uma depois da outra se multiplicam (princípio multiplicativo).</p>
+<figure class="figura resolucao"><svg viewBox="0 0 400 128" width="400" role="img" aria-label="Três casas com 3 calças, 4 camisetas e 2 bonés">
+  <rect x="109" y="20" width="50" height="50" rx="6" class="f-area f-linha"/>
+  <text x="134" y="52" class="f-titulo" text-anchor="middle">3</text>
+  <text x="134" y="88" class="f-nota" text-anchor="middle">calças</text>
+  <text x="167" y="52" class="f-nota" text-anchor="middle">×</text>
+  <rect x="175" y="20" width="50" height="50" rx="6" class="f-area f-linha"/>
+  <text x="200" y="52" class="f-titulo" text-anchor="middle">4</text>
+  <text x="200" y="88" class="f-nota" text-anchor="middle">camisetas</text>
+  <text x="233" y="52" class="f-nota" text-anchor="middle">×</text>
+  <rect x="241" y="20" width="50" height="50" rx="6" class="f-area f-linha"/>
+  <text x="266" y="52" class="f-titulo" text-anchor="middle">2</text>
+  <text x="266" y="88" class="f-nota" text-anchor="middle">bonés</text>
+  <text x="200" y="118" class="f-titulo" text-anchor="middle">3 × 4 × 2 = 24</text>
+</svg><figcaption>Para cada calça há 4 camisetas, e para cada par calça-camiseta há 2 bonés.</figcaption></figure>
+<ol class="passos-resolucao">
+<li>Calça: 3 opções.</li>
+<li>Camiseta: 4 opções para cada calça.</li>
+<li>Boné: 2 opções para cada combinação: 3 × 4 × 2 = 24.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Somou as opções (3 + 4 + 2); soma só vale quando se escolhe uma coisa OU outra.</li>
+<li><strong>C)</strong> Esqueceu os bonés: 3 × 4 = 12.</li>
+<li><strong>D)</strong> Esqueceu as calças: 4 × 2 = 8.</li>
+<li><strong>E)</strong> Multiplicou 3 × 4 × 3, contando um boné a mais.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> "E" multiplica, "ou" soma: calça E camiseta E boné = 3 × 4 × 2.</p>
+</div>
+</div>
+<div class="questao" data-correta="c" data-id="v-combinatoria-02">
+<p class="enunciado">O número de anagramas da palavra PROVA é:</p>
+<ol class="alternativas"><li>24</li><li>60</li><li>120</li><li>25</li><li>720</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> As 5 letras são todas diferentes: cada anagrama é uma ordem das 5 letras, ou seja, uma permutação.</p>
+<ol class="passos-resolucao">
+<li>1ª posição: 5 letras possíveis; 2ª: 4; 3ª: 3; 4ª: 2; 5ª: 1.</li>
+<li>P₅ = 5! = 5 × 4 × 3 × 2 × 1 = 120.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> É 4!, como se uma letra ficasse fixa.</li>
+<li><strong>B)</strong> Dividiu 5! por 2, como se houvesse letra repetida; em PROVA não há.</li>
+<li><strong>D)</strong> Fez 5 × 5 = 25, contando posições e letras sem permutar.</li>
+<li><strong>E)</strong> É 6!, a resposta para uma palavra de 6 letras distintas.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Palavra com n letras todas diferentes: n! anagramas.</p>
+</div>
+</div>
+<div class="questao" data-correta="b" data-id="v-combinatoria-03">
+<p class="enunciado">De um grupo de 6 soldados, serão escolhidos 3 para formar uma equipe de patrulha, sem funções diferentes entre eles. O número de equipes distintas possíveis é:</p>
+<ol class="alternativas"><li>18</li><li>20</li><li>120</li><li>216</li><li>60</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Como não há funções, a ordem da escolha não importa: é combinação.</p>
+<ol class="passos-resolucao">
+<li>Escolhendo em ordem: 6 × 5 × 4 = 120.</li>
+<li>Cada equipe aparece 3! = 6 vezes nessa conta (as ordens dos mesmos 3).</li>
+<li>C(6, 3) = 120 ÷ 6 = 20 equipes.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Multiplicou 6 × 3, sem relação com a contagem.</li>
+<li><strong>C)</strong> É o arranjo (ordem importa), que contaria a mesma equipe 6 vezes.</li>
+<li><strong>D)</strong> É 6³, como se o mesmo soldado pudesse ser escolhido mais de uma vez.</li>
+<li><strong>E)</strong> Dividiu por 2 em vez de por 3! = 6.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Se trocar a ordem não muda o grupo, divida o arranjo pelo fatorial do tamanho do grupo.</p>
+</div>
+</div>
+<div class="questao" data-correta="b" data-id="v-combinatoria-04">
+<p class="enunciado">Um cadeado de base usa senhas de 3 algarismos distintos, escolhidos entre 1, 2, 3, 4 e 5. A quantidade de senhas possíveis é:</p>
+<ol class="alternativas"><li>125</li><li>60</li><li>10</li><li>15</li><li>120</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Em uma senha a ordem importa (123 é diferente de 321), e os algarismos não se repetem.</p>
+<ol class="passos-resolucao">
+<li>1º algarismo: 5 opções.</li>
+<li>2º: 4 opções (não repete o primeiro).</li>
+<li>3º: 3 opções. Total: 5 × 4 × 3 = 60.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> É 5³, contando senhas com algarismos repetidos.</li>
+<li><strong>C)</strong> É C(5, 3): contou só os grupos de algarismos, sem a ordem.</li>
+<li><strong>D)</strong> Multiplicou 5 × 3.</li>
+<li><strong>E)</strong> É 5!, como se a senha tivesse 5 algarismos.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Senha, placa, fila: a ordem importa. Preencha casa por casa e multiplique.</p>
+</div>
+</div>
+<div class="questao" data-correta="c" data-id="v-combinatoria-05">
+<p class="enunciado">Ao final de uma formatura, cada um dos 8 novos guardas cumprimentou cada um dos outros com um único aperto de mão. O total de apertos de mão foi:</p>
+<ol class="alternativas"><li>56</li><li>64</li><li>28</li><li>16</li><li>36</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: C.</strong> Um aperto de mão envolve 2 pessoas, e o aperto de A com B é o mesmo que o de B com A: combinação de 8, 2 a 2.</p>
+<ol class="passos-resolucao">
+<li>Cada guarda aperta a mão de 7 outros: 8 × 7 = 56.</li>
+<li>Assim cada aperto foi contado duas vezes (uma por pessoa).</li>
+<li>C(8, 2) = 56 ÷ 2 = 28.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Contou cada aperto duas vezes.</li>
+<li><strong>B)</strong> É 8 × 8: incluiu cada guarda cumprimentando a si mesmo e contou tudo em dobro.</li>
+<li><strong>D)</strong> Multiplicou 8 × 2.</li>
+<li><strong>E)</strong> É C(9, 2), a conta para 9 pessoas.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Apertos de mão entre n pessoas: n × (n − 1) ÷ 2.</p>
+</div>
+</div>
+</section>
+<section class="bloco-questoes" data-materia="probabilidade" style="--cor: #a21caf">
+<h2 id="probabilidade"><span class="icone mini curto" style="--cor: #a21caf" aria-hidden="true">P</span> Probabilidade</h2>
+<p class="teoria"><a href="probabilidade.html">Rever a teoria de Probabilidade →</a> · 5 questões</p>
+<div class="questao" data-correta="a" data-id="v-probabilidade-01">
+<p class="enunciado">Uma urna contém 5 bolas vermelhas, 3 azuis e 2 brancas, todas iguais exceto na cor. Retirando-se uma bola ao acaso, a probabilidade de ela ser azul é:</p>
+<ol class="alternativas"><li>30%</li><li>3%</li><li>33%</li><li>50%</li><li>20%</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> Probabilidade = casos favoráveis ÷ casos possíveis.</p>
+<ol class="passos-resolucao">
+<li>Total de bolas: 5 + 3 + 2 = 10.</li>
+<li>Bolas azuis: 3.</li>
+<li>P(azul) = 3 ÷ 10 = 0,3 = 30%.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> Confundiu 3 bolas com 3%.</li>
+<li><strong>C)</strong> Dividiu 3 por 9, esquecendo uma bola no total.</li>
+<li><strong>D)</strong> Pensou em "ou é azul ou não é": isso não dá chances iguais.</li>
+<li><strong>E)</strong> É a probabilidade de sair branca (2 em 10).</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Sempre conte o total primeiro: 10 bolas; 3 delas são azuis.</p>
+</div>
+</div>
+<div class="questao" data-correta="a" data-id="v-probabilidade-02">
+<p class="enunciado">Dois dados comuns, não viciados, são lançados ao mesmo tempo. A probabilidade de a soma dos pontos ser 7 é:</p>
+<ol class="alternativas"><li>1/6</li><li>7/36</li><li>1/12</li><li>1/36</li><li>5/36</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> Com dois dados, o espaço amostral tem 6 × 6 = 36 pares igualmente prováveis.</p>
+<figure class="figura resolucao"><svg viewBox="0 0 400 215" width="400" role="img" aria-label="Tabela 6 por 6 com as somas de dois dados; as 6 casas com soma 7 formam uma diagonal">
+  <text x="95" y="22" class="f-titulo" text-anchor="middle">1</text>
+  <text x="66" y="47" class="f-titulo" text-anchor="middle">1</text>
+  <rect x="76" y="28" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="95" y="48" class="f-nota" text-anchor="middle">2</text>
+  <rect x="114" y="28" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="133" y="48" class="f-nota" text-anchor="middle">3</text>
+  <rect x="152" y="28" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="171" y="48" class="f-nota" text-anchor="middle">4</text>
+  <rect x="190" y="28" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="209" y="48" class="f-nota" text-anchor="middle">5</text>
+  <rect x="228" y="28" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="247" y="48" class="f-nota" text-anchor="middle">6</text>
+  <rect x="266" y="28" width="38" height="30" rx="0" class="f-marca f-linha"/>
+  <text x="285" y="48" class="f-titulo" text-anchor="middle">7</text>
+  <text x="133" y="22" class="f-titulo" text-anchor="middle">2</text>
+  <text x="66" y="77" class="f-titulo" text-anchor="middle">2</text>
+  <rect x="76" y="58" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="95" y="78" class="f-nota" text-anchor="middle">3</text>
+  <rect x="114" y="58" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="133" y="78" class="f-nota" text-anchor="middle">4</text>
+  <rect x="152" y="58" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="171" y="78" class="f-nota" text-anchor="middle">5</text>
+  <rect x="190" y="58" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="209" y="78" class="f-nota" text-anchor="middle">6</text>
+  <rect x="228" y="58" width="38" height="30" rx="0" class="f-marca f-linha"/>
+  <text x="247" y="78" class="f-titulo" text-anchor="middle">7</text>
+  <rect x="266" y="58" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="285" y="78" class="f-nota" text-anchor="middle">8</text>
+  <text x="171" y="22" class="f-titulo" text-anchor="middle">3</text>
+  <text x="66" y="107" class="f-titulo" text-anchor="middle">3</text>
+  <rect x="76" y="88" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="95" y="108" class="f-nota" text-anchor="middle">4</text>
+  <rect x="114" y="88" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="133" y="108" class="f-nota" text-anchor="middle">5</text>
+  <rect x="152" y="88" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="171" y="108" class="f-nota" text-anchor="middle">6</text>
+  <rect x="190" y="88" width="38" height="30" rx="0" class="f-marca f-linha"/>
+  <text x="209" y="108" class="f-titulo" text-anchor="middle">7</text>
+  <rect x="228" y="88" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="247" y="108" class="f-nota" text-anchor="middle">8</text>
+  <rect x="266" y="88" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="285" y="108" class="f-nota" text-anchor="middle">9</text>
+  <text x="209" y="22" class="f-titulo" text-anchor="middle">4</text>
+  <text x="66" y="137" class="f-titulo" text-anchor="middle">4</text>
+  <rect x="76" y="118" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="95" y="138" class="f-nota" text-anchor="middle">5</text>
+  <rect x="114" y="118" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="133" y="138" class="f-nota" text-anchor="middle">6</text>
+  <rect x="152" y="118" width="38" height="30" rx="0" class="f-marca f-linha"/>
+  <text x="171" y="138" class="f-titulo" text-anchor="middle">7</text>
+  <rect x="190" y="118" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="209" y="138" class="f-nota" text-anchor="middle">8</text>
+  <rect x="228" y="118" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="247" y="138" class="f-nota" text-anchor="middle">9</text>
+  <rect x="266" y="118" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="285" y="138" class="f-nota" text-anchor="middle">10</text>
+  <text x="247" y="22" class="f-titulo" text-anchor="middle">5</text>
+  <text x="66" y="167" class="f-titulo" text-anchor="middle">5</text>
+  <rect x="76" y="148" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="95" y="168" class="f-nota" text-anchor="middle">6</text>
+  <rect x="114" y="148" width="38" height="30" rx="0" class="f-marca f-linha"/>
+  <text x="133" y="168" class="f-titulo" text-anchor="middle">7</text>
+  <rect x="152" y="148" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="171" y="168" class="f-nota" text-anchor="middle">8</text>
+  <rect x="190" y="148" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="209" y="168" class="f-nota" text-anchor="middle">9</text>
+  <rect x="228" y="148" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="247" y="168" class="f-nota" text-anchor="middle">10</text>
+  <rect x="266" y="148" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="285" y="168" class="f-nota" text-anchor="middle">11</text>
+  <text x="285" y="22" class="f-titulo" text-anchor="middle">6</text>
+  <text x="66" y="197" class="f-titulo" text-anchor="middle">6</text>
+  <rect x="76" y="178" width="38" height="30" rx="0" class="f-marca f-linha"/>
+  <text x="95" y="198" class="f-titulo" text-anchor="middle">7</text>
+  <rect x="114" y="178" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="133" y="198" class="f-nota" text-anchor="middle">8</text>
+  <rect x="152" y="178" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="171" y="198" class="f-nota" text-anchor="middle">9</text>
+  <rect x="190" y="178" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="209" y="198" class="f-nota" text-anchor="middle">10</text>
+  <rect x="228" y="178" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="247" y="198" class="f-nota" text-anchor="middle">11</text>
+  <rect x="266" y="178" width="38" height="30" rx="0" class="f-fundo f-linha"/>
+  <text x="285" y="198" class="f-nota" text-anchor="middle">12</text>
+  <text x="345" y="110" class="f-titulo" text-anchor="middle">6 casas</text>
+  <text x="345" y="130" class="f-nota" text-anchor="middle">de 36</text>
+</svg><figcaption>A soma 7 ocupa a diagonal inteira: 6 casas de 36, ou seja, 1/6.</figcaption></figure>
+<ol class="passos-resolucao">
+<li>Pares com soma 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1).</li>
+<li>São 6 casos favoráveis em 36.</li>
+<li>P = 6/36 = 1/6.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> Usou o 7 da soma como número de casos favoráveis.</li>
+<li><strong>C)</strong> Contou só 3 pares, sem considerar a ordem: (1,6) e (6,1) são casos diferentes.</li>
+<li><strong>D)</strong> Contou um único par.</li>
+<li><strong>E)</strong> Esqueceu um dos pares; 5/36 é a chance da soma 6 ou da soma 8.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> A soma 7 é a mais provável com dois dados: aparece numa diagonal inteira da tabela 6 × 6.</p>
+</div>
+</div>
+<div class="questao" data-correta="b" data-id="v-probabilidade-03">
+<p class="enunciado">Uma moeda honesta é lançada 3 vezes. A probabilidade de saírem exatamente 2 caras é:</p>
+<ol class="alternativas"><li>1/4</li><li>3/8</li><li>1/2</li><li>2/3</li><li>1/8</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Liste os resultados: com 3 lançamentos há 2 × 2 × 2 = 8 sequências igualmente prováveis.</p>
+<figure class="figura resolucao"><svg viewBox="0 0 400 112" width="400" role="img" aria-label="As 8 sequências de três lançamentos; KKC, KCK e CKK têm exatamente duas caras">
+  <rect x="14" y="20" width="42" height="34" rx="6" class="f-fundo f-linha"/>
+  <text x="35" y="42" class="f-nota" text-anchor="middle">KKK</text>
+  <rect x="61" y="20" width="42" height="34" rx="6" class="f-marca f-linha"/>
+  <text x="82" y="42" class="f-titulo" text-anchor="middle">KKC</text>
+  <rect x="108" y="20" width="42" height="34" rx="6" class="f-marca f-linha"/>
+  <text x="129" y="42" class="f-titulo" text-anchor="middle">KCK</text>
+  <rect x="155" y="20" width="42" height="34" rx="6" class="f-fundo f-linha"/>
+  <text x="176" y="42" class="f-nota" text-anchor="middle">KCC</text>
+  <rect x="202" y="20" width="42" height="34" rx="6" class="f-marca f-linha"/>
+  <text x="223" y="42" class="f-titulo" text-anchor="middle">CKK</text>
+  <rect x="249" y="20" width="42" height="34" rx="6" class="f-fundo f-linha"/>
+  <text x="270" y="42" class="f-nota" text-anchor="middle">CKC</text>
+  <rect x="296" y="20" width="42" height="34" rx="6" class="f-fundo f-linha"/>
+  <text x="317" y="42" class="f-nota" text-anchor="middle">CCK</text>
+  <rect x="343" y="20" width="42" height="34" rx="6" class="f-fundo f-linha"/>
+  <text x="364" y="42" class="f-nota" text-anchor="middle">CCC</text>
+  <text x="200" y="80" class="f-nota" text-anchor="middle">K = cara · C = coroa</text>
+  <text x="200" y="102" class="f-titulo" text-anchor="middle">3 sequências de 8 → 3/8</text>
+</svg><figcaption>As 8 sequências têm a mesma chance; só 3 delas têm exatamente 2 caras.</figcaption></figure>
+<ol class="passos-resolucao">
+<li>Sequências com exatamente 2 caras: KKC, KCK, CKK (K = cara, C = coroa).</li>
+<li>São 3 casos em 8.</li>
+<li>P = 3/8.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> Considerou só 4 resultados (0, 1, 2 ou 3 caras) como se tivessem a mesma chance; não têm.</li>
+<li><strong>C)</strong> É a chance de 2 ou mais caras (4/8), e o enunciado diz exatamente 2.</li>
+<li><strong>D)</strong> Comparou 2 caras com 3 lançamentos (2/3), o que não é probabilidade.</li>
+<li><strong>E)</strong> É a chance de uma sequência específica, como KKC; há 3 sequências válidas.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Exatamente k sucessos em n tentativas: conte as posições com C(n, k) = C(3, 2) = 3 e divida por 2ⁿ = 8.</p>
+</div>
+</div>
+<div class="questao" data-correta="a" data-id="v-probabilidade-04">
+<p class="enunciado">Dos 40 guardas de uma inspetoria, 25 fizeram o curso de tiro, 15 fizeram o curso de primeiros socorros e 8 fizeram os dois. Sorteando-se um desses guardas, a probabilidade de ele não ter feito nenhum dos dois cursos é de:</p>
+<ol class="alternativas"><li>20%</li><li>0%</li><li>40%</li><li>80%</li><li>8%</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: A.</strong> Quem fez os dois cursos está nas duas listas: some e desconte a interseção uma vez.</p>
+<figure class="figura resolucao"><svg viewBox="0 0 400 190" width="400" role="img" aria-label="Diagrama de Venn: 17 só tiro, 8 nos dois, 7 só socorros e 8 fora dos círculos">
+  <rect x="10" y="10" width="380" height="170" rx="10" class="f-fundo f-linha"/>
+  <circle cx="155" cy="92" r="68" class="f-area f-linha"/>
+  <circle cx="245" cy="92" r="58" class="f-area f-linha"/>
+  <path d="M200 39 A68 68 0 0 1 200 145 A58 58 0 0 1 200 39 Z" class="f-marca f-linha"/>
+  <text x="125" y="97" text-anchor="middle">17</text>
+  <text x="203" y="97" class="f-titulo" text-anchor="middle">8</text>
+  <text x="268" y="97" text-anchor="middle">7</text>
+  <text x="70" y="30" class="f-titulo" text-anchor="middle">Tiro 25</text>
+  <text x="330" y="30" class="f-titulo" text-anchor="middle">Socorros 15</text>
+  <text x="350" y="165" class="f-titulo" text-anchor="middle">nenhum: 8</text>
+</svg><figcaption>Comece pela interseção (8): só tiro 25 − 8 = 17, só socorros 15 − 8 = 7. Fora: 40 − 32 = 8, ou 8/40 = 20%.</figcaption></figure>
+<ol class="passos-resolucao">
+<li>Fizeram pelo menos um curso: 25 + 15 − 8 = 32.</li>
+<li>Nenhum curso: 40 − 32 = 8 guardas.</li>
+<li>P = 8 ÷ 40 = 0,2 = 20%.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>B)</strong> Somou 25 + 15 = 40 sem descontar quem fez os dois.</li>
+<li><strong>C)</strong> Descontou a interseção duas vezes (25 + 15 − 16 = 24, sobram 16).</li>
+<li><strong>D)</strong> É a probabilidade de ter feito pelo menos um curso (32 em 40).</li>
+<li><strong>E)</strong> Confundiu os 8 guardas com 8%.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Diagrama de Venn: preencha primeiro a interseção (8), depois só tiro (17) e só socorros (7). Sobra 8 fora.</p>
+</div>
+</div>
+<div class="questao" data-correta="b" data-id="v-probabilidade-05">
+<p class="enunciado">Uma caixa tem 6 rádios, dos quais 2 estão com defeito. Retirando-se 2 rádios ao acaso, um após o outro e sem reposição, a probabilidade de os dois estarem funcionando é:</p>
+<ol class="alternativas"><li>4/9</li><li>2/5</li><li>2/3</li><li>1/3</li><li>3/5</li></ol>
+<div class="explicacao">
+<p><strong>Resposta: B.</strong> Sem reposição, a segunda retirada depende da primeira: multiplique as probabilidades atualizadas.</p>
+<figure class="figura resolucao"><svg viewBox="0 0 400 180" width="400" role="img" aria-label="Árvore: primeiro rádio bom com 4/6 e, depois, segundo bom com 3/5">
+  <circle cx="30" cy="80" r="6" class="f-ponto"/>
+  <line x1="30" y1="80" x2="150" y2="40" class="f-dest"/>
+  <text x="78" y="54" class="f-titulo" text-anchor="middle">4/6</text>
+  <rect x="150" y="25" width="70" height="30" rx="6" class="f-marca f-linha"/>
+  <text x="185" y="45" class="f-nota" text-anchor="middle">bom</text>
+  <line x1="220" y1="40" x2="300" y2="40" class="f-dest"/>
+  <text x="260" y="32" class="f-titulo" text-anchor="middle">3/5</text>
+  <rect x="300" y="25" width="80" height="30" rx="6" class="f-marca f-linha"/>
+  <text x="340" y="45" class="f-nota" text-anchor="middle">bom</text>
+  <line x1="30" y1="80" x2="150" y2="120" class="f-grade"/>
+  <text x="78" y="94" class="f-titulo" text-anchor="middle">2/6</text>
+  <rect x="150" y="105" width="70" height="30" rx="6" class="f-fundo f-linha"/>
+  <text x="185" y="125" class="f-nota" text-anchor="middle">defeito</text>
+  <text x="200" y="170" class="f-titulo" text-anchor="middle">4/6 × 3/5 = 12/30 = 2/5</text>
+</svg><figcaption>Depois de tirar um rádio bom, sobram 3 bons entre 5. Multiplique pelo caminho.</figcaption></figure>
+<ol class="passos-resolucao">
+<li>1º rádio bom: 4 bons em 6, P = 4/6 = 2/3.</li>
+<li>2º rádio bom: restam 3 bons em 5, P = 3/5.</li>
+<li>P(os dois bons) = 2/3 × 3/5 = 6/15 = 2/5.</li>
+</ol>
+<ul class="por-que-nao">
+<li><strong>A)</strong> É o resultado com reposição (2/3 × 2/3).</li>
+<li><strong>C)</strong> É só a probabilidade de o primeiro ser bom.</li>
+<li><strong>D)</strong> É a probabilidade de o primeiro ter defeito (2/6).</li>
+<li><strong>E)</strong> É só a probabilidade do segundo, já sabendo que o primeiro foi bom.</li>
+</ul>
+<p class="atalho-questao"><strong>Atalho:</strong> Pela combinação: C(4, 2) ÷ C(6, 2) = 6 ÷ 15 = 2/5.</p>
 </div>
 </div>
 </section>
