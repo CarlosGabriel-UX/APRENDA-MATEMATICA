@@ -1040,6 +1040,79 @@ a.botao-icone { text-decoration: none; }
 .guardar-progresso[open] > summary { margin-bottom: 10px; }
 .acoes-backup .botao { flex: 1 1 180px; }
 
+/* Conta do aluno */
+.botao-conta { position: relative; }
+.botao-conta.conectado { color: var(--primary); }
+.botao-conta.conectado::after {
+  content: "";
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 2px var(--bg);
+}
+.link-conta {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--primary);
+  font: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.backup .dica-conta { margin-top: 10px; }
+.dica-conta [data-estado-conta]:empty { display: none; }
+.dialogo-conta {
+  width: min(420px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-g);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-alto);
+}
+.dialogo-conta::backdrop { background: rgba(20, 18, 10, .45); }
+.fechar-conta { position: absolute; top: 10px; right: 10px; font-size: 1.5rem; }
+.form-conta { display: grid; gap: 14px; }
+.form-conta h2 { margin: 0; font-size: 1.35rem; }
+.abas-conta { display: flex; gap: 6px; margin-right: 36px; padding: 4px; border-radius: 12px; background: var(--surface-2); }
+.abas-conta button {
+  flex: 1;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-soft);
+  font: 650 .95rem var(--font);
+  cursor: pointer;
+}
+.abas-conta button[aria-selected="true"] { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+.intro-conta, .nota-conta { margin: 0; color: var(--text-soft); font-size: .92rem; }
+.nota-conta { font-size: .84rem; }
+.form-conta label { display: grid; gap: 6px; font-weight: 650; font-size: .92rem; }
+.form-conta input {
+  padding: 11px 14px;
+  border: 1px solid var(--border-forte);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+.form-conta input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 22%, transparent); }
+.msg-conta:empty, .estado-sync:empty { display: none; }
+.msg-conta, .estado-sync { margin: 0; font-size: .9rem; }
+.msg-conta.erro { color: var(--bad); }
+.msg-conta.ok, .estado-sync { color: var(--ok); }
+.form-conta .botao { width: 100%; }
+.acoes-conta { display: flex; flex-wrap: wrap; gap: 8px; }
+.acoes-conta .botao { flex: 1 1 140px; }
+
 /* Caderno de erros: revisões agendadas */
 .agenda-revisao {
   margin: 0 0 24px;
@@ -1445,6 +1518,14 @@ footer.site .rodape-marca { display: block; margin-bottom: 4px; color: var(--tex
 }
 @media (max-width: 480px) {
   .m, .caderno :not(pre) > code { white-space: normal; overflow-wrap: anywhere; }
+  /* Cinco botões no topo: encolhe para caber ao lado da marca. */
+  .ajustes { gap: 0; }
+  .ajustes .botao-icone { width: 34px; }
+  .marca { gap: 8px; font-size: .98rem; }
+  .logo { width: 26px; height: 26px; }
+}
+@media (max-width: 370px) {
+  .marca { gap: 6px; font-size: .86rem; }
 }
 
 /* =========================================================

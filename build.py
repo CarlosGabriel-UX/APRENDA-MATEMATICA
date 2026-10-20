@@ -295,6 +295,7 @@ ICONES = {
     "lua": svg('<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>'),
     "fechar": svg('<path d="M6 6l12 12M18 6 6 18"/>'),
     "busca": svg('<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/>'),
+    "conta": svg('<circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-4 4.1-6 7.5-6s6.3 2 7.5 6"/>'),
 }
 
 # Exportar e importar o progresso (fica na página inicial e no caderno de erros).
@@ -306,6 +307,7 @@ BACKUP = """<div class="backup" data-backup>
       <input type="file" accept="application/json,.json" hidden>
     </div>
     <p class="aviso-backup" role="status"></p>
+    <p class="dica-conta"><span data-estado-conta></span> <button type="button" class="link-conta" data-abrir-conta="criar">Prefere não se preocupar com isso? Crie uma conta e o progresso é salvo sozinho.</button></p>
   </div>"""
 
 
@@ -457,6 +459,7 @@ def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
 <meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="{FAVICON}">
 <link rel="stylesheet" href="{raiz}assets/css/style.css">
+<script src="{raiz}assets/js/conta.js"></script>
 <script src="{raiz}assets/js/app.js"></script>
 {katex}{dados_estruturados}</head>
 <body data-pagina="{slug}" data-titulo="{escape(titulo_curto or titulo)}">
@@ -472,6 +475,7 @@ def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
     {link_nav("erros", 'Erros <span class="contador" data-contagem-erros hidden></span>', "cadernos/erros.html")}
   </nav>
   <div class="ajustes">
+    <button type="button" class="botao-icone botao-conta" aria-label="Entrar ou criar conta">{ICONES["conta"]}</button>
     <a class="botao-icone botao-busca" href="{raiz}index.html#busca" aria-label="Buscar no site" title="Buscar no site">{ICONES["busca"]}</a>
     <button type="button" class="botao-icone botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span></button>
     <button type="button" class="botao-icone botao-tema" aria-label="Alternar tema claro ou escuro">{ICONES["lua"]}</button>

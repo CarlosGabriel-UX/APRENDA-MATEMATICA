@@ -21,6 +21,7 @@
 <meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232a44c7'/%3E%3Crect x='6.5' y='13.5' width='19' height='5' rx='2.5' fill='%23ffd84a'/%3E%3Ccircle cx='16' cy='8.5' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='23.5' r='2.6' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/conta.js"></script>
 <script src="../assets/js/app.js"></script>
 </head>
 <body data-pagina="erros" data-titulo="Meu caderno de erros">
@@ -36,6 +37,7 @@
     <a href="../cadernos/erros.html" aria-current="page">Erros <span class="contador" data-contagem-erros hidden></span></a>
   </nav>
   <div class="ajustes">
+    <button type="button" class="botao-icone botao-conta" aria-label="Entrar ou criar conta"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-4 4.1-6 7.5-6s6.3 2 7.5 6"/></svg></button>
     <a class="botao-icone botao-busca" href="../index.html#busca" aria-label="Buscar no site" title="Buscar no site"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
     <button type="button" class="botao-icone botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span></button>
     <button type="button" class="botao-icone botao-tema" aria-label="Alternar tema claro ou escuro"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
@@ -100,6 +102,7 @@
       <input type="file" accept="application/json,.json" hidden>
     </div>
     <p class="aviso-backup" role="status"></p>
+    <p class="dica-conta"><span data-estado-conta></span> <button type="button" class="link-conta" data-abrir-conta="criar">Prefere não se preocupar com isso? Crie uma conta e o progresso é salvo sozinho.</button></p>
   </div>
 </article>
 </div>

@@ -23,7 +23,11 @@
   }
   function gravar(chave, valor) {
     try { localStorage.setItem(chave, JSON.stringify(valor)); } catch (e) { /* sem armazenamento */ }
+    /* conta.js escuta para salvar o progresso na nuvem. */
+    document.dispatchEvent(new CustomEvent("am-gravou", { detail: chave }));
   }
+  /* Chaves da conta (sessão e controle da sincronização) não entram no backup. */
+  function chaveDeProgresso(k) { return k && k.indexOf("am-") === 0 && k !== "am-sessao" && k !== "am-sync"; }
 
   /* ---------- tema claro/escuro ---------- */
   var raiz = document.documentElement;
@@ -720,7 +724,7 @@
         try {
           for (var i = 0; i < localStorage.length; i++) {
             var k = localStorage.key(i);
-            if (k && k.indexOf("am-") === 0) dados[k] = localStorage.getItem(k);
+            if (chaveDeProgresso(k)) dados[k] = localStorage.getItem(k);
           }
         } catch (e) { avisar("Este navegador não deixa ler o progresso salvo."); return; }
         var hoje = new Date().toISOString().slice(0, 10);
@@ -754,7 +758,10 @@
           }
           try {
             Object.keys(pacote.dados).forEach(function (k) {
-              if (k.indexOf("am-") === 0 && typeof pacote.dados[k] === "string") localStorage.setItem(k, pacote.dados[k]);
+              if (chaveDeProgresso(k) && typeof pacote.dados[k] === "string") {
+                localStorage.setItem(k, pacote.dados[k]);
+                document.dispatchEvent(new CustomEvent("am-gravou", { detail: k }));
+              }
             });
           } catch (e) { avisar("Não deu para gravar o progresso neste navegador."); return; }
           window.location.reload();
