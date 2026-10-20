@@ -837,6 +837,17 @@ figure.figura figcaption { font-size: .88rem; color: var(--text-soft); margin-to
 .f-area.f-linha { fill: var(--primary-soft); }
 .f-fundo.f-linha, .f-fundo.f-dest { fill: var(--surface); }
 .f-grade { stroke: var(--border-forte); stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+.f-marca { fill: var(--marca-soft); }
+.f-marca.f-linha { fill: var(--marca-soft); }
+/* Figuras dentro da explicação de uma questão */
+.questao .explicacao figure.resolucao {
+  margin: 12px 0 14px;
+  padding: 14px 12px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.questao .explicacao figure.resolucao figcaption { text-align: left; max-width: 62ch; margin: 8px auto 0; }
 .questao .figura text { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
 
 /* =========================================================
