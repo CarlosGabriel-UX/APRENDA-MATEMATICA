@@ -29,7 +29,7 @@
 
 /* ---------- cores e medidas ---------- */
 :root {
-  --bg: #f7f5ef;
+  --bg: #f3f0e7;
   --surface: #fffefb;
   --surface-2: #f1eee5;
   --surface-3: #e8e4d8;
@@ -54,7 +54,7 @@
   --tip-soft: #f0eafb;
   --radius: 14px;
   --radius-g: 20px;
-  --shadow: 0 1px 2px rgba(40, 36, 20, .05), 0 2px 8px -2px rgba(40, 36, 20, .06);
+  --shadow: 0 1px 2px rgba(40, 36, 20, .06), 0 4px 14px -4px rgba(40, 36, 20, .10);
   --shadow-alto: 0 2px 4px rgba(40, 36, 20, .05), 0 14px 32px -12px rgba(40, 36, 20, .18);
   --font: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --titulo: "Fraunces Variable", Georgia, "Times New Roman", serif;
@@ -87,7 +87,7 @@
   --bad-soft: #3a1d20;
   --tip: #c4a8ff;
   --tip-soft: #2a2240;
-  --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 16px -6px rgba(0, 0, 0, .5);
   --shadow-alto: 0 2px 4px rgba(0, 0, 0, .4), 0 16px 36px -14px rgba(0, 0, 0, .7);
   color-scheme: dark;
 }
@@ -1546,3 +1546,99 @@ footer.site .rodape-marca { display: block; margin-bottom: 4px; color: var(--tex
   details.exemplo .resolucao { display: block; }
   .questao .explicacao { display: block; }
 }
+
+/* ---------- Respiro e profundidade ----------
+   Mais espaço entre seções e dentro dos cartões, títulos de seção com o subtítulo
+   na linha de baixo e sombras leves para os cartões se destacarem do fundo. */
+.container { padding-top: 40px; padding-bottom: 104px; }
+.layout { gap: 48px; }
+
+.hero { margin-top: 4px; padding: 72px 64px 68px; gap: 64px; box-shadow: var(--shadow); }
+.hero h1 { margin-bottom: 22px; }
+.hero p { margin-bottom: 32px; line-height: 1.7; }
+.hero .acoes { gap: 12px; }
+.hero .acoes .botao { padding-top: 13px; padding-bottom: 13px; }
+
+.painel { gap: 16px; margin-top: 32px; }
+.estatisticas { gap: 16px; }
+.estatisticas > * { padding: 22px 26px; gap: 4px; box-shadow: var(--shadow); }
+.estatisticas strong { font-size: 2.2rem; }
+.estatisticas span { font-size: .9rem; }
+.continuar { padding: 22px 28px; }
+.busca { margin: 36px 0 8px; padding: 18px 22px 18px 54px; background-position: 22px 50%, 0 0; box-shadow: var(--shadow); }
+.resultados-busca { margin-top: 28px; }
+
+.grupo-cadernos { margin-top: 72px; }
+.grupo-cadernos h2 { display: block; margin: 0 0 24px; font-size: 1.6rem; line-height: 1.2; }
+.grupo-cadernos h2 small { display: block; margin-top: 8px; font-size: .98rem; line-height: 1.5; }
+.destaque-imersao { margin-top: 80px; }
+.destaque-imersao h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); }
+.titulo-bloco { margin-top: 112px; padding-top: 48px; border-top: 1px dashed var(--border-forte); }
+.titulo-bloco h2 { margin-bottom: 10px; font-size: clamp(1.9rem, 3.4vw, 2.5rem); }
+.titulo-bloco .progresso-geral { margin-top: 14px; }
+.secao-inicio { margin-top: 112px; }
+.secao-inicio h2 { margin-bottom: 24px; font-size: 1.9rem; }
+
+.grade { gap: 22px; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
+.cartao { gap: 12px; padding: 26px 26px 22px; border-radius: 18px; box-shadow: var(--shadow); }
+.cartao h3 { margin-top: 6px; font-size: 1.22rem; line-height: 1.25; }
+.cartao p { font-size: .96rem; line-height: 1.65; }
+.cartao .rodape { margin-top: 6px; padding-top: 14px; }
+.cartao.concurso { padding-top: 28px; padding-bottom: 24px; }
+
+article.caderno { padding: 60px 72px 56px; }
+.cabeca-caderno { margin-bottom: 40px; padding-bottom: 32px; }
+.caderno .subtitulo { margin-bottom: 20px; }
+.caderno h2 { margin: 72px 0 20px; font-size: 1.75rem; line-height: 1.25; }
+.caderno h3 { margin: 40px 0 12px; }
+.caderno p { margin: 0 0 1.15em; line-height: 1.78; }
+.caderno li { line-height: 1.7; }
+.caderno li + li { margin-top: 8px; }
+.caderno ul, .caderno ol { margin: 0 0 1.3em; }
+.caixa { margin: 32px 0; padding: 20px 24px 22px; border-radius: 14px; }
+details.exemplo { margin: 22px 0; box-shadow: var(--shadow); }
+details.exemplo summary { padding: 18px 22px; }
+details.exemplo .resolucao { padding: 8px 22px 20px; }
+.caderno .rolagem-tabela { margin: 28px 0; }
+.caderno .rolagem-tabela > table { margin: 0; }
+.caderno figure.figura { margin: 36px 0; }
+.sumario { margin-bottom: 8px; }
+.questao { margin: 28px 0; padding: 26px 28px; box-shadow: var(--shadow); }
+.questao .explicacao { margin-top: 20px; padding: 18px 22px; }
+.rodape-caderno { margin-top: 64px; padding-top: 32px; }
+
+@media (max-width: 1080px) {
+  article.caderno { padding: 48px 44px 44px; }
+}
+@media (max-width: 700px) {
+  .container { padding: 20px 18px 64px; }
+  .hero { padding: 40px 24px 34px 34px; }
+  .hero h1 { margin-bottom: 18px; }
+  .hero p { margin-bottom: 26px; }
+  .painel { margin-top: 24px; gap: 12px; }
+  .estatisticas { gap: 10px; }
+  .estatisticas > * { padding: 14px 14px 12px; }
+  .estatisticas strong { font-size: 1.6rem; }
+  .estatisticas span { font-size: .78rem; }
+  .continuar { padding: 18px 20px; }
+  .busca { margin-top: 28px; }
+  .grupo-cadernos { margin-top: 52px; }
+  .grupo-cadernos h2 { margin-bottom: 18px; font-size: 1.35rem; }
+  .grupo-cadernos h2 small { font-size: .9rem; }
+  .destaque-imersao { margin-top: 56px; }
+  .titulo-bloco { margin-top: 72px; padding-top: 36px; }
+  .secao-inicio { margin-top: 72px; }
+  .grade:not(.concursos) { gap: 12px; }
+  .grade:not(.concursos) .cartao { padding: 18px 16px 14px; gap: 8px; border-radius: 16px; }
+  .grade.concursos { gap: 14px; }
+  .cartao.concurso { padding: 22px 18px 18px; column-gap: 16px; row-gap: 6px; }
+  article.caderno { padding: 8px 4px 24px; }
+  .cabeca-caderno { margin-bottom: 28px; padding-bottom: 24px; }
+  .caderno h2 { margin-top: 56px; font-size: 1.45rem; }
+  .caixa { margin: 26px -4px; padding: 16px 16px 18px; }
+  details.exemplo summary { padding: 14px 16px; }
+  .questao { margin: 22px -4px; padding: 20px 16px; }
+  .questao .explicacao { padding: 14px 16px; }
+}
+.hero .amostra p { margin-bottom: 14px; line-height: 1.5; }
+.caderno .questao .rolagem-tabela { margin: 10px 0 16px; }
