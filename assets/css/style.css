@@ -1,8 +1,7 @@
 /* =========================================================
    Aprenda Matemática: estilo do site
-   Ideia visual: caderno de estudo. Papel claro, tinta escura,
-   caneta azul para links e ações, marca-texto amarelo para
-   destaques. Títulos em serifa (Fraunces), texto em Inter.
+   Ideia visual: painel de aplicativo escuro, com menu lateral
+   fixo, cartões grafite e destaque índigo. Tudo em Inter.
    ========================================================= */
 
 @font-face {
@@ -19,76 +18,76 @@
   font-weight: 100 900;
   src: url(../vendor/fontes/inter-latin-wght-italic.woff2) format("woff2-variations");
 }
-@font-face {
-  font-family: "Fraunces Variable";
-  font-style: normal;
-  font-display: swap;
-  font-weight: 100 900;
-  src: url(../vendor/fontes/fraunces-latin-wght-normal.woff2) format("woff2-variations");
-}
 
 /* ---------- cores e medidas ---------- */
+/* Visual de aplicativo: menu lateral fixo, superfícies grafite com bordas
+   finas e um único destaque índigo com brilho. O tema escuro é o padrão. */
 :root {
-  --bg: #f3f0e7;
-  --surface: #fffefb;
-  --surface-2: #f1eee5;
-  --surface-3: #e8e4d8;
-  --text: #1b1b18;
-  --text-soft: #55534b;
-  --border: #e4e0d4;
-  --border-forte: #cdc8b8;
-  --primary: #2a44c7;
-  --primary-forte: #1f339c;
-  --primary-soft: #e7ebfb;
+  --bg: #f4f4f6;
+  --painel: #fbfbfc;
+  --surface: #ffffff;
+  --surface-2: #f2f2f5;
+  --surface-3: #e7e7ec;
+  --text: #18181b;
+  --text-soft: #5f5f69;
+  --border: #e3e3e8;
+  --border-forte: #cfcfd7;
+  --primary: #4f3ff0;
+  --primary-forte: #3a2bd1;
+  --primary-soft: #ecebfe;
   --sobre-primary: #ffffff;
-  --marca: #ffd84a;
-  --marca-soft: rgba(255, 216, 74, .55);
-  --quadricula: rgba(42, 68, 199, .07);
-  --ok: #1a7a42;
-  --ok-soft: #e4f3e9;
-  --warn: #9a5200;
-  --warn-soft: #fbefd9;
-  --bad: #bd2430;
-  --bad-soft: #fbe8e7;
+  --brilho: rgba(79, 63, 240, .35);
+  --marca: #6c5cff;
+  --marca-soft: rgba(108, 92, 255, .2);
+  --quadricula: rgba(79, 63, 240, .05);
+  --ok: #15803d;
+  --ok-soft: #e3f4e8;
+  --warn: #a15c00;
+  --warn-soft: #fbf0dc;
+  --bad: #c52532;
+  --bad-soft: #fce8e8;
   --tip: #6a3dc2;
-  --tip-soft: #f0eafb;
+  --tip-soft: #f1ebfc;
   --radius: 14px;
   --radius-g: 20px;
-  --shadow: 0 1px 2px rgba(40, 36, 20, .06), 0 4px 14px -4px rgba(40, 36, 20, .10);
-  --shadow-alto: 0 2px 4px rgba(40, 36, 20, .05), 0 14px 32px -12px rgba(40, 36, 20, .18);
+  --shadow: 0 1px 2px rgba(20, 20, 30, .05), 0 4px 14px -4px rgba(20, 20, 30, .08);
+  --shadow-alto: 0 2px 4px rgba(20, 20, 30, .05), 0 14px 32px -12px rgba(20, 20, 30, .16);
   --font: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --titulo: "Fraunces Variable", Georgia, "Times New Roman", serif;
+  --titulo: var(--font);
   --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --glifo: "Cambria Math", "STIX Two Math", "Inter Variable", system-ui, sans-serif;
   --topo: 60px;
+  --app: 280px;
   color-scheme: light;
 }
 :root[data-theme="dark"] {
-  --bg: #121316;
-  --surface: #1a1b20;
-  --surface-2: #22242b;
-  --surface-3: #2c2f37;
-  --text: #ecebe6;
-  --text-soft: #b0aea6;
-  --border: #2d3037;
-  --border-forte: #3d414b;
-  --primary: #9db0ff;
-  --primary-forte: #becbff;
-  --primary-soft: #232a47;
-  --sobre-primary: #10142a;
-  --marca: #f2c94c;
-  --marca-soft: rgba(242, 201, 76, .3);
-  --quadricula: rgba(157, 176, 255, .06);
-  --ok: #5fcf8c;
-  --ok-soft: #16301f;
+  --bg: #141416;
+  --painel: #19191c;
+  --surface: #1c1c20;
+  --surface-2: #232328;
+  --surface-3: #2c2c33;
+  --text: #f4f4f6;
+  --text-soft: #a0a0aa;
+  --border: #2a2a30;
+  --border-forte: #3a3a42;
+  --primary: #8b80ff;
+  --primary-forte: #b3abff;
+  --primary-soft: rgba(108, 92, 255, .16);
+  --sobre-primary: #ffffff;
+  --brilho: rgba(91, 76, 255, .55);
+  --marca: #6c5cff;
+  --marca-soft: rgba(108, 92, 255, .32);
+  --quadricula: rgba(255, 255, 255, .025);
+  --ok: #5fd08f;
+  --ok-soft: #142a1d;
   --warn: #f0b45a;
-  --warn-soft: #33280f;
-  --bad: #ff8080;
-  --bad-soft: #3a1d20;
+  --warn-soft: #2e2511;
+  --bad: #ff7f86;
+  --bad-soft: #351a1e;
   --tip: #c4a8ff;
-  --tip-soft: #2a2240;
-  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 16px -6px rgba(0, 0, 0, .5);
-  --shadow-alto: 0 2px 4px rgba(0, 0, 0, .4), 0 16px 36px -14px rgba(0, 0, 0, .7);
+  --tip-soft: #261f3d;
+  --shadow: 0 1px 0 rgba(255, 255, 255, .03) inset, 0 1px 2px rgba(0, 0, 0, .45), 0 8px 20px -10px rgba(0, 0, 0, .6);
+  --shadow-alto: 0 1px 0 rgba(255, 255, 255, .04) inset, 0 2px 4px rgba(0, 0, 0, .45), 0 18px 40px -16px rgba(0, 0, 0, .8);
   color-scheme: dark;
 }
 
@@ -1642,3 +1641,249 @@ details.exemplo .resolucao { padding: 8px 22px 20px; }
 }
 .hero .amostra p { margin-bottom: 14px; line-height: 1.5; }
 .caderno .questao .rolagem-tabela { margin: 10px 0 16px; }
+
+/* =========================================================
+   Menu lateral do aplicativo (computador) e cabeçalho (celular)
+   ========================================================= */
+h1, h2, h3 { font-weight: 700; letter-spacing: -.022em; }
+.campo-busca, .nav-outros, .cartao-nuvem, .cartao-usuario { display: none; }
+.nav-topo a .ico { display: none; }
+
+.botao:not(.secundario):not(.feito) {
+  background: linear-gradient(180deg, #6d5fff, #4f3ff0);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .25) inset, 0 8px 22px -8px var(--brilho);
+}
+.botao:not(.secundario):not(.feito):hover { background: linear-gradient(180deg, #7b6eff, #5646f5); color: #fff; }
+.hero h1 mark {
+  background: linear-gradient(90deg, var(--primary), #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding: 0;
+}
+
+@media (min-width: 901px) {
+  :root { --topo: 0px; }
+  body { padding-left: var(--app); }
+  .progresso-leitura { left: var(--app); }
+  .topo {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--app);
+    background: var(--painel);
+    border-bottom: 0;
+    border-right: 1px solid var(--border);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+  .topo-interno {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    height: auto;
+    min-height: 100%;
+    max-width: none;
+    padding: 22px 18px 18px;
+  }
+  .marca {
+    padding: 0 6px 20px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+    font: 700 1.2rem/1 var(--font);
+    letter-spacing: -.02em;
+  }
+  .marca .nome > span { color: var(--text); }
+  .campo-busca {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding: 9px 10px 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--text-soft);
+    font-size: .92rem;
+    text-decoration: none;
+  }
+  .campo-busca:hover { border-color: var(--border-forte); color: var(--text); }
+  .campo-busca kbd {
+    margin-left: auto;
+    padding: 1px 8px;
+    border: 1px solid var(--border-forte);
+    border-radius: 7px;
+    font: 600 .75rem var(--font);
+  }
+  .nav-topo, .nav-outros { flex-direction: column; align-items: stretch; gap: 2px; margin: 0; }
+  .nav-outros {
+    display: flex;
+    margin-top: 14px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .rotulo-secao {
+    padding: 0 6px 6px;
+    color: var(--text-soft);
+    font-size: .76rem;
+    font-weight: 650;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .nav-topo a, .nav-outros a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: var(--text-soft);
+    font-size: .94rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .nav-topo a .ico { display: block; }
+  .nav-topo a:hover, .nav-outros a:hover { background: var(--surface-2); color: var(--text); }
+  .nav-topo a[aria-current] {
+    color: var(--text);
+    background: linear-gradient(90deg, var(--surface-2) 45%, var(--brilho));
+    border-color: var(--border);
+  }
+  .nav-topo a[aria-current]::after {
+    left: auto;
+    right: 3px;
+    top: 9px;
+    bottom: 9px;
+    width: 3px;
+    height: auto;
+    background: #6c5cff;
+    box-shadow: 0 0 12px 2px var(--brilho);
+  }
+  .nav-topo .contador { margin-left: auto; }
+  .ajustes {
+    margin: 6px 0 16px;
+    padding: 0 0 0 2px;
+    border-left: 0;
+    justify-content: flex-start;
+  }
+  .ajustes .botao-conta, .ajustes .botao-busca { display: none; }
+  .cartao-nuvem {
+    display: block;
+    margin-top: auto;
+    padding: 16px 16px 18px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+  }
+  .cartao-nuvem[hidden] { display: none; }
+  .cartao-nuvem strong { display: flex; align-items: center; gap: 8px; font-size: 1.02rem; font-weight: 600; }
+  .cartao-nuvem strong span { color: var(--text-soft); font-weight: 500; }
+  .cartao-nuvem p { margin: 6px 0 14px; color: var(--text-soft); font-size: .85rem; line-height: 1.5; }
+  .cartao-nuvem .botao { width: 100%; justify-content: center; }
+  .cartao-usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+  .cartao-nuvem[hidden] + .cartao-usuario { margin-top: auto; }
+  .cartao-usuario:hover { border-color: var(--border-forte); }
+  .cartao-usuario .avatar {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex: none;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6d5fff, #2a2a31);
+    color: #fff;
+  }
+  .cartao-usuario.conectado .avatar { box-shadow: 0 0 0 2px var(--painel), 0 0 0 3.5px var(--ok); }
+  .dados-conta { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+  .nome-conta { font-weight: 600; font-size: .95rem; }
+  .email-conta { overflow: hidden; color: var(--text-soft); font-size: .8rem; text-overflow: ellipsis; white-space: nowrap; }
+  .cartao-usuario > .ico { margin-left: auto; color: var(--text-soft); }
+  footer.site { margin-left: 0; }
+}
+@media (min-width: 901px) and (max-height: 860px) {
+  .cartao-nuvem p { display: none; }
+  .cartao-nuvem .botao { margin-top: 12px; min-height: 38px; }
+  .nav-topo a, .nav-outros a { padding-top: 6px; padding-bottom: 6px; }
+  .marca { padding-bottom: 16px; margin-bottom: 14px; }
+}
+
+/* Entre o celular e telas largas, a lista de cadernos vira gaveta
+   para o texto não ficar espremido ao lado do menu do aplicativo. */
+@media (min-width: 901px) and (max-width: 1280px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .botao-menu {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-self: start;
+    padding: 8px 14px 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--text);
+    font: 600 .9rem var(--font);
+    cursor: pointer;
+  }
+  .lateral {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 70;
+    width: min(340px, 88vw);
+    max-height: none;
+    padding: 0 12px 24px;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    box-shadow: var(--shadow-alto);
+    transform: translateX(-102%);
+    visibility: hidden;
+    transition: transform .25s ease, visibility 0s .25s;
+  }
+  .lateral.aberta { transform: none; visibility: visible; transition: transform .25s ease; }
+  .cabeca-gaveta {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 -12px 12px;
+    padding: 10px 12px 10px 22px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    font-weight: 650;
+  }
+  .fundo-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 65;
+    display: block;
+    background: rgba(0, 0, 0, .5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s;
+  }
+  body.menu-aberto .fundo-menu { opacity: 1; pointer-events: auto; }
+  body.menu-aberto { overflow: hidden; }
+}

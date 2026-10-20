@@ -296,6 +296,12 @@ ICONES = {
     "fechar": svg('<path d="M6 6l12 12M18 6 6 18"/>'),
     "busca": svg('<circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/>'),
     "conta": svg('<circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-4 4.1-6 7.5-6s6.3 2 7.5 6"/>'),
+    "trilhas": svg('<circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.5"/>'),
+    "formulario": svg('<rect x="4.5" y="3" width="15" height="18" rx="3"/><path d="M8.5 7.5h7M8.5 12h7M8.5 16.5h4"/>'),
+    "sobre": svg('<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/>'),
+    "aviso": svg('<path d="M4.5 5.5A2 2 0 0 1 6.5 3.5h11a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2H10l-4.5 3.5V17h0a2 2 0 0 1-1-1.7z"/><path d="M12 7.5v4M12 14v.1"/>'),
+    "brilho": svg('<path d="M12 3.5 13.8 9a2 2 0 0 0 1.2 1.2l5.5 1.8-5.5 1.8a2 2 0 0 0-1.2 1.2L12 20.5 10.2 15A2 2 0 0 0 9 13.8L3.5 12 9 10.2A2 2 0 0 0 10.2 9z"/>'),
+    "setas": svg('<path d="m8 9 4-4 4 4M8 15l4 4 4-4"/>'),
 }
 
 # Exportar e importar o progresso (fica na página inicial e no caderno de erros).
@@ -455,8 +461,7 @@ def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Aprenda Matemática: estude para concursos sem perder tempo">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#f7f5ef" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#141416">
 <link rel="icon" href="{FAVICON}">
 <link rel="stylesheet" href="{raiz}assets/css/style.css">
 <script src="{raiz}assets/js/conta.js"></script>
@@ -467,19 +472,36 @@ def pagina(titulo: str, descricao: str, corpo: str, raiz: str, caminho: str,
 <header class="topo">
   <div class="topo-interno">
   <a class="marca" href="{raiz}index.html">{LOGO}<span class="nome">Aprenda <span>Matemática</span></span></a>
+  <a class="campo-busca" href="{raiz}index.html#busca">{ICONES["busca"]}<span>Buscar no site...</span><kbd>/</kbd></a>
   <nav class="nav-topo" aria-label="Atalhos">
-    {link_nav("imersao", "Imersão concursos", "cadernos/imersao.html")}
-    {link_nav("questoes", "Questões", "cadernos/questoes.html")}
-    {link_nav("trilhas", "Trilhas", "cadernos/trilhas.html")}
-    {link_nav("formulario", "Formulário", "cadernos/formulario.html")}
-    {link_nav("erros", 'Erros <span class="contador" data-contagem-erros hidden></span>', "cadernos/erros.html")}
+    {link_nav("inicio", ICONES["inicio"] + "<span>Início</span>", "index.html")}
+    {link_nav("imersao", ICONES["imersao"] + "<span>Imersão concursos</span>", "cadernos/imersao.html")}
+    {link_nav("questoes", ICONES["questoes"] + "<span>Questões</span>", "cadernos/questoes.html")}
+    {link_nav("trilhas", ICONES["trilhas"] + "<span>Trilhas</span>", "cadernos/trilhas.html")}
+    {link_nav("formulario", ICONES["formulario"] + "<span>Formulário</span>", "cadernos/formulario.html")}
+    {link_nav("erros", ICONES["erros"] + '<span>Erros</span><span class="contador" data-contagem-erros hidden></span>', "cadernos/erros.html")}
   </nav>
+  <div class="nav-outros">
+    <span class="rotulo-secao">Outros</span>
+    <a href="{raiz}cadernos/sobre.html">{ICONES["sobre"]}<span>Sobre o projeto</span></a>
+    <a href="https://github.com/CarlosGabriel-UX/APRENDA-MATEMATICA/issues">{ICONES["aviso"]}<span>Avise sobre um erro</span></a>
+  </div>
   <div class="ajustes">
     <button type="button" class="botao-icone botao-conta" aria-label="Entrar ou criar conta">{ICONES["conta"]}</button>
     <a class="botao-icone botao-busca" href="{raiz}index.html#busca" aria-label="Buscar no site" title="Buscar no site">{ICONES["busca"]}</a>
     <button type="button" class="botao-icone botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span></button>
     <button type="button" class="botao-icone botao-tema" aria-label="Alternar tema claro ou escuro">{ICONES["lua"]}</button>
   </div>
+  <div class="cartao-nuvem">
+    <strong>{ICONES["brilho"]} Progresso <span>na nuvem</span></strong>
+    <p>Crie uma conta grátis e continue de onde parou em qualquer aparelho.</p>
+    <button type="button" class="botao" data-abrir-conta="criar">Criar conta grátis</button>
+  </div>
+  <button type="button" class="botao-conta cartao-usuario" aria-label="Entrar ou criar conta">
+    <span class="avatar">{ICONES["conta"]}</span>
+    <span class="dados-conta"><span class="nome-conta">Visitante</span><span class="email-conta">Entrar ou criar conta</span></span>
+    {ICONES["setas"]}
+  </button>
   </div>
 </header>
 <div class="progresso-leitura" aria-hidden="true"><span></span></div>
