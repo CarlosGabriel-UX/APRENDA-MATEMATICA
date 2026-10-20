@@ -24,11 +24,18 @@
 
   /* ---------- tema claro/escuro ---------- */
   var raiz = document.documentElement;
+  var ICONE_SOL = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+    'stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4' +
+    'M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg>';
+  var ICONE_LUA = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>';
   function aplicarTema(t) {
     raiz.setAttribute("data-theme", t);
     document.querySelectorAll(".botao-tema").forEach(function (b) {
-      if (!b.closest(".nav-inferior")) b.textContent = t === "dark" ? "☀️ Claro" : "🌙 Escuro";
-      b.setAttribute("aria-pressed", t === "dark" ? "true" : "false");
+      var rotulo = t === "dark" ? "Usar tema claro" : "Usar tema escuro";
+      b.innerHTML = t === "dark" ? ICONE_SOL : ICONE_LUA;
+      b.setAttribute("aria-label", rotulo);
+      b.title = rotulo;
     });
   }
 
@@ -65,13 +72,9 @@
       });
     });
 
-    var menu = document.querySelector(".botao-menu");
-    if (menu) {
-      menu.addEventListener("click", function () {
-        document.querySelector(".lateral").classList.toggle("aberta");
-      });
-    }
+    montarMenu();
 
+    embrulharTabelas();
     renderizarFormulas();
     lembrarUltimo();
     montarListaErros();
@@ -86,9 +89,52 @@
 
     /* Ao imprimir, abre todas as resoluções. */
     window.addEventListener("beforeprint", function () {
-      document.querySelectorAll("details.exemplo").forEach(function (d) { d.open = true; });
+      document.querySelectorAll("details.exemplo, details.sumario").forEach(function (d) { d.open = true; });
     });
   });
+
+  /* ---------- menu lateral: no celular vira uma gaveta ---------- */
+  function montarMenu() {
+    var lateral = document.querySelector(".lateral");
+    if (!lateral) return;
+    var botao = document.querySelector(".botao-menu");
+    var fundo = document.createElement("div");
+    fundo.className = "fundo-menu";
+    document.body.appendChild(fundo);
+    var gaveta = window.matchMedia("(max-width: 900px)");
+    function abrir(sim) {
+      lateral.classList.toggle("aberta", sim);
+      document.body.classList.toggle("menu-aberto", sim);
+      if (botao) botao.setAttribute("aria-expanded", sim ? "true" : "false");
+      if (sim && gaveta.matches) {
+        var ativo = lateral.querySelector("a.ativo") || lateral.querySelector("a");
+        if (ativo) { ativo.scrollIntoView({ block: "center" }); ativo.focus({ preventScroll: true }); }
+      } else if (!sim && botao && gaveta.matches) {
+        botao.focus({ preventScroll: true });
+      }
+    }
+    if (botao) botao.addEventListener("click", function () { abrir(!lateral.classList.contains("aberta")); });
+    fundo.addEventListener("click", function () { abrir(false); });
+    var fechar = lateral.querySelector(".fechar-menu");
+    if (fechar) fechar.addEventListener("click", function () { abrir(false); });
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape" && lateral.classList.contains("aberta")) abrir(false);
+    });
+    document.querySelectorAll(".abrir-menu").forEach(function (a) {
+      a.addEventListener("click", function (ev) { ev.preventDefault(); abrir(true); });
+    });
+  }
+
+  /* ---------- tabelas largas rolam de lado dentro de uma caixa ---------- */
+  function embrulharTabelas() {
+    document.querySelectorAll("article.caderno table").forEach(function (t) {
+      if (t.parentNode.classList.contains("rolagem-tabela")) return;
+      var caixa = document.createElement("div");
+      caixa.className = "rolagem-tabela";
+      t.parentNode.insertBefore(caixa, t);
+      caixa.appendChild(t);
+    });
+  }
 
   /* ---------- fórmulas com KaTeX (o texto simples fica se o KaTeX não carregar) ---------- */
   function renderizarFormulas() {
@@ -170,7 +216,10 @@
     if (!alvo) return;
     var titulos = document.querySelectorAll("article.caderno h2");
     if (!titulos.length) { alvo.remove(); return; }
+    var nav = document.createElement("nav");
+    nav.setAttribute("aria-label", "Nesta página");
     var ol = document.createElement("ol");
+    nav.appendChild(ol);
     titulos.forEach(function (h, i) {
       if (!h.id) h.id = "secao-" + (i + 1);
       var li = document.createElement("li");
@@ -180,7 +229,12 @@
       li.appendChild(a);
       ol.appendChild(li);
     });
-    alvo.appendChild(ol);
+    alvo.appendChild(nav);
+    /* No celular o sumário começa fechado para o texto aparecer logo. */
+    if (window.matchMedia("(max-width: 700px)").matches) alvo.open = false;
+    ol.addEventListener("click", function (ev) {
+      if (ev.target.closest("a") && window.matchMedia("(max-width: 700px)").matches) alvo.open = false;
+    });
   }
 
   /* ---------- caderno de erros ---------- */
@@ -287,6 +341,7 @@
       placar.querySelector(".texto").textContent =
         "Questões: " + respondidas + "/" + total + " respondidas · " + acertos + " acerto(s)";
       flutuante.innerHTML = "Questões <strong>" + acertos + "✓</strong> · " + respondidas + "/" + total;
+      flutuante.hidden = respondidas === 0; /* só aparece depois da primeira resposta */
     }
 
     function questaoAtiva() {
@@ -412,6 +467,8 @@
         var ativo = b.getAttribute("data-materia") === materia;
         b.classList.toggle("ativo", ativo);
         b.setAttribute("aria-pressed", ativo ? "true" : "false");
+        /* Deixa o botão ativo à vista na faixa que rola de lado. */
+        if (ativo) filtro.scrollLeft = b.offsetLeft - (filtro.clientWidth - b.offsetWidth) / 2;
       });
       document.dispatchEvent(new CustomEvent("am-filtro"));
       if (rolar) filtro.scrollIntoView({ behavior: "smooth", block: "start" });
