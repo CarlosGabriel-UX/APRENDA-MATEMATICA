@@ -66,18 +66,23 @@
     gravar(CHAVE_SESSAO, s);
     return s;
   }
-  /* Devolve uma sessão com token válido (renovando se precisar) ou null. */
+  /* Devolve uma sessão com token válido (renovando se precisar) ou null.
+     Uma renovação por vez: o refresh token só pode ser usado uma vez. */
+  var renovando = null;
   function sessaoValida() {
     var s = sessao();
     if (!s) return Promise.resolve(null);
     if (s.expira - Date.now() > 60 * 1000) return Promise.resolve(s);
-    return auth("token?grant_type=refresh_token", { refresh_token: s.refresh_token }).then(function (r) {
+    if (renovando) return renovando;
+    renovando = auth("token?grant_type=refresh_token", { refresh_token: s.refresh_token }).then(function (r) {
+      renovando = null;
       if (r.erro) {
         if (r.status && r.status < 500) sair(true); /* refresh recusado: a sessão acabou */
         return null;
       }
       return guardarSessao(r);
     });
+    return renovando;
   }
   function sair(silencioso) {
     var s = sessao();
@@ -211,10 +216,16 @@
     var p = {};
     h.slice(1).split("&").forEach(function (par) {
       var i = par.indexOf("=");
-      if (i > 0) p[decodeURIComponent(par.slice(0, i))] = decodeURIComponent(par.slice(i + 1).replace(/\+/g, " "));
+      if (i <= 0) return;
+      try { p[decodeURIComponent(par.slice(0, i))] = decodeURIComponent(par.slice(i + 1).replace(/\+/g, " ")); }
+      catch (e) { /* pedaço malformado: ignora */ }
     });
     if (window.history && history.replaceState) history.replaceState(null, "", window.location.pathname + window.location.search);
-    if (p.error_description) { window.amAvisoConta = "O link do e-mail não funcionou: " + p.error_description; return; }
+    if (p.error_description || !p.access_token) {
+      window.amAvisoConta = "O link do e-mail não funcionou" + (p.error_description ? ": " + p.error_description : ".");
+      window.amAvisoErro = true;
+      return;
+    }
     retornou = true;
     guardarSessao({ access_token: p.access_token, refresh_token: p.refresh_token, expires_in: +p.expires_in || 3600 });
     recuperacao = p.type === "recovery";
@@ -226,6 +237,13 @@
         gravar(CHAVE_SESSAO, s);
         pintarBotao();
         if (!recuperacao) sincronizar(true).then(recarregarSeMudou);
+      } else if (u && u.erro && u.status && u.status < 500) {
+        /* Token do link recusado: não fica uma sessão pela metade. */
+        recuperacao = false;
+        sair(true);
+        window.amAvisoConta = "O link do e-mail expirou ou já foi usado. Entre com e-mail e senha.";
+        window.amAvisoErro = true;
+        if (document.readyState !== "loading") abrir("entrar");
       }
     });
   })();
@@ -299,6 +317,13 @@
       f.appendChild(ls);
     }
     var msg = el("p", { class: "msg-conta", role: "status" });
+    /* Aviso que veio de um link de e-mail (por exemplo, link expirado). */
+    if (window.amAvisoConta) {
+      msg.className = "msg-conta " + (window.amAvisoErro ? "erro" : "ok");
+      msg.textContent = window.amAvisoConta;
+      window.amAvisoConta = "";
+      window.amAvisoErro = false;
+    }
     f.appendChild(msg);
     var enviarBotao = el("button", { type: "submit", class: "botao" },
       { entrar: "Entrar", criar: "Criar conta", esqueci: "Enviar link", nova: "Salvar nova senha" }[modo]);

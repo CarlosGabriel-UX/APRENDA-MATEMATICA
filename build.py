@@ -272,12 +272,12 @@ NIVEIS = [
 ]
 
 LOGO = ('<svg class="logo" viewBox="0 0 32 32" aria-hidden="true">'
-        '<rect width="32" height="32" rx="8" fill="#2a44c7"/>'
-        '<rect x="6.5" y="13.5" width="19" height="5" rx="2.5" fill="#ffd84a"/>'
+        '<rect width="32" height="32" rx="8" fill="#5b4cff"/>'
+        '<rect x="6.5" y="13.5" width="19" height="5" rx="2.5" fill="#c4b5fd"/>'
         '<circle cx="16" cy="8.5" r="2.6" fill="#fff"/><circle cx="16" cy="23.5" r="2.6" fill="#fff"/></svg>')
 FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
-           "%3Crect width='32' height='32' rx='8' fill='%232a44c7'/%3E"
-           "%3Crect x='6.5' y='13.5' width='19' height='5' rx='2.5' fill='%23ffd84a'/%3E"
+           "%3Crect width='32' height='32' rx='8' fill='%235b4cff'/%3E"
+           "%3Crect x='6.5' y='13.5' width='19' height='5' rx='2.5' fill='%23c4b5fd'/%3E"
            "%3Ccircle cx='16' cy='8.5' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='23.5' r='2.6' fill='%23fff'/%3E%3C/svg%3E")
 
 # Ícones de traço (24x24) do cabeçalho e da barra inferior do celular.

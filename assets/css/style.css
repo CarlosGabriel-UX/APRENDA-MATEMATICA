@@ -427,8 +427,13 @@ article.caderno::before {
   background: var(--surface-2);
   padding: 1px 6px;
   border-radius: 6px;
-  white-space: nowrap;
+  /* Trechos curtos ficam numa linha; os longos quebram em vez de vazar da tela. */
+  white-space: normal;
+  overflow-wrap: break-word;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
+.m { white-space: nowrap; }
 .caderno pre {
   max-width: 100%;
   overflow-x: auto;
@@ -1525,6 +1530,11 @@ footer.site .rodape-marca { display: block; margin-bottom: 4px; color: var(--tex
 }
 @media (max-width: 370px) {
   .marca { gap: 6px; font-size: .86rem; }
+  .ajustes .botao-icone { width: 32px; }
+}
+@media (max-width: 340px) {
+  /* Em telas bem estreitas fica só o logo, para os botões caberem. */
+  .marca .nome { display: none; }
 }
 
 /* =========================================================

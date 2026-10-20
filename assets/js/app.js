@@ -82,6 +82,7 @@
       if (ev.key !== "/" || ev.ctrlKey || ev.metaKey || ev.altKey) return;
       var alvo = ev.target;
       if (alvo && (alvo.tagName === "INPUT" || alvo.tagName === "TEXTAREA" || alvo.isContentEditable)) return;
+      if (document.querySelector("dialog[open]")) return;
       var campo = document.querySelector(".busca"), atalho = document.querySelector(".campo-busca");
       if (campo) { ev.preventDefault(); campo.focus({ preventScroll: true }); campo.scrollIntoView({ block: "center" }); }
       else if (atalho) { ev.preventDefault(); window.location.href = atalho.href; }
@@ -117,7 +118,8 @@
     var fundo = document.createElement("div");
     fundo.className = "fundo-menu";
     document.body.appendChild(fundo);
-    var gaveta = window.matchMedia("(max-width: 900px)");
+    /* A lista de cadernos vira gaveta até 1280px (veja o style.css). */
+    var gaveta = window.matchMedia("(max-width: 1280px)");
     function abrir(sim) {
       lateral.classList.toggle("aberta", sim);
       document.body.classList.toggle("menu-aberto", sim);
@@ -164,7 +166,7 @@
   }
 
   /* ---------- "continue de onde parou" ---------- */
-  var PAGINAS_SEM_HISTORICO = ["inicio", "erros", "sobre"];
+  var PAGINAS_SEM_HISTORICO = ["inicio", "erros", "sobre", "404"];
   function lembrarUltimo() {
     var pagina = document.body.getAttribute("data-pagina");
     if (!pagina || PAGINAS_SEM_HISTORICO.indexOf(pagina) !== -1) return;
@@ -302,11 +304,33 @@
     });
   }
 
+  /* O caderno de erros guarda o HTML das questões, e ele pode vir de um backup ou da nuvem.
+     Antes de mostrar, tira tudo que poderia rodar código. O <template> não executa nada. */
+  var PROIBIDAS = "script,iframe,frame,frameset,object,embed,link,meta,style,base,form,input,textarea," +
+    "select,button,noscript,template,animate,set,animatemotion,animatetransform,foreignobject";
+  function limparHtml(html) {
+    var t = document.createElement("template");
+    t.innerHTML = String(html || "");
+    t.content.querySelectorAll(PROIBIDAS).forEach(function (n) { n.remove(); });
+    t.content.querySelectorAll("*").forEach(function (n) {
+      Array.prototype.slice.call(n.attributes).forEach(function (a) {
+        var nome = a.name.toLowerCase();
+        if (nome.indexOf("on") === 0 || nome === "style" ||
+            (/(^|:)(href|src|action|formaction)$/.test(nome) && /^\s*(javascript|vbscript|data):/i.test(a.value))) {
+          n.removeAttribute(a.name);
+        }
+      });
+    });
+    var caixa = document.createElement("div");
+    caixa.appendChild(t.content);
+    return caixa.innerHTML;
+  }
+
   /* Na página do caderno de erros, monta as questões salvas antes de ativá-las. */
   function montarListaErros() {
     var alvo = document.querySelector("[data-lista-erros]");
     if (!alvo) return;
-    var todos = lerErros();
+    var todos = lerErros().filter(function (e) { return e && e.id && typeof e.html === "string"; });
     var erros = todos.filter(vence);
     var agendados = todos.filter(function (e) { return !vence(e); })
       .sort(function (a, b) { return a.proxima - b.proxima; });
@@ -315,8 +339,9 @@
       htmlAgenda = '<details class="agenda-revisao"><summary>Próximas revisões <span>' + agendados.length +
         "</span></summary><ul>";
       agendados.forEach(function (e) {
-        var caixa = document.createElement("div");
+        var caixa = document.createElement("template");
         caixa.innerHTML = e.html;
+        caixa = caixa.content;
         var enunciado = caixa.querySelector(".enunciado");
         var texto = (enunciado ? enunciado.textContent : "").trim();
         if (texto.length > 110) texto = texto.slice(0, 107) + "…";
@@ -324,7 +349,7 @@
         var quando = document.createElement("strong");
         quando.textContent = new Date(e.proxima).toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" });
         li.appendChild(quando);
-        li.appendChild(document.createTextNode(" " + e.titulo + (texto ? ": " + texto : "")));
+        li.appendChild(document.createTextNode(" " + (e.titulo || "") + (texto ? ": " + texto : "")));
         htmlAgenda += li.outerHTML;
       });
       htmlAgenda += "</ul></details>";
@@ -349,15 +374,18 @@
       '<button type="button" class="botao secundario limpar-erros">Limpar tudo</button></p>' + htmlAgenda;
     ordem.forEach(function (slug) {
       var g = grupos[slug];
-      html += '<h2>' + g.titulo + "</h2>";
+      html += "<h2>" + escaparHtml(String(g.titulo || "Questões")) + "</h2>";
       html += '<p><a href="' + encodeURIComponent(slug) + '.html">Rever a teoria deste caderno →</a></p>';
-      g.itens.forEach(function (e) { html += e.html; });
+      /* Cada questão vai dentro de um bloco com o id, para não depender da ordem. */
+      g.itens.forEach(function (e) {
+        html += '<div class="item-erro" data-erro="' + escaparHtml(String(e.id)) + '">' + limparHtml(e.html) + "</div>";
+      });
     });
     alvo.innerHTML = html;
-    var questoes = alvo.querySelectorAll(".questao");
-    var lista = [];
-    ordem.forEach(function (slug) { lista = lista.concat(grupos[slug].itens); });
-    questoes.forEach(function (q, i) { q.setAttribute("data-id", lista[i].id); });
+    alvo.querySelectorAll(".item-erro").forEach(function (item) {
+      var q = item.querySelector(".questao");
+      if (q) q.setAttribute("data-id", item.getAttribute("data-erro"));
+    });
     alvo.querySelector(".limpar-erros").addEventListener("click", function () {
       if (!window.confirm("Apagar todas as questões do caderno de erros?")) return;
       gravar(CHAVE_ERROS, []);
@@ -426,6 +454,7 @@
       if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
       var alvo = ev.target;
       if (alvo && (alvo.tagName === "INPUT" || alvo.tagName === "TEXTAREA" || alvo.isContentEditable)) return;
+      if (document.querySelector("dialog[open]") || document.body.classList.contains("menu-aberto")) return;
       var letra = (ev.key || "").toLowerCase();
       if (letras.indexOf(letra) === -1 || letra.length !== 1) return;
       var q = questaoAtiva();
@@ -755,7 +784,7 @@
         leitor.onload = function () {
           var pacote;
           try { pacote = JSON.parse(leitor.result); } catch (e) { pacote = null; }
-          if (!pacote || pacote.site !== "aprenda-matematica" || typeof pacote.dados !== "object") {
+          if (!pacote || pacote.site !== "aprenda-matematica" || !pacote.dados || typeof pacote.dados !== "object") {
             avisar("Esse arquivo não é um backup do Aprenda Matemática.");
             entrada.value = "";
             return;
@@ -765,6 +794,18 @@
             return;
           }
           try {
+            /* Trocar de verdade: o progresso que não está no arquivo também sai. */
+            var antigas = [];
+            for (var i = 0; i < localStorage.length; i++) {
+              var chave = localStorage.key(i);
+              if (chaveDeProgresso(chave) && chave !== CHAVE_TEMA && chave !== CHAVE_FONTE) antigas.push(chave);
+            }
+            antigas.forEach(function (k) {
+              if (!(k in pacote.dados)) {
+                localStorage.removeItem(k);
+                document.dispatchEvent(new CustomEvent("am-gravou", { detail: k }));
+              }
+            });
             Object.keys(pacote.dados).forEach(function (k) {
               if (chaveDeProgresso(k) && typeof pacote.dados[k] === "string") {
                 localStorage.setItem(k, pacote.dados[k]);
