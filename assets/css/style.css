@@ -837,6 +837,17 @@ figure.figura figcaption { font-size: .88rem; color: var(--text-soft); margin-to
 .f-area.f-linha { fill: var(--primary-soft); }
 .f-fundo.f-linha, .f-fundo.f-dest { fill: var(--surface); }
 .f-grade { stroke: var(--border-forte); stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+.f-marca { fill: var(--marca-soft); }
+.f-marca.f-linha { fill: var(--marca-soft); }
+/* Figuras dentro da explicação de uma questão */
+.questao .explicacao figure.resolucao {
+  margin: 12px 0 14px;
+  padding: 14px 12px 10px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+.questao .explicacao figure.resolucao figcaption { text-align: left; max-width: 62ch; margin: 8px auto 0; }
 .questao .figura text { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
 
 /* =========================================================
@@ -980,6 +991,147 @@ figure.figura figcaption { font-size: .88rem; color: var(--text-soft); margin-to
 .busca::placeholder { color: var(--text-soft); opacity: .85; }
 .busca:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 22%, transparent); }
 .sem-resultado { margin-top: 24px; color: var(--text-soft); }
+a.botao-icone { text-decoration: none; }
+.botao-icone .ico { width: 20px; height: 20px; }
+
+/* Busca dentro das páginas */
+.resultados-busca { margin-top: 20px; }
+.resultados-busca h2 { font-size: 1.15rem; margin: 0 0 10px; }
+.resultados-busca h2 small { font: 400 .85rem var(--font); color: var(--text-soft); margin-left: 6px; }
+.resultados-busca ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.resultados-busca a {
+  display: grid;
+  gap: 4px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+}
+.resultados-busca a:hover { border-color: var(--primary); }
+.resultados-busca .onde { font-weight: 650; color: var(--primary); }
+.resultados-busca .trecho { font-size: .9rem; color: var(--text-soft); line-height: 1.5; }
+.resultados-busca mark { background: var(--marca-soft); color: inherit; border-radius: 3px; padding: 0 1px; }
+
+/* Backup do progresso */
+.backup {
+  padding: 14px 18px;
+  border: 1px dashed var(--border-forte);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.backup p { margin: 0; font-size: .9rem; color: var(--text-soft); max-width: none; }
+.backup p strong { color: var(--text); }
+.acoes-backup { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.aviso-backup:empty { display: none; }
+.backup .aviso-backup { margin-top: 8px; color: var(--ok); }
+
+.guardar-progresso > summary {
+  cursor: pointer;
+  width: fit-content;
+  font-size: .9rem;
+  color: var(--text-soft);
+  text-decoration: underline;
+  text-decoration-color: var(--border-forte);
+  text-underline-offset: 3px;
+}
+.guardar-progresso > summary:hover { color: var(--text); }
+.guardar-progresso[open] > summary { margin-bottom: 10px; }
+.acoes-backup .botao { flex: 1 1 180px; }
+
+/* Conta do aluno */
+.botao-conta { position: relative; }
+.botao-conta.conectado { color: var(--primary); }
+.botao-conta.conectado::after {
+  content: "";
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 2px var(--bg);
+}
+.link-conta {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--primary);
+  font: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.backup .dica-conta { margin-top: 10px; }
+.dica-conta [data-estado-conta]:empty { display: none; }
+.dialogo-conta {
+  width: min(420px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-g);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-alto);
+}
+.dialogo-conta::backdrop { background: rgba(20, 18, 10, .45); }
+.fechar-conta { position: absolute; top: 10px; right: 10px; font-size: 1.5rem; }
+.form-conta { display: grid; gap: 14px; }
+.form-conta h2 { margin: 0; font-size: 1.35rem; }
+.abas-conta { display: flex; gap: 6px; margin-right: 36px; padding: 4px; border-radius: 12px; background: var(--surface-2); }
+.abas-conta button {
+  flex: 1;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-soft);
+  font: 650 .95rem var(--font);
+  cursor: pointer;
+}
+.abas-conta button[aria-selected="true"] { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+.intro-conta, .nota-conta { margin: 0; color: var(--text-soft); font-size: .92rem; }
+.nota-conta { font-size: .84rem; }
+.form-conta label { display: grid; gap: 6px; font-weight: 650; font-size: .92rem; }
+.form-conta input {
+  padding: 11px 14px;
+  border: 1px solid var(--border-forte);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+.form-conta input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 22%, transparent); }
+.msg-conta:empty, .estado-sync:empty { display: none; }
+.msg-conta, .estado-sync { margin: 0; font-size: .9rem; }
+.msg-conta.erro { color: var(--bad); }
+.msg-conta.ok, .estado-sync { color: var(--ok); }
+.form-conta .botao { width: 100%; }
+.acoes-conta { display: flex; flex-wrap: wrap; gap: 8px; }
+.acoes-conta .botao { flex: 1 1 140px; }
+
+/* Caderno de erros: revisões agendadas */
+.agenda-revisao {
+  margin: 0 0 24px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.agenda-revisao summary { cursor: pointer; font-weight: 650; }
+.agenda-revisao summary span { color: var(--text-soft); font-weight: 400; margin-left: 4px; }
+.agenda-revisao ul { margin: 10px 0 0; padding-left: 0; list-style: none; display: grid; gap: 6px; }
+.agenda-revisao li { font-size: .92rem; color: var(--text-soft); max-width: none; }
+.agenda-revisao li strong { display: inline-block; min-width: 3.4em; color: var(--primary); }
+
+/* Página 404 */
+.pagina-404 { padding: 64px 0 80px; }
+.pagina-404 h1 { margin: 6px 0 12px; }
+.pagina-404 .sobretitulo { margin: 0; color: var(--primary); font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+.pagina-404 .acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 
 /* Blocos e grupos */
 .titulo-bloco { margin-top: 64px; }
@@ -1366,6 +1518,14 @@ footer.site .rodape-marca { display: block; margin-bottom: 4px; color: var(--tex
 }
 @media (max-width: 480px) {
   .m, .caderno :not(pre) > code { white-space: normal; overflow-wrap: anywhere; }
+  /* Cinco botões no topo: encolhe para caber ao lado da marca. */
+  .ajustes { gap: 0; }
+  .ajustes .botao-icone { width: 34px; }
+  .marca { gap: 8px; font-size: .98rem; }
+  .logo { width: 26px; height: 26px; }
+}
+@media (max-width: 370px) {
+  .marca { gap: 6px; font-size: .86rem; }
 }
 
 /* =========================================================

@@ -5,18 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Meu caderno de erros · Aprenda Matemática</title>
 <meta name="description" content="As questões que você errou nos cadernos, reunidas para revisar até acertar.">
-<link rel="canonical" href="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/cadernos/erros.html">
+<meta name="robots" content="noindex">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Aprenda Matemática">
 <meta property="og:title" content="Meu caderno de erros · Aprenda Matemática">
 <meta property="og:description" content="As questões que você errou nos cadernos, reunidas para revisar até acertar.">
 <meta property="og:url" content="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/cadernos/erros.html">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/assets/og-imagem.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aprenda Matemática: estude para concursos sem perder tempo">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f7f5ef" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)"><meta name="robots" content="noindex">
+<meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232a44c7'/%3E%3Crect x='6.5' y='13.5' width='19' height='5' rx='2.5' fill='%23ffd84a'/%3E%3Ccircle cx='16' cy='8.5' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='23.5' r='2.6' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/conta.js"></script>
 <script src="../assets/js/app.js"></script>
 </head>
 <body data-pagina="erros" data-titulo="Meu caderno de erros">
@@ -32,6 +37,8 @@
     <a href="../cadernos/erros.html" aria-current="page">Erros <span class="contador" data-contagem-erros hidden></span></a>
   </nav>
   <div class="ajustes">
+    <button type="button" class="botao-icone botao-conta" aria-label="Entrar ou criar conta"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-4 4.1-6 7.5-6s6.3 2 7.5 6"/></svg></button>
+    <a class="botao-icone botao-busca" href="../index.html#busca" aria-label="Buscar no site" title="Buscar no site"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
     <button type="button" class="botao-icone botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span></button>
     <button type="button" class="botao-icone botao-tema" aria-label="Alternar tema claro ou escuro"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
   </div>
@@ -84,8 +91,19 @@
   
   </header>
   <details class="sumario" data-sumario open><summary>Nesta página</summary></details>
-<p>Aqui ficam as questões que você errou em qualquer caderno. Refaça cada uma: quando acertar, ela sai da lista. As questões ficam guardadas só neste navegador e neste aparelho.</p>
+<p>Aqui ficam as questões que você errou em qualquer caderno. A lista mostra só as que vencem hoje. Cada acerto agenda a próxima revisão para daqui a 1, depois 3 e depois 7 dias; quem acerta na revisão de 7 dias tira a questão da lista. Se errar de novo, a contagem recomeça.</p>
 <div data-lista-erros></div>
+<h2>Guardar o progresso</h2>
+<div class="backup" data-backup>
+    <p><strong>Seu progresso fica só neste aparelho.</strong> Salve um arquivo para não perder nada ou para continuar em outro celular ou computador.</p>
+    <div class="acoes-backup">
+      <button type="button" class="botao secundario exportar">Exportar progresso</button>
+      <button type="button" class="botao secundario importar">Importar progresso</button>
+      <input type="file" accept="application/json,.json" hidden>
+    </div>
+    <p class="aviso-backup" role="status"></p>
+    <p class="dica-conta"><span data-estado-conta></span> <button type="button" class="link-conta" data-abrir-conta="criar">Prefere não se preocupar com isso? Crie uma conta e o progresso é salvo sozinho.</button></p>
+  </div>
 </article>
 </div>
 <footer class="site">

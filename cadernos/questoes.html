@@ -12,11 +12,16 @@
 <meta property="og:title" content="Banco de questões · Aprenda Matemática">
 <meta property="og:description" content="Questões originais separadas por banca e por matéria, com figuras, gráficos, tabelas e código.">
 <meta property="og:url" content="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/cadernos/questoes.html">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://carlosgabriel-ux.github.io/APRENDA-MATEMATICA/assets/og-imagem.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aprenda Matemática: estude para concursos sem perder tempo">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#f7f5ef" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121316" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232a44c7'/%3E%3Crect x='6.5' y='13.5' width='19' height='5' rx='2.5' fill='%23ffd84a'/%3E%3Ccircle cx='16' cy='8.5' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='23.5' r='2.6' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/conta.js"></script>
 <script src="../assets/js/app.js"></script>
 <script type="application/ld+json">
 {
@@ -50,6 +55,8 @@
     <a href="../cadernos/erros.html">Erros <span class="contador" data-contagem-erros hidden></span></a>
   </nav>
   <div class="ajustes">
+    <button type="button" class="botao-icone botao-conta" aria-label="Entrar ou criar conta"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-4 4.1-6 7.5-6s6.3 2 7.5 6"/></svg></button>
+    <a class="botao-icone botao-busca" href="../index.html#busca" aria-label="Buscar no site" title="Buscar no site"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
     <button type="button" class="botao-icone botao-fonte" aria-label="Mudar o tamanho da letra"><span aria-hidden="true">Aa</span></button>
     <button type="button" class="botao-icone botao-tema" aria-label="Alternar tema claro ou escuro"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
   </div>
@@ -131,7 +138,7 @@
     <span class="icone curto" style="--cor: #c2410c" aria-hidden="true">V</span>
     <h3>Questões estilo VUNESP</h3>
     <p>Múltipla escolha com 5 alternativas, no estilo das provas da PM-SP e da GCM São Paulo, separadas por matéria.</p>
-    <span class="rodape"><span>100 questões</span></span>
+    <span class="rodape"><span>120 questões</span></span>
   </a>
   <a class="cartao" href="questoes-cebraspe.html" data-termos="questões cebraspe cespe certo errado pf perito agente escrivão" style="--cor: #0e7490">
     <span class="icone longo" style="--cor: #0e7490" aria-hidden="true">C/E</span>
@@ -157,9 +164,13 @@
 <tr><td><a href="fracoes.html">Frações e números decimais</a></td><td class="sim"><a href="questoes-vunesp.html#fracoes">5</a></td><td class="nao">–</td></tr>
 <tr><td><a href="aritmetica.html">Aritmética e divisibilidade</a></td><td class="sim"><a href="questoes-vunesp.html#aritmetica">5</a></td><td class="nao">–</td></tr>
 <tr><td><a href="equacoes.html">Equações e sistemas</a></td><td class="sim"><a href="questoes-vunesp.html#equacoes">5</a></td><td class="nao">–</td></tr>
+<tr><td><a href="funcoes.html">Funções</a></td><td class="sim"><a href="questoes-vunesp.html#funcoes">5</a></td><td class="nao">–</td></tr>
 <tr><td><a href="geometria.html">Geometria plana e espacial</a></td><td class="sim"><a href="questoes-vunesp.html#geometria">5</a></td><td class="nao">–</td></tr>
 <tr><td><a href="estatistica.html">Estatística básica</a></td><td class="sim"><a href="questoes-vunesp.html#estatistica">5</a></td><td class="sim"><a href="questoes-cebraspe.html#estatistica">5</a></td></tr>
 <tr><td><a href="sequencias.html">Sequências, PA e PG</a></td><td class="sim"><a href="questoes-vunesp.html#sequencias">5</a></td><td class="nao">–</td></tr>
+<tr><td><a href="juros.html">Juros simples e compostos</a></td><td class="sim"><a href="questoes-vunesp.html#juros">5</a></td><td class="nao">–</td></tr>
+<tr><td><a href="combinatoria.html">Análise combinatória</a></td><td class="sim"><a href="questoes-vunesp.html#combinatoria">5</a></td><td class="sim"><a href="questoes-cebraspe.html#combinatoria">5</a></td></tr>
+<tr><td><a href="probabilidade.html">Probabilidade</a></td><td class="sim"><a href="questoes-vunesp.html#probabilidade">5</a></td><td class="sim"><a href="questoes-cebraspe.html#probabilidade">5</a></td></tr>
 <tr><td><a href="logica.html">Raciocínio lógico</a></td><td class="sim"><a href="questoes-vunesp.html#logica">5</a></td><td class="sim"><a href="questoes-cebraspe.html#logica">5</a></td></tr>
 <tr><td><a href="direito-constitucional.html">Direito Constitucional</a></td><td class="sim"><a href="questoes-vunesp.html#direito-constitucional">5</a></td><td class="sim"><a href="questoes-cebraspe.html#direito-constitucional">5</a></td></tr>
 <tr><td><a href="direito-administrativo.html">Direito Administrativo</a></td><td class="sim"><a href="questoes-vunesp.html#direito-administrativo">5</a></td><td class="sim"><a href="questoes-cebraspe.html#direito-administrativo">5</a></td></tr>
@@ -171,8 +182,6 @@
 <tr><td><a href="geografia.html">Geografia</a></td><td class="sim"><a href="questoes-vunesp.html#geografia">5</a></td><td class="nao">–</td></tr>
 <tr><td><a href="realidade-sp.html">Atualidades e Realidade de SP</a></td><td class="sim"><a href="questoes-vunesp.html#realidade-sp">5</a></td><td class="nao">–</td></tr>
 <tr><td><a href="direitos-humanos.html">Direitos Humanos</a></td><td class="nao">–</td><td class="sim"><a href="questoes-cebraspe.html#direitos-humanos">5</a></td></tr>
-<tr><td><a href="combinatoria.html">Análise combinatória</a></td><td class="nao">–</td><td class="sim"><a href="questoes-cebraspe.html#combinatoria">5</a></td></tr>
-<tr><td><a href="probabilidade.html">Probabilidade</a></td><td class="nao">–</td><td class="sim"><a href="questoes-cebraspe.html#probabilidade">5</a></td></tr>
 <tr><td><a href="contabilidade.html">Contabilidade Geral</a></td><td class="nao">–</td><td class="sim"><a href="questoes-cebraspe.html#contabilidade">5</a></td></tr>
 <tr><td><a href="criminalistica.html">Noções de Criminalística</a></td><td class="nao">–</td><td class="sim"><a href="questoes-cebraspe.html#criminalistica">5</a></td></tr>
 <tr><td><a href="ti-redes-seguranca.html">Redes e Segurança</a></td><td class="nao">–</td><td class="sim"><a href="questoes-cebraspe.html#ti-redes-seguranca">5</a></td></tr>
