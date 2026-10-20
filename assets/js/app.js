@@ -58,8 +58,7 @@
   if (TAMANHOS.indexOf(fonteSalva) === -1) fonteSalva = 100;
   aplicarFonte(fonteSalva);
   var temaSalvo = ler(CHAVE_TEMA, null);
-  var prefereEscuro = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-  aplicarTema(temaSalvo || (prefereEscuro ? "dark" : "light"));
+  aplicarTema(temaSalvo || "dark");
 
   document.addEventListener("DOMContentLoaded", function () {
     aplicarTema(raiz.getAttribute("data-theme"));
@@ -77,6 +76,15 @@
         aplicarFonte(fonteSalva);
         gravar(CHAVE_FONTE, fonteSalva);
       });
+    });
+    // Atalho "/" abre a busca (como o campo do menu lateral indica).
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key !== "/" || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+      var alvo = ev.target;
+      if (alvo && (alvo.tagName === "INPUT" || alvo.tagName === "TEXTAREA" || alvo.isContentEditable)) return;
+      var campo = document.querySelector(".busca"), atalho = document.querySelector(".campo-busca");
+      if (campo) { ev.preventDefault(); campo.focus({ preventScroll: true }); campo.scrollIntoView({ block: "center" }); }
+      else if (atalho) { ev.preventDefault(); window.location.href = atalho.href; }
     });
 
     montarMenu();

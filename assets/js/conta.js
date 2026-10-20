@@ -245,7 +245,11 @@
       var rotulo = s ? "Sua conta (" + s.email + ")" : "Entrar ou criar conta";
       b.setAttribute("aria-label", rotulo);
       b.title = rotulo;
+      var nome = b.querySelector(".nome-conta"), email = b.querySelector(".email-conta");
+      if (nome) nome.textContent = s ? s.email.split("@")[0] : "Visitante";
+      if (email) email.textContent = s ? s.email : "Entrar ou criar conta";
     });
+    document.querySelectorAll(".cartao-nuvem").forEach(function (c) { c.hidden = !!s; });
     document.querySelectorAll(".dica-conta .link-conta").forEach(function (b) { b.hidden = !!s; });
     document.querySelectorAll("[data-estado-conta]").forEach(function (p) {
       p.textContent = s ? "Conectado como " + s.email + ": seu progresso é salvo automaticamente." : "";
